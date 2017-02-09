@@ -1,4 +1,4 @@
-# Swagger\Client\CheckoutsApi
+# zipMoneyPHP\CheckoutsApi
 
 All URIs are relative to *https://api.zipmoney.com.au/merchant/v1*
 
@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **checkoutsCreate**
-> \Swagger\Client\Model\Checkout checkoutsCreate($body)
+> \zipMoneyPHP/Model\Checkout checkoutsCreate($body)
 
 Create a checkout
 
@@ -21,12 +21,12 @@ Creates a zipMoney checkout.  During the checkout process a customer can apply f
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new Swagger\Client\Api\CheckoutsApi();
-$body = new \Swagger\Client\Model\CreateCheckoutRequest(); // \Swagger\Client\Model\CreateCheckoutRequest | 
+$api_instance = new zipMoneyPHP\Api\CheckoutsApi();
+$body = new \zipMoneyPHP/Model\CreateCheckoutRequest(); // \zipMoneyPHP/Model\CreateCheckoutRequest | 
 
 try {
     $result = $api_instance->checkoutsCreate($body);
@@ -41,11 +41,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Swagger\Client\Model\CreateCheckoutRequest**](../Model/\Swagger\Client\Model\CreateCheckoutRequest.md)|  | [optional]
+ **body** | [**\zipMoneyPHP/Model\CreateCheckoutRequest**](../Model/\zipMoneyPHP/Model\CreateCheckoutRequest.md)|  | [optional]
 
 ### Return type
 
-[**\Swagger\Client\Model\Checkout**](../Model/Checkout.md)
+[**\zipMoneyPHP/Model\Checkout**](../Model/Checkout.md)
 
 ### Authorization
 
@@ -54,12 +54,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/javascript
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **checkoutsGet**
-> \Swagger\Client\Model\Checkout checkoutsGet($id)
+> \zipMoneyPHP/Model\Checkout checkoutsGet($id)
 
 Retrieve a checkout
 
@@ -69,11 +69,11 @@ Retrieve a checkout
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new Swagger\Client\Api\CheckoutsApi();
+$api_instance = new zipMoneyPHP\Api\CheckoutsApi();
 $id = "id_example"; // string | 
 
 try {
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\Checkout**](../Model/Checkout.md)
+[**\zipMoneyPHP/Model\Checkout**](../Model/Checkout.md)
 
 ### Authorization
 

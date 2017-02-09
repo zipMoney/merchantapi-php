@@ -1,4 +1,4 @@
-# Swagger\Client\CustomersApi
+# zipMoneyPHP\CustomersApi
 
 All URIs are relative to *https://api.zipmoney.com.au/merchant/v1*
 
@@ -20,7 +20,7 @@ Retrieves the details of a customer by id. This will only return customer detail
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\CustomersApi();
+$api_instance = new zipMoneyPHP\Api\CustomersApi();
 $id = "id_example"; // string | 
 
 try {
@@ -64,7 +64,7 @@ Returns a list of all customers who have transacted previously with your merchan
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\CustomersApi();
+$api_instance = new zipMoneyPHP\Api\CustomersApi();
 
 try {
     $api_instance->customersList();

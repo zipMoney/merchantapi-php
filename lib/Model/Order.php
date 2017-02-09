@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace zipMoneyPHP/Model;
 
 use \ArrayAccess;
 
@@ -48,7 +48,7 @@ use \ArrayAccess;
  *
  * @category    Class */
 /** 
- * @package     Swagger\Client
+ * @package     zipMoneyPHP
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -67,9 +67,9 @@ class Order implements ArrayAccess
       */
     protected static $swaggerTypes = array(
         'reference' => 'string',
-        'amount' => '\Swagger\Client\Model\OrderAmount',
-        'shipping' => '\Swagger\Client\Model\OrderShipping',
-        'items' => '\Swagger\Client\Model\OrderItem[]',
+        'amount' => '\zipMoneyPHP/Model\OrderAmount',
+        'shipping' => '\zipMoneyPHP/Model\OrderShipping',
+        'items' => '\zipMoneyPHP/Model\OrderItem[]',
         'cart_reference' => 'string'
     );
 
@@ -221,7 +221,7 @@ class Order implements ArrayAccess
 
     /**
      * Gets amount
-     * @return \Swagger\Client\Model\OrderAmount
+     * @return \zipMoneyPHP/Model\OrderAmount
      */
     public function getAmount()
     {
@@ -230,7 +230,7 @@ class Order implements ArrayAccess
 
     /**
      * Sets amount
-     * @param \Swagger\Client\Model\OrderAmount $amount
+     * @param \zipMoneyPHP/Model\OrderAmount $amount
      * @return $this
      */
     public function setAmount($amount)
@@ -242,7 +242,7 @@ class Order implements ArrayAccess
 
     /**
      * Gets shipping
-     * @return \Swagger\Client\Model\OrderShipping
+     * @return \zipMoneyPHP/Model\OrderShipping
      */
     public function getShipping()
     {
@@ -251,7 +251,7 @@ class Order implements ArrayAccess
 
     /**
      * Sets shipping
-     * @param \Swagger\Client\Model\OrderShipping $shipping
+     * @param \zipMoneyPHP/Model\OrderShipping $shipping
      * @return $this
      */
     public function setShipping($shipping)
@@ -263,7 +263,7 @@ class Order implements ArrayAccess
 
     /**
      * Gets items
-     * @return \Swagger\Client\Model\OrderItem[]
+     * @return \zipMoneyPHP/Model\OrderItem[]
      */
     public function getItems()
     {
@@ -272,7 +272,7 @@ class Order implements ArrayAccess
 
     /**
      * Sets items
-     * @param \Swagger\Client\Model\OrderItem[] $items The order item breakdown
+     * @param \zipMoneyPHP/Model\OrderItem[] $items The order item breakdown
      * @return $this
      */
     public function setItems($items)
@@ -357,10 +357,10 @@ class Order implements ArrayAccess
     public function __toString()
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
 

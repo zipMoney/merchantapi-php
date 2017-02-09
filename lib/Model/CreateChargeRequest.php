@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace zipMoneyPHP/Model;
 
 use \ArrayAccess;
 
@@ -48,7 +48,7 @@ use \ArrayAccess;
  *
  * @category    Class */
 /** 
- * @package     Swagger\Client
+ * @package     zipMoneyPHP
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -67,9 +67,9 @@ class CreateChargeRequest implements ArrayAccess
       */
     protected static $swaggerTypes = array(
         'reference' => 'string',
-        'authority' => '\Swagger\Client\Model\Authority',
+        'authority' => '\zipMoneyPHP/Model\Authority',
         'capture' => 'bool',
-        'order' => '\Swagger\Client\Model\Order',
+        'order' => '\zipMoneyPHP/Model\Order',
         'metadata' => 'object'
     );
 
@@ -210,7 +210,7 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Gets authority
-     * @return \Swagger\Client\Model\Authority
+     * @return \zipMoneyPHP/Model\Authority
      */
     public function getAuthority()
     {
@@ -219,7 +219,7 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Sets authority
-     * @param \Swagger\Client\Model\Authority $authority
+     * @param \zipMoneyPHP/Model\Authority $authority
      * @return $this
      */
     public function setAuthority($authority)
@@ -252,7 +252,7 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Gets order
-     * @return \Swagger\Client\Model\Order
+     * @return \zipMoneyPHP/Model\Order
      */
     public function getOrder()
     {
@@ -261,7 +261,7 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Sets order
-     * @param \Swagger\Client\Model\Order $order
+     * @param \zipMoneyPHP/Model\Order $order
      * @return $this
      */
     public function setOrder($order)
@@ -343,10 +343,10 @@ class CreateChargeRequest implements ArrayAccess
     public function __toString()
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
 

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace zipMoneyPHP/Model;
 
 use \ArrayAccess;
 
@@ -49,7 +49,7 @@ use \ArrayAccess;
  * @category    Class */
  // @description The create token request
 /** 
- * @package     Swagger\Client
+ * @package     zipMoneyPHP
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -67,7 +67,7 @@ class CreateTokenRequest implements ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        'authority' => '\Swagger\Client\Model\Authority'
+        'authority' => '\zipMoneyPHP/Model\Authority'
     );
 
     public static function swaggerTypes()
@@ -164,7 +164,7 @@ class CreateTokenRequest implements ArrayAccess
 
     /**
      * Gets authority
-     * @return \Swagger\Client\Model\Authority
+     * @return \zipMoneyPHP/Model\Authority
      */
     public function getAuthority()
     {
@@ -173,7 +173,7 @@ class CreateTokenRequest implements ArrayAccess
 
     /**
      * Sets authority
-     * @param \Swagger\Client\Model\Authority $authority
+     * @param \zipMoneyPHP/Model\Authority $authority
      * @return $this
      */
     public function setAuthority($authority)
@@ -234,10 +234,10 @@ class CreateTokenRequest implements ArrayAccess
     public function __toString()
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
 

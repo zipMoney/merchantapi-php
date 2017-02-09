@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -38,18 +38,18 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Api;
+namespace zipMoneyPHP/Client/Api;
 
-use \Swagger\Client\Configuration;
-use \Swagger\Client\ApiClient;
-use \Swagger\Client\ApiException;
-use \Swagger\Client\ObjectSerializer;
+use \zipMoneyPHP\Configuration;
+use \zipMoneyPHP\ApiClient;
+use \zipMoneyPHP\ApiException;
+use \zipMoneyPHP\ObjectSerializer;
 
 /**
  * CustomersApi Class Doc Comment
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -60,16 +60,16 @@ class CustomersApi
     /**
      * API Client
      *
-     * @var \Swagger\Client\ApiClient instance of the ApiClient
+     * @var \zipMoneyPHP\ApiClient instance of the ApiClient
      */
     protected $apiClient;
 
     /**
      * Constructor
      *
-     * @param \Swagger\Client\ApiClient|null $apiClient The api client to use
+     * @param \zipMoneyPHP\ApiClient|null $apiClient The api client to use
      */
-    public function __construct(\Swagger\Client\ApiClient $apiClient = null)
+    public function __construct(\zipMoneyPHP\ApiClient $apiClient = null)
     {
         if ($apiClient == null) {
             $apiClient = new ApiClient();
@@ -82,7 +82,7 @@ class CustomersApi
     /**
      * Get API client
      *
-     * @return \Swagger\Client\ApiClient get the API client
+     * @return \zipMoneyPHP\ApiClient get the API client
      */
     public function getApiClient()
     {
@@ -92,11 +92,11 @@ class CustomersApi
     /**
      * Set the API client
      *
-     * @param \Swagger\Client\ApiClient $apiClient set the API client
+     * @param \zipMoneyPHP\ApiClient $apiClient set the API client
      *
      * @return CustomersApi
      */
-    public function setApiClient(\Swagger\Client\ApiClient $apiClient)
+    public function setApiClient(\zipMoneyPHP\ApiClient $apiClient)
     {
         $this->apiClient = $apiClient;
         return $this;
@@ -109,7 +109,7 @@ class CustomersApi
      *
      * @param string $id  (required)
      * @return void
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function customersGet($id)
     {
@@ -124,7 +124,7 @@ class CustomersApi
      *
      * @param string $id  (required)
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function customersGetWithHttpInfo($id)
     {
@@ -189,7 +189,7 @@ class CustomersApi
      * List customers
      *
      * @return void
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function customersList()
     {
@@ -203,7 +203,7 @@ class CustomersApi
      * List customers
      *
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function customersListWithHttpInfo()
     {

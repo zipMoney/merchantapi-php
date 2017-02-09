@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -38,18 +38,18 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Api;
+namespace zipMoneyPHP/Client/Api;
 
-use \Swagger\Client\Configuration;
-use \Swagger\Client\ApiClient;
-use \Swagger\Client\ApiException;
-use \Swagger\Client\ObjectSerializer;
+use \zipMoneyPHP\Configuration;
+use \zipMoneyPHP\ApiClient;
+use \zipMoneyPHP\ApiException;
+use \zipMoneyPHP\ObjectSerializer;
 
 /**
  * TokensApi Class Doc Comment
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -60,16 +60,16 @@ class TokensApi
     /**
      * API Client
      *
-     * @var \Swagger\Client\ApiClient instance of the ApiClient
+     * @var \zipMoneyPHP\ApiClient instance of the ApiClient
      */
     protected $apiClient;
 
     /**
      * Constructor
      *
-     * @param \Swagger\Client\ApiClient|null $apiClient The api client to use
+     * @param \zipMoneyPHP\ApiClient|null $apiClient The api client to use
      */
-    public function __construct(\Swagger\Client\ApiClient $apiClient = null)
+    public function __construct(\zipMoneyPHP\ApiClient $apiClient = null)
     {
         if ($apiClient == null) {
             $apiClient = new ApiClient();
@@ -82,7 +82,7 @@ class TokensApi
     /**
      * Get API client
      *
-     * @return \Swagger\Client\ApiClient get the API client
+     * @return \zipMoneyPHP\ApiClient get the API client
      */
     public function getApiClient()
     {
@@ -92,11 +92,11 @@ class TokensApi
     /**
      * Set the API client
      *
-     * @param \Swagger\Client\ApiClient $apiClient set the API client
+     * @param \zipMoneyPHP\ApiClient $apiClient set the API client
      *
      * @return TokensApi
      */
-    public function setApiClient(\Swagger\Client\ApiClient $apiClient)
+    public function setApiClient(\zipMoneyPHP\ApiClient $apiClient)
     {
         $this->apiClient = $apiClient;
         return $this;
@@ -107,10 +107,10 @@ class TokensApi
      *
      * Create token
      *
-     * @param \Swagger\Client\Model\CreateTokenRequest $body  (optional)
+     * @param \zipMoneyPHP/Model\CreateTokenRequest $body  (optional)
      * @param string $idempotency_key The unique idempotency key. (optional)
-     * @return \Swagger\Client\Model\Token
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @return \zipMoneyPHP/Model\Token
+     * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function tokensCreate($body = null, $idempotency_key = null)
     {
@@ -123,10 +123,10 @@ class TokensApi
      *
      * Create token
      *
-     * @param \Swagger\Client\Model\CreateTokenRequest $body  (optional)
+     * @param \zipMoneyPHP/Model\CreateTokenRequest $body  (optional)
      * @param string $idempotency_key The unique idempotency key. (optional)
-     * @return Array of \Swagger\Client\Model\Token, HTTP status code, HTTP response headers (array of strings)
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @return Array of \zipMoneyPHP/Model\Token, HTTP status code, HTTP response headers (array of strings)
+     * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function tokensCreateWithHttpInfo($body = null, $idempotency_key = null)
     {
@@ -174,31 +174,31 @@ class TokensApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\Token',
+                '\zipMoneyPHP/Model\Token',
                 '/tokens'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\Token', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP/Model\Token', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Token', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\Token', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 402:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 409:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

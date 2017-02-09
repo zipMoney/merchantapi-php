@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace zipMoneyPHP/Model;
 
 use \ArrayAccess;
 
@@ -49,7 +49,7 @@ use \ArrayAccess;
  * @category    Class */
  // @description The amount object
 /** 
- * @package     Swagger\Client
+ * @package     zipMoneyPHP
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -69,7 +69,7 @@ class OrderAmount implements ArrayAccess
     protected static $swaggerTypes = array(
         'currency' => 'string',
         'value' => 'float',
-        'details' => '\Swagger\Client\Model\OrderAmountDetails'
+        'details' => '\zipMoneyPHP/Model\OrderAmountDetails'
     );
 
     public static function swaggerTypes()
@@ -253,7 +253,7 @@ class OrderAmount implements ArrayAccess
 
     /**
      * Gets details
-     * @return \Swagger\Client\Model\OrderAmountDetails
+     * @return \zipMoneyPHP/Model\OrderAmountDetails
      */
     public function getDetails()
     {
@@ -262,7 +262,7 @@ class OrderAmount implements ArrayAccess
 
     /**
      * Sets details
-     * @param \Swagger\Client\Model\OrderAmountDetails $details
+     * @param \zipMoneyPHP/Model\OrderAmountDetails $details
      * @return $this
      */
     public function setDetails($details)
@@ -323,10 +323,10 @@ class OrderAmount implements ArrayAccess
     public function __toString()
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
 

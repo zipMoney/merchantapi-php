@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace zipMoneyPHP/Model;
 
 use \ArrayAccess;
 
@@ -47,8 +47,9 @@ use \ArrayAccess;
  * Checkout Class Doc Comment
  *
  * @category    Class */
+ // @description The checkout request
 /** 
- * @package     Swagger\Client
+ * @package     zipMoneyPHP
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -68,14 +69,14 @@ class Checkout implements ArrayAccess
     protected static $swaggerTypes = array(
         'id' => 'string',
         'uri' => 'string',
-        'initiator' => '\Swagger\Client\Model\CheckoutInitiator',
-        'order' => '\Swagger\Client\Model\Order',
-        'config' => '\Swagger\Client\Model\CheckoutConfig',
+        'initiator' => '\zipMoneyPHP/Model\CheckoutInitiator',
+        'order' => '\zipMoneyPHP/Model\Order',
+        'config' => '\zipMoneyPHP/Model\CheckoutConfig',
         'additional_features' => 'string[]',
         'created' => '\DateTime',
         'state' => 'string',
         'customer_id' => 'string',
-        'metadata' => '\Swagger\Client\Model\Metadata'
+        'metadata' => '\zipMoneyPHP/Model\Metadata'
     );
 
     public static function swaggerTypes()
@@ -152,6 +153,7 @@ class Checkout implements ArrayAccess
     const STATE_CREATED = 'created';
     const STATE_EXPIRED = 'expired';
     const STATE_APPROVED = 'approved';
+    const STATE_COMPLETED = 'completed';
     
 
     
@@ -165,6 +167,7 @@ class Checkout implements ArrayAccess
             self::STATE_CREATED,
             self::STATE_EXPIRED,
             self::STATE_APPROVED,
+            self::STATE_COMPLETED,
         ];
     }
     
@@ -213,7 +216,7 @@ class Checkout implements ArrayAccess
         if ($this->container['state'] === null) {
             $invalid_properties[] = "'state' can't be null";
         }
-        $allowed_values = array("created", "expired", "approved");
+        $allowed_values = array("created", "expired", "approved", "completed");
         if (!in_array($this->container['state'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'state', must be one of #{allowed_values}.";
         }
@@ -241,7 +244,7 @@ class Checkout implements ArrayAccess
         if ($this->container['state'] === null) {
             return false;
         }
-        $allowed_values = array("created", "expired", "approved");
+        $allowed_values = array("created", "expired", "approved", "completed");
         if (!in_array($this->container['state'], $allowed_values)) {
             return false;
         }
@@ -260,7 +263,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets id
-     * @param string $id
+     * @param string $id The checkout id
      * @return $this
      */
     public function setId($id)
@@ -293,7 +296,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Gets initiator
-     * @return \Swagger\Client\Model\CheckoutInitiator
+     * @return \zipMoneyPHP/Model\CheckoutInitiator
      */
     public function getInitiator()
     {
@@ -302,7 +305,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets initiator
-     * @param \Swagger\Client\Model\CheckoutInitiator $initiator
+     * @param \zipMoneyPHP/Model\CheckoutInitiator $initiator
      * @return $this
      */
     public function setInitiator($initiator)
@@ -314,7 +317,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Gets order
-     * @return \Swagger\Client\Model\Order
+     * @return \zipMoneyPHP/Model\Order
      */
     public function getOrder()
     {
@@ -323,7 +326,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets order
-     * @param \Swagger\Client\Model\Order $order
+     * @param \zipMoneyPHP/Model\Order $order
      * @return $this
      */
     public function setOrder($order)
@@ -335,7 +338,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Gets config
-     * @return \Swagger\Client\Model\CheckoutConfig
+     * @return \zipMoneyPHP/Model\CheckoutConfig
      */
     public function getConfig()
     {
@@ -344,7 +347,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets config
-     * @param \Swagger\Client\Model\CheckoutConfig $config
+     * @param \zipMoneyPHP/Model\CheckoutConfig $config
      * @return $this
      */
     public function setConfig($config)
@@ -365,7 +368,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets additional_features
-     * @param string[] $additional_features
+     * @param string[] $additional_features Specific checkout features
      * @return $this
      */
     public function setAdditionalFeatures($additional_features)
@@ -386,7 +389,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets created
-     * @param \DateTime $created
+     * @param \DateTime $created Date the checkout was created
      * @return $this
      */
     public function setCreated($created)
@@ -407,14 +410,14 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets state
-     * @param string $state
+     * @param string $state Current state of the checkout
      * @return $this
      */
     public function setState($state)
     {
-        $allowed_values = array('created', 'expired', 'approved');
+        $allowed_values = array('created', 'expired', 'approved', 'completed');
         if (!in_array($state, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'created', 'expired', 'approved'");
+            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'created', 'expired', 'approved', 'completed'");
         }
         $this->container['state'] = $state;
 
@@ -432,7 +435,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets customer_id
-     * @param string $customer_id The id of the customer who has approved this checkout request
+     * @param string $customer_id The id of the customer who has approved this checkout request. Only present if approved.
      * @return $this
      */
     public function setCustomerId($customer_id)
@@ -444,7 +447,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Gets metadata
-     * @return \Swagger\Client\Model\Metadata
+     * @return \zipMoneyPHP/Model\Metadata
      */
     public function getMetadata()
     {
@@ -453,7 +456,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets metadata
-     * @param \Swagger\Client\Model\Metadata $metadata
+     * @param \zipMoneyPHP/Model\Metadata $metadata
      * @return $this
      */
     public function setMetadata($metadata)
@@ -514,10 +517,10 @@ class Checkout implements ArrayAccess
     public function __toString()
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
 

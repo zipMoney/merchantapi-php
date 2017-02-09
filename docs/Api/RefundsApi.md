@@ -1,4 +1,4 @@
-# Swagger\Client\RefundsApi
+# zipMoneyPHP\RefundsApi
 
 All URIs are relative to *https://api.zipmoney.com.au/merchant/v1*
 
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **refundsCreate**
-> \Swagger\Client\Model\Refund refundsCreate($body, $idempotency_key)
+> \zipMoneyPHP/Model\Refund refundsCreate($body, $idempotency_key)
 
 Create a refund
 
@@ -22,12 +22,12 @@ Creates a refund for a previously authorised or captured charge. See #model:xWJe
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new Swagger\Client\Api\RefundsApi();
-$body = new \Swagger\Client\Model\CreateRefundRequest(); // \Swagger\Client\Model\CreateRefundRequest | 
+$api_instance = new zipMoneyPHP\Api\RefundsApi();
+$body = new \zipMoneyPHP/Model\CreateRefundRequest(); // \zipMoneyPHP/Model\CreateRefundRequest | 
 $idempotency_key = "idempotency_key_example"; // string | The unique idempotency key.
 
 try {
@@ -43,12 +43,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Swagger\Client\Model\CreateRefundRequest**](../Model/\Swagger\Client\Model\CreateRefundRequest.md)|  | [optional]
+ **body** | [**\zipMoneyPHP/Model\CreateRefundRequest**](../Model/\zipMoneyPHP/Model\CreateRefundRequest.md)|  | [optional]
  **idempotency_key** | **string**| The unique idempotency key. | [optional]
 
 ### Return type
 
-[**\Swagger\Client\Model\Refund**](../Model/Refund.md)
+[**\zipMoneyPHP/Model\Refund**](../Model/Refund.md)
 
 ### Authorization
 
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **refundsList**
-> \Swagger\Client\Model\Refund[] refundsList($charge_id, $skip, $limit)
+> \zipMoneyPHP/Model\Refund[] refundsList($charge_id, $skip, $limit)
 
 List refunds
 
@@ -74,11 +74,11 @@ List all refunds
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new Swagger\Client\Api\RefundsApi();
+$api_instance = new zipMoneyPHP\Api\RefundsApi();
 $charge_id = "charge_id_example"; // string | 
 $skip = 0; // int | Number of items to skip when paging
 $limit = 100; // int | Number of items to retrieve when paging
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\Refund[]**](../Model/Refund.md)
+[**\zipMoneyPHP/Model\Refund[]**](../Model/Refund.md)
 
 ### Authorization
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **refundsRetrieve**
-> \Swagger\Client\Model\Refund refundsRetrieve($id)
+> \zipMoneyPHP/Model\Refund refundsRetrieve($id)
 
 Retrieve a refund
 
@@ -128,11 +128,11 @@ Retrieves details of a specific refund
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new Swagger\Client\Api\RefundsApi();
+$api_instance = new zipMoneyPHP\Api\RefundsApi();
 $id = "id_example"; // string | The id of the refund
 
 try {
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\Refund**](../Model/Refund.md)
+[**\zipMoneyPHP/Model\Refund**](../Model/Refund.md)
 
 ### Authorization
 

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace zipMoneyPHP/Model;
 
 use \ArrayAccess;
 
@@ -48,7 +48,7 @@ use \ArrayAccess;
  *
  * @category    Class */
 /** 
- * @package     Swagger\Client
+ * @package     zipMoneyPHP
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -74,8 +74,8 @@ class CheckoutInitiator implements ArrayAccess
         'email' => 'string',
         'birth_date' => '\DateTime',
         'gender' => 'string',
-        'statistics' => '\Swagger\Client\Model\CheckoutInitiatorStatistics',
-        'billing_address' => '\Swagger\Client\Model\Address'
+        'statistics' => '\zipMoneyPHP/Model\CheckoutInitiatorStatistics',
+        'billing_address' => '\zipMoneyPHP/Model\Address'
     );
 
     public static function swaggerTypes()
@@ -201,8 +201,8 @@ class CheckoutInitiator implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = array();
-        if (!is_null($this->container['phone']) && !preg_match("^[0-9]+$", $this->container['phone'])) {
-            $invalid_properties[] = "invalid value for 'phone', must be conform to the pattern ^[0-9]+$.";
+        if (!is_null($this->container['phone']) && !preg_match("^[+0-9]+$", $this->container['phone'])) {
+            $invalid_properties[] = "invalid value for 'phone', must be conform to the pattern ^[+0-9]+$.";
         }
 
         $allowed_values = array("Male", "Female", "Other");
@@ -221,7 +221,7 @@ class CheckoutInitiator implements ArrayAccess
      */
     public function valid()
     {
-        if (!preg_match("^[0-9]+$", $this->container['phone'])) {
+        if (!preg_match("^[+0-9]+$", $this->container['phone'])) {
             return false;
         }
         $allowed_values = array("Male", "Female", "Other");
@@ -333,8 +333,8 @@ class CheckoutInitiator implements ArrayAccess
     public function setPhone($phone)
     {
 
-        if (!preg_match("^[0-9]+$", $phone)) {
-            throw new \InvalidArgumentException('invalid value for $phone when calling CheckoutInitiator., must be conform to the pattern ^[0-9]+$.');
+        if (!preg_match("^[+0-9]+$", $phone)) {
+            throw new \InvalidArgumentException('invalid value for $phone when calling CheckoutInitiator., must be conform to the pattern ^[+0-9]+$.');
         }
         $this->container['phone'] = $phone;
 
@@ -410,7 +410,7 @@ class CheckoutInitiator implements ArrayAccess
 
     /**
      * Gets statistics
-     * @return \Swagger\Client\Model\CheckoutInitiatorStatistics
+     * @return \zipMoneyPHP/Model\CheckoutInitiatorStatistics
      */
     public function getStatistics()
     {
@@ -419,7 +419,7 @@ class CheckoutInitiator implements ArrayAccess
 
     /**
      * Sets statistics
-     * @param \Swagger\Client\Model\CheckoutInitiatorStatistics $statistics
+     * @param \zipMoneyPHP/Model\CheckoutInitiatorStatistics $statistics
      * @return $this
      */
     public function setStatistics($statistics)
@@ -431,7 +431,7 @@ class CheckoutInitiator implements ArrayAccess
 
     /**
      * Gets billing_address
-     * @return \Swagger\Client\Model\Address
+     * @return \zipMoneyPHP/Model\Address
      */
     public function getBillingAddress()
     {
@@ -440,7 +440,7 @@ class CheckoutInitiator implements ArrayAccess
 
     /**
      * Sets billing_address
-     * @param \Swagger\Client\Model\Address $billing_address
+     * @param \zipMoneyPHP/Model\Address $billing_address
      * @return $this
      */
     public function setBillingAddress($billing_address)
@@ -501,10 +501,10 @@ class CheckoutInitiator implements ArrayAccess
     public function __toString()
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
 

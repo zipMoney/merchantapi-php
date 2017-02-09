@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**authority** | [**\Swagger\Client\Model\Authority**](Authority.md) |  | 
+**authority** | [**\zipMoneyPHP/Model\Authority**](Authority.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

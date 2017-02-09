@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace zipMoneyPHP/Model;
 
 use \ArrayAccess;
 
@@ -48,7 +48,7 @@ use \ArrayAccess;
  *
  * @category    Class */
 /** 
- * @package     Swagger\Client
+ * @package     zipMoneyPHP
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -68,13 +68,13 @@ class Charge implements ArrayAccess
     protected static $swaggerTypes = array(
         'id' => 'string',
         'reference' => 'string',
-        'order' => '\Swagger\Client\Model\Order',
+        'order' => '\zipMoneyPHP/Model\Order',
         'state' => 'string',
         'authorised_amount' => 'float',
         'captured_amount' => 'float',
         'refunded_amount' => 'float',
         'created_date' => '\DateTime',
-        'state_changes' => '\Swagger\Client\Model\ChargeStateChanges[]',
+        'state_changes' => '\zipMoneyPHP/Model\ChargeStateChanges[]',
         'metadata' => 'object',
         'customer_id' => 'string'
     );
@@ -315,7 +315,7 @@ class Charge implements ArrayAccess
 
     /**
      * Gets order
-     * @return \Swagger\Client\Model\Order
+     * @return \zipMoneyPHP/Model\Order
      */
     public function getOrder()
     {
@@ -324,7 +324,7 @@ class Charge implements ArrayAccess
 
     /**
      * Sets order
-     * @param \Swagger\Client\Model\Order $order
+     * @param \zipMoneyPHP/Model\Order $order
      * @return $this
      */
     public function setOrder($order)
@@ -457,7 +457,7 @@ class Charge implements ArrayAccess
 
     /**
      * Gets state_changes
-     * @return \Swagger\Client\Model\ChargeStateChanges[]
+     * @return \zipMoneyPHP/Model\ChargeStateChanges[]
      */
     public function getStateChanges()
     {
@@ -466,7 +466,7 @@ class Charge implements ArrayAccess
 
     /**
      * Sets state_changes
-     * @param \Swagger\Client\Model\ChargeStateChanges[] $state_changes State changes
+     * @param \zipMoneyPHP/Model\ChargeStateChanges[] $state_changes State changes
      * @return $this
      */
     public function setStateChanges($state_changes)
@@ -569,10 +569,10 @@ class Charge implements ArrayAccess
     public function __toString()
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
 

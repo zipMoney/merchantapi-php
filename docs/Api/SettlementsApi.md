@@ -1,4 +1,4 @@
-# Swagger\Client\SettlementsApi
+# zipMoneyPHP\SettlementsApi
 
 All URIs are relative to *https://api.zipmoney.com.au/merchant/v1*
 
@@ -20,7 +20,7 @@ Retrieves the full transactional details of a settlement.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\SettlementsApi();
+$api_instance = new zipMoneyPHP\Api\SettlementsApi();
 $id = "id_example"; // string | The settlement id
 
 try {
@@ -64,7 +64,7 @@ This endpoint will allow a merchant to view the settlements which have occured. 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\SettlementsApi();
+$api_instance = new zipMoneyPHP\Api\SettlementsApi();
 
 try {
     $api_instance->settlementsList();

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace zipMoneyPHP/Model;
 
 use \ArrayAccess;
 
@@ -49,7 +49,7 @@ use \ArrayAccess;
  * @category    Class */
  // @description The create checkout request
 /** 
- * @package     Swagger\Client
+ * @package     zipMoneyPHP
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -67,11 +67,11 @@ class CreateCheckoutRequest implements ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        'initiator' => '\Swagger\Client\Model\CheckoutInitiator',
-        'order' => '\Swagger\Client\Model\Order',
+        'initiator' => '\zipMoneyPHP/Model\CheckoutInitiator',
+        'order' => '\zipMoneyPHP/Model\Order',
         'additional_features' => 'string[]',
-        'metadata' => '\Swagger\Client\Model\Metadata',
-        'config' => '\Swagger\Client\Model\CreateCheckoutRequestConfig'
+        'metadata' => '\zipMoneyPHP/Model\Metadata',
+        'config' => '\zipMoneyPHP/Model\CheckoutConfig'
     );
 
     public static function swaggerTypes()
@@ -178,7 +178,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Gets initiator
-     * @return \Swagger\Client\Model\CheckoutInitiator
+     * @return \zipMoneyPHP/Model\CheckoutInitiator
      */
     public function getInitiator()
     {
@@ -187,7 +187,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Sets initiator
-     * @param \Swagger\Client\Model\CheckoutInitiator $initiator
+     * @param \zipMoneyPHP/Model\CheckoutInitiator $initiator
      * @return $this
      */
     public function setInitiator($initiator)
@@ -199,7 +199,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Gets order
-     * @return \Swagger\Client\Model\Order
+     * @return \zipMoneyPHP/Model\Order
      */
     public function getOrder()
     {
@@ -208,7 +208,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Sets order
-     * @param \Swagger\Client\Model\Order $order
+     * @param \zipMoneyPHP/Model\Order $order
      * @return $this
      */
     public function setOrder($order)
@@ -241,7 +241,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Gets metadata
-     * @return \Swagger\Client\Model\Metadata
+     * @return \zipMoneyPHP/Model\Metadata
      */
     public function getMetadata()
     {
@@ -250,7 +250,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Sets metadata
-     * @param \Swagger\Client\Model\Metadata $metadata
+     * @param \zipMoneyPHP/Model\Metadata $metadata
      * @return $this
      */
     public function setMetadata($metadata)
@@ -262,7 +262,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Gets config
-     * @return \Swagger\Client\Model\CreateCheckoutRequestConfig
+     * @return \zipMoneyPHP/Model\CheckoutConfig
      */
     public function getConfig()
     {
@@ -271,7 +271,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Sets config
-     * @param \Swagger\Client\Model\CreateCheckoutRequestConfig $config
+     * @param \zipMoneyPHP/Model\CheckoutConfig $config
      * @return $this
      */
     public function setConfig($config)
@@ -332,10 +332,10 @@ class CreateCheckoutRequest implements ArrayAccess
     public function __toString()
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
 

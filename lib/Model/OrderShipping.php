@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  zipMoneyPHP
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace zipMoneyPHP/Model;
 
 use \ArrayAccess;
 
@@ -49,7 +49,7 @@ use \ArrayAccess;
  * @category    Class */
  // @description Shipping details
 /** 
- * @package     Swagger\Client
+ * @package     zipMoneyPHP
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -68,8 +68,8 @@ class OrderShipping implements ArrayAccess
       */
     protected static $swaggerTypes = array(
         'pickup' => 'bool',
-        'tracking' => '\Swagger\Client\Model\OrderShippingTracking',
-        'address' => '\Swagger\Client\Model\Address'
+        'tracking' => '\zipMoneyPHP/Model\OrderShippingTracking',
+        'address' => '\zipMoneyPHP/Model\Address'
     );
 
     public static function swaggerTypes()
@@ -189,7 +189,7 @@ class OrderShipping implements ArrayAccess
 
     /**
      * Gets tracking
-     * @return \Swagger\Client\Model\OrderShippingTracking
+     * @return \zipMoneyPHP/Model\OrderShippingTracking
      */
     public function getTracking()
     {
@@ -198,7 +198,7 @@ class OrderShipping implements ArrayAccess
 
     /**
      * Sets tracking
-     * @param \Swagger\Client\Model\OrderShippingTracking $tracking
+     * @param \zipMoneyPHP/Model\OrderShippingTracking $tracking
      * @return $this
      */
     public function setTracking($tracking)
@@ -210,7 +210,7 @@ class OrderShipping implements ArrayAccess
 
     /**
      * Gets address
-     * @return \Swagger\Client\Model\Address
+     * @return \zipMoneyPHP/Model\Address
      */
     public function getAddress()
     {
@@ -219,7 +219,7 @@ class OrderShipping implements ArrayAccess
 
     /**
      * Sets address
-     * @param \Swagger\Client\Model\Address $address
+     * @param \zipMoneyPHP/Model\Address $address
      * @return $this
      */
     public function setAddress($address)
@@ -280,10 +280,10 @@ class OrderShipping implements ArrayAccess
     public function __toString()
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode(\zipMoneyPHP\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
 
