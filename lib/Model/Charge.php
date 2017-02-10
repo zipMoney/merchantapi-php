@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Model;
+namespace zipMoneyPHP\Model;
 
 use \ArrayAccess;
 
@@ -68,13 +68,13 @@ class Charge implements ArrayAccess
     protected static $swaggerTypes = array(
         'id' => 'string',
         'reference' => 'string',
-        'order' => '\zipMoneyPHP/Model\Order',
+        'order' => '\zipMoneyPHP\Model\Order',
         'state' => 'string',
         'authorised_amount' => 'float',
         'captured_amount' => 'float',
         'refunded_amount' => 'float',
         'created_date' => '\DateTime',
-        'state_changes' => '\zipMoneyPHP/Model\ChargeStateChanges[]',
+        'state_changes' => '\zipMoneyPHP\Model\ChargeStateChanges[]',
         'metadata' => 'object',
         'customer_id' => 'string'
     );
@@ -315,7 +315,7 @@ class Charge implements ArrayAccess
 
     /**
      * Gets order
-     * @return \zipMoneyPHP/Model\Order
+     * @return \zipMoneyPHP\Model\Order
      */
     public function getOrder()
     {
@@ -324,7 +324,7 @@ class Charge implements ArrayAccess
 
     /**
      * Sets order
-     * @param \zipMoneyPHP/Model\Order $order
+     * @param \zipMoneyPHP\Model\Order $order
      * @return $this
      */
     public function setOrder($order)
@@ -457,7 +457,7 @@ class Charge implements ArrayAccess
 
     /**
      * Gets state_changes
-     * @return \zipMoneyPHP/Model\ChargeStateChanges[]
+     * @return \zipMoneyPHP\Model\ChargeStateChanges[]
      */
     public function getStateChanges()
     {
@@ -466,7 +466,7 @@ class Charge implements ArrayAccess
 
     /**
      * Sets state_changes
-     * @param \zipMoneyPHP/Model\ChargeStateChanges[] $state_changes State changes
+     * @param \zipMoneyPHP\Model\ChargeStateChanges[] $state_changes State changes
      * @return $this
      */
     public function setStateChanges($state_changes)

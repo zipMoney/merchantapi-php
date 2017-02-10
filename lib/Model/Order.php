@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Model;
+namespace zipMoneyPHP\Model;
 
 use \ArrayAccess;
 
@@ -67,9 +67,9 @@ class Order implements ArrayAccess
       */
     protected static $swaggerTypes = array(
         'reference' => 'string',
-        'amount' => '\zipMoneyPHP/Model\OrderAmount',
-        'shipping' => '\zipMoneyPHP/Model\OrderShipping',
-        'items' => '\zipMoneyPHP/Model\OrderItem[]',
+        'amount' => '\zipMoneyPHP\Model\OrderAmount',
+        'shipping' => '\zipMoneyPHP\Model\OrderShipping',
+        'items' => '\zipMoneyPHP\Model\OrderItem[]',
         'cart_reference' => 'string'
     );
 
@@ -221,7 +221,7 @@ class Order implements ArrayAccess
 
     /**
      * Gets amount
-     * @return \zipMoneyPHP/Model\OrderAmount
+     * @return \zipMoneyPHP\Model\OrderAmount
      */
     public function getAmount()
     {
@@ -230,7 +230,7 @@ class Order implements ArrayAccess
 
     /**
      * Sets amount
-     * @param \zipMoneyPHP/Model\OrderAmount $amount
+     * @param \zipMoneyPHP\Model\OrderAmount $amount
      * @return $this
      */
     public function setAmount($amount)
@@ -242,7 +242,7 @@ class Order implements ArrayAccess
 
     /**
      * Gets shipping
-     * @return \zipMoneyPHP/Model\OrderShipping
+     * @return \zipMoneyPHP\Model\OrderShipping
      */
     public function getShipping()
     {
@@ -251,7 +251,7 @@ class Order implements ArrayAccess
 
     /**
      * Sets shipping
-     * @param \zipMoneyPHP/Model\OrderShipping $shipping
+     * @param \zipMoneyPHP\Model\OrderShipping $shipping
      * @return $this
      */
     public function setShipping($shipping)
@@ -263,7 +263,7 @@ class Order implements ArrayAccess
 
     /**
      * Gets items
-     * @return \zipMoneyPHP/Model\OrderItem[]
+     * @return \zipMoneyPHP\Model\OrderItem[]
      */
     public function getItems()
     {
@@ -272,7 +272,7 @@ class Order implements ArrayAccess
 
     /**
      * Sets items
-     * @param \zipMoneyPHP/Model\OrderItem[] $items The order item breakdown
+     * @param \zipMoneyPHP\Model\OrderItem[] $items The order item breakdown
      * @return $this
      */
     public function setItems($items)

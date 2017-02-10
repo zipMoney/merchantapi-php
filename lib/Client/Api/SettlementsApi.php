@@ -38,7 +38,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Client/Api;
+namespace zipMoneyPHP\Client\Api;
 
 use \zipMoneyPHP\Configuration;
 use \zipMoneyPHP\ApiClient;

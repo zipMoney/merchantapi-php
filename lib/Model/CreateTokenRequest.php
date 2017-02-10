@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Model;
+namespace zipMoneyPHP\Model;
 
 use \ArrayAccess;
 
@@ -67,7 +67,7 @@ class CreateTokenRequest implements ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        'authority' => '\zipMoneyPHP/Model\Authority'
+        'authority' => '\zipMoneyPHP\Model\Authority'
     );
 
     public static function swaggerTypes()
@@ -164,7 +164,7 @@ class CreateTokenRequest implements ArrayAccess
 
     /**
      * Gets authority
-     * @return \zipMoneyPHP/Model\Authority
+     * @return \zipMoneyPHP\Model\Authority
      */
     public function getAuthority()
     {
@@ -173,7 +173,7 @@ class CreateTokenRequest implements ArrayAccess
 
     /**
      * Sets authority
-     * @param \zipMoneyPHP/Model\Authority $authority
+     * @param \zipMoneyPHP\Model\Authority $authority
      * @return $this
      */
     public function setAuthority($authority)

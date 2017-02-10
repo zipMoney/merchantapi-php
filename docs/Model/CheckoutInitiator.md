@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **email** | **string** |  | [optional] 
 **birth_date** | [**\DateTime**](Date.md) |  | [optional] 
 **gender** | **string** |  | [optional] 
-**statistics** | [**\zipMoneyPHP/Model\CheckoutInitiatorStatistics**](CheckoutInitiatorStatistics.md) |  | [optional] 
-**billing_address** | [**\zipMoneyPHP/Model\Address**](Address.md) |  | [optional] 
+**statistics** | [**\zipMoneyPHP\Model\CheckoutInitiatorStatistics**](CheckoutInitiatorStatistics.md) |  | [optional] 
+**billing_address** | [**\zipMoneyPHP\Model\Address**](Address.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

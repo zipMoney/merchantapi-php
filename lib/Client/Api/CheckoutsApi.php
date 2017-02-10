@@ -38,7 +38,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Client/Api;
+namespace zipMoneyPHP\Client\Api;
 
 use \zipMoneyPHP\Configuration;
 use \zipMoneyPHP\ApiClient;
@@ -107,8 +107,8 @@ class CheckoutsApi
      *
      * Create a checkout
      *
-     * @param \zipMoneyPHP/Model\CreateCheckoutRequest $body  (optional)
-     * @return \zipMoneyPHP/Model\Checkout
+     * @param \zipMoneyPHP\Model\CreateCheckoutRequest $body  (optional)
+     * @return \zipMoneyPHP\Model\Checkout
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function checkoutsCreate($body = null)
@@ -122,8 +122,8 @@ class CheckoutsApi
      *
      * Create a checkout
      *
-     * @param \zipMoneyPHP/Model\CreateCheckoutRequest $body  (optional)
-     * @return Array of \zipMoneyPHP/Model\Checkout, HTTP status code, HTTP response headers (array of strings)
+     * @param \zipMoneyPHP\Model\CreateCheckoutRequest $body  (optional)
+     * @return Array of \zipMoneyPHP\Model\Checkout, HTTP status code, HTTP response headers (array of strings)
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function checkoutsCreateWithHttpInfo($body = null)
@@ -168,35 +168,35 @@ class CheckoutsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoneyPHP/Model\Checkout',
+                '\zipMoneyPHP\Model\Checkout',
                 '/checkouts'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP/Model\Checkout', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP\Model\Checkout', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\Checkout', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\Checkout', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 402:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 409:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -211,7 +211,7 @@ class CheckoutsApi
      * Retrieve a checkout
      *
      * @param string $id  (required)
-     * @return \zipMoneyPHP/Model\Checkout
+     * @return \zipMoneyPHP\Model\Checkout
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function checkoutsGet($id)
@@ -226,7 +226,7 @@ class CheckoutsApi
      * Retrieve a checkout
      *
      * @param string $id  (required)
-     * @return Array of \zipMoneyPHP/Model\Checkout, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \zipMoneyPHP\Model\Checkout, HTTP status code, HTTP response headers (array of strings)
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function checkoutsGetWithHttpInfo($id)
@@ -278,31 +278,31 @@ class CheckoutsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoneyPHP/Model\Checkout',
+                '\zipMoneyPHP\Model\Checkout',
                 '/checkouts/{id}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP/Model\Checkout', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP\Model\Checkout', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\Checkout', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\Checkout', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 404:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 409:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

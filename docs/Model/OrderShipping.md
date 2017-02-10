@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pickup** | **bool** | States if the shipping method is pickup, otherwise the shipping address should be provided | [optional] 
-**tracking** | [**\zipMoneyPHP/Model\OrderShippingTracking**](OrderShippingTracking.md) |  | [optional] 
-**address** | [**\zipMoneyPHP/Model\Address**](Address.md) |  | [optional] 
+**tracking** | [**\zipMoneyPHP\Model\OrderShippingTracking**](OrderShippingTracking.md) |  | [optional] 
+**address** | [**\zipMoneyPHP\Model\Address**](Address.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

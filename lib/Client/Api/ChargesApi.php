@@ -38,7 +38,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Client/Api;
+namespace zipMoneyPHP\Client\Api;
 
 use \zipMoneyPHP\Configuration;
 use \zipMoneyPHP\ApiClient;
@@ -109,7 +109,7 @@ class ChargesApi
      *
      * @param string $id The id of the authorised charge (required)
      * @param string $idempotency_key The unique idempotency key. (optional)
-     * @return \zipMoneyPHP/Model\Charge
+     * @return \zipMoneyPHP\Model\Charge
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function chargesCancel($id, $idempotency_key = null)
@@ -125,7 +125,7 @@ class ChargesApi
      *
      * @param string $id The id of the authorised charge (required)
      * @param string $idempotency_key The unique idempotency key. (optional)
-     * @return Array of \zipMoneyPHP/Model\Charge, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \zipMoneyPHP\Model\Charge, HTTP status code, HTTP response headers (array of strings)
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function chargesCancelWithHttpInfo($id, $idempotency_key = null)
@@ -181,27 +181,27 @@ class ChargesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoneyPHP/Model\Charge',
+                '\zipMoneyPHP\Model\Charge',
                 '/charges/{id}/cancel'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP/Model\Charge', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP\Model\Charge', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\Charge', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\Charge', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 402:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 409:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -216,9 +216,9 @@ class ChargesApi
      * Capture a charge
      *
      * @param string $id The id of the authorised charge (required)
-     * @param \zipMoneyPHP/Model\CaptureChargeRequest $body  (optional)
+     * @param \zipMoneyPHP\Model\CaptureChargeRequest $body  (optional)
      * @param string $idempotency_key The unique idempotency key. (optional)
-     * @return \zipMoneyPHP/Model\Charge
+     * @return \zipMoneyPHP\Model\Charge
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function chargesCapture($id, $body = null, $idempotency_key = null)
@@ -233,9 +233,9 @@ class ChargesApi
      * Capture a charge
      *
      * @param string $id The id of the authorised charge (required)
-     * @param \zipMoneyPHP/Model\CaptureChargeRequest $body  (optional)
+     * @param \zipMoneyPHP\Model\CaptureChargeRequest $body  (optional)
      * @param string $idempotency_key The unique idempotency key. (optional)
-     * @return Array of \zipMoneyPHP/Model\Charge, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \zipMoneyPHP\Model\Charge, HTTP status code, HTTP response headers (array of strings)
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function chargesCaptureWithHttpInfo($id, $body = null, $idempotency_key = null)
@@ -296,27 +296,27 @@ class ChargesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoneyPHP/Model\Charge',
+                '\zipMoneyPHP\Model\Charge',
                 '/charges/{id}/capture'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP/Model\Charge', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP\Model\Charge', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\Charge', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\Charge', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 402:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 409:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -330,9 +330,9 @@ class ChargesApi
      *
      * Create a charge
      *
-     * @param \zipMoneyPHP/Model\CreateChargeRequest $body  (optional)
+     * @param \zipMoneyPHP\Model\CreateChargeRequest $body  (optional)
      * @param string $idempotency_key The unique idempotency key. (optional)
-     * @return \zipMoneyPHP/Model\Charge
+     * @return \zipMoneyPHP\Model\Charge
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function chargesCreate($body = null, $idempotency_key = null)
@@ -346,9 +346,9 @@ class ChargesApi
      *
      * Create a charge
      *
-     * @param \zipMoneyPHP/Model\CreateChargeRequest $body  (optional)
+     * @param \zipMoneyPHP\Model\CreateChargeRequest $body  (optional)
      * @param string $idempotency_key The unique idempotency key. (optional)
-     * @return Array of \zipMoneyPHP/Model\Charge, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \zipMoneyPHP\Model\Charge, HTTP status code, HTTP response headers (array of strings)
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function chargesCreateWithHttpInfo($body = null, $idempotency_key = null)
@@ -397,35 +397,35 @@ class ChargesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoneyPHP/Model\Charge',
+                '\zipMoneyPHP\Model\Charge',
                 '/charges'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP/Model\Charge', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP\Model\Charge', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\Charge', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\Charge', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 402:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 409:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -443,7 +443,7 @@ class ChargesApi
      * @param int $skip Number of items to skip when paging (optional, default to 0)
      * @param int $limit Number of items to retrieve when paging (optional, default to 100)
      * @param string $expand Allows expanding related entities in the response. Only valid entry is &#39;customer&#39; (optional)
-     * @return \zipMoneyPHP/Model\Charge[]
+     * @return \zipMoneyPHP\Model\Charge[]
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function chargesList($state = null, $skip = null, $limit = null, $expand = null)
@@ -461,7 +461,7 @@ class ChargesApi
      * @param int $skip Number of items to skip when paging (optional, default to 0)
      * @param int $limit Number of items to retrieve when paging (optional, default to 100)
      * @param string $expand Allows expanding related entities in the response. Only valid entry is &#39;customer&#39; (optional)
-     * @return Array of \zipMoneyPHP/Model\Charge[], HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \zipMoneyPHP\Model\Charge[], HTTP status code, HTTP response headers (array of strings)
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function chargesListWithHttpInfo($state = null, $skip = null, $limit = null, $expand = null)
@@ -517,15 +517,15 @@ class ChargesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoneyPHP/Model\Charge[]',
+                '\zipMoneyPHP\Model\Charge[]',
                 '/charges'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP/Model\Charge[]', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP\Model\Charge[]', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\Charge[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\Charge[]', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -541,7 +541,7 @@ class ChargesApi
      *
      * @param string $id The id of the charge (required)
      * @param string $expand Allows expanding related entities in the response. Only valid entry is &#39;customer&#39; (optional)
-     * @return \zipMoneyPHP/Model\Charge
+     * @return \zipMoneyPHP\Model\Charge
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function chargesRetrieve($id, $expand = null)
@@ -557,7 +557,7 @@ class ChargesApi
      *
      * @param string $id The id of the charge (required)
      * @param string $expand Allows expanding related entities in the response. Only valid entry is &#39;customer&#39; (optional)
-     * @return Array of \zipMoneyPHP/Model\Charge, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \zipMoneyPHP\Model\Charge, HTTP status code, HTTP response headers (array of strings)
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function chargesRetrieveWithHttpInfo($id, $expand = null)
@@ -613,15 +613,15 @@ class ChargesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoneyPHP/Model\Charge',
+                '\zipMoneyPHP\Model\Charge',
                 '/charges/{id}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP/Model\Charge', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP\Model\Charge', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\Charge', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\Charge', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

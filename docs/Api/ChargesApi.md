@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **chargesCancel**
-> \zipMoneyPHP/Model\Charge chargesCancel($id, $idempotency_key)
+> \zipMoneyPHP\Model\Charge chargesCancel($id, $idempotency_key)
 
 Cancel a charge
 
@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoneyPHP/Model\Charge**](../Model/Charge.md)
+[**\zipMoneyPHP\Model\Charge**](../Model/Charge.md)
 
 ### Authorization
 
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **chargesCapture**
-> \zipMoneyPHP/Model\Charge chargesCapture($id, $body, $idempotency_key)
+> \zipMoneyPHP\Model\Charge chargesCapture($id, $body, $idempotency_key)
 
 Capture a charge
 
@@ -82,7 +82,7 @@ zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization',
 
 $api_instance = new zipMoneyPHP\Api\ChargesApi();
 $id = "id_example"; // string | The id of the authorised charge
-$body = new \zipMoneyPHP/Model\CaptureChargeRequest(); // \zipMoneyPHP/Model\CaptureChargeRequest | 
+$body = new \zipMoneyPHP\Model\CaptureChargeRequest(); // \zipMoneyPHP\Model\CaptureChargeRequest | 
 $idempotency_key = "idempotency_key_example"; // string | The unique idempotency key.
 
 try {
@@ -99,12 +99,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The id of the authorised charge |
- **body** | [**\zipMoneyPHP/Model\CaptureChargeRequest**](../Model/\zipMoneyPHP/Model\CaptureChargeRequest.md)|  | [optional]
+ **body** | [**\zipMoneyPHP\Model\CaptureChargeRequest**](../Model/\zipMoneyPHP\Model\CaptureChargeRequest.md)|  | [optional]
  **idempotency_key** | **string**| The unique idempotency key. | [optional]
 
 ### Return type
 
-[**\zipMoneyPHP/Model\Charge**](../Model/Charge.md)
+[**\zipMoneyPHP\Model\Charge**](../Model/Charge.md)
 
 ### Authorization
 
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **chargesCreate**
-> \zipMoneyPHP/Model\Charge chargesCreate($body, $idempotency_key)
+> \zipMoneyPHP\Model\Charge chargesCreate($body, $idempotency_key)
 
 Create a charge
 
@@ -135,7 +135,7 @@ zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization',
 // zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new zipMoneyPHP\Api\ChargesApi();
-$body = new \zipMoneyPHP/Model\CreateChargeRequest(); // \zipMoneyPHP/Model\CreateChargeRequest | 
+$body = new \zipMoneyPHP\Model\CreateChargeRequest(); // \zipMoneyPHP\Model\CreateChargeRequest | 
 $idempotency_key = "idempotency_key_example"; // string | The unique idempotency key.
 
 try {
@@ -151,12 +151,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\zipMoneyPHP/Model\CreateChargeRequest**](../Model/\zipMoneyPHP/Model\CreateChargeRequest.md)|  | [optional]
+ **body** | [**\zipMoneyPHP\Model\CreateChargeRequest**](../Model/\zipMoneyPHP\Model\CreateChargeRequest.md)|  | [optional]
  **idempotency_key** | **string**| The unique idempotency key. | [optional]
 
 ### Return type
 
-[**\zipMoneyPHP/Model\Charge**](../Model/Charge.md)
+[**\zipMoneyPHP\Model\Charge**](../Model/Charge.md)
 
 ### Authorization
 
@@ -170,7 +170,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **chargesList**
-> \zipMoneyPHP/Model\Charge[] chargesList($state, $skip, $limit, $expand)
+> \zipMoneyPHP\Model\Charge[] chargesList($state, $skip, $limit, $expand)
 
 List charges
 
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoneyPHP/Model\Charge[]**](../Model/Charge.md)
+[**\zipMoneyPHP\Model\Charge[]**](../Model/Charge.md)
 
 ### Authorization
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **chargesRetrieve**
-> \zipMoneyPHP/Model\Charge chargesRetrieve($id, $expand)
+> \zipMoneyPHP\Model\Charge chargesRetrieve($id, $expand)
 
 Retrieve a charge
 
@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoneyPHP/Model\Charge**](../Model/Charge.md)
+[**\zipMoneyPHP\Model\Charge**](../Model/Charge.md)
 
 ### Authorization
 

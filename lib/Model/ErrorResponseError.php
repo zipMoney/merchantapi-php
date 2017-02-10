@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Model;
+namespace zipMoneyPHP\Model;
 
 use \ArrayAccess;
 
@@ -68,7 +68,7 @@ class ErrorResponseError implements ArrayAccess
     protected static $swaggerTypes = array(
         'code' => 'string',
         'message' => 'string',
-        'details' => '\zipMoneyPHP/Model\ErrorResponseErrorDetails[]'
+        'details' => '\zipMoneyPHP\Model\ErrorResponseErrorDetails[]'
     );
 
     public static function swaggerTypes()
@@ -221,7 +221,7 @@ class ErrorResponseError implements ArrayAccess
 
     /**
      * Gets details
-     * @return \zipMoneyPHP/Model\ErrorResponseErrorDetails[]
+     * @return \zipMoneyPHP\Model\ErrorResponseErrorDetails[]
      */
     public function getDetails()
     {
@@ -230,7 +230,7 @@ class ErrorResponseError implements ArrayAccess
 
     /**
      * Sets details
-     * @param \zipMoneyPHP/Model\ErrorResponseErrorDetails[] $details
+     * @param \zipMoneyPHP\Model\ErrorResponseErrorDetails[] $details
      * @return $this
      */
     public function setDetails($details)

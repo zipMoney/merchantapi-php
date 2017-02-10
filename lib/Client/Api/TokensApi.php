@@ -38,7 +38,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Client/Api;
+namespace zipMoneyPHP\Client\Api;
 
 use \zipMoneyPHP\Configuration;
 use \zipMoneyPHP\ApiClient;
@@ -107,9 +107,9 @@ class TokensApi
      *
      * Create token
      *
-     * @param \zipMoneyPHP/Model\CreateTokenRequest $body  (optional)
+     * @param \zipMoneyPHP\Model\CreateTokenRequest $body  (optional)
      * @param string $idempotency_key The unique idempotency key. (optional)
-     * @return \zipMoneyPHP/Model\Token
+     * @return \zipMoneyPHP\Model\Token
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function tokensCreate($body = null, $idempotency_key = null)
@@ -123,9 +123,9 @@ class TokensApi
      *
      * Create token
      *
-     * @param \zipMoneyPHP/Model\CreateTokenRequest $body  (optional)
+     * @param \zipMoneyPHP\Model\CreateTokenRequest $body  (optional)
      * @param string $idempotency_key The unique idempotency key. (optional)
-     * @return Array of \zipMoneyPHP/Model\Token, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \zipMoneyPHP\Model\Token, HTTP status code, HTTP response headers (array of strings)
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function tokensCreateWithHttpInfo($body = null, $idempotency_key = null)
@@ -174,31 +174,31 @@ class TokensApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoneyPHP/Model\Token',
+                '\zipMoneyPHP\Model\Token',
                 '/tokens'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP/Model\Token', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP\Model\Token', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\Token', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\Token', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 402:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 409:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

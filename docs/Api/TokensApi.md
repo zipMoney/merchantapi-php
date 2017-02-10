@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **tokensCreate**
-> \zipMoneyPHP/Model\Token tokensCreate($body, $idempotency_key)
+> \zipMoneyPHP\Model\Token tokensCreate($body, $idempotency_key)
 
 Create token
 
@@ -25,7 +25,7 @@ zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization',
 // zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new zipMoneyPHP\Api\TokensApi();
-$body = new \zipMoneyPHP/Model\CreateTokenRequest(); // \zipMoneyPHP/Model\CreateTokenRequest | 
+$body = new \zipMoneyPHP\Model\CreateTokenRequest(); // \zipMoneyPHP\Model\CreateTokenRequest | 
 $idempotency_key = "idempotency_key_example"; // string | The unique idempotency key.
 
 try {
@@ -41,12 +41,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\zipMoneyPHP/Model\CreateTokenRequest**](../Model/\zipMoneyPHP/Model\CreateTokenRequest.md)|  | [optional]
+ **body** | [**\zipMoneyPHP\Model\CreateTokenRequest**](../Model/\zipMoneyPHP\Model\CreateTokenRequest.md)|  | [optional]
  **idempotency_key** | **string**| The unique idempotency key. | [optional]
 
 ### Return type
 
-[**\zipMoneyPHP/Model\Token**](../Model/Token.md)
+[**\zipMoneyPHP\Model\Token**](../Model/Token.md)
 
 ### Authorization
 

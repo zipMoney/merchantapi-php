@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Model;
+namespace zipMoneyPHP\Model;
 
 use \ArrayAccess;
 
@@ -67,9 +67,9 @@ class CreateChargeRequest implements ArrayAccess
       */
     protected static $swaggerTypes = array(
         'reference' => 'string',
-        'authority' => '\zipMoneyPHP/Model\Authority',
+        'authority' => '\zipMoneyPHP\Model\Authority',
         'capture' => 'bool',
-        'order' => '\zipMoneyPHP/Model\Order',
+        'order' => '\zipMoneyPHP\Model\Order',
         'metadata' => 'object'
     );
 
@@ -210,7 +210,7 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Gets authority
-     * @return \zipMoneyPHP/Model\Authority
+     * @return \zipMoneyPHP\Model\Authority
      */
     public function getAuthority()
     {
@@ -219,7 +219,7 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Sets authority
-     * @param \zipMoneyPHP/Model\Authority $authority
+     * @param \zipMoneyPHP\Model\Authority $authority
      * @return $this
      */
     public function setAuthority($authority)
@@ -252,7 +252,7 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Gets order
-     * @return \zipMoneyPHP/Model\Order
+     * @return \zipMoneyPHP\Model\Order
      */
     public function getOrder()
     {
@@ -261,7 +261,7 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Sets order
-     * @param \zipMoneyPHP/Model\Order $order
+     * @param \zipMoneyPHP\Model\Order $order
      * @return $this
      */
     public function setOrder($order)

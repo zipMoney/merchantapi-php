@@ -38,7 +38,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Client/Api;
+namespace zipMoneyPHP\Client\Api;
 
 use \zipMoneyPHP\Configuration;
 use \zipMoneyPHP\ApiClient;
@@ -107,9 +107,9 @@ class RefundsApi
      *
      * Create a refund
      *
-     * @param \zipMoneyPHP/Model\CreateRefundRequest $body  (optional)
+     * @param \zipMoneyPHP\Model\CreateRefundRequest $body  (optional)
      * @param string $idempotency_key The unique idempotency key. (optional)
-     * @return \zipMoneyPHP/Model\Refund
+     * @return \zipMoneyPHP\Model\Refund
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function refundsCreate($body = null, $idempotency_key = null)
@@ -123,9 +123,9 @@ class RefundsApi
      *
      * Create a refund
      *
-     * @param \zipMoneyPHP/Model\CreateRefundRequest $body  (optional)
+     * @param \zipMoneyPHP\Model\CreateRefundRequest $body  (optional)
      * @param string $idempotency_key The unique idempotency key. (optional)
-     * @return Array of \zipMoneyPHP/Model\Refund, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \zipMoneyPHP\Model\Refund, HTTP status code, HTTP response headers (array of strings)
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function refundsCreateWithHttpInfo($body = null, $idempotency_key = null)
@@ -174,27 +174,27 @@ class RefundsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoneyPHP/Model\Refund',
+                '\zipMoneyPHP\Model\Refund',
                 '/refunds'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP/Model\Refund', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP\Model\Refund', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\Refund', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\Refund', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 402:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\ErrorResponse', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -211,7 +211,7 @@ class RefundsApi
      * @param string $charge_id  (optional)
      * @param int $skip Number of items to skip when paging (optional, default to 0)
      * @param int $limit Number of items to retrieve when paging (optional, default to 100)
-     * @return \zipMoneyPHP/Model\Refund[]
+     * @return \zipMoneyPHP\Model\Refund[]
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function refundsList($charge_id = null, $skip = null, $limit = null)
@@ -228,7 +228,7 @@ class RefundsApi
      * @param string $charge_id  (optional)
      * @param int $skip Number of items to skip when paging (optional, default to 0)
      * @param int $limit Number of items to retrieve when paging (optional, default to 100)
-     * @return Array of \zipMoneyPHP/Model\Refund[], HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \zipMoneyPHP\Model\Refund[], HTTP status code, HTTP response headers (array of strings)
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function refundsListWithHttpInfo($charge_id = null, $skip = null, $limit = null)
@@ -280,15 +280,15 @@ class RefundsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoneyPHP/Model\Refund[]',
+                '\zipMoneyPHP\Model\Refund[]',
                 '/refunds'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP/Model\Refund[]', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP\Model\Refund[]', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\Refund[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\Refund[]', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -303,7 +303,7 @@ class RefundsApi
      * Retrieve a refund
      *
      * @param string $id The id of the refund (required)
-     * @return \zipMoneyPHP/Model\Refund
+     * @return \zipMoneyPHP\Model\Refund
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function refundsRetrieve($id)
@@ -318,7 +318,7 @@ class RefundsApi
      * Retrieve a refund
      *
      * @param string $id The id of the refund (required)
-     * @return Array of \zipMoneyPHP/Model\Refund, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \zipMoneyPHP\Model\Refund, HTTP status code, HTTP response headers (array of strings)
      * @throws \zipMoneyPHP\ApiException on non-2xx response
      */
     public function refundsRetrieveWithHttpInfo($id)
@@ -370,15 +370,15 @@ class RefundsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoneyPHP/Model\Refund',
+                '\zipMoneyPHP\Model\Refund',
                 '/refunds/{id}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP/Model\Refund', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoneyPHP\Model\Refund', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP/Model\Refund', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoneyPHP\Model\Refund', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

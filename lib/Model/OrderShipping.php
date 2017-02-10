@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Model;
+namespace zipMoneyPHP\Model;
 
 use \ArrayAccess;
 
@@ -68,8 +68,8 @@ class OrderShipping implements ArrayAccess
       */
     protected static $swaggerTypes = array(
         'pickup' => 'bool',
-        'tracking' => '\zipMoneyPHP/Model\OrderShippingTracking',
-        'address' => '\zipMoneyPHP/Model\Address'
+        'tracking' => '\zipMoneyPHP\Model\OrderShippingTracking',
+        'address' => '\zipMoneyPHP\Model\Address'
     );
 
     public static function swaggerTypes()
@@ -189,7 +189,7 @@ class OrderShipping implements ArrayAccess
 
     /**
      * Gets tracking
-     * @return \zipMoneyPHP/Model\OrderShippingTracking
+     * @return \zipMoneyPHP\Model\OrderShippingTracking
      */
     public function getTracking()
     {
@@ -198,7 +198,7 @@ class OrderShipping implements ArrayAccess
 
     /**
      * Sets tracking
-     * @param \zipMoneyPHP/Model\OrderShippingTracking $tracking
+     * @param \zipMoneyPHP\Model\OrderShippingTracking $tracking
      * @return $this
      */
     public function setTracking($tracking)
@@ -210,7 +210,7 @@ class OrderShipping implements ArrayAccess
 
     /**
      * Gets address
-     * @return \zipMoneyPHP/Model\Address
+     * @return \zipMoneyPHP\Model\Address
      */
     public function getAddress()
     {
@@ -219,7 +219,7 @@ class OrderShipping implements ArrayAccess
 
     /**
      * Sets address
-     * @param \zipMoneyPHP/Model\Address $address
+     * @param \zipMoneyPHP\Model\Address $address
      * @return $this
      */
     public function setAddress($address)

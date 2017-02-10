@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **checkoutsCreate**
-> \zipMoneyPHP/Model\Checkout checkoutsCreate($body)
+> \zipMoneyPHP\Model\Checkout checkoutsCreate($body)
 
 Create a checkout
 
@@ -26,7 +26,7 @@ zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization',
 // zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new zipMoneyPHP\Api\CheckoutsApi();
-$body = new \zipMoneyPHP/Model\CreateCheckoutRequest(); // \zipMoneyPHP/Model\CreateCheckoutRequest | 
+$body = new \zipMoneyPHP\Model\CreateCheckoutRequest(); // \zipMoneyPHP\Model\CreateCheckoutRequest | 
 
 try {
     $result = $api_instance->checkoutsCreate($body);
@@ -41,11 +41,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\zipMoneyPHP/Model\CreateCheckoutRequest**](../Model/\zipMoneyPHP/Model\CreateCheckoutRequest.md)|  | [optional]
+ **body** | [**\zipMoneyPHP\Model\CreateCheckoutRequest**](../Model/\zipMoneyPHP\Model\CreateCheckoutRequest.md)|  | [optional]
 
 ### Return type
 
-[**\zipMoneyPHP/Model\Checkout**](../Model/Checkout.md)
+[**\zipMoneyPHP\Model\Checkout**](../Model/Checkout.md)
 
 ### Authorization
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **checkoutsGet**
-> \zipMoneyPHP/Model\Checkout checkoutsGet($id)
+> \zipMoneyPHP\Model\Checkout checkoutsGet($id)
 
 Retrieve a checkout
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoneyPHP/Model\Checkout**](../Model/Checkout.md)
+[**\zipMoneyPHP\Model\Checkout**](../Model/Checkout.md)
 
 ### Authorization
 

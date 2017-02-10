@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **refundsCreate**
-> \zipMoneyPHP/Model\Refund refundsCreate($body, $idempotency_key)
+> \zipMoneyPHP\Model\Refund refundsCreate($body, $idempotency_key)
 
 Create a refund
 
@@ -27,7 +27,7 @@ zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization',
 // zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 $api_instance = new zipMoneyPHP\Api\RefundsApi();
-$body = new \zipMoneyPHP/Model\CreateRefundRequest(); // \zipMoneyPHP/Model\CreateRefundRequest | 
+$body = new \zipMoneyPHP\Model\CreateRefundRequest(); // \zipMoneyPHP\Model\CreateRefundRequest | 
 $idempotency_key = "idempotency_key_example"; // string | The unique idempotency key.
 
 try {
@@ -43,12 +43,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\zipMoneyPHP/Model\CreateRefundRequest**](../Model/\zipMoneyPHP/Model\CreateRefundRequest.md)|  | [optional]
+ **body** | [**\zipMoneyPHP\Model\CreateRefundRequest**](../Model/\zipMoneyPHP\Model\CreateRefundRequest.md)|  | [optional]
  **idempotency_key** | **string**| The unique idempotency key. | [optional]
 
 ### Return type
 
-[**\zipMoneyPHP/Model\Refund**](../Model/Refund.md)
+[**\zipMoneyPHP\Model\Refund**](../Model/Refund.md)
 
 ### Authorization
 
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **refundsList**
-> \zipMoneyPHP/Model\Refund[] refundsList($charge_id, $skip, $limit)
+> \zipMoneyPHP\Model\Refund[] refundsList($charge_id, $skip, $limit)
 
 List refunds
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoneyPHP/Model\Refund[]**](../Model/Refund.md)
+[**\zipMoneyPHP\Model\Refund[]**](../Model/Refund.md)
 
 ### Authorization
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **refundsRetrieve**
-> \zipMoneyPHP/Model\Refund refundsRetrieve($id)
+> \zipMoneyPHP\Model\Refund refundsRetrieve($id)
 
 Retrieve a refund
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoneyPHP/Model\Refund**](../Model/Refund.md)
+[**\zipMoneyPHP\Model\Refund**](../Model/Refund.md)
 
 ### Authorization
 

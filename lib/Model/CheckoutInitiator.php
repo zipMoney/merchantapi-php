@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Model;
+namespace zipMoneyPHP\Model;
 
 use \ArrayAccess;
 
@@ -74,8 +74,8 @@ class CheckoutInitiator implements ArrayAccess
         'email' => 'string',
         'birth_date' => '\DateTime',
         'gender' => 'string',
-        'statistics' => '\zipMoneyPHP/Model\CheckoutInitiatorStatistics',
-        'billing_address' => '\zipMoneyPHP/Model\Address'
+        'statistics' => '\zipMoneyPHP\Model\CheckoutInitiatorStatistics',
+        'billing_address' => '\zipMoneyPHP\Model\Address'
     );
 
     public static function swaggerTypes()
@@ -410,7 +410,7 @@ class CheckoutInitiator implements ArrayAccess
 
     /**
      * Gets statistics
-     * @return \zipMoneyPHP/Model\CheckoutInitiatorStatistics
+     * @return \zipMoneyPHP\Model\CheckoutInitiatorStatistics
      */
     public function getStatistics()
     {
@@ -419,7 +419,7 @@ class CheckoutInitiator implements ArrayAccess
 
     /**
      * Sets statistics
-     * @param \zipMoneyPHP/Model\CheckoutInitiatorStatistics $statistics
+     * @param \zipMoneyPHP\Model\CheckoutInitiatorStatistics $statistics
      * @return $this
      */
     public function setStatistics($statistics)
@@ -431,7 +431,7 @@ class CheckoutInitiator implements ArrayAccess
 
     /**
      * Gets billing_address
-     * @return \zipMoneyPHP/Model\Address
+     * @return \zipMoneyPHP\Model\Address
      */
     public function getBillingAddress()
     {
@@ -440,7 +440,7 @@ class CheckoutInitiator implements ArrayAccess
 
     /**
      * Sets billing_address
-     * @param \zipMoneyPHP/Model\Address $billing_address
+     * @param \zipMoneyPHP\Model\Address $billing_address
      * @return $this
      */
     public function setBillingAddress($billing_address)

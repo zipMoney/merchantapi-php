@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Model;
+namespace zipMoneyPHP\Model;
 
 use \ArrayAccess;
 
@@ -67,11 +67,11 @@ class CreateCheckoutRequest implements ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        'initiator' => '\zipMoneyPHP/Model\CheckoutInitiator',
-        'order' => '\zipMoneyPHP/Model\Order',
+        'initiator' => '\zipMoneyPHP\Model\CheckoutInitiator',
+        'order' => '\zipMoneyPHP\Model\Order',
         'additional_features' => 'string[]',
-        'metadata' => '\zipMoneyPHP/Model\Metadata',
-        'config' => '\zipMoneyPHP/Model\CheckoutConfig'
+        'metadata' => '\zipMoneyPHP\Model\Metadata',
+        'config' => '\zipMoneyPHP\Model\CheckoutConfig'
     );
 
     public static function swaggerTypes()
@@ -178,7 +178,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Gets initiator
-     * @return \zipMoneyPHP/Model\CheckoutInitiator
+     * @return \zipMoneyPHP\Model\CheckoutInitiator
      */
     public function getInitiator()
     {
@@ -187,7 +187,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Sets initiator
-     * @param \zipMoneyPHP/Model\CheckoutInitiator $initiator
+     * @param \zipMoneyPHP\Model\CheckoutInitiator $initiator
      * @return $this
      */
     public function setInitiator($initiator)
@@ -199,7 +199,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Gets order
-     * @return \zipMoneyPHP/Model\Order
+     * @return \zipMoneyPHP\Model\Order
      */
     public function getOrder()
     {
@@ -208,7 +208,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Sets order
-     * @param \zipMoneyPHP/Model\Order $order
+     * @param \zipMoneyPHP\Model\Order $order
      * @return $this
      */
     public function setOrder($order)
@@ -241,7 +241,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Gets metadata
-     * @return \zipMoneyPHP/Model\Metadata
+     * @return \zipMoneyPHP\Model\Metadata
      */
     public function getMetadata()
     {
@@ -250,7 +250,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Sets metadata
-     * @param \zipMoneyPHP/Model\Metadata $metadata
+     * @param \zipMoneyPHP\Model\Metadata $metadata
      * @return $this
      */
     public function setMetadata($metadata)
@@ -262,7 +262,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Gets config
-     * @return \zipMoneyPHP/Model\CheckoutConfig
+     * @return \zipMoneyPHP\Model\CheckoutConfig
      */
     public function getConfig()
     {
@@ -271,7 +271,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Sets config
-     * @param \zipMoneyPHP/Model\CheckoutConfig $config
+     * @param \zipMoneyPHP\Model\CheckoutConfig $config
      * @return $this
      */
     public function setConfig($config)

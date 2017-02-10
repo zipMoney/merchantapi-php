@@ -39,7 +39,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoneyPHP/Model;
+namespace zipMoneyPHP\Model;
 
 use \ArrayAccess;
 
@@ -69,7 +69,7 @@ class OrderAmount implements ArrayAccess
     protected static $swaggerTypes = array(
         'currency' => 'string',
         'value' => 'float',
-        'details' => '\zipMoneyPHP/Model\OrderAmountDetails'
+        'details' => '\zipMoneyPHP\Model\OrderAmountDetails'
     );
 
     public static function swaggerTypes()
@@ -253,7 +253,7 @@ class OrderAmount implements ArrayAccess
 
     /**
      * Gets details
-     * @return \zipMoneyPHP/Model\OrderAmountDetails
+     * @return \zipMoneyPHP\Model\OrderAmountDetails
      */
     public function getDetails()
     {
@@ -262,7 +262,7 @@ class OrderAmount implements ArrayAccess
 
     /**
      * Sets details
-     * @param \zipMoneyPHP/Model\OrderAmountDetails $details
+     * @param \zipMoneyPHP\Model\OrderAmountDetails $details
      * @return $this
      */
     public function setDetails($details)

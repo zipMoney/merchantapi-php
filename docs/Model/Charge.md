@@ -5,13 +5,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** |  | 
 **reference** | **string** |  | [optional] 
-**order** | [**\zipMoneyPHP/Model\Order**](Order.md) |  | [optional] 
+**order** | [**\zipMoneyPHP\Model\Order**](Order.md) |  | [optional] 
 **state** | **string** |  | 
 **authorised_amount** | **float** |  | [optional] 
 **captured_amount** | **float** |  | [optional] 
 **refunded_amount** | **float** | The amount of the charge that has been refunded | [optional] 
 **created_date** | [**\DateTime**](\DateTime.md) |  | 
-**state_changes** | [**\zipMoneyPHP/Model\ChargeStateChanges[]**](ChargeStateChanges.md) | State changes | [optional] 
+**state_changes** | [**\zipMoneyPHP\Model\ChargeStateChanges[]**](ChargeStateChanges.md) | State changes | [optional] 
 **metadata** | **object** |  | [optional] 
 **customer_id** | **string** |  | [optional] 
 
