@@ -1,4 +1,4 @@
-# zipMoneyPHP\ChargesApi
+# zipMoney\ChargesApi
 
 All URIs are relative to *https://api.zipmoney.com.au/merchant/v1*
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **chargesCancel**
-> \zipMoneyPHP\Model\Charge chargesCancel($id, $idempotency_key)
+> \zipMoney\Model\Charge chargesCancel($id, $idempotency_key)
 
 Cancel a charge
 
@@ -24,11 +24,11 @@ Cancels an authorised charge.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoney\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoney\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new zipMoneyPHP\Api\ChargesApi();
+$api_instance = new zipMoney\Api\ChargesApi();
 $id = "id_example"; // string | The id of the authorised charge
 $idempotency_key = "idempotency_key_example"; // string | The unique idempotency key.
 
@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoneyPHP\Model\Charge**](../Model/Charge.md)
+[**\zipMoney\Model\Charge**](../Model/Charge.md)
 
 ### Authorization
 
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **chargesCapture**
-> \zipMoneyPHP\Model\Charge chargesCapture($id, $body, $idempotency_key)
+> \zipMoney\Model\Charge chargesCapture($id, $body, $idempotency_key)
 
 Capture a charge
 
@@ -76,13 +76,13 @@ Captures a previously authorised charge.  The capture can be less than or equal 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoney\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoney\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new zipMoneyPHP\Api\ChargesApi();
+$api_instance = new zipMoney\Api\ChargesApi();
 $id = "id_example"; // string | The id of the authorised charge
-$body = new \zipMoneyPHP\Model\CaptureChargeRequest(); // \zipMoneyPHP\Model\CaptureChargeRequest | 
+$body = new \zipMoney\Model\CaptureChargeRequest(); // \zipMoney\Model\CaptureChargeRequest | 
 $idempotency_key = "idempotency_key_example"; // string | The unique idempotency key.
 
 try {
@@ -99,12 +99,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| The id of the authorised charge |
- **body** | [**\zipMoneyPHP\Model\CaptureChargeRequest**](../Model/\zipMoneyPHP\Model\CaptureChargeRequest.md)|  | [optional]
+ **body** | [**\zipMoney\Model\CaptureChargeRequest**](../Model/\zipMoney\Model\CaptureChargeRequest.md)|  | [optional]
  **idempotency_key** | **string**| The unique idempotency key. | [optional]
 
 ### Return type
 
-[**\zipMoneyPHP\Model\Charge**](../Model/Charge.md)
+[**\zipMoney\Model\Charge**](../Model/Charge.md)
 
 ### Authorization
 
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **chargesCreate**
-> \zipMoneyPHP\Model\Charge chargesCreate($body, $idempotency_key)
+> \zipMoney\Model\Charge chargesCreate($body, $idempotency_key)
 
 Create a charge
 
@@ -130,12 +130,12 @@ Creates a #model:ehEN48PET29iNdex3 which represents a charge against a customer'
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoney\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoney\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new zipMoneyPHP\Api\ChargesApi();
-$body = new \zipMoneyPHP\Model\CreateChargeRequest(); // \zipMoneyPHP\Model\CreateChargeRequest | 
+$api_instance = new zipMoney\Api\ChargesApi();
+$body = new \zipMoney\Model\CreateChargeRequest(); // \zipMoney\Model\CreateChargeRequest | 
 $idempotency_key = "idempotency_key_example"; // string | The unique idempotency key.
 
 try {
@@ -151,12 +151,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\zipMoneyPHP\Model\CreateChargeRequest**](../Model/\zipMoneyPHP\Model\CreateChargeRequest.md)|  | [optional]
+ **body** | [**\zipMoney\Model\CreateChargeRequest**](../Model/\zipMoney\Model\CreateChargeRequest.md)|  | [optional]
  **idempotency_key** | **string**| The unique idempotency key. | [optional]
 
 ### Return type
 
-[**\zipMoneyPHP\Model\Charge**](../Model/Charge.md)
+[**\zipMoney\Model\Charge**](../Model/Charge.md)
 
 ### Authorization
 
@@ -165,12 +165,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/javascript
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **chargesList**
-> \zipMoneyPHP\Model\Charge[] chargesList($state, $skip, $limit, $expand)
+> \zipMoney\Model\Charge[] chargesList($state, $skip, $limit, $expand)
 
 List charges
 
@@ -182,11 +182,11 @@ Lists all charges matching search criteria.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoney\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoney\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new zipMoneyPHP\Api\ChargesApi();
+$api_instance = new zipMoney\Api\ChargesApi();
 $state = "state_example"; // string | The state filter
 $skip = 0; // int | Number of items to skip when paging
 $limit = 100; // int | Number of items to retrieve when paging
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoneyPHP\Model\Charge[]**](../Model/Charge.md)
+[**\zipMoney\Model\Charge[]**](../Model/Charge.md)
 
 ### Authorization
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **chargesRetrieve**
-> \zipMoneyPHP\Model\Charge chargesRetrieve($id, $expand)
+> \zipMoney\Model\Charge chargesRetrieve($id, $expand)
 
 Retrieve a charge
 
@@ -238,11 +238,11 @@ Retrieve details of a previously created charge.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoney\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoney\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new zipMoneyPHP\Api\ChargesApi();
+$api_instance = new zipMoney\Api\ChargesApi();
 $id = "id_example"; // string | The id of the charge
 $expand = "expand_example"; // string | Allows expanding related entities in the response. Only valid entry is 'customer'
 
@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoneyPHP\Model\Charge**](../Model/Charge.md)
+[**\zipMoney\Model\Charge**](../Model/Charge.md)
 
 ### Authorization
 

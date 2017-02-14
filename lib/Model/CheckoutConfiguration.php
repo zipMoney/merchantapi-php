@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderShippingTracking
+ * CheckoutConfiguration
  *
  * PHP version 5
  *
@@ -32,15 +32,15 @@ namespace zipMoney\Model;
 use \ArrayAccess;
 
 /**
- * OrderShippingTracking Class Doc Comment
+ * CheckoutConfiguration Class Doc Comment
  *
  * @category    Class
- * @description Tracking information
+ * @description Checkout configuration
  * @package     zipMoney
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class OrderShippingTracking implements ArrayAccess
+class CheckoutConfiguration implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,16 +48,18 @@ class OrderShippingTracking implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'order_shipping_tracking';
+    protected static $swaggerModelName = 'CheckoutConfiguration';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'uri' => 'string',
-        'number' => 'string',
-        'carrier' => 'string'
+        'method' => 'string',
+        'approved_uri' => 'string',
+        'referred_uri' => 'string',
+        'declined_uri' => 'string',
+        'cancelled_uri' => 'string'
     ];
 
     public static function swaggerTypes()
@@ -70,9 +72,11 @@ class OrderShippingTracking implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'uri' => 'uri',
-        'number' => 'number',
-        'carrier' => 'carrier'
+        'method' => 'method',
+        'approved_uri' => 'approved_uri',
+        'referred_uri' => 'referred_uri',
+        'declined_uri' => 'declined_uri',
+        'cancelled_uri' => 'cancelled_uri'
     ];
 
 
@@ -81,9 +85,11 @@ class OrderShippingTracking implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'uri' => 'setUri',
-        'number' => 'setNumber',
-        'carrier' => 'setCarrier'
+        'method' => 'setMethod',
+        'approved_uri' => 'setApprovedUri',
+        'referred_uri' => 'setReferredUri',
+        'declined_uri' => 'setDeclinedUri',
+        'cancelled_uri' => 'setCancelledUri'
     ];
 
 
@@ -92,9 +98,11 @@ class OrderShippingTracking implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'uri' => 'getUri',
-        'number' => 'getNumber',
-        'carrier' => 'getCarrier'
+        'method' => 'getMethod',
+        'approved_uri' => 'getApprovedUri',
+        'referred_uri' => 'getReferredUri',
+        'declined_uri' => 'getDeclinedUri',
+        'cancelled_uri' => 'getCancelledUri'
     ];
 
     public static function attributeMap()
@@ -112,8 +120,22 @@ class OrderShippingTracking implements ArrayAccess
         return self::$getters;
     }
 
+    const METHOD_EXPRESS = 'express';
+    const METHOD_STANDARD = 'standard';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getMethodAllowableValues()
+    {
+        return [
+            self::METHOD_EXPRESS,
+            self::METHOD_STANDARD,
+        ];
+    }
     
 
     /**
@@ -128,9 +150,11 @@ class OrderShippingTracking implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uri'] = isset($data['uri']) ? $data['uri'] : null;
-        $this->container['number'] = isset($data['number']) ? $data['number'] : null;
-        $this->container['carrier'] = isset($data['carrier']) ? $data['carrier'] : null;
+        $this->container['method'] = isset($data['method']) ? $data['method'] : 'standard';
+        $this->container['approved_uri'] = isset($data['approved_uri']) ? $data['approved_uri'] : null;
+        $this->container['referred_uri'] = isset($data['referred_uri']) ? $data['referred_uri'] : null;
+        $this->container['declined_uri'] = isset($data['declined_uri']) ? $data['declined_uri'] : null;
+        $this->container['cancelled_uri'] = isset($data['cancelled_uri']) ? $data['cancelled_uri'] : null;
     }
 
     /**
@@ -142,16 +166,9 @@ class OrderShippingTracking implements ArrayAccess
     {
         $invalid_properties = [];
 
-        if (!is_null($this->container['uri']) && (strlen($this->container['uri']) > 500)) {
-            $invalid_properties[] = "invalid value for 'uri', the character length must be smaller than or equal to 500.";
-        }
-
-        if (!is_null($this->container['number']) && (strlen($this->container['number']) > 120)) {
-            $invalid_properties[] = "invalid value for 'number', the character length must be smaller than or equal to 120.";
-        }
-
-        if (!is_null($this->container['carrier']) && (strlen($this->container['carrier']) > 120)) {
-            $invalid_properties[] = "invalid value for 'carrier', the character length must be smaller than or equal to 120.";
+        $allowed_values = ["express", "standard"];
+        if (!in_array($this->container['method'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'method', must be one of 'express', 'standard'.";
         }
 
         return $invalid_properties;
@@ -166,13 +183,8 @@ class OrderShippingTracking implements ArrayAccess
     public function valid()
     {
 
-        if (strlen($this->container['uri']) > 500) {
-            return false;
-        }
-        if (strlen($this->container['number']) > 120) {
-            return false;
-        }
-        if (strlen($this->container['carrier']) > 120) {
+        $allowed_values = ["express", "standard"];
+        if (!in_array($this->container['method'], $allowed_values)) {
             return false;
         }
         return true;
@@ -180,76 +192,110 @@ class OrderShippingTracking implements ArrayAccess
 
 
     /**
-     * Gets uri
+     * Gets method
      * @return string
      */
-    public function getUri()
+    public function getMethod()
     {
-        return $this->container['uri'];
+        return $this->container['method'];
     }
 
     /**
-     * Sets uri
-     * @param string $uri
+     * Sets method
+     * @param string $method The checkout method
      * @return $this
      */
-    public function setUri($uri)
+    public function setMethod($method)
     {
-        if (!is_null($uri) && (strlen($uri) > 500)) {
-            throw new \InvalidArgumentException('invalid length for $uri when calling OrderShippingTracking., must be smaller than or equal to 500.');
+        $allowed_values = array('express', 'standard');
+        if (!is_null($method) && (!in_array($method, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'method', must be one of 'express', 'standard'");
         }
-
-        $this->container['uri'] = $uri;
+        $this->container['method'] = $method;
 
         return $this;
     }
 
     /**
-     * Gets number
+     * Gets approved_uri
      * @return string
      */
-    public function getNumber()
+    public function getApprovedUri()
     {
-        return $this->container['number'];
+        return $this->container['approved_uri'];
     }
 
     /**
-     * Sets number
-     * @param string $number
+     * Sets approved_uri
+     * @param string $approved_uri The URI to redirect if customer is approved
      * @return $this
      */
-    public function setNumber($number)
+    public function setApprovedUri($approved_uri)
     {
-        if (!is_null($number) && (strlen($number) > 120)) {
-            throw new \InvalidArgumentException('invalid length for $number when calling OrderShippingTracking., must be smaller than or equal to 120.');
-        }
-
-        $this->container['number'] = $number;
+        $this->container['approved_uri'] = $approved_uri;
 
         return $this;
     }
 
     /**
-     * Gets carrier
+     * Gets referred_uri
      * @return string
      */
-    public function getCarrier()
+    public function getReferredUri()
     {
-        return $this->container['carrier'];
+        return $this->container['referred_uri'];
     }
 
     /**
-     * Sets carrier
-     * @param string $carrier
+     * Sets referred_uri
+     * @param string $referred_uri The URI to redirect if the customer is referred
      * @return $this
      */
-    public function setCarrier($carrier)
+    public function setReferredUri($referred_uri)
     {
-        if (!is_null($carrier) && (strlen($carrier) > 120)) {
-            throw new \InvalidArgumentException('invalid length for $carrier when calling OrderShippingTracking., must be smaller than or equal to 120.');
-        }
+        $this->container['referred_uri'] = $referred_uri;
 
-        $this->container['carrier'] = $carrier;
+        return $this;
+    }
+
+    /**
+     * Gets declined_uri
+     * @return string
+     */
+    public function getDeclinedUri()
+    {
+        return $this->container['declined_uri'];
+    }
+
+    /**
+     * Sets declined_uri
+     * @param string $declined_uri The URI to redirect if the customer is declined
+     * @return $this
+     */
+    public function setDeclinedUri($declined_uri)
+    {
+        $this->container['declined_uri'] = $declined_uri;
+
+        return $this;
+    }
+
+    /**
+     * Gets cancelled_uri
+     * @return string
+     */
+    public function getCancelledUri()
+    {
+        return $this->container['cancelled_uri'];
+    }
+
+    /**
+     * Sets cancelled_uri
+     * @param string $cancelled_uri The URI to redirect if the user cancels the checkout.
+     * @return $this
+     */
+    public function setCancelledUri($cancelled_uri)
+    {
+        $this->container['cancelled_uri'] = $cancelled_uri;
 
         return $this;
     }

@@ -1,4 +1,4 @@
-# zipMoneyPHP\CheckoutsApi
+# zipMoney\CheckoutsApi
 
 All URIs are relative to *https://api.zipmoney.com.au/merchant/v1*
 
@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **checkoutsCreate**
-> \zipMoneyPHP\Model\Checkout checkoutsCreate($body)
+> \zipMoney\Model\Checkout checkoutsCreate($body)
 
 Create a checkout
 
@@ -21,12 +21,12 @@ Creates a zipMoney checkout.  During the checkout process a customer can apply f
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoney\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoney\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new zipMoneyPHP\Api\CheckoutsApi();
-$body = new \zipMoneyPHP\Model\CreateCheckoutRequest(); // \zipMoneyPHP\Model\CreateCheckoutRequest | 
+$api_instance = new zipMoney\Api\CheckoutsApi();
+$body = new \zipMoney\Model\CreateCheckoutRequest(); // \zipMoney\Model\CreateCheckoutRequest | 
 
 try {
     $result = $api_instance->checkoutsCreate($body);
@@ -41,11 +41,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\zipMoneyPHP\Model\CreateCheckoutRequest**](../Model/\zipMoneyPHP\Model\CreateCheckoutRequest.md)|  | [optional]
+ **body** | [**\zipMoney\Model\CreateCheckoutRequest**](../Model/\zipMoney\Model\CreateCheckoutRequest.md)|  | [optional]
 
 ### Return type
 
-[**\zipMoneyPHP\Model\Checkout**](../Model/Checkout.md)
+[**\zipMoney\Model\Checkout**](../Model/Checkout.md)
 
 ### Authorization
 
@@ -59,9 +59,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **checkoutsGet**
-> \zipMoneyPHP\Model\Checkout checkoutsGet($id)
+> \zipMoney\Model\Checkout checkoutsGet($id)
 
 Retrieve a checkout
+
+Retrieves a previously created checkout by id.
 
 ### Example
 ```php
@@ -69,11 +71,11 @@ Retrieve a checkout
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoney\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoney\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new zipMoneyPHP\Api\CheckoutsApi();
+$api_instance = new zipMoney\Api\CheckoutsApi();
 $id = "id_example"; // string | 
 
 try {
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoneyPHP\Model\Checkout**](../Model/Checkout.md)
+[**\zipMoney\Model\Checkout**](../Model/Checkout.md)
 
 ### Authorization
 

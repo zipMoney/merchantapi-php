@@ -1,4 +1,4 @@
-# zipMoneyPHP\RefundsApi
+# zipMoney\RefundsApi
 
 All URIs are relative to *https://api.zipmoney.com.au/merchant/v1*
 
@@ -10,11 +10,11 @@ Method | HTTP request | Description
 
 
 # **refundsCreate**
-> \zipMoneyPHP\Model\Refund refundsCreate($body, $idempotency_key)
+> \zipMoney\Model\Refund refundsCreate($body, $idempotency_key)
 
 Create a refund
 
-Creates a refund for a previously authorised or captured charge. See #model:xWJer4QQyRumRi9LD for more information.  This endpoint will return 201 or otherwise 402 if unable to perform the refund.
+Creates a refund for a previously authorised or captured charge. See #model:xWJer4QQyRumRi9LD for more information.  This endpoint will return 201 or otherwise 402 if unable to perform the refund.   | Error code | Description | |------------------------------------|--------------------------------------------------------------------------------------------------| | amount_invalid | The refund amount is greater than the remaining captured total | | invalid_state | The charge is already fully refunded |
 
 ### Example
 ```php
@@ -22,12 +22,12 @@ Creates a refund for a previously authorised or captured charge. See #model:xWJe
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoney\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoney\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new zipMoneyPHP\Api\RefundsApi();
-$body = new \zipMoneyPHP\Model\CreateRefundRequest(); // \zipMoneyPHP\Model\CreateRefundRequest | 
+$api_instance = new zipMoney\Api\RefundsApi();
+$body = new \zipMoney\Model\CreateRefundRequest(); // \zipMoney\Model\CreateRefundRequest | 
 $idempotency_key = "idempotency_key_example"; // string | The unique idempotency key.
 
 try {
@@ -43,12 +43,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\zipMoneyPHP\Model\CreateRefundRequest**](../Model/\zipMoneyPHP\Model\CreateRefundRequest.md)|  | [optional]
+ **body** | [**\zipMoney\Model\CreateRefundRequest**](../Model/\zipMoney\Model\CreateRefundRequest.md)|  | [optional]
  **idempotency_key** | **string**| The unique idempotency key. | [optional]
 
 ### Return type
 
-[**\zipMoneyPHP\Model\Refund**](../Model/Refund.md)
+[**\zipMoney\Model\Refund**](../Model/Refund.md)
 
 ### Authorization
 
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **refundsList**
-> \zipMoneyPHP\Model\Refund[] refundsList($charge_id, $skip, $limit)
+> \zipMoney\Model\Refund[] refundsList($charge_id, $skip, $limit)
 
 List refunds
 
@@ -74,11 +74,11 @@ List all refunds
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoney\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoney\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new zipMoneyPHP\Api\RefundsApi();
+$api_instance = new zipMoney\Api\RefundsApi();
 $charge_id = "charge_id_example"; // string | 
 $skip = 0; // int | Number of items to skip when paging
 $limit = 100; // int | Number of items to retrieve when paging
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoneyPHP\Model\Refund[]**](../Model/Refund.md)
+[**\zipMoney\Model\Refund[]**](../Model/Refund.md)
 
 ### Authorization
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **refundsRetrieve**
-> \zipMoneyPHP\Model\Refund refundsRetrieve($id)
+> \zipMoney\Model\Refund refundsRetrieve($id)
 
 Retrieve a refund
 
@@ -128,11 +128,11 @@ Retrieves details of a specific refund
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+zipMoney\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// zipMoneyPHP\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+// zipMoney\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$api_instance = new zipMoneyPHP\Api\RefundsApi();
+$api_instance = new zipMoney\Api\RefundsApi();
 $id = "id_example"; // string | The id of the refund
 
 try {
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoneyPHP\Model\Refund**](../Model/Refund.md)
+[**\zipMoney\Model\Refund**](../Model/Refund.md)
 
 ### Authorization
 
