@@ -83,41 +83,9 @@ class CheckoutConfigurationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "method"
+     * Test attribute "redirect_uri"
      */
-    public function testPropertyMethod()
-    {
-
-    }
-
-    /**
-     * Test attribute "approved_uri"
-     */
-    public function testPropertyApprovedUri()
-    {
-
-    }
-
-    /**
-     * Test attribute "referred_uri"
-     */
-    public function testPropertyReferredUri()
-    {
-
-    }
-
-    /**
-     * Test attribute "declined_uri"
-     */
-    public function testPropertyDeclinedUri()
-    {
-
-    }
-
-    /**
-     * Test attribute "cancelled_uri"
-     */
-    public function testPropertyCancelledUri()
+    public function testPropertyRedirectUri()
     {
 
     }
