@@ -55,7 +55,7 @@ class OrderItem implements ArrayAccess
       */
     protected static $swaggerTypes = [
         'name' => 'string',
-        'price' => 'float',
+        'amount' => 'float',
         'reference' => 'string',
         'description' => 'string',
         'quantity' => 'int',
@@ -76,7 +76,7 @@ class OrderItem implements ArrayAccess
      */
     protected static $attributeMap = [
         'name' => 'name',
-        'price' => 'price',
+        'amount' => 'amount',
         'reference' => 'reference',
         'description' => 'description',
         'quantity' => 'quantity',
@@ -93,7 +93,7 @@ class OrderItem implements ArrayAccess
      */
     protected static $setters = [
         'name' => 'setName',
-        'price' => 'setPrice',
+        'amount' => 'setAmount',
         'reference' => 'setReference',
         'description' => 'setDescription',
         'quantity' => 'setQuantity',
@@ -110,7 +110,7 @@ class OrderItem implements ArrayAccess
      */
     protected static $getters = [
         'name' => 'getName',
-        'price' => 'getPrice',
+        'amount' => 'getAmount',
         'reference' => 'getReference',
         'description' => 'getDescription',
         'quantity' => 'getQuantity',
@@ -170,7 +170,7 @@ class OrderItem implements ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['price'] = isset($data['price']) ? $data['price'] : null;
+        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
         $this->container['reference'] = isset($data['reference']) ? $data['reference'] : null;
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
@@ -196,11 +196,11 @@ class OrderItem implements ArrayAccess
             $invalid_properties[] = "invalid value for 'name', the character length must be smaller than or equal to 150.";
         }
 
-        if ($this->container['price'] === null) {
-            $invalid_properties[] = "'price' can't be null";
+        if ($this->container['amount'] === null) {
+            $invalid_properties[] = "'amount' can't be null";
         }
-        if (($this->container['price'] < 0)) {
-            $invalid_properties[] = "invalid value for 'price', must be bigger than or equal to 0.";
+        if (($this->container['amount'] < 0)) {
+            $invalid_properties[] = "invalid value for 'amount', must be bigger than or equal to 0.";
         }
 
         if (!is_null($this->container['reference']) && (strlen($this->container['reference']) > 50)) {
@@ -256,10 +256,10 @@ class OrderItem implements ArrayAccess
         if (strlen($this->container['name']) > 150) {
             return false;
         }
-        if ($this->container['price'] === null) {
+        if ($this->container['amount'] === null) {
             return false;
         }
-        if ($this->container['price'] < 0) {
+        if ($this->container['amount'] < 0) {
             return false;
         }
         if (strlen($this->container['reference']) > 50) {
@@ -320,27 +320,27 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Gets price
+     * Gets amount
      * @return float
      */
-    public function getPrice()
+    public function getAmount()
     {
-        return $this->container['price'];
+        return $this->container['amount'];
     }
 
     /**
-     * Sets price
-     * @param float $price
+     * Sets amount
+     * @param float $amount
      * @return $this
      */
-    public function setPrice($price)
+    public function setAmount($amount)
     {
 
-        if (($price < 0)) {
-            throw new \InvalidArgumentException('invalid value for $price when calling OrderItem., must be bigger than or equal to 0.');
+        if (($amount < 0)) {
+            throw new \InvalidArgumentException('invalid value for $amount when calling OrderItem., must be bigger than or equal to 0.');
         }
 
-        $this->container['price'] = $price;
+        $this->container['amount'] = $amount;
 
         return $this;
     }

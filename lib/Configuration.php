@@ -95,7 +95,7 @@ class Configuration
      *
      * @var string
      */
-    protected $allowedEnvironments = array('sandbox' 
+    protected $supportedEnvironments = array('sandbox' 
                                         => array( "host" => "https://api.sandbox.zipmoney.com.au/merchant/v1"),
                                     "production" 
                                         => array( "host" => 'https://api.zipmoney.com.au/merchant/v1' )
@@ -617,10 +617,10 @@ class Configuration
     {   
         $this->environment = $environment;
     
-        $host = $this->environments['production']['host'];
+        $host = $this->supportedEnvironments['production']['host'];
 
-        if(in_array($environment,$this->allowedEnvironments)){
-            $host = $this->environments[$environment]['host'];
+        if(in_array($environment,$this->supportedEnvironments)){
+            $host = $this->supportedEnvironments[$environment]['host'];
         }
 
         $this->setHost($host);

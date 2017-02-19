@@ -57,10 +57,11 @@ class Checkout implements ArrayAccess
     protected static $swaggerTypes = [
         'id' => 'string',
         'uri' => 'string',
+        'type' => 'string',
         'shopper' => '\zipMoney\Model\Shopper',
         'order' => '\zipMoney\Model\Order',
+        'features' => '\zipMoney\Model\CheckoutFeatures',
         'config' => '\zipMoney\Model\CheckoutConfiguration',
-        'additional_features' => 'string[]',
         'created' => '\DateTime',
         'state' => 'string',
         'customer_id' => 'string',
@@ -79,10 +80,11 @@ class Checkout implements ArrayAccess
     protected static $attributeMap = [
         'id' => 'id',
         'uri' => 'uri',
+        'type' => 'type',
         'shopper' => 'shopper',
         'order' => 'order',
+        'features' => 'features',
         'config' => 'config',
-        'additional_features' => 'additional_features',
         'created' => 'created',
         'state' => 'state',
         'customer_id' => 'customer_id',
@@ -97,10 +99,11 @@ class Checkout implements ArrayAccess
     protected static $setters = [
         'id' => 'setId',
         'uri' => 'setUri',
+        'type' => 'setType',
         'shopper' => 'setShopper',
         'order' => 'setOrder',
+        'features' => 'setFeatures',
         'config' => 'setConfig',
-        'additional_features' => 'setAdditionalFeatures',
         'created' => 'setCreated',
         'state' => 'setState',
         'customer_id' => 'setCustomerId',
@@ -115,10 +118,11 @@ class Checkout implements ArrayAccess
     protected static $getters = [
         'id' => 'getId',
         'uri' => 'getUri',
+        'type' => 'getType',
         'shopper' => 'getShopper',
         'order' => 'getOrder',
+        'features' => 'getFeatures',
         'config' => 'getConfig',
-        'additional_features' => 'getAdditionalFeatures',
         'created' => 'getCreated',
         'state' => 'getState',
         'customer_id' => 'getCustomerId',
@@ -140,12 +144,26 @@ class Checkout implements ArrayAccess
         return self::$getters;
     }
 
+    const TYPE_STANDARD = 'standard';
+    const TYPE_EXPRESS = 'express';
     const STATE_CREATED = 'created';
     const STATE_EXPIRED = 'expired';
     const STATE_APPROVED = 'approved';
     const STATE_COMPLETED = 'completed';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_STANDARD,
+            self::TYPE_EXPRESS,
+        ];
+    }
     
     /**
      * Gets allowable values of the enum
@@ -176,10 +194,11 @@ class Checkout implements ArrayAccess
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['uri'] = isset($data['uri']) ? $data['uri'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : 'standard';
         $this->container['shopper'] = isset($data['shopper']) ? $data['shopper'] : null;
         $this->container['order'] = isset($data['order']) ? $data['order'] : null;
+        $this->container['features'] = isset($data['features']) ? $data['features'] : null;
         $this->container['config'] = isset($data['config']) ? $data['config'] : null;
-        $this->container['additional_features'] = isset($data['additional_features']) ? $data['additional_features'] : null;
         $this->container['created'] = isset($data['created']) ? $data['created'] : null;
         $this->container['state'] = isset($data['state']) ? $data['state'] : null;
         $this->container['customer_id'] = isset($data['customer_id']) ? $data['customer_id'] : null;
@@ -201,6 +220,11 @@ class Checkout implements ArrayAccess
         if ($this->container['uri'] === null) {
             $invalid_properties[] = "'uri' can't be null";
         }
+        $allowed_values = ["standard", "express"];
+        if (!in_array($this->container['type'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'type', must be one of 'standard', 'express'.";
+        }
+
         if ($this->container['created'] === null) {
             $invalid_properties[] = "'created' can't be null";
         }
@@ -228,6 +252,10 @@ class Checkout implements ArrayAccess
             return false;
         }
         if ($this->container['uri'] === null) {
+            return false;
+        }
+        $allowed_values = ["standard", "express"];
+        if (!in_array($this->container['type'], $allowed_values)) {
             return false;
         }
         if ($this->container['created'] === null) {
@@ -287,6 +315,31 @@ class Checkout implements ArrayAccess
     }
 
     /**
+     * Gets type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     * @param string $type The type of checkout
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $allowed_values = array('standard', 'express');
+        if (!is_null($type) && (!in_array($type, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'standard', 'express'");
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
      * Gets shopper
      * @return \zipMoney\Model\Shopper
      */
@@ -329,6 +382,27 @@ class Checkout implements ArrayAccess
     }
 
     /**
+     * Gets features
+     * @return \zipMoney\Model\CheckoutFeatures
+     */
+    public function getFeatures()
+    {
+        return $this->container['features'];
+    }
+
+    /**
+     * Sets features
+     * @param \zipMoney\Model\CheckoutFeatures $features
+     * @return $this
+     */
+    public function setFeatures($features)
+    {
+        $this->container['features'] = $features;
+
+        return $this;
+    }
+
+    /**
      * Gets config
      * @return \zipMoney\Model\CheckoutConfiguration
      */
@@ -345,27 +419,6 @@ class Checkout implements ArrayAccess
     public function setConfig($config)
     {
         $this->container['config'] = $config;
-
-        return $this;
-    }
-
-    /**
-     * Gets additional_features
-     * @return string[]
-     */
-    public function getAdditionalFeatures()
-    {
-        return $this->container['additional_features'];
-    }
-
-    /**
-     * Sets additional_features
-     * @param string[] $additional_features Specific checkout features
-     * @return $this
-     */
-    public function setAdditionalFeatures($additional_features)
-    {
-        $this->container['additional_features'] = $additional_features;
 
         return $this;
     }

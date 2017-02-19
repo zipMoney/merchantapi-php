@@ -1,6 +1,6 @@
 <?php
 /**
- * CheckoutConfiguration
+ * CheckoutFeatures
  *
  * PHP version 5
  *
@@ -32,15 +32,15 @@ namespace zipMoney\Model;
 use \ArrayAccess;
 
 /**
- * CheckoutConfiguration Class Doc Comment
+ * CheckoutFeatures Class Doc Comment
  *
  * @category    Class
- * @description Checkout configuration
+ * @description Specific checkout features
  * @package     zipMoney
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class CheckoutConfiguration implements ArrayAccess
+class CheckoutFeatures implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,14 +48,14 @@ class CheckoutConfiguration implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'CheckoutConfiguration';
+    protected static $swaggerModelName = 'Checkout_features';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'redirect_uri' => 'string'
+        'tokenisation' => '\zipMoney\Model\CheckoutFeaturesTokenisation'
     ];
 
     public static function swaggerTypes()
@@ -68,7 +68,7 @@ class CheckoutConfiguration implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'redirect_uri' => 'redirect_uri'
+        'tokenisation' => 'tokenisation'
     ];
 
 
@@ -77,7 +77,7 @@ class CheckoutConfiguration implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'redirect_uri' => 'setRedirectUri'
+        'tokenisation' => 'setTokenisation'
     ];
 
 
@@ -86,7 +86,7 @@ class CheckoutConfiguration implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'redirect_uri' => 'getRedirectUri'
+        'tokenisation' => 'getTokenisation'
     ];
 
     public static function attributeMap()
@@ -120,7 +120,7 @@ class CheckoutConfiguration implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['redirect_uri'] = isset($data['redirect_uri']) ? $data['redirect_uri'] : null;
+        $this->container['tokenisation'] = isset($data['tokenisation']) ? $data['tokenisation'] : null;
     }
 
     /**
@@ -132,9 +132,6 @@ class CheckoutConfiguration implements ArrayAccess
     {
         $invalid_properties = [];
 
-        if ($this->container['redirect_uri'] === null) {
-            $invalid_properties[] = "'redirect_uri' can't be null";
-        }
         return $invalid_properties;
     }
 
@@ -147,30 +144,27 @@ class CheckoutConfiguration implements ArrayAccess
     public function valid()
     {
 
-        if ($this->container['redirect_uri'] === null) {
-            return false;
-        }
         return true;
     }
 
 
     /**
-     * Gets redirect_uri
-     * @return string
+     * Gets tokenisation
+     * @return \zipMoney\Model\CheckoutFeaturesTokenisation
      */
-    public function getRedirectUri()
+    public function getTokenisation()
     {
-        return $this->container['redirect_uri'];
+        return $this->container['tokenisation'];
     }
 
     /**
-     * Sets redirect_uri
-     * @param string $redirect_uri The URI to redirect after the checkout is complete.  This must be provided, even if using in-context checkout.  If using redirection we will automatically redirect to this url with the result and checkoutId.  If using in-context we will not automatically redirect to this URI.
+     * Sets tokenisation
+     * @param \zipMoney\Model\CheckoutFeaturesTokenisation $tokenisation
      * @return $this
      */
-    public function setRedirectUri($redirect_uri)
+    public function setTokenisation($tokenisation)
     {
-        $this->container['redirect_uri'] = $redirect_uri;
+        $this->container['tokenisation'] = $tokenisation;
 
         return $this;
     }

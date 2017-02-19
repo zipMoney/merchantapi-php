@@ -4,7 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **reference** | **string** | The order id in the eCommerce system | 
-**amount** | [**\zipMoney\Model\OrderAmount**](OrderAmount.md) |  | [optional] 
+**amount** | **float** | The total amount of the order | 
+**currency** | **string** | The ISO-4217 currency code. See https://en.wikipedia.org/wiki/ISO_4217 | 
 **shipping** | [**\zipMoney\Model\OrderShipping**](OrderShipping.md) |  | [optional] 
 **items** | [**\zipMoney\Model\OrderItem[]**](OrderItem.md) | The order item breakdown | [optional] 
 **cart_reference** | **string** | The shopping cart reference id | [optional] 

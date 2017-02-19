@@ -55,7 +55,8 @@ class Order implements ArrayAccess
       */
     protected static $swaggerTypes = [
         'reference' => 'string',
-        'amount' => '\zipMoney\Model\OrderAmount',
+        'amount' => 'float',
+        'currency' => 'string',
         'shipping' => '\zipMoney\Model\OrderShipping',
         'items' => '\zipMoney\Model\OrderItem[]',
         'cart_reference' => 'string'
@@ -73,6 +74,7 @@ class Order implements ArrayAccess
     protected static $attributeMap = [
         'reference' => 'reference',
         'amount' => 'amount',
+        'currency' => 'currency',
         'shipping' => 'shipping',
         'items' => 'items',
         'cart_reference' => 'cart_reference'
@@ -86,6 +88,7 @@ class Order implements ArrayAccess
     protected static $setters = [
         'reference' => 'setReference',
         'amount' => 'setAmount',
+        'currency' => 'setCurrency',
         'shipping' => 'setShipping',
         'items' => 'setItems',
         'cart_reference' => 'setCartReference'
@@ -99,6 +102,7 @@ class Order implements ArrayAccess
     protected static $getters = [
         'reference' => 'getReference',
         'amount' => 'getAmount',
+        'currency' => 'getCurrency',
         'shipping' => 'getShipping',
         'items' => 'getItems',
         'cart_reference' => 'getCartReference'
@@ -137,6 +141,7 @@ class Order implements ArrayAccess
     {
         $this->container['reference'] = isset($data['reference']) ? $data['reference'] : null;
         $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
+        $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
         $this->container['shipping'] = isset($data['shipping']) ? $data['shipping'] : null;
         $this->container['items'] = isset($data['items']) ? $data['items'] : null;
         $this->container['cart_reference'] = isset($data['cart_reference']) ? $data['cart_reference'] : null;
@@ -158,6 +163,16 @@ class Order implements ArrayAccess
             $invalid_properties[] = "invalid value for 'reference', the character length must be smaller than or equal to 50.";
         }
 
+        if ($this->container['amount'] === null) {
+            $invalid_properties[] = "'amount' can't be null";
+        }
+        if (($this->container['amount'] < 0)) {
+            $invalid_properties[] = "invalid value for 'amount', must be bigger than or equal to 0.";
+        }
+
+        if ($this->container['currency'] === null) {
+            $invalid_properties[] = "'currency' can't be null";
+        }
         if (!is_null($this->container['cart_reference']) && (strlen($this->container['cart_reference']) > 100)) {
             $invalid_properties[] = "invalid value for 'cart_reference', the character length must be smaller than or equal to 100.";
         }
@@ -178,6 +193,15 @@ class Order implements ArrayAccess
             return false;
         }
         if (strlen($this->container['reference']) > 50) {
+            return false;
+        }
+        if ($this->container['amount'] === null) {
+            return false;
+        }
+        if ($this->container['amount'] < 0) {
+            return false;
+        }
+        if ($this->container['currency'] === null) {
             return false;
         }
         if (strlen($this->container['cart_reference']) > 100) {
@@ -214,7 +238,7 @@ class Order implements ArrayAccess
 
     /**
      * Gets amount
-     * @return \zipMoney\Model\OrderAmount
+     * @return float
      */
     public function getAmount()
     {
@@ -223,12 +247,38 @@ class Order implements ArrayAccess
 
     /**
      * Sets amount
-     * @param \zipMoney\Model\OrderAmount $amount
+     * @param float $amount The total amount of the order
      * @return $this
      */
     public function setAmount($amount)
     {
+
+        if (($amount < 0)) {
+            throw new \InvalidArgumentException('invalid value for $amount when calling Order., must be bigger than or equal to 0.');
+        }
+
         $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     * @param string $currency The ISO-4217 currency code. See https://en.wikipedia.org/wiki/ISO_4217
+     * @return $this
+     */
+    public function setCurrency($currency)
+    {
+        $this->container['currency'] = $currency;
 
         return $this;
     }

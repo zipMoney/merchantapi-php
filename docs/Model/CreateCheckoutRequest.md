@@ -3,9 +3,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | **string** | The checkout type. | [optional] [default to 'standard']
 **shopper** | [**\zipMoney\Model\Shopper**](Shopper.md) |  | [optional] 
 **order** | [**\zipMoney\Model\Order**](Order.md) |  | [optional] 
-**additional_features** | **string[]** | Additional features for this request | [optional] 
+**features** | [**\zipMoney\Model\CreateCheckoutRequestFeatures**](CreateCheckoutRequestFeatures.md) |  | [optional] 
 **metadata** | [**\zipMoney\Model\Metadata**](Metadata.md) |  | [optional] 
 **config** | [**\zipMoney\Model\CheckoutConfiguration**](CheckoutConfiguration.md) |  | [optional] 
 

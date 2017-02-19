@@ -55,9 +55,10 @@ class CreateCheckoutRequest implements ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
+        'type' => 'string',
         'shopper' => '\zipMoney\Model\Shopper',
         'order' => '\zipMoney\Model\Order',
-        'additional_features' => 'string[]',
+        'features' => '\zipMoney\Model\CreateCheckoutRequestFeatures',
         'metadata' => '\zipMoney\Model\Metadata',
         'config' => '\zipMoney\Model\CheckoutConfiguration'
     ];
@@ -72,9 +73,10 @@ class CreateCheckoutRequest implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'type' => 'type',
         'shopper' => 'shopper',
         'order' => 'order',
-        'additional_features' => 'additional_features',
+        'features' => 'features',
         'metadata' => 'metadata',
         'config' => 'config'
     ];
@@ -85,9 +87,10 @@ class CreateCheckoutRequest implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'type' => 'setType',
         'shopper' => 'setShopper',
         'order' => 'setOrder',
-        'additional_features' => 'setAdditionalFeatures',
+        'features' => 'setFeatures',
         'metadata' => 'setMetadata',
         'config' => 'setConfig'
     ];
@@ -98,9 +101,10 @@ class CreateCheckoutRequest implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'type' => 'getType',
         'shopper' => 'getShopper',
         'order' => 'getOrder',
-        'additional_features' => 'getAdditionalFeatures',
+        'features' => 'getFeatures',
         'metadata' => 'getMetadata',
         'config' => 'getConfig'
     ];
@@ -120,8 +124,22 @@ class CreateCheckoutRequest implements ArrayAccess
         return self::$getters;
     }
 
+    const TYPE_STANDARD = 'standard';
+    const TYPE_EXPRESS = 'express';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_STANDARD,
+            self::TYPE_EXPRESS,
+        ];
+    }
     
 
     /**
@@ -136,9 +154,10 @@ class CreateCheckoutRequest implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['type'] = isset($data['type']) ? $data['type'] : 'standard';
         $this->container['shopper'] = isset($data['shopper']) ? $data['shopper'] : null;
         $this->container['order'] = isset($data['order']) ? $data['order'] : null;
-        $this->container['additional_features'] = isset($data['additional_features']) ? $data['additional_features'] : null;
+        $this->container['features'] = isset($data['features']) ? $data['features'] : null;
         $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
         $this->container['config'] = isset($data['config']) ? $data['config'] : null;
     }
@@ -152,6 +171,11 @@ class CreateCheckoutRequest implements ArrayAccess
     {
         $invalid_properties = [];
 
+        $allowed_values = ["standard", "express"];
+        if (!in_array($this->container['type'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'type', must be one of 'standard', 'express'.";
+        }
+
         return $invalid_properties;
     }
 
@@ -164,9 +188,38 @@ class CreateCheckoutRequest implements ArrayAccess
     public function valid()
     {
 
+        $allowed_values = ["standard", "express"];
+        if (!in_array($this->container['type'], $allowed_values)) {
+            return false;
+        }
         return true;
     }
 
+
+    /**
+     * Gets type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     * @param string $type The checkout type.
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $allowed_values = array('standard', 'express');
+        if (!is_null($type) && (!in_array($type, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'standard', 'express'");
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
 
     /**
      * Gets shopper
@@ -211,22 +264,22 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Gets additional_features
-     * @return string[]
+     * Gets features
+     * @return \zipMoney\Model\CreateCheckoutRequestFeatures
      */
-    public function getAdditionalFeatures()
+    public function getFeatures()
     {
-        return $this->container['additional_features'];
+        return $this->container['features'];
     }
 
     /**
-     * Sets additional_features
-     * @param string[] $additional_features Additional features for this request
+     * Sets features
+     * @param \zipMoney\Model\CreateCheckoutRequestFeatures $features
      * @return $this
      */
-    public function setAdditionalFeatures($additional_features)
+    public function setFeatures($features)
     {
-        $this->container['additional_features'] = $additional_features;
+        $this->container['features'] = $features;
 
         return $this;
     }
