@@ -622,7 +622,7 @@ class Configuration
     
         $host = $this->supportedEnvironments['production']['host'];
 
-        if(in_array($environment,$this->supportedEnvironments)){
+        if(in_array($environment,array_keys($this->supportedEnvironments))){
             $host = $this->supportedEnvironments[$environment]['host'];
         }
 
