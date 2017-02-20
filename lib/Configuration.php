@@ -95,7 +95,10 @@ class Configuration
      *
      * @var string
      */
-    protected $supportedEnvironments = array('sandbox' 
+    protected $supportedEnvironments = array(
+                                    'mock' 
+                                        => array( "host" => "https://yxfhmdhypernxc4d5-mock.stoplight-proxy.io/merchant/v1"),
+                                    'sandbox' 
                                         => array( "host" => "https://api.sandbox.zipmoney.com.au/merchant/v1"),
                                     "production" 
                                         => array( "host" => 'https://api.zipmoney.com.au/merchant/v1' )
