@@ -54,10 +54,12 @@ class CreateChargeRequest implements ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'reference' => 'string',
         'authority' => '\zipMoney\Model\Authority',
+        'reference' => 'string',
+        'amount' => 'float',
+        'currency' => 'string',
         'capture' => 'bool',
-        'order' => '\zipMoney\Model\Order',
+        'order' => '\zipMoney\Model\ChargeOrder',
         'metadata' => 'object'
     ];
 
@@ -71,8 +73,10 @@ class CreateChargeRequest implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'reference' => 'reference',
         'authority' => 'authority',
+        'reference' => 'reference',
+        'amount' => 'amount',
+        'currency' => 'currency',
         'capture' => 'capture',
         'order' => 'order',
         'metadata' => 'metadata'
@@ -84,8 +88,10 @@ class CreateChargeRequest implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'reference' => 'setReference',
         'authority' => 'setAuthority',
+        'reference' => 'setReference',
+        'amount' => 'setAmount',
+        'currency' => 'setCurrency',
         'capture' => 'setCapture',
         'order' => 'setOrder',
         'metadata' => 'setMetadata'
@@ -97,8 +103,10 @@ class CreateChargeRequest implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'reference' => 'getReference',
         'authority' => 'getAuthority',
+        'reference' => 'getReference',
+        'amount' => 'getAmount',
+        'currency' => 'getCurrency',
         'capture' => 'getCapture',
         'order' => 'getOrder',
         'metadata' => 'getMetadata'
@@ -119,8 +127,22 @@ class CreateChargeRequest implements ArrayAccess
         return self::$getters;
     }
 
+    const CURRENCY_AUD = 'AUD';
+    const CURRENCY_NZD = 'NZD';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getCurrencyAllowableValues()
+    {
+        return [
+            self::CURRENCY_AUD,
+            self::CURRENCY_NZD,
+        ];
+    }
     
 
     /**
@@ -135,8 +157,10 @@ class CreateChargeRequest implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['reference'] = isset($data['reference']) ? $data['reference'] : null;
         $this->container['authority'] = isset($data['authority']) ? $data['authority'] : null;
+        $this->container['reference'] = isset($data['reference']) ? $data['reference'] : null;
+        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
+        $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
         $this->container['capture'] = isset($data['capture']) ? $data['capture'] : true;
         $this->container['order'] = isset($data['order']) ? $data['order'] : null;
         $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
@@ -151,12 +175,23 @@ class CreateChargeRequest implements ArrayAccess
     {
         $invalid_properties = [];
 
-        if ($this->container['reference'] === null) {
-            $invalid_properties[] = "'reference' can't be null";
-        }
         if ($this->container['authority'] === null) {
             $invalid_properties[] = "'authority' can't be null";
         }
+        if ($this->container['reference'] === null) {
+            $invalid_properties[] = "'reference' can't be null";
+        }
+        if ($this->container['amount'] === null) {
+            $invalid_properties[] = "'amount' can't be null";
+        }
+        if ($this->container['currency'] === null) {
+            $invalid_properties[] = "'currency' can't be null";
+        }
+        $allowed_values = ["AUD", "NZD"];
+        if (!in_array($this->container['currency'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'currency', must be one of 'AUD', 'NZD'.";
+        }
+
         return $invalid_properties;
     }
 
@@ -169,15 +204,46 @@ class CreateChargeRequest implements ArrayAccess
     public function valid()
     {
 
+        if ($this->container['authority'] === null) {
+            return false;
+        }
         if ($this->container['reference'] === null) {
             return false;
         }
-        if ($this->container['authority'] === null) {
+        if ($this->container['amount'] === null) {
+            return false;
+        }
+        if ($this->container['currency'] === null) {
+            return false;
+        }
+        $allowed_values = ["AUD", "NZD"];
+        if (!in_array($this->container['currency'], $allowed_values)) {
             return false;
         }
         return true;
     }
 
+
+    /**
+     * Gets authority
+     * @return \zipMoney\Model\Authority
+     */
+    public function getAuthority()
+    {
+        return $this->container['authority'];
+    }
+
+    /**
+     * Sets authority
+     * @param \zipMoney\Model\Authority $authority
+     * @return $this
+     */
+    public function setAuthority($authority)
+    {
+        $this->container['authority'] = $authority;
+
+        return $this;
+    }
 
     /**
      * Gets reference
@@ -201,22 +267,47 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Gets authority
-     * @return \zipMoney\Model\Authority
+     * Gets amount
+     * @return float
      */
-    public function getAuthority()
+    public function getAmount()
     {
-        return $this->container['authority'];
+        return $this->container['amount'];
     }
 
     /**
-     * Sets authority
-     * @param \zipMoney\Model\Authority $authority
+     * Sets amount
+     * @param float $amount The amount of the charge
      * @return $this
      */
-    public function setAuthority($authority)
+    public function setAmount($amount)
     {
-        $this->container['authority'] = $authority;
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     * @param string $currency The currency
+     * @return $this
+     */
+    public function setCurrency($currency)
+    {
+        $allowed_values = array('AUD', 'NZD');
+        if ((!in_array($currency, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'currency', must be one of 'AUD', 'NZD'");
+        }
+        $this->container['currency'] = $currency;
 
         return $this;
     }
@@ -244,7 +335,7 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Gets order
-     * @return \zipMoney\Model\Order
+     * @return \zipMoney\Model\ChargeOrder
      */
     public function getOrder()
     {
@@ -253,7 +344,7 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Sets order
-     * @param \zipMoney\Model\Order $order
+     * @param \zipMoney\Model\ChargeOrder $order
      * @return $this
      */
     public function setOrder($order)

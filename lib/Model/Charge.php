@@ -56,15 +56,13 @@ class Charge implements ArrayAccess
     protected static $swaggerTypes = [
         'id' => 'string',
         'reference' => 'string',
-        'order' => '\zipMoney\Model\Order',
         'state' => 'string',
         'authorised_amount' => 'float',
         'captured_amount' => 'float',
         'refunded_amount' => 'float',
         'created_date' => '\DateTime',
-        'state_changes' => '\zipMoney\Model\ChargeStateChanges[]',
-        'metadata' => 'object',
-        'customer_id' => 'string'
+        'order' => '\zipMoney\Model\ChargeOrder',
+        'metadata' => 'object'
     ];
 
     public static function swaggerTypes()
@@ -79,15 +77,13 @@ class Charge implements ArrayAccess
     protected static $attributeMap = [
         'id' => 'id',
         'reference' => 'reference',
-        'order' => 'order',
         'state' => 'state',
         'authorised_amount' => 'authorised_amount',
         'captured_amount' => 'captured_amount',
         'refunded_amount' => 'refunded_amount',
         'created_date' => 'created_date',
-        'state_changes' => 'state_changes',
-        'metadata' => 'metadata',
-        'customer_id' => 'customer_id'
+        'order' => 'order',
+        'metadata' => 'metadata'
     ];
 
 
@@ -98,15 +94,13 @@ class Charge implements ArrayAccess
     protected static $setters = [
         'id' => 'setId',
         'reference' => 'setReference',
-        'order' => 'setOrder',
         'state' => 'setState',
         'authorised_amount' => 'setAuthorisedAmount',
         'captured_amount' => 'setCapturedAmount',
         'refunded_amount' => 'setRefundedAmount',
         'created_date' => 'setCreatedDate',
-        'state_changes' => 'setStateChanges',
-        'metadata' => 'setMetadata',
-        'customer_id' => 'setCustomerId'
+        'order' => 'setOrder',
+        'metadata' => 'setMetadata'
     ];
 
 
@@ -117,15 +111,13 @@ class Charge implements ArrayAccess
     protected static $getters = [
         'id' => 'getId',
         'reference' => 'getReference',
-        'order' => 'getOrder',
         'state' => 'getState',
         'authorised_amount' => 'getAuthorisedAmount',
         'captured_amount' => 'getCapturedAmount',
         'refunded_amount' => 'getRefundedAmount',
         'created_date' => 'getCreatedDate',
-        'state_changes' => 'getStateChanges',
-        'metadata' => 'getMetadata',
-        'customer_id' => 'getCustomerId'
+        'order' => 'getOrder',
+        'metadata' => 'getMetadata'
     ];
 
     public static function attributeMap()
@@ -179,15 +171,13 @@ class Charge implements ArrayAccess
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['reference'] = isset($data['reference']) ? $data['reference'] : null;
-        $this->container['order'] = isset($data['order']) ? $data['order'] : null;
         $this->container['state'] = isset($data['state']) ? $data['state'] : null;
         $this->container['authorised_amount'] = isset($data['authorised_amount']) ? $data['authorised_amount'] : null;
         $this->container['captured_amount'] = isset($data['captured_amount']) ? $data['captured_amount'] : null;
         $this->container['refunded_amount'] = isset($data['refunded_amount']) ? $data['refunded_amount'] : null;
         $this->container['created_date'] = isset($data['created_date']) ? $data['created_date'] : null;
-        $this->container['state_changes'] = isset($data['state_changes']) ? $data['state_changes'] : null;
+        $this->container['order'] = isset($data['order']) ? $data['order'] : null;
         $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
-        $this->container['customer_id'] = isset($data['customer_id']) ? $data['customer_id'] : null;
     }
 
     /**
@@ -202,6 +192,9 @@ class Charge implements ArrayAccess
         if ($this->container['id'] === null) {
             $invalid_properties[] = "'id' can't be null";
         }
+        if ($this->container['reference'] === null) {
+            $invalid_properties[] = "'reference' can't be null";
+        }
         if ($this->container['state'] === null) {
             $invalid_properties[] = "'state' can't be null";
         }
@@ -210,15 +203,24 @@ class Charge implements ArrayAccess
             $invalid_properties[] = "invalid value for 'state', must be one of 'authorised', 'captured', 'cancelled', 'refunded'.";
         }
 
-        if (!is_null($this->container['authorised_amount']) && ($this->container['authorised_amount'] < 0)) {
+        if ($this->container['authorised_amount'] === null) {
+            $invalid_properties[] = "'authorised_amount' can't be null";
+        }
+        if (($this->container['authorised_amount'] < 0)) {
             $invalid_properties[] = "invalid value for 'authorised_amount', must be bigger than or equal to 0.";
         }
 
-        if (!is_null($this->container['captured_amount']) && ($this->container['captured_amount'] < 0)) {
+        if ($this->container['captured_amount'] === null) {
+            $invalid_properties[] = "'captured_amount' can't be null";
+        }
+        if (($this->container['captured_amount'] < 0)) {
             $invalid_properties[] = "invalid value for 'captured_amount', must be bigger than or equal to 0.";
         }
 
-        if (!is_null($this->container['refunded_amount']) && ($this->container['refunded_amount'] < 0)) {
+        if ($this->container['refunded_amount'] === null) {
+            $invalid_properties[] = "'refunded_amount' can't be null";
+        }
+        if (($this->container['refunded_amount'] < 0)) {
             $invalid_properties[] = "invalid value for 'refunded_amount', must be bigger than or equal to 0.";
         }
 
@@ -240,6 +242,9 @@ class Charge implements ArrayAccess
         if ($this->container['id'] === null) {
             return false;
         }
+        if ($this->container['reference'] === null) {
+            return false;
+        }
         if ($this->container['state'] === null) {
             return false;
         }
@@ -247,10 +252,19 @@ class Charge implements ArrayAccess
         if (!in_array($this->container['state'], $allowed_values)) {
             return false;
         }
+        if ($this->container['authorised_amount'] === null) {
+            return false;
+        }
         if ($this->container['authorised_amount'] < 0) {
             return false;
         }
+        if ($this->container['captured_amount'] === null) {
+            return false;
+        }
         if ($this->container['captured_amount'] < 0) {
+            return false;
+        }
+        if ($this->container['refunded_amount'] === null) {
             return false;
         }
         if ($this->container['refunded_amount'] < 0) {
@@ -306,27 +320,6 @@ class Charge implements ArrayAccess
     }
 
     /**
-     * Gets order
-     * @return \zipMoney\Model\Order
-     */
-    public function getOrder()
-    {
-        return $this->container['order'];
-    }
-
-    /**
-     * Sets order
-     * @param \zipMoney\Model\Order $order
-     * @return $this
-     */
-    public function setOrder($order)
-    {
-        $this->container['order'] = $order;
-
-        return $this;
-    }
-
-    /**
      * Gets state
      * @return string
      */
@@ -368,7 +361,7 @@ class Charge implements ArrayAccess
     public function setAuthorisedAmount($authorised_amount)
     {
 
-        if (!is_null($authorised_amount) && ($authorised_amount < 0)) {
+        if (($authorised_amount < 0)) {
             throw new \InvalidArgumentException('invalid value for $authorised_amount when calling Charge., must be bigger than or equal to 0.');
         }
 
@@ -394,7 +387,7 @@ class Charge implements ArrayAccess
     public function setCapturedAmount($captured_amount)
     {
 
-        if (!is_null($captured_amount) && ($captured_amount < 0)) {
+        if (($captured_amount < 0)) {
             throw new \InvalidArgumentException('invalid value for $captured_amount when calling Charge., must be bigger than or equal to 0.');
         }
 
@@ -420,7 +413,7 @@ class Charge implements ArrayAccess
     public function setRefundedAmount($refunded_amount)
     {
 
-        if (!is_null($refunded_amount) && ($refunded_amount < 0)) {
+        if (($refunded_amount < 0)) {
             throw new \InvalidArgumentException('invalid value for $refunded_amount when calling Charge., must be bigger than or equal to 0.');
         }
 
@@ -451,22 +444,22 @@ class Charge implements ArrayAccess
     }
 
     /**
-     * Gets state_changes
-     * @return \zipMoney\Model\ChargeStateChanges[]
+     * Gets order
+     * @return \zipMoney\Model\ChargeOrder
      */
-    public function getStateChanges()
+    public function getOrder()
     {
-        return $this->container['state_changes'];
+        return $this->container['order'];
     }
 
     /**
-     * Sets state_changes
-     * @param \zipMoney\Model\ChargeStateChanges[] $state_changes State changes
+     * Sets order
+     * @param \zipMoney\Model\ChargeOrder $order
      * @return $this
      */
-    public function setStateChanges($state_changes)
+    public function setOrder($order)
     {
-        $this->container['state_changes'] = $state_changes;
+        $this->container['order'] = $order;
 
         return $this;
     }
@@ -488,27 +481,6 @@ class Charge implements ArrayAccess
     public function setMetadata($metadata)
     {
         $this->container['metadata'] = $metadata;
-
-        return $this;
-    }
-
-    /**
-     * Gets customer_id
-     * @return string
-     */
-    public function getCustomerId()
-    {
-        return $this->container['customer_id'];
-    }
-
-    /**
-     * Sets customer_id
-     * @param string $customer_id
-     * @return $this
-     */
-    public function setCustomerId($customer_id)
-    {
-        $this->container['customer_id'] = $customer_id;
 
         return $this;
     }

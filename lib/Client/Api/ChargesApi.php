@@ -428,7 +428,7 @@ class ChargesApi
      * @param int $limit Number of items to retrieve when paging (optional, default to 100)
      * @param string $expand Allows expanding related entities in the response. Only valid entry is &#39;customer&#39; (optional)
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return \zipMoney\Model\Charge[]
+     * @return \zipMoney\Model\InlineResponse200
      */
     public function chargesList($state = null, $skip = null, $limit = null, $expand = null)
     {
@@ -446,7 +446,7 @@ class ChargesApi
      * @param int $limit Number of items to retrieve when paging (optional, default to 100)
      * @param string $expand Allows expanding related entities in the response. Only valid entry is &#39;customer&#39; (optional)
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return array of \zipMoney\Model\Charge[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \zipMoney\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      */
     public function chargesListWithHttpInfo($state = null, $skip = null, $limit = null, $expand = null)
     {
@@ -501,15 +501,15 @@ class ChargesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoney\Model\Charge[]',
+                '\zipMoney\Model\InlineResponse200',
                 '/charges'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Charge[]', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\Charge[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\InlineResponse200', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

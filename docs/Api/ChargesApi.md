@@ -170,7 +170,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **chargesList**
-> \zipMoney\Model\Charge[] chargesList($state, $skip, $limit, $expand)
+> \zipMoney\Model\InlineResponse200 chargesList($state, $skip, $limit, $expand)
 
 List charges
 
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoney\Model\Charge[]**](../Model/Charge.md)
+[**\zipMoney\Model\InlineResponse200**](../Model/InlineResponse200.md)
 
 ### Authorization
 

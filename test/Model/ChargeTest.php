@@ -99,14 +99,6 @@ class ChargeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "order"
-     */
-    public function testPropertyOrder()
-    {
-
-    }
-
-    /**
      * Test attribute "state"
      */
     public function testPropertyState()
@@ -147,9 +139,9 @@ class ChargeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "state_changes"
+     * Test attribute "order"
      */
-    public function testPropertyStateChanges()
+    public function testPropertyOrder()
     {
 
     }
@@ -158,14 +150,6 @@ class ChargeTest extends \PHPUnit_Framework_TestCase
      * Test attribute "metadata"
      */
     public function testPropertyMetadata()
-    {
-
-    }
-
-    /**
-     * Test attribute "customer_id"
-     */
-    public function testPropertyCustomerId()
     {
 
     }

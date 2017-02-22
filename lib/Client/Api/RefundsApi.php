@@ -196,7 +196,7 @@ class RefundsApi
      * @param int $skip Number of items to skip when paging (optional, default to 0)
      * @param int $limit Number of items to retrieve when paging (optional, default to 100)
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return \zipMoney\Model\Refund[]
+     * @return \zipMoney\Model\InlineResponse2001[]
      */
     public function refundsList($charge_id = null, $skip = null, $limit = null)
     {
@@ -213,7 +213,7 @@ class RefundsApi
      * @param int $skip Number of items to skip when paging (optional, default to 0)
      * @param int $limit Number of items to retrieve when paging (optional, default to 100)
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return array of \zipMoney\Model\Refund[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \zipMoney\Model\InlineResponse2001[], HTTP status code, HTTP response headers (array of strings)
      */
     public function refundsListWithHttpInfo($charge_id = null, $skip = null, $limit = null)
     {
@@ -264,15 +264,15 @@ class RefundsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoney\Model\Refund[]',
+                '\zipMoney\Model\InlineResponse2001[]',
                 '/refunds'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Refund[]', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\InlineResponse2001[]', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\Refund[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\InlineResponse2001[]', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

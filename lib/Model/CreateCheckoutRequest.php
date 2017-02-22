@@ -57,7 +57,7 @@ class CreateCheckoutRequest implements ArrayAccess
     protected static $swaggerTypes = [
         'type' => 'string',
         'shopper' => '\zipMoney\Model\Shopper',
-        'order' => '\zipMoney\Model\Order',
+        'order' => '\zipMoney\Model\CheckoutOrder',
         'features' => '\zipMoney\Model\CreateCheckoutRequestFeatures',
         'metadata' => '\zipMoney\Model\Metadata',
         'config' => '\zipMoney\Model\CheckoutConfiguration'
@@ -244,7 +244,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Gets order
-     * @return \zipMoney\Model\Order
+     * @return \zipMoney\Model\CheckoutOrder
      */
     public function getOrder()
     {
@@ -253,7 +253,7 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Sets order
-     * @param \zipMoney\Model\Order $order
+     * @param \zipMoney\Model\CheckoutOrder $order
      * @return $this
      */
     public function setOrder($order)

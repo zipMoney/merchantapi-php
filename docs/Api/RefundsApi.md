@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **refundsList**
-> \zipMoney\Model\Refund[] refundsList($charge_id, $skip, $limit)
+> \zipMoney\Model\InlineResponse2001[] refundsList($charge_id, $skip, $limit)
 
 List refunds
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\zipMoney\Model\Refund[]**](../Model/Refund.md)
+[**\zipMoney\Model\InlineResponse2001[]**](../Model/InlineResponse2001.md)
 
 ### Authorization
 

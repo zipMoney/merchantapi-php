@@ -83,6 +83,14 @@ class CreateChargeRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "authority"
+     */
+    public function testPropertyAuthority()
+    {
+
+    }
+
+    /**
      * Test attribute "reference"
      */
     public function testPropertyReference()
@@ -91,9 +99,17 @@ class CreateChargeRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "authority"
+     * Test attribute "amount"
      */
-    public function testPropertyAuthority()
+    public function testPropertyAmount()
+    {
+
+    }
+
+    /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
     {
 
     }

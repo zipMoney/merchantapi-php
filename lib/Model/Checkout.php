@@ -59,7 +59,7 @@ class Checkout implements ArrayAccess
         'uri' => 'string',
         'type' => 'string',
         'shopper' => '\zipMoney\Model\Shopper',
-        'order' => '\zipMoney\Model\Order',
+        'order' => '\zipMoney\Model\CheckoutOrder',
         'features' => '\zipMoney\Model\CheckoutFeatures',
         'config' => '\zipMoney\Model\CheckoutConfiguration',
         'created' => '\DateTime',
@@ -362,7 +362,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Gets order
-     * @return \zipMoney\Model\Order
+     * @return \zipMoney\Model\CheckoutOrder
      */
     public function getOrder()
     {
@@ -371,7 +371,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets order
-     * @param \zipMoney\Model\Order $order
+     * @param \zipMoney\Model\CheckoutOrder $order
      * @return $this
      */
     public function setOrder($order)

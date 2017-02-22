@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **uri** | **string** | The uri to redirect the user to in order to approve this checkout. | 
 **type** | **string** | The type of checkout | [optional] [default to 'standard']
 **shopper** | [**\zipMoney\Model\Shopper**](Shopper.md) |  | [optional] 
-**order** | [**\zipMoney\Model\Order**](Order.md) |  | [optional] 
+**order** | [**\zipMoney\Model\CheckoutOrder**](CheckoutOrder.md) |  | [optional] 
 **features** | [**\zipMoney\Model\CheckoutFeatures**](CheckoutFeatures.md) |  | [optional] 
 **config** | [**\zipMoney\Model\CheckoutConfiguration**](CheckoutConfiguration.md) |  | [optional] 
 **created** | [**\DateTime**](\DateTime.md) | Date the checkout was created | 

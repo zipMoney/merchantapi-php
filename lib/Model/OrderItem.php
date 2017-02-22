@@ -47,7 +47,7 @@ class OrderItem implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'order-item';
+    protected static $swaggerModelName = 'OrderItem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -199,10 +199,6 @@ class OrderItem implements ArrayAccess
         if ($this->container['amount'] === null) {
             $invalid_properties[] = "'amount' can't be null";
         }
-        if (($this->container['amount'] < 0)) {
-            $invalid_properties[] = "invalid value for 'amount', must be bigger than or equal to 0.";
-        }
-
         if (!is_null($this->container['reference']) && (strlen($this->container['reference']) > 50)) {
             $invalid_properties[] = "invalid value for 'reference', the character length must be smaller than or equal to 50.";
         }
@@ -257,9 +253,6 @@ class OrderItem implements ArrayAccess
             return false;
         }
         if ($this->container['amount'] === null) {
-            return false;
-        }
-        if ($this->container['amount'] < 0) {
             return false;
         }
         if (strlen($this->container['reference']) > 50) {
@@ -335,11 +328,6 @@ class OrderItem implements ArrayAccess
      */
     public function setAmount($amount)
     {
-
-        if (($amount < 0)) {
-            throw new \InvalidArgumentException('invalid value for $amount when calling OrderItem., must be bigger than or equal to 0.');
-        }
-
         $this->container['amount'] = $amount;
 
         return $this;
