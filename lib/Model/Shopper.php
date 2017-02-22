@@ -193,15 +193,27 @@ class Shopper implements ArrayAccess
     {
         $invalid_properties = [];
 
+        if ($this->container['first_name'] === null) {
+            $invalid_properties[] = "'first_name' can't be null";
+        }
+        if ($this->container['last_name'] === null) {
+            $invalid_properties[] = "'last_name' can't be null";
+        }
         if (!is_null($this->container['phone']) && !preg_match("/^[+0-9]+$/", $this->container['phone'])) {
             $invalid_properties[] = "invalid value for 'phone', must be conform to the pattern /^[+0-9]+$/.";
         }
 
+        if ($this->container['email'] === null) {
+            $invalid_properties[] = "'email' can't be null";
+        }
         $allowed_values = ["Male", "Female", "Other"];
         if (!in_array($this->container['gender'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'gender', must be one of 'Male', 'Female', 'Other'.";
         }
 
+        if ($this->container['billing_address'] === null) {
+            $invalid_properties[] = "'billing_address' can't be null";
+        }
         return $invalid_properties;
     }
 
@@ -214,11 +226,23 @@ class Shopper implements ArrayAccess
     public function valid()
     {
 
+        if ($this->container['first_name'] === null) {
+            return false;
+        }
+        if ($this->container['last_name'] === null) {
+            return false;
+        }
         if (!preg_match("/^[+0-9]+$/", $this->container['phone'])) {
+            return false;
+        }
+        if ($this->container['email'] === null) {
             return false;
         }
         $allowed_values = ["Male", "Female", "Other"];
         if (!in_array($this->container['gender'], $allowed_values)) {
+            return false;
+        }
+        if ($this->container['billing_address'] === null) {
             return false;
         }
         return true;

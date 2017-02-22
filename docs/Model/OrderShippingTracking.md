@@ -1,4 +1,4 @@
-# ChargeOrderShippingTracking
+# OrderShippingTracking
 
 ## Properties
 Name | Type | Description | Notes

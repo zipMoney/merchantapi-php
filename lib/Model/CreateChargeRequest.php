@@ -178,9 +178,6 @@ class CreateChargeRequest implements ArrayAccess
         if ($this->container['authority'] === null) {
             $invalid_properties[] = "'authority' can't be null";
         }
-        if ($this->container['reference'] === null) {
-            $invalid_properties[] = "'reference' can't be null";
-        }
         if ($this->container['amount'] === null) {
             $invalid_properties[] = "'amount' can't be null";
         }
@@ -205,9 +202,6 @@ class CreateChargeRequest implements ArrayAccess
     {
 
         if ($this->container['authority'] === null) {
-            return false;
-        }
-        if ($this->container['reference'] === null) {
             return false;
         }
         if ($this->container['amount'] === null) {

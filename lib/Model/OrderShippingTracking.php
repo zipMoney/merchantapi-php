@@ -1,6 +1,6 @@
 <?php
 /**
- * ChargeOrderShippingTracking
+ * OrderShippingTracking
  *
  * PHP version 5
  *
@@ -32,7 +32,7 @@ namespace zipMoney\Model;
 use \ArrayAccess;
 
 /**
- * ChargeOrderShippingTracking Class Doc Comment
+ * OrderShippingTracking Class Doc Comment
  *
  * @category    Class
  * @description Tracking information
@@ -40,7 +40,7 @@ use \ArrayAccess;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ChargeOrderShippingTracking implements ArrayAccess
+class OrderShippingTracking implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class ChargeOrderShippingTracking implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'ChargeOrder_shipping_tracking';
+    protected static $swaggerModelName = 'OrderShipping_tracking';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -196,7 +196,7 @@ class ChargeOrderShippingTracking implements ArrayAccess
     public function setUri($uri)
     {
         if (!is_null($uri) && (strlen($uri) > 500)) {
-            throw new \InvalidArgumentException('invalid length for $uri when calling ChargeOrderShippingTracking., must be smaller than or equal to 500.');
+            throw new \InvalidArgumentException('invalid length for $uri when calling OrderShippingTracking., must be smaller than or equal to 500.');
         }
 
         $this->container['uri'] = $uri;
@@ -221,7 +221,7 @@ class ChargeOrderShippingTracking implements ArrayAccess
     public function setNumber($number)
     {
         if (!is_null($number) && (strlen($number) > 120)) {
-            throw new \InvalidArgumentException('invalid length for $number when calling ChargeOrderShippingTracking., must be smaller than or equal to 120.');
+            throw new \InvalidArgumentException('invalid length for $number when calling OrderShippingTracking., must be smaller than or equal to 120.');
         }
 
         $this->container['number'] = $number;
@@ -246,7 +246,7 @@ class ChargeOrderShippingTracking implements ArrayAccess
     public function setCarrier($carrier)
     {
         if (!is_null($carrier) && (strlen($carrier) > 120)) {
-            throw new \InvalidArgumentException('invalid length for $carrier when calling ChargeOrderShippingTracking., must be smaller than or equal to 120.');
+            throw new \InvalidArgumentException('invalid length for $carrier when calling OrderShippingTracking., must be smaller than or equal to 120.');
         }
 
         $this->container['carrier'] = $carrier;

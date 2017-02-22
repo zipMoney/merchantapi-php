@@ -119,7 +119,7 @@ class CreateCheckoutRequestFeaturesTokenisation implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['required'] = isset($data['required']) ? $data['required'] : true;
+        $this->container['required'] = isset($data['required']) ? $data['required'] : false;
     }
 
     /**
@@ -131,6 +131,9 @@ class CreateCheckoutRequestFeaturesTokenisation implements ArrayAccess
     {
         $invalid_properties = [];
 
+        if ($this->container['required'] === null) {
+            $invalid_properties[] = "'required' can't be null";
+        }
         return $invalid_properties;
     }
 
@@ -143,6 +146,9 @@ class CreateCheckoutRequestFeaturesTokenisation implements ArrayAccess
     public function valid()
     {
 
+        if ($this->container['required'] === null) {
+            return false;
+        }
         return true;
     }
 

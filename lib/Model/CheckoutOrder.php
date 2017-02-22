@@ -57,8 +57,8 @@ class CheckoutOrder implements ArrayAccess
         'reference' => 'string',
         'amount' => 'float',
         'currency' => 'string',
-        'shipping' => '\zipMoney\Model\ChargeOrderShipping',
-        'items' => '\zipMoney\Model\ChargeOrderItem[]',
+        'shipping' => '\zipMoney\Model\OrderShipping',
+        'items' => '\zipMoney\Model\OrderItem[]',
         'cart_reference' => 'string'
     ];
 
@@ -170,6 +170,9 @@ class CheckoutOrder implements ArrayAccess
         if ($this->container['currency'] === null) {
             $invalid_properties[] = "'currency' can't be null";
         }
+        if ($this->container['shipping'] === null) {
+            $invalid_properties[] = "'shipping' can't be null";
+        }
         if (!is_null($this->container['cart_reference']) && (strlen($this->container['cart_reference']) > 100)) {
             $invalid_properties[] = "invalid value for 'cart_reference', the character length must be smaller than or equal to 100.";
         }
@@ -196,6 +199,9 @@ class CheckoutOrder implements ArrayAccess
             return false;
         }
         if ($this->container['currency'] === null) {
+            return false;
+        }
+        if ($this->container['shipping'] === null) {
             return false;
         }
         if (strlen($this->container['cart_reference']) > 100) {
@@ -279,7 +285,7 @@ class CheckoutOrder implements ArrayAccess
 
     /**
      * Gets shipping
-     * @return \zipMoney\Model\ChargeOrderShipping
+     * @return \zipMoney\Model\OrderShipping
      */
     public function getShipping()
     {
@@ -288,7 +294,7 @@ class CheckoutOrder implements ArrayAccess
 
     /**
      * Sets shipping
-     * @param \zipMoney\Model\ChargeOrderShipping $shipping
+     * @param \zipMoney\Model\OrderShipping $shipping
      * @return $this
      */
     public function setShipping($shipping)
@@ -300,7 +306,7 @@ class CheckoutOrder implements ArrayAccess
 
     /**
      * Gets items
-     * @return \zipMoney\Model\ChargeOrderItem[]
+     * @return \zipMoney\Model\OrderItem[]
      */
     public function getItems()
     {
@@ -309,7 +315,7 @@ class CheckoutOrder implements ArrayAccess
 
     /**
      * Sets items
-     * @param \zipMoney\Model\ChargeOrderItem[] $items The order item breakdown
+     * @param \zipMoney\Model\OrderItem[] $items The order item breakdown
      * @return $this
      */
     public function setItems($items)

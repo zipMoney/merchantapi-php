@@ -1,6 +1,6 @@
 <?php
 /**
- * ChargeOrderShippingTest
+ * OrderShippingTrackingTest
  *
  * PHP version 5
  *
@@ -30,16 +30,16 @@
 namespace zipMoney;
 
 /**
- * ChargeOrderShippingTest Class Doc Comment
+ * OrderShippingTrackingTest Class Doc Comment
  *
  * @category    Class */
-// * @description Shipping details
+// * @description Tracking information
 /**
  * @package     zipMoney
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ChargeOrderShippingTest extends \PHPUnit_Framework_TestCase
+class OrderShippingTrackingTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -75,33 +75,33 @@ class ChargeOrderShippingTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "ChargeOrderShipping"
+     * Test "OrderShippingTracking"
      */
-    public function testChargeOrderShipping()
+    public function testOrderShippingTracking()
     {
 
     }
 
     /**
-     * Test attribute "pickup"
+     * Test attribute "uri"
      */
-    public function testPropertyPickup()
+    public function testPropertyUri()
     {
 
     }
 
     /**
-     * Test attribute "tracking"
+     * Test attribute "number"
      */
-    public function testPropertyTracking()
+    public function testPropertyNumber()
     {
 
     }
 
     /**
-     * Test attribute "address"
+     * Test attribute "carrier"
      */
-    public function testPropertyAddress()
+    public function testPropertyCarrier()
     {
 
     }

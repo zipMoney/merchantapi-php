@@ -1,6 +1,6 @@
 <?php
 /**
- * ChargeOrderShipping
+ * OrderShipping
  *
  * PHP version 5
  *
@@ -32,7 +32,7 @@ namespace zipMoney\Model;
 use \ArrayAccess;
 
 /**
- * ChargeOrderShipping Class Doc Comment
+ * OrderShipping Class Doc Comment
  *
  * @category    Class
  * @description Shipping details
@@ -40,7 +40,7 @@ use \ArrayAccess;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ChargeOrderShipping implements ArrayAccess
+class OrderShipping implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class ChargeOrderShipping implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'ChargeOrder_shipping';
+    protected static $swaggerModelName = 'OrderShipping';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,7 +56,7 @@ class ChargeOrderShipping implements ArrayAccess
       */
     protected static $swaggerTypes = [
         'pickup' => 'bool',
-        'tracking' => '\zipMoney\Model\ChargeOrderShippingTracking',
+        'tracking' => '\zipMoney\Model\OrderShippingTracking',
         'address' => '\zipMoney\Model\Address'
     ];
 
@@ -181,7 +181,7 @@ class ChargeOrderShipping implements ArrayAccess
 
     /**
      * Gets tracking
-     * @return \zipMoney\Model\ChargeOrderShippingTracking
+     * @return \zipMoney\Model\OrderShippingTracking
      */
     public function getTracking()
     {
@@ -190,7 +190,7 @@ class ChargeOrderShipping implements ArrayAccess
 
     /**
      * Sets tracking
-     * @param \zipMoney\Model\ChargeOrderShippingTracking $tracking
+     * @param \zipMoney\Model\OrderShippingTracking $tracking
      * @return $this
      */
     public function setTracking($tracking)

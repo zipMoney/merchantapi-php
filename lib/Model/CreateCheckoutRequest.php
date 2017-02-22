@@ -176,6 +176,9 @@ class CreateCheckoutRequest implements ArrayAccess
             $invalid_properties[] = "invalid value for 'type', must be one of 'standard', 'express'.";
         }
 
+        if ($this->container['config'] === null) {
+            $invalid_properties[] = "'config' can't be null";
+        }
         return $invalid_properties;
     }
 
@@ -190,6 +193,9 @@ class CreateCheckoutRequest implements ArrayAccess
 
         $allowed_values = ["standard", "express"];
         if (!in_array($this->container['type'], $allowed_values)) {
+            return false;
+        }
+        if ($this->container['config'] === null) {
             return false;
         }
         return true;

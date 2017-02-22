@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **authority** | [**\zipMoney\Model\Authority**](Authority.md) |  | 
-**reference** | **string** | The reference for this charge (unique payment reference in your store) | 
+**reference** | **string** | The reference for this charge (unique payment reference in your store) | [optional] 
 **amount** | **float** | The amount of the charge | 
 **currency** | **string** | The currency | 
 **capture** | **bool** | If true this will be a direct capture, pass false to perform an authorisation only | [optional] [default to true]
