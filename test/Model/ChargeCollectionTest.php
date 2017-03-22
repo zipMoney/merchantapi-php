@@ -1,6 +1,6 @@
 <?php
 /**
- * InlineResponse2001Test
+ * ChargeCollectionTest
  *
  * PHP version 5
  *
@@ -30,16 +30,16 @@
 namespace zipMoney;
 
 /**
- * InlineResponse2001Test Class Doc Comment
+ * ChargeCollectionTest Class Doc Comment
  *
  * @category    Class */
-// * @description InlineResponse2001
+// * @description ChargeCollection
 /**
  * @package     zipMoney
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class InlineResponse2001Test extends \PHPUnit_Framework_TestCase
+class ChargeCollectionTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -75,9 +75,9 @@ class InlineResponse2001Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "InlineResponse2001"
+     * Test "ChargeCollection"
      */
-    public function testInlineResponse2001()
+    public function testChargeCollection()
     {
 
     }

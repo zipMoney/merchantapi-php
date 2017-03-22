@@ -99,17 +99,25 @@ class ChargeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "state"
+     * Test attribute "amount"
      */
-    public function testPropertyState()
+    public function testPropertyAmount()
     {
 
     }
 
     /**
-     * Test attribute "authorised_amount"
+     * Test attribute "currency"
      */
-    public function testPropertyAuthorisedAmount()
+    public function testPropertyCurrency()
+    {
+
+    }
+
+    /**
+     * Test attribute "state"
+     */
+    public function testPropertyState()
     {
 
     }

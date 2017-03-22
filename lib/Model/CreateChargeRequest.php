@@ -53,7 +53,7 @@ class CreateChargeRequest implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'authority' => '\zipMoney\Model\Authority',
         'reference' => 'string',
         'amount' => 'float',
@@ -61,7 +61,7 @@ class CreateChargeRequest implements ArrayAccess
         'capture' => 'bool',
         'order' => '\zipMoney\Model\ChargeOrder',
         'metadata' => 'object'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -72,7 +72,7 @@ class CreateChargeRequest implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'authority' => 'authority',
         'reference' => 'reference',
         'amount' => 'amount',
@@ -80,14 +80,14 @@ class CreateChargeRequest implements ArrayAccess
         'capture' => 'capture',
         'order' => 'order',
         'metadata' => 'metadata'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'authority' => 'setAuthority',
         'reference' => 'setReference',
         'amount' => 'setAmount',
@@ -95,14 +95,14 @@ class CreateChargeRequest implements ArrayAccess
         'capture' => 'setCapture',
         'order' => 'setOrder',
         'metadata' => 'setMetadata'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'authority' => 'getAuthority',
         'reference' => 'getReference',
         'amount' => 'getAmount',
@@ -110,7 +110,7 @@ class CreateChargeRequest implements ArrayAccess
         'capture' => 'getCapture',
         'order' => 'getOrder',
         'metadata' => 'getMetadata'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -138,10 +138,10 @@ class CreateChargeRequest implements ArrayAccess
      */
     public function getCurrencyAllowableValues()
     {
-        return [
+        return array(
             self::CURRENCY_AUD,
             self::CURRENCY_NZD,
-        ];
+        );
     }
     
 
@@ -149,7 +149,7 @@ class CreateChargeRequest implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -173,7 +173,7 @@ class CreateChargeRequest implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['authority'] === null) {
             $invalid_properties[] = "'authority' can't be null";
@@ -184,7 +184,7 @@ class CreateChargeRequest implements ArrayAccess
         if ($this->container['currency'] === null) {
             $invalid_properties[] = "'currency' can't be null";
         }
-        $allowed_values = ["AUD", "NZD"];
+        $allowed_values = array("AUD", "NZD");
         if (!in_array($this->container['currency'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'currency', must be one of 'AUD', 'NZD'.";
         }
@@ -210,7 +210,7 @@ class CreateChargeRequest implements ArrayAccess
         if ($this->container['currency'] === null) {
             return false;
         }
-        $allowed_values = ["AUD", "NZD"];
+        $allowed_values = array("AUD", "NZD");
         if (!in_array($this->container['currency'], $allowed_values)) {
             return false;
         }

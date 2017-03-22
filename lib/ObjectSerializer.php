@@ -57,12 +57,14 @@ class ObjectSerializer
                 $data[$property] = self::sanitizeForSerialization($value);
             }
             return $data;
-        } elseif (is_object($data)) {
-            $values = [];
+        } elseif (is_object($data)) {                
+            $attr = $data::attributeMap();
+            $values = array();
             foreach (array_keys($data::swaggerTypes()) as $property) {
-                $getter = $data::getters()[$property];
+                $getterArr = $data::getters();
+                $getter = $getterArr[$property];
                 if ($data->$getter() !== null) {
-                    $values[$data::attributeMap()[$property]] = self::sanitizeForSerialization($data->$getter());
+                    $values[$attr[$property]] = self::sanitizeForSerialization($data->$getter());
                 }
             }
             return (object)$values;
@@ -220,7 +222,7 @@ class ObjectSerializer
             return null;
         } elseif (substr($class, 0, 4) === 'map[') { // for associative array e.g. map[string,int]
             $inner = substr($class, 4, -1);
-            $deserialized = [];
+            $deserialized = array();
             if (strrpos($inner, ",") !== false) {
                 $subClass_array = explode(',', $inner, 2);
                 $subClass = $subClass_array[1];
@@ -231,7 +233,7 @@ class ObjectSerializer
             return $deserialized;
         } elseif (strcasecmp(substr($class, -2), '[]') === 0) {
             $subClass = substr($class, 0, -2);
-            $values = [];
+            $values = array();
             foreach ($data as $key => $value) {
                 $values[] = self::deserialize($value, $subClass, null);
             }
@@ -251,7 +253,7 @@ class ObjectSerializer
             } else {
                 return null;
             }
-        } elseif (in_array($class, ['DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
+        } elseif (in_array($class, array('DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'), true)) {
             settype($data, $class);
             return $data;
         } elseif ($class === '\SplFileObject') {
@@ -280,13 +282,17 @@ class ObjectSerializer
             }
             $instance = new $class();
             foreach ($instance::swaggerTypes() as $property => $type) {
-                $propertySetter = $instance::setters()[$property];
+                $propertySetters = $instance::setters();
+                $propertySetter = $propertySetters[$property];
 
-                if (!isset($propertySetter) || !isset($data->{$instance::attributeMap()[$property]})) {
+                $attr = $instance::attributeMap();
+
+                if (!isset($propertySetter) || !isset($data->{$attr[$property]})) {
                     continue;
                 }
 
-                $propertyValue = $data->{$instance::attributeMap()[$property]};
+                $propertyValue = $data->{$attr[$property]};
+
                 if (isset($propertyValue)) {
                     $instance->$propertySetter(self::deserialize($propertyValue, $type, null));
                 }

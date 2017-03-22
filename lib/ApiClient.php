@@ -137,7 +137,7 @@ class ApiClient
      */
     public function callApi($resourcePath, $method, $queryParams, $postData, $headerParams, $responseType = null, $endpointPath = null)
     {
-        $headers = [];
+        $headers = array();
 
         // construct the http header
         $headerParams = array_merge(
@@ -287,7 +287,7 @@ class ApiClient
                 $data
             );
         }
-        return [$data, $response_info['http_code'], $http_header];
+        return array($data, $response_info['http_code'], $http_header);
     }
 
     /**
@@ -336,7 +336,7 @@ class ApiClient
     protected function httpParseHeaders($raw_headers)
     {
         // ref/credit: http://php.net/manual/en/function.http-parse-headers.php#112986
-        $headers = [];
+        $headers = array();
         $key = '';
 
         foreach (explode("\n", $raw_headers) as $h) {

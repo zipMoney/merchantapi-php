@@ -53,7 +53,7 @@ class OrderItem implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'name' => 'string',
         'amount' => 'float',
         'reference' => 'string',
@@ -63,7 +63,7 @@ class OrderItem implements ArrayAccess
         'image_uri' => 'string',
         'item_uri' => 'string',
         'product_code' => 'string'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -74,7 +74,7 @@ class OrderItem implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'name' => 'name',
         'amount' => 'amount',
         'reference' => 'reference',
@@ -84,14 +84,14 @@ class OrderItem implements ArrayAccess
         'image_uri' => 'image_uri',
         'item_uri' => 'item_uri',
         'product_code' => 'product_code'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'name' => 'setName',
         'amount' => 'setAmount',
         'reference' => 'setReference',
@@ -101,14 +101,14 @@ class OrderItem implements ArrayAccess
         'image_uri' => 'setImageUri',
         'item_uri' => 'setItemUri',
         'product_code' => 'setProductCode'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'name' => 'getName',
         'amount' => 'getAmount',
         'reference' => 'getReference',
@@ -118,7 +118,7 @@ class OrderItem implements ArrayAccess
         'image_uri' => 'getImageUri',
         'item_uri' => 'getItemUri',
         'product_code' => 'getProductCode'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -148,12 +148,12 @@ class OrderItem implements ArrayAccess
      */
     public function getTypeAllowableValues()
     {
-        return [
+        return array(
             self::TYPE_SKU,
             self::TYPE_TAX,
             self::TYPE_SHIPPING,
             self::TYPE_DISCOUNT,
-        ];
+        );
     }
     
 
@@ -161,7 +161,7 @@ class OrderItem implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -187,7 +187,7 @@ class OrderItem implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['name'] === null) {
             $invalid_properties[] = "'name' can't be null";
@@ -217,7 +217,7 @@ class OrderItem implements ArrayAccess
         if ($this->container['type'] === null) {
             $invalid_properties[] = "'type' can't be null";
         }
-        $allowed_values = ["sku", "tax", "shipping", "discount"];
+        $allowed_values = array("sku", "tax", "shipping", "discount");
         if (!in_array($this->container['type'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'type', must be one of 'sku', 'tax', 'shipping', 'discount'.";
         }
@@ -270,7 +270,7 @@ class OrderItem implements ArrayAccess
         if ($this->container['type'] === null) {
             return false;
         }
-        $allowed_values = ["sku", "tax", "shipping", "discount"];
+        $allowed_values = array("sku", "tax", "shipping", "discount");
         if (!in_array($this->container['type'], $allowed_values)) {
             return false;
         }

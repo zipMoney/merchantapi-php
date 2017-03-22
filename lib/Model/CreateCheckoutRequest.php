@@ -54,14 +54,14 @@ class CreateCheckoutRequest implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'type' => 'string',
         'shopper' => '\zipMoney\Model\Shopper',
         'order' => '\zipMoney\Model\CheckoutOrder',
         'features' => '\zipMoney\Model\CreateCheckoutRequestFeatures',
         'metadata' => '\zipMoney\Model\Metadata',
         'config' => '\zipMoney\Model\CheckoutConfiguration'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -72,42 +72,42 @@ class CreateCheckoutRequest implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'type' => 'type',
         'shopper' => 'shopper',
         'order' => 'order',
         'features' => 'features',
         'metadata' => 'metadata',
         'config' => 'config'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'type' => 'setType',
         'shopper' => 'setShopper',
         'order' => 'setOrder',
         'features' => 'setFeatures',
         'metadata' => 'setMetadata',
         'config' => 'setConfig'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'type' => 'getType',
         'shopper' => 'getShopper',
         'order' => 'getOrder',
         'features' => 'getFeatures',
         'metadata' => 'getMetadata',
         'config' => 'getConfig'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -135,10 +135,10 @@ class CreateCheckoutRequest implements ArrayAccess
      */
     public function getTypeAllowableValues()
     {
-        return [
+        return array(
             self::TYPE_STANDARD,
             self::TYPE_EXPRESS,
-        ];
+        );
     }
     
 
@@ -146,7 +146,7 @@ class CreateCheckoutRequest implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -169,13 +169,16 @@ class CreateCheckoutRequest implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
-        $allowed_values = ["standard", "express"];
+        $allowed_values = array("standard", "express");
         if (!in_array($this->container['type'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'type', must be one of 'standard', 'express'.";
         }
 
+        if ($this->container['order'] === null) {
+            $invalid_properties[] = "'order' can't be null";
+        }
         if ($this->container['config'] === null) {
             $invalid_properties[] = "'config' can't be null";
         }
@@ -191,8 +194,11 @@ class CreateCheckoutRequest implements ArrayAccess
     public function valid()
     {
 
-        $allowed_values = ["standard", "express"];
+        $allowed_values = array("standard", "express");
         if (!in_array($this->container['type'], $allowed_values)) {
+            return false;
+        }
+        if ($this->container['order'] === null) {
             return false;
         }
         if ($this->container['config'] === null) {

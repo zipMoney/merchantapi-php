@@ -54,7 +54,7 @@ class ShopperStatistics implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'account_created' => '\DateTime',
         'sales_total_count' => 'int',
         'sales_total_amount' => 'float',
@@ -64,7 +64,7 @@ class ShopperStatistics implements ArrayAccess
         'previous_chargeback' => 'bool',
         'currency' => 'string',
         'last_login' => '\DateTime'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -75,7 +75,7 @@ class ShopperStatistics implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'account_created' => 'account_created',
         'sales_total_count' => 'sales_total_count',
         'sales_total_amount' => 'sales_total_amount',
@@ -85,14 +85,14 @@ class ShopperStatistics implements ArrayAccess
         'previous_chargeback' => 'previous_chargeback',
         'currency' => 'currency',
         'last_login' => 'last_login'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'account_created' => 'setAccountCreated',
         'sales_total_count' => 'setSalesTotalCount',
         'sales_total_amount' => 'setSalesTotalAmount',
@@ -102,14 +102,14 @@ class ShopperStatistics implements ArrayAccess
         'previous_chargeback' => 'setPreviousChargeback',
         'currency' => 'setCurrency',
         'last_login' => 'setLastLogin'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'account_created' => 'getAccountCreated',
         'sales_total_count' => 'getSalesTotalCount',
         'sales_total_amount' => 'getSalesTotalAmount',
@@ -119,7 +119,7 @@ class ShopperStatistics implements ArrayAccess
         'previous_chargeback' => 'getPreviousChargeback',
         'currency' => 'getCurrency',
         'last_login' => 'getLastLogin'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -147,10 +147,10 @@ class ShopperStatistics implements ArrayAccess
      */
     public function getCurrencyAllowableValues()
     {
-        return [
+        return array(
             self::CURRENCY_AUD,
             self::CURRENCY_NZD,
-        ];
+        );
     }
     
 
@@ -158,7 +158,7 @@ class ShopperStatistics implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -184,9 +184,9 @@ class ShopperStatistics implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
-        $allowed_values = ["AUD", "NZD"];
+        $allowed_values = array("AUD", "NZD");
         if (!in_array($this->container['currency'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'currency', must be one of 'AUD', 'NZD'.";
         }
@@ -203,7 +203,7 @@ class ShopperStatistics implements ArrayAccess
     public function valid()
     {
 
-        $allowed_values = ["AUD", "NZD"];
+        $allowed_values = array("AUD", "NZD");
         if (!in_array($this->container['currency'], $allowed_values)) {
             return false;
         }

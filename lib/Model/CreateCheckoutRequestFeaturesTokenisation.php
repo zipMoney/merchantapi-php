@@ -53,9 +53,9 @@ class CreateCheckoutRequestFeaturesTokenisation implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'required' => 'bool'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -66,27 +66,27 @@ class CreateCheckoutRequestFeaturesTokenisation implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'required' => 'required'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'required' => 'setRequired'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'required' => 'getRequired'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -111,7 +111,7 @@ class CreateCheckoutRequestFeaturesTokenisation implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -129,7 +129,7 @@ class CreateCheckoutRequestFeaturesTokenisation implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['required'] === null) {
             $invalid_properties[] = "'required' can't be null";

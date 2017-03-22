@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoney\Client\Api;
+namespace zipMoney\Api;
 
 use \zipMoney\ApiClient;
 use \zipMoney\ApiException;
@@ -119,14 +119,14 @@ class CustomersApi
         // parse inputs
         $resourcePath = "/customers/{id}";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/javascript']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/javascript'));
 
         // path params
         if ($id !== null) {
@@ -158,7 +158,7 @@ class CustomersApi
                 '/customers/{id}'
             );
 
-            return [null, $statusCode, $httpHeader];
+            return array(null, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -194,14 +194,14 @@ class CustomersApi
         // parse inputs
         $resourcePath = "/customers";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/javascript']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/javascript'));
 
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
@@ -225,7 +225,7 @@ class CustomersApi
                 '/customers'
             );
 
-            return [null, $statusCode, $httpHeader];
+            return array(null, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }

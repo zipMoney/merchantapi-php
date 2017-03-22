@@ -53,7 +53,7 @@ class Customer implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'title' => 'string',
         'first_name' => 'string',
         'middle_name' => 'string',
@@ -62,7 +62,7 @@ class Customer implements ArrayAccess
         'email' => 'string',
         'birth_date' => '\DateTime',
         'gender' => 'string'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -73,7 +73,7 @@ class Customer implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'title' => 'title',
         'first_name' => 'first_name',
         'middle_name' => 'middle_name',
@@ -82,14 +82,14 @@ class Customer implements ArrayAccess
         'email' => 'email',
         'birth_date' => 'birth_date',
         'gender' => 'gender'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'title' => 'setTitle',
         'first_name' => 'setFirstName',
         'middle_name' => 'setMiddleName',
@@ -98,14 +98,14 @@ class Customer implements ArrayAccess
         'email' => 'setEmail',
         'birth_date' => 'setBirthDate',
         'gender' => 'setGender'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'title' => 'getTitle',
         'first_name' => 'getFirstName',
         'middle_name' => 'getMiddleName',
@@ -114,7 +114,7 @@ class Customer implements ArrayAccess
         'email' => 'getEmail',
         'birth_date' => 'getBirthDate',
         'gender' => 'getGender'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -143,11 +143,11 @@ class Customer implements ArrayAccess
      */
     public function getGenderAllowableValues()
     {
-        return [
+        return array(
             self::GENDER_MALE,
             self::GENDER_FEMALE,
             self::GENDER_OTHER,
-        ];
+        );
     }
     
 
@@ -155,7 +155,7 @@ class Customer implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -180,7 +180,7 @@ class Customer implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['first_name'] === null) {
             $invalid_properties[] = "'first_name' can't be null";
@@ -197,7 +197,7 @@ class Customer implements ArrayAccess
         if ($this->container['birth_date'] === null) {
             $invalid_properties[] = "'birth_date' can't be null";
         }
-        $allowed_values = ["Male", "Female", "Other"];
+        $allowed_values = array("Male", "Female", "Other");
         if (!in_array($this->container['gender'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'gender', must be one of 'Male', 'Female', 'Other'.";
         }
@@ -229,7 +229,7 @@ class Customer implements ArrayAccess
         if ($this->container['birth_date'] === null) {
             return false;
         }
-        $allowed_values = ["Male", "Female", "Other"];
+        $allowed_values = array("Male", "Female", "Other");
         if (!in_array($this->container['gender'], $allowed_values)) {
             return false;
         }

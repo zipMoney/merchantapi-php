@@ -54,11 +54,11 @@ class OrderShippingTracking implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'uri' => 'string',
         'number' => 'string',
         'carrier' => 'string'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -69,33 +69,33 @@ class OrderShippingTracking implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'uri' => 'uri',
         'number' => 'number',
         'carrier' => 'carrier'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'uri' => 'setUri',
         'number' => 'setNumber',
         'carrier' => 'setCarrier'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'uri' => 'getUri',
         'number' => 'getNumber',
         'carrier' => 'getCarrier'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -120,7 +120,7 @@ class OrderShippingTracking implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -140,7 +140,7 @@ class OrderShippingTracking implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if (!is_null($this->container['uri']) && (strlen($this->container['uri']) > 500)) {
             $invalid_properties[] = "invalid value for 'uri', the character length must be smaller than or equal to 500.";

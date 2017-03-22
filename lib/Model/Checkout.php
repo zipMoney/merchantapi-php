@@ -54,7 +54,7 @@ class Checkout implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'id' => 'string',
         'uri' => 'string',
         'type' => 'string',
@@ -66,7 +66,7 @@ class Checkout implements ArrayAccess
         'state' => 'string',
         'customer_id' => 'string',
         'metadata' => '\zipMoney\Model\Metadata'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -77,7 +77,7 @@ class Checkout implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'id' => 'id',
         'uri' => 'uri',
         'type' => 'type',
@@ -89,14 +89,14 @@ class Checkout implements ArrayAccess
         'state' => 'state',
         'customer_id' => 'customer_id',
         'metadata' => 'metadata'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'id' => 'setId',
         'uri' => 'setUri',
         'type' => 'setType',
@@ -108,14 +108,14 @@ class Checkout implements ArrayAccess
         'state' => 'setState',
         'customer_id' => 'setCustomerId',
         'metadata' => 'setMetadata'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'id' => 'getId',
         'uri' => 'getUri',
         'type' => 'getType',
@@ -127,7 +127,7 @@ class Checkout implements ArrayAccess
         'state' => 'getState',
         'customer_id' => 'getCustomerId',
         'metadata' => 'getMetadata'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -159,10 +159,10 @@ class Checkout implements ArrayAccess
      */
     public function getTypeAllowableValues()
     {
-        return [
+        return array(
             self::TYPE_STANDARD,
             self::TYPE_EXPRESS,
-        ];
+        );
     }
     
     /**
@@ -171,12 +171,12 @@ class Checkout implements ArrayAccess
      */
     public function getStateAllowableValues()
     {
-        return [
+        return array(
             self::STATE_CREATED,
             self::STATE_EXPIRED,
             self::STATE_APPROVED,
             self::STATE_COMPLETED,
-        ];
+        );
     }
     
 
@@ -184,7 +184,7 @@ class Checkout implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -212,7 +212,7 @@ class Checkout implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['id'] === null) {
             $invalid_properties[] = "'id' can't be null";
@@ -220,7 +220,7 @@ class Checkout implements ArrayAccess
         if ($this->container['uri'] === null) {
             $invalid_properties[] = "'uri' can't be null";
         }
-        $allowed_values = ["standard", "express"];
+        $allowed_values = array("standard", "express");
         if (!in_array($this->container['type'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'type', must be one of 'standard', 'express'.";
         }
@@ -231,7 +231,7 @@ class Checkout implements ArrayAccess
         if ($this->container['state'] === null) {
             $invalid_properties[] = "'state' can't be null";
         }
-        $allowed_values = ["created", "expired", "approved", "completed"];
+        $allowed_values = array("created", "expired", "approved", "completed");
         if (!in_array($this->container['state'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'state', must be one of 'created', 'expired', 'approved', 'completed'.";
         }
@@ -254,7 +254,7 @@ class Checkout implements ArrayAccess
         if ($this->container['uri'] === null) {
             return false;
         }
-        $allowed_values = ["standard", "express"];
+        $allowed_values = array("standard", "express");
         if (!in_array($this->container['type'], $allowed_values)) {
             return false;
         }
@@ -264,7 +264,7 @@ class Checkout implements ArrayAccess
         if ($this->container['state'] === null) {
             return false;
         }
-        $allowed_values = ["created", "expired", "approved", "completed"];
+        $allowed_values = array("created", "expired", "approved", "completed");
         if (!in_array($this->container['state'], $allowed_values)) {
             return false;
         }

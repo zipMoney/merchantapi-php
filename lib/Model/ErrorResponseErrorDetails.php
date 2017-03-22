@@ -53,10 +53,10 @@ class ErrorResponseErrorDetails implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'name' => 'string',
         'message' => 'string'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -67,30 +67,30 @@ class ErrorResponseErrorDetails implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'name' => 'name',
         'message' => 'message'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'name' => 'setName',
         'message' => 'setMessage'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'name' => 'getName',
         'message' => 'getMessage'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -115,7 +115,7 @@ class ErrorResponseErrorDetails implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -134,7 +134,7 @@ class ErrorResponseErrorDetails implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         return $invalid_properties;
     }

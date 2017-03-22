@@ -54,7 +54,7 @@ class Shopper implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'title' => 'string',
         'first_name' => 'string',
         'last_name' => 'string',
@@ -65,7 +65,7 @@ class Shopper implements ArrayAccess
         'gender' => 'string',
         'statistics' => '\zipMoney\Model\ShopperStatistics',
         'billing_address' => '\zipMoney\Model\Address'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -76,7 +76,7 @@ class Shopper implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'title' => 'title',
         'first_name' => 'first_name',
         'last_name' => 'last_name',
@@ -87,14 +87,14 @@ class Shopper implements ArrayAccess
         'gender' => 'gender',
         'statistics' => 'statistics',
         'billing_address' => 'billing_address'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'title' => 'setTitle',
         'first_name' => 'setFirstName',
         'last_name' => 'setLastName',
@@ -105,14 +105,14 @@ class Shopper implements ArrayAccess
         'gender' => 'setGender',
         'statistics' => 'setStatistics',
         'billing_address' => 'setBillingAddress'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'title' => 'getTitle',
         'first_name' => 'getFirstName',
         'last_name' => 'getLastName',
@@ -123,7 +123,7 @@ class Shopper implements ArrayAccess
         'gender' => 'getGender',
         'statistics' => 'getStatistics',
         'billing_address' => 'getBillingAddress'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -152,11 +152,11 @@ class Shopper implements ArrayAccess
      */
     public function getGenderAllowableValues()
     {
-        return [
+        return array(
             self::GENDER_MALE,
             self::GENDER_FEMALE,
             self::GENDER_OTHER,
-        ];
+        );
     }
     
 
@@ -164,7 +164,7 @@ class Shopper implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -191,7 +191,7 @@ class Shopper implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['first_name'] === null) {
             $invalid_properties[] = "'first_name' can't be null";
@@ -206,7 +206,7 @@ class Shopper implements ArrayAccess
         if ($this->container['email'] === null) {
             $invalid_properties[] = "'email' can't be null";
         }
-        $allowed_values = ["Male", "Female", "Other"];
+        $allowed_values = array("Male", "Female", "Other");
         if (!in_array($this->container['gender'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'gender', must be one of 'Male', 'Female', 'Other'.";
         }
@@ -238,7 +238,7 @@ class Shopper implements ArrayAccess
         if ($this->container['email'] === null) {
             return false;
         }
-        $allowed_values = ["Male", "Female", "Other"];
+        $allowed_values = array("Male", "Female", "Other");
         if (!in_array($this->container['gender'], $allowed_values)) {
             return false;
         }

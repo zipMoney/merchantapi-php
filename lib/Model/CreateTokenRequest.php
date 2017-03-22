@@ -54,9 +54,9 @@ class CreateTokenRequest implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'authority' => '\zipMoney\Model\Authority'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -67,27 +67,27 @@ class CreateTokenRequest implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'authority' => 'authority'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'authority' => 'setAuthority'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'authority' => 'getAuthority'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -112,7 +112,7 @@ class CreateTokenRequest implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -130,7 +130,7 @@ class CreateTokenRequest implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['authority'] === null) {
             $invalid_properties[] = "'authority' can't be null";

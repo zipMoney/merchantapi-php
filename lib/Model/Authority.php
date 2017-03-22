@@ -53,10 +53,10 @@ class Authority implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'type' => 'string',
         'value' => 'string'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -67,30 +67,30 @@ class Authority implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'type' => 'type',
         'value' => 'value'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'type' => 'setType',
         'value' => 'setValue'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'type' => 'getType',
         'value' => 'getValue'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -119,11 +119,11 @@ class Authority implements ArrayAccess
      */
     public function getTypeAllowableValues()
     {
-        return [
+        return array(
             self::TYPE_CHECKOUT_ID,
             self::TYPE_STORE_CODE,
             self::TYPE_ACCOUNT_TOKEN,
-        ];
+        );
     }
     
 
@@ -131,7 +131,7 @@ class Authority implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -150,12 +150,12 @@ class Authority implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['type'] === null) {
             $invalid_properties[] = "'type' can't be null";
         }
-        $allowed_values = ["checkout_id", "store_code", "account_token"];
+        $allowed_values = array("checkout_id", "store_code", "account_token");
         if (!in_array($this->container['type'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'type', must be one of 'checkout_id', 'store_code', 'account_token'.";
         }
@@ -178,7 +178,7 @@ class Authority implements ArrayAccess
         if ($this->container['type'] === null) {
             return false;
         }
-        $allowed_values = ["checkout_id", "store_code", "account_token"];
+        $allowed_values = array("checkout_id", "store_code", "account_token");
         if (!in_array($this->container['type'], $allowed_values)) {
             return false;
         }

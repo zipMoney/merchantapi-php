@@ -53,9 +53,9 @@ class CaptureChargeRequest implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'amount' => 'float'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -66,27 +66,27 @@ class CaptureChargeRequest implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'amount' => 'amount'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'amount' => 'setAmount'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'amount' => 'getAmount'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -111,7 +111,7 @@ class CaptureChargeRequest implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -129,7 +129,7 @@ class CaptureChargeRequest implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['amount'] === null) {
             $invalid_properties[] = "'amount' can't be null";

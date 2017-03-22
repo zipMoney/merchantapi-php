@@ -46,14 +46,14 @@ class Configuration
      *
      * @var string[]
      */
-    protected $apiKeys = [];
+    protected $apiKeys = array();
 
     /**
      * Associate array to store API prefix (e.g. Bearer)
      *
      * @var string[]
      */
-    protected $apiKeyPrefixes = [];
+    protected $apiKeyPrefixes = array();
 
     /**
      * Access token for OAuth
@@ -81,7 +81,7 @@ class Configuration
      *
      * @var array
      */
-    protected $defaultHeaders = [];
+    protected $defaultHeaders = array();
 
     /**
      * The host

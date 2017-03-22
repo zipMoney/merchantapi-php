@@ -53,17 +53,18 @@ class Charge implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'id' => 'string',
         'reference' => 'string',
+        'amount' => 'float',
+        'currency' => 'string',
         'state' => 'string',
-        'authorised_amount' => 'float',
         'captured_amount' => 'float',
         'refunded_amount' => 'float',
         'created_date' => '\DateTime',
         'order' => '\zipMoney\Model\ChargeOrder',
         'metadata' => 'object'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -74,51 +75,54 @@ class Charge implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'id' => 'id',
         'reference' => 'reference',
+        'amount' => 'amount',
+        'currency' => 'currency',
         'state' => 'state',
-        'authorised_amount' => 'authorised_amount',
         'captured_amount' => 'captured_amount',
         'refunded_amount' => 'refunded_amount',
         'created_date' => 'created_date',
         'order' => 'order',
         'metadata' => 'metadata'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'id' => 'setId',
         'reference' => 'setReference',
+        'amount' => 'setAmount',
+        'currency' => 'setCurrency',
         'state' => 'setState',
-        'authorised_amount' => 'setAuthorisedAmount',
         'captured_amount' => 'setCapturedAmount',
         'refunded_amount' => 'setRefundedAmount',
         'created_date' => 'setCreatedDate',
         'order' => 'setOrder',
         'metadata' => 'setMetadata'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'id' => 'getId',
         'reference' => 'getReference',
+        'amount' => 'getAmount',
+        'currency' => 'getCurrency',
         'state' => 'getState',
-        'authorised_amount' => 'getAuthorisedAmount',
         'captured_amount' => 'getCapturedAmount',
         'refunded_amount' => 'getRefundedAmount',
         'created_date' => 'getCreatedDate',
         'order' => 'getOrder',
         'metadata' => 'getMetadata'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -148,12 +152,12 @@ class Charge implements ArrayAccess
      */
     public function getStateAllowableValues()
     {
-        return [
+        return array(
             self::STATE_AUTHORISED,
             self::STATE_CAPTURED,
             self::STATE_CANCELLED,
             self::STATE_REFUNDED,
-        ];
+        );
     }
     
 
@@ -161,7 +165,7 @@ class Charge implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -171,8 +175,9 @@ class Charge implements ArrayAccess
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['reference'] = isset($data['reference']) ? $data['reference'] : null;
+        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
+        $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
         $this->container['state'] = isset($data['state']) ? $data['state'] : null;
-        $this->container['authorised_amount'] = isset($data['authorised_amount']) ? $data['authorised_amount'] : null;
         $this->container['captured_amount'] = isset($data['captured_amount']) ? $data['captured_amount'] : null;
         $this->container['refunded_amount'] = isset($data['refunded_amount']) ? $data['refunded_amount'] : null;
         $this->container['created_date'] = isset($data['created_date']) ? $data['created_date'] : null;
@@ -187,27 +192,23 @@ class Charge implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['id'] === null) {
             $invalid_properties[] = "'id' can't be null";
         }
-        if ($this->container['reference'] === null) {
-            $invalid_properties[] = "'reference' can't be null";
+        if ($this->container['amount'] === null) {
+            $invalid_properties[] = "'amount' can't be null";
+        }
+        if ($this->container['currency'] === null) {
+            $invalid_properties[] = "'currency' can't be null";
         }
         if ($this->container['state'] === null) {
             $invalid_properties[] = "'state' can't be null";
         }
-        $allowed_values = ["authorised", "captured", "cancelled", "refunded"];
+        $allowed_values = array("authorised", "captured", "cancelled", "refunded");
         if (!in_array($this->container['state'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'state', must be one of 'authorised', 'captured', 'cancelled', 'refunded'.";
-        }
-
-        if ($this->container['authorised_amount'] === null) {
-            $invalid_properties[] = "'authorised_amount' can't be null";
-        }
-        if (($this->container['authorised_amount'] < 0)) {
-            $invalid_properties[] = "invalid value for 'authorised_amount', must be bigger than or equal to 0.";
         }
 
         if ($this->container['captured_amount'] === null) {
@@ -242,20 +243,17 @@ class Charge implements ArrayAccess
         if ($this->container['id'] === null) {
             return false;
         }
-        if ($this->container['reference'] === null) {
+        if ($this->container['amount'] === null) {
+            return false;
+        }
+        if ($this->container['currency'] === null) {
             return false;
         }
         if ($this->container['state'] === null) {
             return false;
         }
-        $allowed_values = ["authorised", "captured", "cancelled", "refunded"];
+        $allowed_values = array("authorised", "captured", "cancelled", "refunded");
         if (!in_array($this->container['state'], $allowed_values)) {
-            return false;
-        }
-        if ($this->container['authorised_amount'] === null) {
-            return false;
-        }
-        if ($this->container['authorised_amount'] < 0) {
             return false;
         }
         if ($this->container['captured_amount'] === null) {
@@ -320,6 +318,48 @@ class Charge implements ArrayAccess
     }
 
     /**
+     * Gets amount
+     * @return float
+     */
+    public function getAmount()
+    {
+        return $this->container['amount'];
+    }
+
+    /**
+     * Sets amount
+     * @param float $amount
+     * @return $this
+     */
+    public function setAmount($amount)
+    {
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     * @param string $currency
+     * @return $this
+     */
+    public function setCurrency($currency)
+    {
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
      * Gets state
      * @return string
      */
@@ -340,32 +380,6 @@ class Charge implements ArrayAccess
             throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'authorised', 'captured', 'cancelled', 'refunded'");
         }
         $this->container['state'] = $state;
-
-        return $this;
-    }
-
-    /**
-     * Gets authorised_amount
-     * @return float
-     */
-    public function getAuthorisedAmount()
-    {
-        return $this->container['authorised_amount'];
-    }
-
-    /**
-     * Sets authorised_amount
-     * @param float $authorised_amount
-     * @return $this
-     */
-    public function setAuthorisedAmount($authorised_amount)
-    {
-
-        if (($authorised_amount < 0)) {
-            throw new \InvalidArgumentException('invalid value for $authorised_amount when calling Charge., must be bigger than or equal to 0.');
-        }
-
-        $this->container['authorised_amount'] = $authorised_amount;
 
         return $this;
     }

@@ -54,9 +54,9 @@ class CheckoutConfiguration implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'redirect_uri' => 'string'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -67,27 +67,27 @@ class CheckoutConfiguration implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'redirect_uri' => 'redirect_uri'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'redirect_uri' => 'setRedirectUri'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'redirect_uri' => 'getRedirectUri'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -112,7 +112,7 @@ class CheckoutConfiguration implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -130,7 +130,7 @@ class CheckoutConfiguration implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['redirect_uri'] === null) {
             $invalid_properties[] = "'redirect_uri' can't be null";

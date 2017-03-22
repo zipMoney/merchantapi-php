@@ -53,12 +53,12 @@ class ChargeOrder implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'reference' => 'string',
         'shipping' => '\zipMoney\Model\OrderShipping',
         'items' => '\zipMoney\Model\OrderItem[]',
         'cart_reference' => 'string'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -69,36 +69,36 @@ class ChargeOrder implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'reference' => 'reference',
         'shipping' => 'shipping',
         'items' => 'items',
         'cart_reference' => 'cart_reference'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'reference' => 'setReference',
         'shipping' => 'setShipping',
         'items' => 'setItems',
         'cart_reference' => 'setCartReference'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'reference' => 'getReference',
         'shipping' => 'getShipping',
         'items' => 'getItems',
         'cart_reference' => 'getCartReference'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -123,7 +123,7 @@ class ChargeOrder implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -144,7 +144,7 @@ class ChargeOrder implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if (!is_null($this->container['reference']) && (strlen($this->container['reference']) > 50)) {
             $invalid_properties[] = "invalid value for 'reference', the character length must be smaller than or equal to 50.";

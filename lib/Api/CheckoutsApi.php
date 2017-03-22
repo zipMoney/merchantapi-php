@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoney\Client\Api;
+namespace zipMoney\Api;
 
 use \zipMoney\ApiClient;
 use \zipMoney\ApiException;
@@ -115,14 +115,14 @@ class CheckoutsApi
         // parse inputs
         $resourcePath = "/checkouts";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
@@ -156,7 +156,7 @@ class CheckoutsApi
                 '/checkouts'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Checkout', $httpHeader), $statusCode, $httpHeader];
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Checkout', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -222,14 +222,14 @@ class CheckoutsApi
         // parse inputs
         $resourcePath = "/checkouts/{id}";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // path params
         if ($id !== null) {
@@ -266,7 +266,7 @@ class CheckoutsApi
                 '/checkouts/{id}'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Checkout', $httpHeader), $statusCode, $httpHeader];
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Checkout', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:

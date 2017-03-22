@@ -53,9 +53,9 @@ class InlineResponse200 implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
-        'items' => '\zipMoney\Model\Charge[]'
-    ];
+    protected static $swaggerTypes = array(
+        'items' => '\zipMoney\Model\Refund[]'
+    );
 
     public static function swaggerTypes()
     {
@@ -66,27 +66,27 @@ class InlineResponse200 implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'items' => 'items'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'items' => 'setItems'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'items' => 'getItems'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -111,7 +111,7 @@ class InlineResponse200 implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -129,7 +129,7 @@ class InlineResponse200 implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['items'] === null) {
             $invalid_properties[] = "'items' can't be null";
@@ -155,7 +155,7 @@ class InlineResponse200 implements ArrayAccess
 
     /**
      * Gets items
-     * @return \zipMoney\Model\Charge[]
+     * @return \zipMoney\Model\Refund[]
      */
     public function getItems()
     {
@@ -164,7 +164,7 @@ class InlineResponse200 implements ArrayAccess
 
     /**
      * Sets items
-     * @param \zipMoney\Model\Charge[] $items
+     * @param \zipMoney\Model\Refund[] $items
      * @return $this
      */
     public function setItems($items)

@@ -84,6 +84,7 @@ class CheckoutsApiTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckoutsCreate()
     {
+        
 
     }
 

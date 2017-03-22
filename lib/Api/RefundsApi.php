@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoney\Client\Api;
+namespace zipMoney\Api;
 
 use \zipMoney\ApiClient;
 use \zipMoney\ApiException;
@@ -117,14 +117,14 @@ class RefundsApi
         // parse inputs
         $resourcePath = "/refunds";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // header params
         if ($idempotency_key !== null) {
@@ -162,7 +162,7 @@ class RefundsApi
                 '/refunds'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Refund', $httpHeader), $statusCode, $httpHeader];
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Refund', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -196,7 +196,7 @@ class RefundsApi
      * @param int $skip Number of items to skip when paging (optional, default to 0)
      * @param int $limit Number of items to retrieve when paging (optional, default to 100)
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return \zipMoney\Model\InlineResponse2001[]
+     * @return \zipMoney\Model\InlineResponse200[]
      */
     public function refundsList($charge_id = null, $skip = null, $limit = null)
     {
@@ -213,21 +213,21 @@ class RefundsApi
      * @param int $skip Number of items to skip when paging (optional, default to 0)
      * @param int $limit Number of items to retrieve when paging (optional, default to 100)
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return array of \zipMoney\Model\InlineResponse2001[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \zipMoney\Model\InlineResponse200[], HTTP status code, HTTP response headers (array of strings)
      */
     public function refundsListWithHttpInfo($charge_id = null, $skip = null, $limit = null)
     {
         // parse inputs
         $resourcePath = "/refunds";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/javascript']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/javascript'));
 
         // query params
         if ($charge_id !== null) {
@@ -264,15 +264,15 @@ class RefundsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoney\Model\InlineResponse2001[]',
+                '\zipMoney\Model\InlineResponse200[]',
                 '/refunds'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\InlineResponse2001[]', $httpHeader), $statusCode, $httpHeader];
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\InlineResponse200[]', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\InlineResponse2001[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\InlineResponse200[]', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -314,14 +314,14 @@ class RefundsApi
         // parse inputs
         $resourcePath = "/refunds/{id}";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/javascript']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/javascript'));
 
         // path params
         if ($id !== null) {
@@ -358,7 +358,7 @@ class RefundsApi
                 '/refunds/{id}'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Refund', $httpHeader), $statusCode, $httpHeader];
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Refund', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:

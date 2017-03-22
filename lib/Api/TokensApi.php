@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoney\Client\Api;
+namespace zipMoney\Api;
 
 use \zipMoney\ApiClient;
 use \zipMoney\ApiException;
@@ -117,14 +117,14 @@ class TokensApi
         // parse inputs
         $resourcePath = "/tokens";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // header params
         if ($idempotency_key !== null) {
@@ -162,7 +162,7 @@ class TokensApi
                 '/tokens'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Token', $httpHeader), $statusCode, $httpHeader];
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Token', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:

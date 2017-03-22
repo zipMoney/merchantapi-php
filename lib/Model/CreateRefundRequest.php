@@ -53,12 +53,12 @@ class CreateRefundRequest implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'charge_id' => 'string',
         'reason' => 'string',
         'amount' => 'float',
         'metadata' => 'object'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -69,36 +69,36 @@ class CreateRefundRequest implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'charge_id' => 'charge_id',
         'reason' => 'reason',
         'amount' => 'amount',
         'metadata' => 'metadata'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'charge_id' => 'setChargeId',
         'reason' => 'setReason',
         'amount' => 'setAmount',
         'metadata' => 'setMetadata'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'charge_id' => 'getChargeId',
         'reason' => 'getReason',
         'amount' => 'getAmount',
         'metadata' => 'getMetadata'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -123,7 +123,7 @@ class CreateRefundRequest implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -144,7 +144,7 @@ class CreateRefundRequest implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['charge_id'] === null) {
             $invalid_properties[] = "'charge_id' can't be null";

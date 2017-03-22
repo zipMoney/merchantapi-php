@@ -53,11 +53,11 @@ class ErrorResponseError implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'code' => 'string',
         'message' => 'string',
         'details' => '\zipMoney\Model\ErrorResponseErrorDetails[]'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -68,33 +68,33 @@ class ErrorResponseError implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'code' => 'code',
         'message' => 'message',
         'details' => 'details'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'code' => 'setCode',
         'message' => 'setMessage',
         'details' => 'setDetails'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'code' => 'getCode',
         'message' => 'getMessage',
         'details' => 'getDetails'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -119,7 +119,7 @@ class ErrorResponseError implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -139,7 +139,7 @@ class ErrorResponseError implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['code'] === null) {
             $invalid_properties[] = "'code' can't be null";

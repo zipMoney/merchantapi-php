@@ -54,7 +54,7 @@ class Address implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = [
+    protected static $swaggerTypes = array(
         'line1' => 'string',
         'line2' => 'string',
         'city' => 'string',
@@ -63,7 +63,7 @@ class Address implements ArrayAccess
         'country' => 'string',
         'first_name' => 'string',
         'last_name' => 'string'
-    ];
+    );
 
     public static function swaggerTypes()
     {
@@ -74,7 +74,7 @@ class Address implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = [
+    protected static $attributeMap = array(
         'line1' => 'line1',
         'line2' => 'line2',
         'city' => 'city',
@@ -83,14 +83,14 @@ class Address implements ArrayAccess
         'country' => 'country',
         'first_name' => 'first_name',
         'last_name' => 'last_name'
-    ];
+    );
 
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = [
+    protected static $setters = array(
         'line1' => 'setLine1',
         'line2' => 'setLine2',
         'city' => 'setCity',
@@ -99,14 +99,14 @@ class Address implements ArrayAccess
         'country' => 'setCountry',
         'first_name' => 'setFirstName',
         'last_name' => 'setLastName'
-    ];
+    );
 
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = [
+    protected static $getters = array(
         'line1' => 'getLine1',
         'line2' => 'getLine2',
         'city' => 'getCity',
@@ -115,7 +115,7 @@ class Address implements ArrayAccess
         'country' => 'getCountry',
         'first_name' => 'getFirstName',
         'last_name' => 'getLastName'
-    ];
+    );
 
     public static function attributeMap()
     {
@@ -140,7 +140,7 @@ class Address implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = [];
+    protected $container = array();
 
     /**
      * Constructor
@@ -165,7 +165,7 @@ class Address implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = [];
+        $invalid_properties = array();
 
         if ($this->container['line1'] === null) {
             $invalid_properties[] = "'line1' can't be null";

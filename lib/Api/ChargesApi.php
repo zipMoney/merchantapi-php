@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace zipMoney\Client\Api;
+namespace zipMoney\Api;
 
 use \zipMoney\ApiClient;
 use \zipMoney\ApiException;
@@ -121,14 +121,14 @@ class ChargesApi
         // parse inputs
         $resourcePath = "/charges/{id}/cancel";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // header params
         if ($idempotency_key !== null) {
@@ -169,7 +169,7 @@ class ChargesApi
                 '/charges/{id}/cancel'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Charge', $httpHeader), $statusCode, $httpHeader];
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Charge', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -177,6 +177,10 @@ class ChargesApi
                     $e->setResponseObject($data);
                     break;
                 case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
@@ -231,14 +235,14 @@ class ChargesApi
         // parse inputs
         $resourcePath = "/charges/{id}/capture";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // header params
         if ($idempotency_key !== null) {
@@ -284,7 +288,7 @@ class ChargesApi
                 '/charges/{id}/capture'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Charge', $httpHeader), $statusCode, $httpHeader];
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Charge', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -292,6 +296,10 @@ class ChargesApi
                     $e->setResponseObject($data);
                     break;
                 case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
@@ -340,14 +348,14 @@ class ChargesApi
         // parse inputs
         $resourcePath = "/charges";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
 
         // header params
         if ($idempotency_key !== null) {
@@ -385,7 +393,7 @@ class ChargesApi
                 '/charges'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Charge', $httpHeader), $statusCode, $httpHeader];
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Charge', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -428,7 +436,7 @@ class ChargesApi
      * @param int $limit Number of items to retrieve when paging (optional, default to 100)
      * @param string $expand Allows expanding related entities in the response. Only valid entry is &#39;customer&#39; (optional)
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return \zipMoney\Model\InlineResponse200
+     * @return \zipMoney\Model\ChargeCollection
      */
     public function chargesList($state = null, $skip = null, $limit = null, $expand = null)
     {
@@ -446,21 +454,21 @@ class ChargesApi
      * @param int $limit Number of items to retrieve when paging (optional, default to 100)
      * @param string $expand Allows expanding related entities in the response. Only valid entry is &#39;customer&#39; (optional)
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return array of \zipMoney\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \zipMoney\Model\ChargeCollection, HTTP status code, HTTP response headers (array of strings)
      */
     public function chargesListWithHttpInfo($state = null, $skip = null, $limit = null, $expand = null)
     {
         // parse inputs
         $resourcePath = "/charges";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/javascript']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/javascript'));
 
         // query params
         if ($state !== null) {
@@ -501,15 +509,15 @@ class ChargesApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\zipMoney\Model\InlineResponse200',
+                '\zipMoney\Model\ChargeCollection',
                 '/charges'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\ChargeCollection', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\InlineResponse200', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ChargeCollection', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -553,14 +561,14 @@ class ChargesApi
         // parse inputs
         $resourcePath = "/charges/{id}";
         $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/javascript']);
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/javascript'));
 
         // query params
         if ($expand !== null) {
@@ -601,7 +609,7 @@ class ChargesApi
                 '/charges/{id}'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Charge', $httpHeader), $statusCode, $httpHeader];
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Charge', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
