@@ -115,9 +115,10 @@ class ChargesApiTest extends Setup
        $chargeReq = $this->_payloadHelper->getChargePayload();
        $response = $chargesApi->chargesCreate($chargeReq);
     }
+    
 
     /**
-     * Test case for chargesCreate
+     * Test case for chargesCreateRaisesException
      *
      * Create a charge.
      * @expectedException  \zipMoney\ApiException
@@ -138,7 +139,7 @@ class ChargesApiTest extends Setup
      */
     public function testChargesList()
     {
-
+        
     }
 
     /**
