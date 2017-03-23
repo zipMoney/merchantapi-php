@@ -3,4 +3,4 @@
 git_push.sh
 .swagger-codegen-ignore
 /vendor
-*.lock
+*.lock  
