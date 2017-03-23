@@ -241,6 +241,11 @@ class ApiClient
         $count = 0;
 
         do {
+            
+            if($count > 0 && $this->config->getRetryInterval() > 0){
+                sleep($this->config->getRetryInterval());
+            }
+            
             // Make the request
             $response = curl_exec($curl);
             $http_header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
@@ -248,12 +253,12 @@ class ApiClient
             $http_body = substr($response, $http_header_size);
             $response_info = curl_getinfo($curl);
             $count++;
+            $msg = curl_error($curl);
 
         } while (($count <= $num_retries) && 
-                  $response_info['http_code'] === 0  && 
+                  ( $response_info['http_code'] === 0 && empty($msg) ) && 
                   !empty($headerParams['Idempotency-Key'])); 
 
-    
 
         // debug HTTP response body
         if ($this->config->getDebug()) {
@@ -290,13 +295,6 @@ class ApiClient
             if (json_last_error() > 0) { // if response is a string
                 $data = $http_body;
             }
-        
-            //echo $resourcePath;
-           // echo "\n";
-            //if($resourcePath == "/charges/1/capture")
-
-            // print_r($data);
-            // echo "\n";
 
             throw new ApiException(
                 "[".$response_info['http_code']."] Error connecting to the API ($url)",
@@ -364,9 +362,9 @@ class ApiClient
                 if (!isset($headers[$h[0]])) {
                     $headers[$h[0]] = trim($h[1]);
                 } elseif (is_array($headers[$h[0]])) {
-                    $headers[$h[0]] = array_merge($headers[$h[0]], [trim($h[1])]);
+                    $headers[$h[0]] = array_merge($headers[$h[0]], array(trim($h[1])));
                 } else {
-                    $headers[$h[0]] = array_merge([$headers[$h[0]]], [trim($h[1])]);
+                    $headers[$h[0]] = array_merge(array($headers[$h[0]]), array(trim($h[1])));
                 }
 
                 $key = $h[0];

@@ -97,7 +97,7 @@ class Payload
     $shopper->setFirstName("zipMoney");
     $shopper->setLastName("Test");
     $shopper->setGender("Male");
-    $shopper->setBirthDate("1990-12-12");
+    //$shopper->setBirthDate("1990-12-12");
     $shopper->setPhone("0400000000");
     $shopper->setTitle("Mr.");
 
@@ -109,8 +109,8 @@ class Payload
              ->setSalesMaxAmount(500)
              ->setRefundsTotalAmount(0)
              ->setPreviousChargeback(false)
-             ->setCurrency("AUD")
-             ->setLastLogin("2017-01-01 01:11:00");
+             ->setCurrency("AUD");
+//             ->setLastLogin("2017-01-01 01:11:00");
         
     $shopper->setStatistics($statistics);
 

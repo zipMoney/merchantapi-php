@@ -96,8 +96,6 @@ class Configuration
      * @var string
      */
     protected $supportedEnvironments = array(
-                                    'mock' 
-                                        => array( "host" => "https://yxfhmdhypernxc4d5-mock.stoplight-proxy.io/merchant/v1"),
                                     'sandbox' 
                                         => array( "host" => "https://api.sandbox.zipmoney.com.au/merchant/v1"),
                                     "production" 
@@ -115,14 +113,21 @@ class Configuration
      *
      * @var string
      */
-    protected $curlTimeout = 20;
+    protected $curlTimeout = 10;
     
     /**
      * Number of retries allowed if the first one fails. 
      *
      * @var string
      */
-    protected $curlNumRetries = 2;
+    protected $curlNumRetries = 3;
+
+    /**
+     * Number of retries allowed if the first one fails. 
+     *
+     * @var string
+     */
+    protected $retryInterval = 0;
 
     /**
      * Timeout (second) of the HTTP connection, by default set to 0, no timeout
@@ -506,6 +511,29 @@ class Configuration
 
 
     /**
+     * Sets the Retry Interval Value
+     *
+     * @param integer $retryInterval HTTP Proxy Port
+     *
+     * @return ApiClient
+     */
+    public function setRetryInterval($retryInterval)
+    {
+        $this->retryInterval = $retryInterval;
+        return $this;
+    }
+    
+    /**
+     * Gets the Retry Interval Value
+     *
+     * @param integer Retry Interval Value
+     */
+    public function getRetryInterval()
+    {
+        return $this->retryInterval;
+    }
+
+    /**
      * Sets the HTTP Proxy Host
      *
      * @param string $proxyHost HTTP Proxy URL
@@ -517,6 +545,8 @@ class Configuration
         $this->proxyHost = $proxyHost;
         return $this;
     }
+
+
 
     /**
      * Gets the HTTP Proxy Host
