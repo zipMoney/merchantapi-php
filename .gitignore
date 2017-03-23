@@ -1,0 +1,5 @@
+.DS_Store
+.php_cs
+git_push.sh
+.swagger-codegen-ignore
+/vendor
