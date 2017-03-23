@@ -115,7 +115,14 @@ class Configuration
      *
      * @var string
      */
-    protected $curlTimeout = 0;
+    protected $curlTimeout = 20;
+    
+    /**
+     * Number of retries allowed if the first one fails. 
+     *
+     * @var string
+     */
+    protected $curlNumRetries = 2;
 
     /**
      * Timeout (second) of the HTTP connection, by default set to 0, no timeout
@@ -441,6 +448,33 @@ class Configuration
     public function getCurlTimeout()
     {
         return $this->curlTimeout;
+    }
+
+    /**
+     * Sets the retry value
+     *
+     * @param integer  Number of retries before it gives up
+     *
+     * @return Configuration
+     */
+    public function setCurlNumRetries($retries)
+    {
+        if (!is_numeric($retries) || $retries < 0) {
+            throw new \InvalidArgumentException('Retries value must be numeric and a non-negative number.');
+        }
+
+        $this->curlNumRetries = $retries;
+        return $this;
+    }
+
+    /**
+     * Gets the retry value
+     *
+     * @return string HTTP timeout value
+     */
+    public function getCurlNumRetries()
+    {
+        return $this->curlNumRetries;
     }
 
     /**

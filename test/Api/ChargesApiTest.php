@@ -28,11 +28,8 @@
 
 namespace zipMoney;
 
-use \zipMoney\Configuration;
-use \zipMoney\ApiClient;
-use \zipMoney\ApiException;
-use \zipMoney\ObjectSerializer;
-
+use \zipMoney\Api\ChargesApi;
+use \zipMoney\Api\CheckoutsApi;
 /**
  * ChargesApiTest Class Doc Comment
  *
@@ -41,7 +38,7 @@ use \zipMoney\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ChargesApiTest extends \PHPUnit_Framework_TestCase
+class ChargesApiTest extends Setup
 {
 
     /**
@@ -52,13 +49,7 @@ class ChargesApiTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp()
-    {
-
-    }
+   
 
     /**
      * Clean up after running each test case
@@ -80,33 +71,63 @@ class ChargesApiTest extends \PHPUnit_Framework_TestCase
      * Test case for chargesCancel
      *
      * Cancel a charge.
-     *
+     * @expectedException  \zipMoney\ApiException
+     * @expectedExceptionMessage [404] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges/1/cancel) 
      */
     public function testChargesCancel()
-    {
-
+    {      
+        $chargesApi = new ChargesApi;
+        $response = $chargesApi->chargesCancel(1);
     }
 
     /**
      * Test case for chargesCapture
      *
-     * Capture a charge.
-     *
+     * Capture a charge.   
+     * @expectedException  \zipMoney\ApiException
+     * @expectedExceptionMessage [404] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges/1/capture) 
      */
     public function testChargesCapture()
-    {
+    {   
+        $chargesApi = new ChargesApi;       
+        $req = $this->_payloadHelper->getCapturePayload();
+        $response = $chargesApi->chargesCapture(1,$req);
+    }
 
+    /**
+     * Test case for chargesCreate
+     *
+     * Create a charge.     
+     * @expectedException  \zipMoney\ApiException
+     * @expectedExceptionMessage [403] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges)
+     */
+
+    public function testChargesCreate()
+    {
+       $checkoutsApi = new CheckoutsApi;
+       $chargesApi = new ChargesApi;
+
+       $req = $this->_payloadHelper->getCheckoutPayload();
+       $checkout = $checkoutsApi->checkoutsCreate($req);
+
+       $this->_payloadHelper->setCheckoutId($checkout->getId());
+       
+       $chargeReq = $this->_payloadHelper->getChargePayload();
+       $response = $chargesApi->chargesCreate($chargeReq);
     }
 
     /**
      * Test case for chargesCreate
      *
      * Create a charge.
-     *
+     * @expectedException  \zipMoney\ApiException
+     * @expectedExceptionMessage [400] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges)
      */
-    public function testChargesCreate()
+    public function testChargesCreateRaisesException()
     {
-
+       $chargesApi = new ChargesApi;
+       $chargeReq = $this->_payloadHelper->getChargePayload();
+       $response = $chargesApi->chargesCreate($chargeReq);
     }
 
     /**

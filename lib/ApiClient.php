@@ -236,13 +236,24 @@ class ApiClient
 
         // obtain the HTTP response headers
         curl_setopt($curl, CURLOPT_HEADER, 1);
+        
+        $num_retries = $this->config->getCurlNumRetries()?$this->config->getCurlNumRetries():0;
+        $count = 0;
 
-        // Make the request
-        $response = curl_exec($curl);
-        $http_header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
-        $http_header = $this->httpParseHeaders(substr($response, 0, $http_header_size));
-        $http_body = substr($response, $http_header_size);
-        $response_info = curl_getinfo($curl);
+        do {
+            // Make the request
+            $response = curl_exec($curl);
+            $http_header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+            $http_header = $this->httpParseHeaders(substr($response, 0, $http_header_size));
+            $http_body = substr($response, $http_header_size);
+            $response_info = curl_getinfo($curl);
+            $count++;
+
+        } while (($count <= $num_retries) && 
+                  $response_info['http_code'] === 0  && 
+                  !empty($headerParams['Idempotency-Key'])); 
+
+    
 
         // debug HTTP response body
         if ($this->config->getDebug()) {
@@ -267,7 +278,7 @@ class ApiClient
         } elseif ($response_info['http_code'] >= 200 && $response_info['http_code'] <= 299) {
             // return raw body if response is a file
             if ($responseType === '\SplFileObject' || $responseType === 'string') {
-                return [$http_body, $response_info['http_code'], $http_header];
+                return array($http_body, $response_info['http_code'], $http_header);
             }
 
             $data = json_decode($http_body);
@@ -279,6 +290,13 @@ class ApiClient
             if (json_last_error() > 0) { // if response is a string
                 $data = $http_body;
             }
+        
+            //echo $resourcePath;
+           // echo "\n";
+            //if($resourcePath == "/charges/1/capture")
+
+            // print_r($data);
+            // echo "\n";
 
             throw new ApiException(
                 "[".$response_info['http_code']."] Error connecting to the API ($url)",

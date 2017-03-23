@@ -28,11 +28,8 @@
 
 namespace zipMoney;
 
-use \zipMoney\Configuration;
-use \zipMoney\ApiClient;
-use \zipMoney\ApiException;
-use \zipMoney\ObjectSerializer;
 
+use \zipMoney\Api\CheckoutsApi;
 /**
  * CheckoutsApiTest Class Doc Comment
  *
@@ -41,24 +38,17 @@ use \zipMoney\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CheckoutsApiTest extends \PHPUnit_Framework_TestCase
-{
-
+class CheckoutsApiTest extends Setup
+{   
+  
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass()
-    {
-
+    {   
+    
     }
-
-    /**
-     * Setup before running each test case
-     */
-    public function setUp()
-    {
-
-    }
+    
 
     /**
      * Clean up after running each test case
@@ -83,9 +73,18 @@ class CheckoutsApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function testCheckoutsCreate()
-    {
-        
+    {   
+        try{ 
+            $checkoutsApi = new CheckoutsApi;
+            $req =  $this->_payloadHelper->getCheckoutPayload();
+            $checkout = $checkoutsApi->checkoutsCreate($req);
 
+            $this->assertNotNull($checkout->getId());
+            $this->assertNotNull($checkout->getUri());
+        } catch(ApiException $e){
+            print_r($e->getResponseBody());
+        }
+       
     }
 
     /**

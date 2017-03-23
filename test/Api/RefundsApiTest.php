@@ -28,10 +28,9 @@
 
 namespace zipMoney;
 
-use \zipMoney\Configuration;
-use \zipMoney\ApiClient;
-use \zipMoney\ApiException;
-use \zipMoney\ObjectSerializer;
+
+use \zipMoney\Api\RefundsApi;
+
 
 /**
  * RefundsApiTest Class Doc Comment
@@ -41,7 +40,7 @@ use \zipMoney\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class RefundsApiTest extends \PHPUnit_Framework_TestCase
+class RefundsApiTest extends Setup
 {
 
     /**
@@ -52,14 +51,7 @@ class RefundsApiTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp()
-    {
-
-    }
-
+   
     /**
      * Clean up after running each test case
      */
@@ -80,11 +72,15 @@ class RefundsApiTest extends \PHPUnit_Framework_TestCase
      * Test case for refundsCreate
      *
      * Create a refund.
-     *
+     * @expectedException  \zipMoney\ApiException
+     * @expectedExceptionMessage [402] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/refunds)
      */
     public function testRefundsCreate()
     {
-
+        $refundsApi = new RefundsApi;  
+        $this->_payloadHelper->setChargeId(1);      
+        $req = $this->_payloadHelper->getRefundPayload();
+        $response = $refundsApi->refundsCreate($req);
     }
 
     /**
