@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** |  | 
-**price** | **float** |  | 
+**amount** | **float** |  | 
 **reference** | **string** |  | [optional] 
 **description** | **string** |  | [optional] 
 **quantity** | **int** |  | 
