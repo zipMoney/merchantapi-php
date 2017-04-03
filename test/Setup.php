@@ -17,8 +17,10 @@ class Setup  extends \PHPUnit_Framework_TestCase
   public function setUp()
   {      
     $this->_payloadHelper = new Payload;
-
-    Configuration::getDefaultConfiguration()->setApiKey('Authorization', "Bearer test");
+    
+    $auth  = parse_ini_file("auth.ini");
+    
+    Configuration::getDefaultConfiguration()->setApiKey('Authorization', "Bearer {$auth['private_key']}");
     Configuration::getDefaultConfiguration()->setEnvironment("sandbox");
 
   }
