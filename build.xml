@@ -30,7 +30,7 @@
             <ispropertytrue property="tagname" />
             <then>
                 <echo msg="Is a tag  ${tagname}" />                
-                <exec command="curl -XPOST -H'content-type:application/json' 'https://packagist.org/api/update-package?username=${UserName}&amp;apiToken=${ApiToken}' -d'{&quot;repository&quot;:{&quot;url&quot;:&quot;https://github.com/zipMoney/zipmoney-php&quot;}}'" passthru="true" checkreturn="true" />
+                <exec command="curl -XPOST -H'content-type:application/json' 'https://packagist.org/api/update-package?username=${UserName}&amp;apiToken=${ApiToken}' -d'{&quot;repository&quot;:{&quot;url&quot;:&quot;https://github.com/zipMoney/merchantapi-php&quot;}}'" passthru="true" checkreturn="true" />
             </then>
             <else>
                 <echo msg="Is not a tag, so not tagging" />
