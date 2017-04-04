@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="zipMoney Merchant Api PHP" default="build" basedir=".">
+
+    <property name="vendor-dir" value="${project.basedir}/vendor/"/>
+    <property name="global-vendor-dir" value="~/.composer/vendor/bin/"/>
+    <property name="composer"   value="${global-vendor-dir}bin/composer --working-dir=${project.basedir}"/>
+    <property name="phpunit"    value="${global-vendor-dir}bin/phpunit" />
+
+    <property environment="env"/>
+
+    <target name="install" depends="install-deps" description="Install Wordpress and Woocommerce" />
+    
+    <target name="clean" description="Remove composer install dependencies">
+        <delete dir="${vendor-dir}" />
+    </target>
+    
+    <target name="install-deps" description="Install all required dependencies">
+        <exec command="${composer} install" passthru="true" checkreturn="true" />
+    </target>
+
+    <target name="test" depends="clean,install-deps">
+        <exec command="php -v &amp;&amp; ${phpunit}" passthru="true" checkreturn="true" />
+    </target>
+
+
+    <target name="tag" description="Create">
+        <propertyregex property="tagname" subject="${env.branch}" pattern="^feature/(\*|\d+(\.\d+){0,2}(\.\*)?)$"  match="$1" casesensitive="false" defaultvalue="false"/>                
+        <echo msg="${tagname}" />
+        <if>
+            <ispropertytrue property="tagname" />
+            <then>
+                <echo msg="Is a tag  ${tagname}" />                
+                <exec command="curl -XPOST -H'content-type:application/json' 'https://packagist.org/api/update-package?username=${UserName}&amp;apiToken=${ApiToken}' -d'{&quot;repository&quot;:{&quot;url&quot;:&quot;https://github.com/zipMoney/zipmoney-php&quot;}}'" passthru="true" checkreturn="true" />
+            </then>
+            <else>
+                <echo msg="Is not a tag, so not tagging" />
+            </else>
+        </if>
+    </target>
+</project>
