@@ -2,7 +2,7 @@
 <project name="zipMoney Merchant Api PHP" default="build" basedir=".">
 
     <property name="vendor-dir" value="${project.basedir}/vendor/"/>
-    <property name="global-vendor-dir" value="~/.composer/vendor/bin/"/>
+    <property name="global-vendor-dir" value="~/.composer/vendor/"/>
     <property name="composer"   value="${global-vendor-dir}bin/composer --working-dir=${project.basedir}"/>
     <property name="phpunit"    value="${global-vendor-dir}bin/phpunit" />
 
