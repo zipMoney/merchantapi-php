@@ -1,4 +1,13 @@
 <?php
+/**
+ * Payload
+ *
+ * @category Class
+ * @package  zipMoney
+ * @author   zipMoney Payments Pty Ltd
+ * @link     https://github.com/zipMoney/merchantapi-php
+ */
+
 namespace zipMoney\Helper;
 
 use \zipMoney\Model\CreateCheckoutRequest as CheckoutRequest;

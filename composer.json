@@ -1,18 +1,22 @@
 {
-    "name": "GIT_USER_ID/GIT_REPO_ID",
+    "name": "zipmoney/merchantapi-php",
+    "version": "1.0.0",
     "description": "",
     "keywords": [
-        "swagger",
+       "zipmoney",
+        "zippay",
+        "zipcredit",
+        "merchantapi",
         "php",
         "sdk",
         "api"
     ],
-    "homepage": "http://swagger.io",
-    "license": "proprietary",
+    "homepage": "http://zipmoney.com.au",
+    "license": "MIT",
     "authors": [
         {
-            "name": "Swagger and contributors",
-            "homepage": "https://github.com/swagger-api/swagger-codegen"
+            "name": "zipMoney Payments Pty Ltd.",
+            "homepage": "https://github.com/zipMoney/merchantapi-php"
         }
     ],
     "require": {
@@ -22,8 +26,6 @@
         "ext-mbstring": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.1.*",
-        "satooshi/php-coveralls": "~1.0",
         "squizlabs/php_codesniffer": "~2.6",
         "friendsofphp/php-cs-fixer": "~1.12"
     },
