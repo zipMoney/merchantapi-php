@@ -1,24 +1,29 @@
 {
     "name": "zipmoney/merchantapi-php",
+    "version": "1.0.0",
     "description": "",
     "keywords": [
-        "swagger",
+       "zipmoney",
+        "zippay",
+        "zipcredit",
+        "merchantapi",
         "php",
         "sdk",
         "api"
     ],
     "homepage": "http://zipmoney.com.au",
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
-            "name": "zipMoney Payments Pty Ltd",
-            "homepage": "https://zipmoney.com.au"
+            "name": "zipMoney Payments Pty Ltd.",
+            "homepage": "https://github.com/zipMoney/merchantapi-php"
         }
     ],
     "require": {
         "php": ">=5.3",
         "ext-curl": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-mbstring": "*"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "~2.6",
