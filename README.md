@@ -2,7 +2,6 @@
 ZipMoney Merchant API Initial build
 
 - API version: 2017-03-01
-- Build package: io.swagger.codegen.languages.PhpClientCodegen
 
 ## Requirements
 
@@ -42,8 +41,8 @@ Download the files and include `autoload.php`:
 To run the unit tests:
 
 ```
-composer install
-./vendor/bin/phpunit
+composer require 
+phpunit
 ```
 
 ## Getting Started
@@ -55,9 +54,10 @@ Please follow the [installation procedure](#installation--usage) and then run th
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: Authorization
-zipMoney\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// zipMoney\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+\zipMoney\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+\zipMoney\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Bearer');
+\zipMoney\Configuration::getDefaultConfiguration()->setEnvironment('ENVIRONMENT HERE'); // Allowed values are  ( sandbox | production )
+\zipMoney\Configuration::getDefaultConfiguration()->setPlatform('PLATFORM HERE'); // E.g. Magento/1.9.1.2
 
 $api_instance = new zipMoney\Api\ChargesApi();
 $id = "id_example"; // string | The id of the authorised charge

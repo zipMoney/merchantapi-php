@@ -853,12 +853,12 @@ class Configuration
         $default_user_agent = "merchantapi-php";
         
         if( $package_version = $this->getPackageVersion() ){
-           $user_agent_array[] = $default_user_agent."-".$package_version;
+           $user_agent_array[] = $default_user_agent."/".$package_version;
         } else {
            $user_agent_array[] = $default_user_agent;
         }
 
-        $user_agent = implode(";",$user_agent_array);
+        $user_agent = implode(" ",$user_agent_array);
 
         $this->setUserAgent($user_agent);
         $this->setApiVersion($this->api_version);
