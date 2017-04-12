@@ -7,6 +7,7 @@
          stopOnFailure="false">
     <testsuites>
         <testsuite>
+            <directory>./test/</directory>
             <directory>./test/Api</directory>
             <directory>./test/Model</directory>
         </testsuite>

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **amount** | **float** |  | 
 **reference** | **string** |  | [optional] 
 **description** | **string** |  | [optional] 
-**quantity** | **int** |  | 
+**quantity** | **int** |  | [optional] 
 **type** | **string** |  | 
 **image_uri** | **string** |  | [optional] 
 **item_uri** | **string** |  | [optional] 
