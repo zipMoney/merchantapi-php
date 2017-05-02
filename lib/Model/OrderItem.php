@@ -166,21 +166,9 @@ class OrderItem implements ArrayAccess
         if ($this->container['name'] === null) {
             $invalid_properties[] = "'name' can't be null";
         }
-        if ((strlen($this->container['name']) > 150)) {
-            $invalid_properties[] = "invalid value for 'name', the character length must be smaller than or equal to 150.";
-        }
-
         if ($this->container['amount'] === null) {
             $invalid_properties[] = "'amount' can't be null";
         }
-        if (!is_null($this->container['reference']) && (strlen($this->container['reference']) > 50)) {
-            $invalid_properties[] = "invalid value for 'reference', the character length must be smaller than or equal to 50.";
-        }
-
-        if (!is_null($this->container['description']) && (strlen($this->container['description']) > 250)) {
-            $invalid_properties[] = "invalid value for 'description', the character length must be smaller than or equal to 250.";
-        }
-
         if (!is_null($this->container['quantity']) && ($this->container['quantity'] < 1)) {
             $invalid_properties[] = "invalid value for 'quantity', must be bigger than or equal to 1.";
         }
@@ -191,14 +179,6 @@ class OrderItem implements ArrayAccess
         $allowed_values = array("sku", "tax", "shipping", "discount");
         if (!in_array($this->container['type'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'type', must be one of 'sku', 'tax', 'shipping', 'discount'.";
-        }
-
-        if (!is_null($this->container['image_uri']) && (strlen($this->container['image_uri']) > 500)) {
-            $invalid_properties[] = "invalid value for 'image_uri', the character length must be smaller than or equal to 500.";
-        }
-
-        if (!is_null($this->container['item_uri']) && (strlen($this->container['item_uri']) > 500)) {
-            $invalid_properties[] = "invalid value for 'item_uri', the character length must be smaller than or equal to 500.";
         }
 
         if (!is_null($this->container['product_code']) && (strlen($this->container['product_code']) > 50)) {
@@ -220,16 +200,7 @@ class OrderItem implements ArrayAccess
         if ($this->container['name'] === null) {
             return false;
         }
-        if (strlen($this->container['name']) > 150) {
-            return false;
-        }
         if ($this->container['amount'] === null) {
-            return false;
-        }
-        if (strlen($this->container['reference']) > 50) {
-            return false;
-        }
-        if (strlen($this->container['description']) > 250) {
             return false;
         }
         if ($this->container['quantity'] < 1) {
@@ -240,12 +211,6 @@ class OrderItem implements ArrayAccess
         }
         $allowed_values = array("sku", "tax", "shipping", "discount");
         if (!in_array($this->container['type'], $allowed_values)) {
-            return false;
-        }
-        if (strlen($this->container['image_uri']) > 500) {
-            return false;
-        }
-        if (strlen($this->container['item_uri']) > 500) {
             return false;
         }
         if (strlen($this->container['product_code']) > 50) {
@@ -271,10 +236,6 @@ class OrderItem implements ArrayAccess
      */
     public function setName($name)
     {
-        if ((strlen($name) > 150)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrderItem., must be smaller than or equal to 150.');
-        }
-
         $this->container['name'] = $name;
 
         return $this;
@@ -317,10 +278,6 @@ class OrderItem implements ArrayAccess
      */
     public function setReference($reference)
     {
-        if (!is_null($reference) && (strlen($reference) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $reference when calling OrderItem., must be smaller than or equal to 50.');
-        }
-
         $this->container['reference'] = $reference;
 
         return $this;
@@ -342,10 +299,6 @@ class OrderItem implements ArrayAccess
      */
     public function setDescription($description)
     {
-        if (!is_null($description) && (strlen($description) > 250)) {
-            throw new \InvalidArgumentException('invalid length for $description when calling OrderItem., must be smaller than or equal to 250.');
-        }
-
         $this->container['description'] = $description;
 
         return $this;
@@ -418,10 +371,6 @@ class OrderItem implements ArrayAccess
      */
     public function setImageUri($image_uri)
     {
-        if (!is_null($image_uri) && (strlen($image_uri) > 500)) {
-            throw new \InvalidArgumentException('invalid length for $image_uri when calling OrderItem., must be smaller than or equal to 500.');
-        }
-
         $this->container['image_uri'] = $image_uri;
 
         return $this;
@@ -443,10 +392,6 @@ class OrderItem implements ArrayAccess
      */
     public function setItemUri($item_uri)
     {
-        if (!is_null($item_uri) && (strlen($item_uri) > 500)) {
-            throw new \InvalidArgumentException('invalid length for $item_uri when calling OrderItem., must be smaller than or equal to 500.');
-        }
-
         $this->container['item_uri'] = $item_uri;
 
         return $this;

@@ -75,7 +75,7 @@ class ChargesApiTest extends Setup
      *
      * Create a charge.     
      * @expectedException  \zipMoney\ApiException
-     * @expectedExceptionMessage [403] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges)
+     * @expectedExceptionMessage [400] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges)
      */
 
     public function testChargesCreate()
