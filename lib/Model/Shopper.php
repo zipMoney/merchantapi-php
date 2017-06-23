@@ -172,8 +172,8 @@ class Shopper implements ArrayAccess
         if ($this->container['last_name'] === null) {
             $invalid_properties[] = "'last_name' can't be null";
         }
-        if (!is_null($this->container['phone']) && !preg_match("/^[+0-9]+$/", $this->container['phone'])) {
-            $invalid_properties[] = "invalid value for 'phone', must be conform to the pattern /^[+0-9]+$/.";
+        if (!is_null($this->container['phone']) && !preg_match("/^\\+?[\\d\\s]+$/", $this->container['phone'])) {
+            $invalid_properties[] = "invalid value for 'phone', must be conform to the pattern /^\\+?[\\d\\s]+$/.";
         }
 
         if ($this->container['email'] === null) {
@@ -205,7 +205,7 @@ class Shopper implements ArrayAccess
         if ($this->container['last_name'] === null) {
             return false;
         }
-        if (!preg_match("/^[+0-9]+$/", $this->container['phone'])) {
+        if (!preg_match("/^\\+?[\\d\\s]+$/", $this->container['phone'])) {
             return false;
         }
         if ($this->container['email'] === null) {
@@ -323,8 +323,8 @@ class Shopper implements ArrayAccess
     public function setPhone($phone)
     {
 
-        if (!is_null($phone) && (!preg_match("/^[+0-9]+$/", $phone))) {
-            throw new \InvalidArgumentException("invalid value for $phone when calling Shopper., must conform to the pattern /^[+0-9]+$/.");
+        if (!is_null($phone) && (!preg_match("/^\\+?[\\d\\s]+$/", $phone))) {
+            throw new \InvalidArgumentException("invalid value for $phone when calling Shopper., must conform to the pattern /^\\+?[\\d\\s]+$/.");
         }
 
         $this->container['phone'] = $phone;
