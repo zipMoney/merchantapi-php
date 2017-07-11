@@ -47,7 +47,7 @@ class ConfigurationTest extends Setup
       $config->setPlatform("Magento/1.0.0")
              ->setDefaultHeaders("sandbox");
 
-      $this->assertEquals($config->getUserAgent(),"Magento/1.0.0 merchantapi-php/1.0.2");
+      $this->assertEquals($config->getUserAgent(),"Magento/1.0.0 merchantapi-php/1.0.3");
       $this->assertEquals($config->getDefaultHeaders(),array("Zip-Version"=>"2017-03-01"));
 
     }
@@ -55,7 +55,7 @@ class ConfigurationTest extends Setup
     public function testPackageVersion()
     {      
         $config = Configuration::getDefaultConfiguration();
-        $this->assertEquals($config->getPackageVersion(),"1.0.2");
+        $this->assertEquals($config->getPackageVersion(),"1.0.3");
     }
 
 }
