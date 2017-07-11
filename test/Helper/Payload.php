@@ -107,7 +107,7 @@ class Payload
     $shopper->setLastName("Test");
     $shopper->setGender("Male");
     //$shopper->setBirthDate("1990-12-12");
-    $shopper->setPhone("0400000000");
+    $shopper->setPhone("+610400000000");
     $shopper->setTitle("Mr.");
 
     $statistics = new ShopperStatistics;
