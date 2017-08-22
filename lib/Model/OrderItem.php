@@ -181,8 +181,8 @@ class OrderItem implements ArrayAccess
             $invalid_properties[] = "invalid value for 'type', must be one of 'sku', 'tax', 'shipping', 'discount'.";
         }
 
-        if (!is_null($this->container['product_code']) && (strlen($this->container['product_code']) > 50)) {
-            $invalid_properties[] = "invalid value for 'product_code', the character length must be smaller than or equal to 50.";
+        if (!is_null($this->container['product_code']) && (strlen($this->container['product_code']) > 200)) {
+            $invalid_properties[] = "invalid value for 'product_code', the character length must be smaller than or equal to 200.";
         }
 
         return $invalid_properties;
@@ -213,7 +213,7 @@ class OrderItem implements ArrayAccess
         if (!in_array($this->container['type'], $allowed_values)) {
             return false;
         }
-        if (strlen($this->container['product_code']) > 50) {
+        if (strlen($this->container['product_code']) > 200) {
             return false;
         }
         return true;
@@ -413,8 +413,8 @@ class OrderItem implements ArrayAccess
      */
     public function setProductCode($product_code)
     {
-        if (!is_null($product_code) && (strlen($product_code) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $product_code when calling OrderItem., must be smaller than or equal to 50.');
+        if (!is_null($product_code) && (strlen($product_code) > 200)) {
+            throw new \InvalidArgumentException('invalid length for $product_code when calling OrderItem., must be smaller than or equal to 200.');
         }
 
         $this->container['product_code'] = $product_code;
