@@ -67,7 +67,7 @@ class SettlementsApi
      *
      * @param string $id The settlement id (required)
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return void
+     * @return \zipMoney\Model\Settlement
      */
     public function settlementsGet($id)
     {
@@ -82,7 +82,7 @@ class SettlementsApi
      *
      * @param string $id The settlement id (required)
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \zipMoney\Model\Settlement, HTTP status code, HTTP response headers (array of strings)
      */
     public function settlementsGetWithHttpInfo($id)
     {
@@ -128,13 +128,25 @@ class SettlementsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                null,
+                '\zipMoney\Model\Settlement',
                 '/settlements/{id}'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Settlement', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\Settlement', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
             }
 
             throw $e;

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **created_date** | [**\DateTime**](\DateTime.md) |  | 
 **order** | [**\zipMoney\Model\ChargeOrder**](ChargeOrder.md) |  | [optional] 
 **metadata** | **object** |  | [optional] 
+**receipt_number** | **string** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

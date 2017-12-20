@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Create a refund
 
-Creates a refund for a previously authorised or captured charge. See #model:xWJer4QQyRumRi9LD for more information.  This endpoint will return 201 or otherwise 402 if unable to perform the refund.   | Error code | Description | |------------------------------------|--------------------------------------------------------------------------------------------------| | amount_invalid | The refund amount is greater than the remaining captured total | | invalid_state | 1. The charge is already fully refunded |
+Creates a refund for a previously authorised or captured charge. See #model:xWJer4QQyRumRi9LD for more information.  This endpoint will return 201 or otherwise 402 if unable to perform the refund.   | Error code | Description | |------------------------------------|--------------------------------------------------------------------------------------------------| | account_inoperative | The account is in arrears or closed and cannot be charged | | amount_invalid | The refund amount is greater than the remaining captured total | | invalid_state | 1. The charge is already fully refunded |
 
 ### Example
 ```php
