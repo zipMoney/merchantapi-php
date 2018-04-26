@@ -1,6 +1,6 @@
 <?php
 /**
- * CheckoutFeaturesTokenisation
+ * HateoaslinksLinks
  *
  * @category Class
  * @package  zipMoney
@@ -13,7 +13,7 @@ namespace zipMoney\Model;
 
 use \ArrayAccess;
 
-class CheckoutFeaturesTokenisation implements ArrayAccess
+class HateoaslinksLinks implements ArrayAccess
 {
     const DISCRIMINATOR = 'subclass';
 
@@ -21,14 +21,16 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Checkout_features_tokenisation';
+    protected static $swaggerModelName = 'hateoaslinks__links';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $zipTypes = array(
-        'required' => 'bool'
+        'href' => 'string',
+        'rel' => 'string',
+        'method' => 'string'
     );
 
     public static function zipTypes()
@@ -41,7 +43,9 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'required' => 'required'
+        'href' => 'href',
+        'rel' => 'rel',
+        'method' => 'method'
     );
 
 
@@ -50,7 +54,9 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'required' => 'setRequired'
+        'href' => 'setHref',
+        'rel' => 'setRel',
+        'method' => 'setMethod'
     );
 
 
@@ -59,7 +65,9 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'required' => 'getRequired'
+        'href' => 'getHref',
+        'rel' => 'getRel',
+        'method' => 'getMethod'
     );
 
     public static function attributeMap()
@@ -93,7 +101,9 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['required'] = isset($data['required']) ? $data['required'] : true;
+        $this->container['href'] = isset($data['href']) ? $data['href'] : null;
+        $this->container['rel'] = isset($data['rel']) ? $data['rel'] : null;
+        $this->container['method'] = isset($data['method']) ? $data['method'] : null;
     }
 
     /**
@@ -122,22 +132,64 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
 
 
     /**
-     * Gets required
-     * @return bool
+     * Gets href
+     * @return string
      */
-    public function getRequired()
+    public function getHref()
     {
-        return $this->container['required'];
+        return $this->container['href'];
     }
 
     /**
-     * Sets required
-     * @param bool $required States if the tokenisation is required to proceed with the checkout.
+     * Sets href
+     * @param string $href
      * @return $this
      */
-    public function setRequired($required)
+    public function setHref($href)
     {
-        $this->container['required'] = $required;
+        $this->container['href'] = $href;
+
+        return $this;
+    }
+
+    /**
+     * Gets rel
+     * @return string
+     */
+    public function getRel()
+    {
+        return $this->container['rel'];
+    }
+
+    /**
+     * Sets rel
+     * @param string $rel
+     * @return $this
+     */
+    public function setRel($rel)
+    {
+        $this->container['rel'] = $rel;
+
+        return $this;
+    }
+
+    /**
+     * Gets method
+     * @return string
+     */
+    public function getMethod()
+    {
+        return $this->container['method'];
+    }
+
+    /**
+     * Sets method
+     * @param string $method
+     * @return $this
+     */
+    public function setMethod($method)
+    {
+        $this->container['method'] = $method;
 
         return $this;
     }

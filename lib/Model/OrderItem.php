@@ -15,7 +15,7 @@ use \ArrayAccess;
 
 class OrderItem implements ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -27,21 +27,22 @@ class OrderItem implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = array(
+    protected static $zipTypes = array(
         'name' => 'string',
         'amount' => 'float',
         'reference' => 'string',
         'description' => 'string',
-        'quantity' => 'int',
+        'quantity' => 'float',
         'type' => 'string',
         'image_uri' => 'string',
         'item_uri' => 'string',
-        'product_code' => 'string'
+        'product_code' => 'string',
+        'additional_details' => '\zipMoney\Model\OrderItemAdditionalDetails[]'
     );
 
-    public static function swaggerTypes()
+    public static function zipTypes()
     {
-        return self::$swaggerTypes;
+        return self::$zipTypes;
     }
 
     /**
@@ -57,7 +58,8 @@ class OrderItem implements ArrayAccess
         'type' => 'type',
         'image_uri' => 'image_uri',
         'item_uri' => 'item_uri',
-        'product_code' => 'product_code'
+        'product_code' => 'product_code',
+        'additional_details' => 'additional_details'
     );
 
 
@@ -74,7 +76,8 @@ class OrderItem implements ArrayAccess
         'type' => 'setType',
         'image_uri' => 'setImageUri',
         'item_uri' => 'setItemUri',
-        'product_code' => 'setProductCode'
+        'product_code' => 'setProductCode',
+        'additional_details' => 'setAdditionalDetails'
     );
 
 
@@ -91,7 +94,8 @@ class OrderItem implements ArrayAccess
         'type' => 'getType',
         'image_uri' => 'getImageUri',
         'item_uri' => 'getItemUri',
-        'product_code' => 'getProductCode'
+        'product_code' => 'getProductCode',
+        'additional_details' => 'getAdditionalDetails'
     );
 
     public static function attributeMap()
@@ -113,6 +117,7 @@ class OrderItem implements ArrayAccess
     const TYPE_TAX = 'tax';
     const TYPE_SHIPPING = 'shipping';
     const TYPE_DISCOUNT = 'discount';
+    const TYPE_STORE_CREDIT = 'store_credit';
     
 
     
@@ -127,6 +132,7 @@ class OrderItem implements ArrayAccess
             self::TYPE_TAX,
             self::TYPE_SHIPPING,
             self::TYPE_DISCOUNT,
+            self::TYPE_STORE_CREDIT,
         );
     }
     
@@ -152,6 +158,7 @@ class OrderItem implements ArrayAccess
         $this->container['image_uri'] = isset($data['image_uri']) ? $data['image_uri'] : null;
         $this->container['item_uri'] = isset($data['item_uri']) ? $data['item_uri'] : null;
         $this->container['product_code'] = isset($data['product_code']) ? $data['product_code'] : null;
+        $this->container['additional_details'] = isset($data['additional_details']) ? $data['additional_details'] : null;
     }
 
     /**
@@ -169,16 +176,16 @@ class OrderItem implements ArrayAccess
         if ($this->container['amount'] === null) {
             $invalid_properties[] = "'amount' can't be null";
         }
-        if (!is_null($this->container['quantity']) && ($this->container['quantity'] < 1)) {
-            $invalid_properties[] = "invalid value for 'quantity', must be bigger than or equal to 1.";
+        if (!is_null($this->container['quantity']) && ($this->container['quantity'] <= 0)) {
+            $invalid_properties[] = "invalid value for 'quantity', must be bigger than 0.";
         }
 
         if ($this->container['type'] === null) {
             $invalid_properties[] = "'type' can't be null";
         }
-        $allowed_values = array("sku", "tax", "shipping", "discount");
+        $allowed_values = array("sku", "tax", "shipping", "discount", "store_credit");
         if (!in_array($this->container['type'], $allowed_values)) {
-            $invalid_properties[] = "invalid value for 'type', must be one of 'sku', 'tax', 'shipping', 'discount'.";
+            $invalid_properties[] = "invalid value for 'type', must be one of 'sku', 'tax', 'shipping', 'discount', 'store_credit'.";
         }
 
         if (!is_null($this->container['product_code']) && (strlen($this->container['product_code']) > 200)) {
@@ -203,13 +210,13 @@ class OrderItem implements ArrayAccess
         if ($this->container['amount'] === null) {
             return false;
         }
-        if ($this->container['quantity'] < 1) {
+        if ($this->container['quantity'] <= 0) {
             return false;
         }
         if ($this->container['type'] === null) {
             return false;
         }
-        $allowed_values = array("sku", "tax", "shipping", "discount");
+        $allowed_values = array("sku", "tax", "shipping", "discount", "store_credit");
         if (!in_array($this->container['type'], $allowed_values)) {
             return false;
         }
@@ -306,7 +313,7 @@ class OrderItem implements ArrayAccess
 
     /**
      * Gets quantity
-     * @return int
+     * @return float
      */
     public function getQuantity()
     {
@@ -315,14 +322,14 @@ class OrderItem implements ArrayAccess
 
     /**
      * Sets quantity
-     * @param int $quantity
+     * @param float $quantity
      * @return $this
      */
     public function setQuantity($quantity)
     {
 
-        if (!is_null($quantity) && ($quantity < 1)) {
-            throw new \InvalidArgumentException('invalid value for $quantity when calling OrderItem., must be bigger than or equal to 1.');
+        if (!is_null($quantity) && ($quantity <= 0)) {
+            throw new \InvalidArgumentException('invalid value for $quantity when calling OrderItem., must be bigger than 0.');
         }
 
         $this->container['quantity'] = $quantity;
@@ -346,9 +353,9 @@ class OrderItem implements ArrayAccess
      */
     public function setType($type)
     {
-        $allowed_values = array('sku', 'tax', 'shipping', 'discount');
+        $allowed_values = array('sku', 'tax', 'shipping', 'discount', 'store_credit');
         if ((!in_array($type, $allowed_values))) {
-            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'sku', 'tax', 'shipping', 'discount'");
+            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'sku', 'tax', 'shipping', 'discount', 'store_credit'");
         }
         $this->container['type'] = $type;
 
@@ -418,6 +425,27 @@ class OrderItem implements ArrayAccess
         }
 
         $this->container['product_code'] = $product_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets additional_details
+     * @return \zipMoney\Model\OrderItemAdditionalDetails[]
+     */
+    public function getAdditionalDetails()
+    {
+        return $this->container['additional_details'];
+    }
+
+    /**
+     * Sets additional_details
+     * @param \zipMoney\Model\OrderItemAdditionalDetails[] $additional_details
+     * @return $this
+     */
+    public function setAdditionalDetails($additional_details)
+    {
+        $this->container['additional_details'] = $additional_details;
 
         return $this;
     }

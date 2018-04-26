@@ -15,7 +15,7 @@ use \ArrayAccess;
 
 class Charge implements ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -27,7 +27,7 @@ class Charge implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = array(
+    protected static $zipTypes = array(
         'id' => 'string',
         'reference' => 'string',
         'amount' => 'float',
@@ -37,12 +37,13 @@ class Charge implements ArrayAccess
         'refunded_amount' => 'float',
         'created_date' => '\DateTime',
         'order' => '\zipMoney\Model\ChargeOrder',
-        'metadata' => 'object'
+        'metadata' => 'object',
+        'receipt_number' => 'string'
     );
 
-    public static function swaggerTypes()
+    public static function zipTypes()
     {
-        return self::$swaggerTypes;
+        return self::$zipTypes;
     }
 
     /**
@@ -59,7 +60,8 @@ class Charge implements ArrayAccess
         'refunded_amount' => 'refunded_amount',
         'created_date' => 'created_date',
         'order' => 'order',
-        'metadata' => 'metadata'
+        'metadata' => 'metadata',
+        'receipt_number' => 'receipt_number'
     );
 
 
@@ -77,7 +79,8 @@ class Charge implements ArrayAccess
         'refunded_amount' => 'setRefundedAmount',
         'created_date' => 'setCreatedDate',
         'order' => 'setOrder',
-        'metadata' => 'setMetadata'
+        'metadata' => 'setMetadata',
+        'receipt_number' => 'setReceiptNumber'
     );
 
 
@@ -95,7 +98,8 @@ class Charge implements ArrayAccess
         'refunded_amount' => 'getRefundedAmount',
         'created_date' => 'getCreatedDate',
         'order' => 'getOrder',
-        'metadata' => 'getMetadata'
+        'metadata' => 'getMetadata',
+        'receipt_number' => 'getReceiptNumber'
     );
 
     public static function attributeMap()
@@ -157,6 +161,7 @@ class Charge implements ArrayAccess
         $this->container['created_date'] = isset($data['created_date']) ? $data['created_date'] : null;
         $this->container['order'] = isset($data['order']) ? $data['order'] : null;
         $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
+        $this->container['receipt_number'] = isset($data['receipt_number']) ? $data['receipt_number'] : null;
     }
 
     /**
@@ -202,6 +207,9 @@ class Charge implements ArrayAccess
         if ($this->container['created_date'] === null) {
             $invalid_properties[] = "'created_date' can't be null";
         }
+        if ($this->container['receipt_number'] === null) {
+            $invalid_properties[] = "'receipt_number' can't be null";
+        }
         return $invalid_properties;
     }
 
@@ -243,6 +251,9 @@ class Charge implements ArrayAccess
             return false;
         }
         if ($this->container['created_date'] === null) {
+            return false;
+        }
+        if ($this->container['receipt_number'] === null) {
             return false;
         }
         return true;
@@ -469,6 +480,27 @@ class Charge implements ArrayAccess
     public function setMetadata($metadata)
     {
         $this->container['metadata'] = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Gets receipt_number
+     * @return string
+     */
+    public function getReceiptNumber()
+    {
+        return $this->container['receipt_number'];
+    }
+
+    /**
+     * Sets receipt_number
+     * @param string $receipt_number
+     * @return $this
+     */
+    public function setReceiptNumber($receipt_number)
+    {
+        $this->container['receipt_number'] = $receipt_number;
 
         return $this;
     }

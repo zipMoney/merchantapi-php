@@ -15,7 +15,7 @@ use \ArrayAccess;
 
 class Address implements ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -27,7 +27,7 @@ class Address implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = array(
+    protected static $zipTypes = array(
         'line1' => 'string',
         'line2' => 'string',
         'city' => 'string',
@@ -38,9 +38,9 @@ class Address implements ArrayAccess
         'last_name' => 'string'
     );
 
-    public static function swaggerTypes()
+    public static function zipTypes()
     {
-        return self::$swaggerTypes;
+        return self::$zipTypes;
     }
 
     /**

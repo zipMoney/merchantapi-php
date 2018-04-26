@@ -1,6 +1,6 @@
 <?php
 /**
- * CheckoutFeaturesTokenisation
+ * Settlement
  *
  * @category Class
  * @package  zipMoney
@@ -13,7 +13,7 @@ namespace zipMoney\Model;
 
 use \ArrayAccess;
 
-class CheckoutFeaturesTokenisation implements ArrayAccess
+class Settlement implements ArrayAccess
 {
     const DISCRIMINATOR = 'subclass';
 
@@ -21,14 +21,18 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Checkout_features_tokenisation';
+    protected static $swaggerModelName = 'settlement';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $zipTypes = array(
-        'required' => 'bool'
+        'id' => 'string',
+        'created' => 'string',
+        'amount' => 'float',
+        'currency' => 'string',
+        'transactions' => '\zipMoney\Model\SettlementTransactions[]'
     );
 
     public static function zipTypes()
@@ -41,7 +45,11 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'required' => 'required'
+        'id' => 'id',
+        'created' => 'created',
+        'amount' => 'amount',
+        'currency' => 'currency',
+        'transactions' => 'transactions'
     );
 
 
@@ -50,7 +58,11 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'required' => 'setRequired'
+        'id' => 'setId',
+        'created' => 'setCreated',
+        'amount' => 'setAmount',
+        'currency' => 'setCurrency',
+        'transactions' => 'setTransactions'
     );
 
 
@@ -59,7 +71,11 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'required' => 'getRequired'
+        'id' => 'getId',
+        'created' => 'getCreated',
+        'amount' => 'getAmount',
+        'currency' => 'getCurrency',
+        'transactions' => 'getTransactions'
     );
 
     public static function attributeMap()
@@ -93,7 +109,11 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['required'] = isset($data['required']) ? $data['required'] : true;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['created'] = isset($data['created']) ? $data['created'] : null;
+        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
+        $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
+        $this->container['transactions'] = isset($data['transactions']) ? $data['transactions'] : null;
     }
 
     /**
@@ -122,22 +142,106 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
 
 
     /**
-     * Gets required
-     * @return bool
+     * Gets id
+     * @return string
      */
-    public function getRequired()
+    public function getId()
     {
-        return $this->container['required'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets required
-     * @param bool $required States if the tokenisation is required to proceed with the checkout.
+     * Sets id
+     * @param string $id
      * @return $this
      */
-    public function setRequired($required)
+    public function setId($id)
     {
-        $this->container['required'] = $required;
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets created
+     * @return string
+     */
+    public function getCreated()
+    {
+        return $this->container['created'];
+    }
+
+    /**
+     * Sets created
+     * @param string $created
+     * @return $this
+     */
+    public function setCreated($created)
+    {
+        $this->container['created'] = $created;
+
+        return $this;
+    }
+
+    /**
+     * Gets amount
+     * @return float
+     */
+    public function getAmount()
+    {
+        return $this->container['amount'];
+    }
+
+    /**
+     * Sets amount
+     * @param float $amount
+     * @return $this
+     */
+    public function setAmount($amount)
+    {
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     * @param string $currency
+     * @return $this
+     */
+    public function setCurrency($currency)
+    {
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets transactions
+     * @return \zipMoney\Model\SettlementTransactions[]
+     */
+    public function getTransactions()
+    {
+        return $this->container['transactions'];
+    }
+
+    /**
+     * Sets transactions
+     * @param \zipMoney\Model\SettlementTransactions[] $transactions
+     * @return $this
+     */
+    public function setTransactions($transactions)
+    {
+        $this->container['transactions'] = $transactions;
 
         return $this;
     }

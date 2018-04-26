@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **settlementsGet**
-> settlementsGet($id)
+> \zipMoney\Model\Settlement settlementsGet($id)
 
 Retrieve a settlement
 
@@ -24,7 +24,8 @@ $api_instance = new zipMoney\Api\SettlementsApi();
 $id = "id_example"; // string | The settlement id
 
 try {
-    $api_instance->settlementsGet($id);
+    $result = $api_instance->settlementsGet($id);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SettlementsApi->settlementsGet: ', $e->getMessage(), PHP_EOL;
 }
@@ -39,7 +40,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**\zipMoney\Model\Settlement**](../Model/Settlement.md)
 
 ### Authorization
 

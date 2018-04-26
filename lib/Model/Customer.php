@@ -15,7 +15,7 @@ use \ArrayAccess;
 
 class Customer implements ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -27,7 +27,7 @@ class Customer implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = array(
+    protected static $zipTypes = array(
         'title' => 'string',
         'first_name' => 'string',
         'middle_name' => 'string',
@@ -38,9 +38,9 @@ class Customer implements ArrayAccess
         'gender' => 'string'
     );
 
-    public static function swaggerTypes()
+    public static function zipTypes()
     {
-        return self::$swaggerTypes;
+        return self::$zipTypes;
     }
 
     /**

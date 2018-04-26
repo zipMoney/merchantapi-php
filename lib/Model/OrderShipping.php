@@ -15,7 +15,7 @@ use \ArrayAccess;
 
 class OrderShipping implements ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -27,15 +27,15 @@ class OrderShipping implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = array(
+    protected static $zipTypes = array(
         'pickup' => 'bool',
         'tracking' => '\zipMoney\Model\OrderShippingTracking',
         'address' => '\zipMoney\Model\Address'
     );
 
-    public static function swaggerTypes()
+    public static function zipTypes()
     {
-        return self::$swaggerTypes;
+        return self::$zipTypes;
     }
 
     /**

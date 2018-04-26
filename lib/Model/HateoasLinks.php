@@ -1,6 +1,6 @@
 <?php
 /**
- * CheckoutFeaturesTokenisation
+ * HateoasLinks
  *
  * @category Class
  * @package  zipMoney
@@ -13,7 +13,7 @@ namespace zipMoney\Model;
 
 use \ArrayAccess;
 
-class CheckoutFeaturesTokenisation implements ArrayAccess
+class HateoasLinks implements ArrayAccess
 {
     const DISCRIMINATOR = 'subclass';
 
@@ -21,14 +21,14 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Checkout_features_tokenisation';
+    protected static $swaggerModelName = 'hateoas-links';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $zipTypes = array(
-        'required' => 'bool'
+        '_links' => '\zipMoney\Model\HateoaslinksLinks[]'
     );
 
     public static function zipTypes()
@@ -41,7 +41,7 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'required' => 'required'
+        '_links' => '_links'
     );
 
 
@@ -50,7 +50,7 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'required' => 'setRequired'
+        '_links' => 'setLinks'
     );
 
 
@@ -59,7 +59,7 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'required' => 'getRequired'
+        '_links' => 'getLinks'
     );
 
     public static function attributeMap()
@@ -93,7 +93,7 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['required'] = isset($data['required']) ? $data['required'] : true;
+        $this->container['_links'] = isset($data['_links']) ? $data['_links'] : null;
     }
 
     /**
@@ -122,22 +122,22 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
 
 
     /**
-     * Gets required
-     * @return bool
+     * Gets _links
+     * @return \zipMoney\Model\HateoaslinksLinks[]
      */
-    public function getRequired()
+    public function getLinks()
     {
-        return $this->container['required'];
+        return $this->container['_links'];
     }
 
     /**
-     * Sets required
-     * @param bool $required States if the tokenisation is required to proceed with the checkout.
+     * Sets _links
+     * @param \zipMoney\Model\HateoaslinksLinks[] $_links
      * @return $this
      */
-    public function setRequired($required)
+    public function setLinks($_links)
     {
-        $this->container['required'] = $required;
+        $this->container['_links'] = $_links;
 
         return $this;
     }

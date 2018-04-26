@@ -1,6 +1,6 @@
 <?php
 /**
- * CheckoutFeaturesTokenisation
+ * SettlementTransactions
  *
  * @category Class
  * @package  zipMoney
@@ -13,7 +13,7 @@ namespace zipMoney\Model;
 
 use \ArrayAccess;
 
-class CheckoutFeaturesTokenisation implements ArrayAccess
+class SettlementTransactions implements ArrayAccess
 {
     const DISCRIMINATOR = 'subclass';
 
@@ -21,14 +21,16 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Checkout_features_tokenisation';
+    protected static $swaggerModelName = 'settlement_transactions';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $zipTypes = array(
-        'required' => 'bool'
+        'id' => 'string',
+        'charge_id' => 'string',
+        '' => 'string'
     );
 
     public static function zipTypes()
@@ -41,7 +43,9 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'required' => 'required'
+        'id' => 'id',
+        'charge_id' => 'chargeId',
+        '' => ''
     );
 
 
@@ -50,7 +54,9 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'required' => 'setRequired'
+        'id' => 'setId',
+        'charge_id' => 'setChargeId',
+        '' => 'set'
     );
 
 
@@ -59,7 +65,9 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'required' => 'getRequired'
+        'id' => 'getId',
+        'charge_id' => 'getChargeId',
+        '' => 'get'
     );
 
     public static function attributeMap()
@@ -93,7 +101,9 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['required'] = isset($data['required']) ? $data['required'] : true;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['charge_id'] = isset($data['charge_id']) ? $data['charge_id'] : null;
+        $this->container[''] = isset($data['']) ? $data[''] : null;
     }
 
     /**
@@ -122,22 +132,64 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
 
 
     /**
-     * Gets required
-     * @return bool
+     * Gets id
+     * @return string
      */
-    public function getRequired()
+    public function getId()
     {
-        return $this->container['required'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets required
-     * @param bool $required States if the tokenisation is required to proceed with the checkout.
+     * Sets id
+     * @param string $id
      * @return $this
      */
-    public function setRequired($required)
+    public function setId($id)
     {
-        $this->container['required'] = $required;
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets charge_id
+     * @return string
+     */
+    public function getChargeId()
+    {
+        return $this->container['charge_id'];
+    }
+
+    /**
+     * Sets charge_id
+     * @param string $charge_id
+     * @return $this
+     */
+    public function setChargeId($charge_id)
+    {
+        $this->container['charge_id'] = $charge_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets 
+     * @return string
+     */
+    public function get()
+    {
+        return $this->container[''];
+    }
+
+    /**
+     * Sets 
+     * @param string $
+     * @return $this
+     */
+    public function set($)
+    {
+        $this->container[''] = $;
 
         return $this;
     }

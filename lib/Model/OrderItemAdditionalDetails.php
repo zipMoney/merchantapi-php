@@ -1,6 +1,6 @@
 <?php
 /**
- * CheckoutFeaturesTokenisation
+ * OrderItemAdditionalDetails
  *
  * @category Class
  * @package  zipMoney
@@ -13,7 +13,7 @@ namespace zipMoney\Model;
 
 use \ArrayAccess;
 
-class CheckoutFeaturesTokenisation implements ArrayAccess
+class OrderItemAdditionalDetails implements ArrayAccess
 {
     const DISCRIMINATOR = 'subclass';
 
@@ -21,14 +21,14 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Checkout_features_tokenisation';
+    protected static $swaggerModelName = 'OrderItem_additional_details';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $zipTypes = array(
-        'required' => 'bool'
+        'type' => 'string'
     );
 
     public static function zipTypes()
@@ -41,7 +41,7 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'required' => 'required'
+        'type' => 'type'
     );
 
 
@@ -50,7 +50,7 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'required' => 'setRequired'
+        'type' => 'setType'
     );
 
 
@@ -59,7 +59,7 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'required' => 'getRequired'
+        'type' => 'getType'
     );
 
     public static function attributeMap()
@@ -77,8 +77,20 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
         return self::$getters;
     }
 
+    const TYPE_FLIGHTS = 'Flights';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return array(
+            self::TYPE_FLIGHTS,
+        );
+    }
     
 
     /**
@@ -93,7 +105,7 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['required'] = isset($data['required']) ? $data['required'] : true;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
     }
 
     /**
@@ -104,6 +116,11 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = array();
+
+        $allowed_values = array("Flights");
+        if (!in_array($this->container['type'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'type', must be one of 'Flights'.";
+        }
 
         return $invalid_properties;
     }
@@ -117,27 +134,35 @@ class CheckoutFeaturesTokenisation implements ArrayAccess
     public function valid()
     {
 
+        $allowed_values = array("Flights");
+        if (!in_array($this->container['type'], $allowed_values)) {
+            return false;
+        }
         return true;
     }
 
 
     /**
-     * Gets required
-     * @return bool
+     * Gets type
+     * @return string
      */
-    public function getRequired()
+    public function getType()
     {
-        return $this->container['required'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets required
-     * @param bool $required States if the tokenisation is required to proceed with the checkout.
+     * Sets type
+     * @param string $type
      * @return $this
      */
-    public function setRequired($required)
+    public function setType($type)
     {
-        $this->container['required'] = $required;
+        $allowed_values = array('Flights');
+        if (!is_null($type) && (!in_array($type, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'Flights'");
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }
