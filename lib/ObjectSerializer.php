@@ -42,7 +42,7 @@ class ObjectSerializer
         } elseif (is_object($data)) {                
             $attr = $data::attributeMap();
             $values = array();
-            foreach (array_keys($data::swaggerTypes()) as $property) {
+            foreach (array_keys($data::zipTypes()) as $property) {
                 $getterArr = $data::getters();
                 $getter = $getterArr[$property];
                 if ($data->$getter() !== null) {
@@ -263,7 +263,7 @@ class ObjectSerializer
                 }
             }
             $instance = new $class();
-            foreach ($instance::swaggerTypes() as $property => $type) {
+            foreach ($instance::zipTypes() as $property => $type) {
                 $propertySetters = $instance::setters();
                 $propertySetter = $propertySetters[$property];
 
