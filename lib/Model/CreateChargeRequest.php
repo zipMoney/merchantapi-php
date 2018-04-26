@@ -15,7 +15,7 @@ use \ArrayAccess;
 
 class CreateChargeRequest implements ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -27,7 +27,7 @@ class CreateChargeRequest implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = array(
+    protected static $zipTypes = array(
         'authority' => '\zipMoney\Model\Authority',
         'reference' => 'string',
         'amount' => 'float',
@@ -37,9 +37,9 @@ class CreateChargeRequest implements ArrayAccess
         'metadata' => 'object'
     );
 
-    public static function swaggerTypes()
+    public static function zipTypes()
     {
-        return self::$swaggerTypes;
+        return self::$zipTypes;
     }
 
     /**

@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **previous_chargeback** | **bool** | Has the shopper had a previous chargeback? | [optional] 
 **currency** | **string** | The currency of all all amount values | [optional] 
 **last_login** | [**\DateTime**](\DateTime.md) | The date at which the shopper last logged in to your store. | [optional] 
+**has_previous_purchases** | **bool** | Does this customer have previous purchases at your store? | [optional] 
+**fraud_check_result** | **string** | Merchant system&#39;s fraud check result | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

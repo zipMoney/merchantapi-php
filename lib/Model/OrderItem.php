@@ -15,7 +15,7 @@ use \ArrayAccess;
 
 class OrderItem implements ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -27,7 +27,7 @@ class OrderItem implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = array(
+    protected static $zipTypes = array(
         'name' => 'string',
         'amount' => 'float',
         'reference' => 'string',
@@ -36,12 +36,13 @@ class OrderItem implements ArrayAccess
         'type' => 'string',
         'image_uri' => 'string',
         'item_uri' => 'string',
-        'product_code' => 'string'
+        'product_code' => 'string',
+        'additional_details' => '\zipMoney\Model\OrderItemAdditionalDetails[]'
     );
 
-    public static function swaggerTypes()
+    public static function zipTypes()
     {
-        return self::$swaggerTypes;
+        return self::$zipTypes;
     }
 
     /**
@@ -57,7 +58,8 @@ class OrderItem implements ArrayAccess
         'type' => 'type',
         'image_uri' => 'image_uri',
         'item_uri' => 'item_uri',
-        'product_code' => 'product_code'
+        'product_code' => 'product_code',
+        'additional_details' => 'additional_details'
     );
 
 
@@ -74,7 +76,8 @@ class OrderItem implements ArrayAccess
         'type' => 'setType',
         'image_uri' => 'setImageUri',
         'item_uri' => 'setItemUri',
-        'product_code' => 'setProductCode'
+        'product_code' => 'setProductCode',
+        'additional_details' => 'setAdditionalDetails'
     );
 
 
@@ -91,7 +94,8 @@ class OrderItem implements ArrayAccess
         'type' => 'getType',
         'image_uri' => 'getImageUri',
         'item_uri' => 'getItemUri',
-        'product_code' => 'getProductCode'
+        'product_code' => 'getProductCode',
+        'additional_details' => 'getAdditionalDetails'
     );
 
     public static function attributeMap()
@@ -154,6 +158,7 @@ class OrderItem implements ArrayAccess
         $this->container['image_uri'] = isset($data['image_uri']) ? $data['image_uri'] : null;
         $this->container['item_uri'] = isset($data['item_uri']) ? $data['item_uri'] : null;
         $this->container['product_code'] = isset($data['product_code']) ? $data['product_code'] : null;
+        $this->container['additional_details'] = isset($data['additional_details']) ? $data['additional_details'] : null;
     }
 
     /**
@@ -420,6 +425,27 @@ class OrderItem implements ArrayAccess
         }
 
         $this->container['product_code'] = $product_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets additional_details
+     * @return \zipMoney\Model\OrderItemAdditionalDetails[]
+     */
+    public function getAdditionalDetails()
+    {
+        return $this->container['additional_details'];
+    }
+
+    /**
+     * Sets additional_details
+     * @param \zipMoney\Model\OrderItemAdditionalDetails[] $additional_details
+     * @return $this
+     */
+    public function setAdditionalDetails($additional_details)
+    {
+        $this->container['additional_details'] = $additional_details;
 
         return $this;
     }

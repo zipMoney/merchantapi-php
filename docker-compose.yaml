@@ -1,0 +1,9 @@
+
+version: "3"
+
+services:
+  merchantapi-php:    
+    build: ./
+    volumes:
+      - ./:/usr/src/myapp
+    

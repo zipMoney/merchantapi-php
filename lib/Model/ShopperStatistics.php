@@ -15,7 +15,7 @@ use \ArrayAccess;
 
 class ShopperStatistics implements ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -27,7 +27,7 @@ class ShopperStatistics implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = array(
+    protected static $zipTypes = array(
         'account_created' => '\DateTime',
         'sales_total_count' => 'int',
         'sales_total_amount' => 'float',
@@ -36,12 +36,14 @@ class ShopperStatistics implements ArrayAccess
         'refunds_total_amount' => 'float',
         'previous_chargeback' => 'bool',
         'currency' => 'string',
-        'last_login' => '\DateTime'
+        'last_login' => '\DateTime',
+        'has_previous_purchases' => 'bool',
+        'fraud_check_result' => 'string'
     );
 
-    public static function swaggerTypes()
+    public static function zipTypes()
     {
-        return self::$swaggerTypes;
+        return self::$zipTypes;
     }
 
     /**
@@ -57,7 +59,9 @@ class ShopperStatistics implements ArrayAccess
         'refunds_total_amount' => 'refunds_total_amount',
         'previous_chargeback' => 'previous_chargeback',
         'currency' => 'currency',
-        'last_login' => 'last_login'
+        'last_login' => 'last_login',
+        'has_previous_purchases' => 'has_previous_purchases',
+        'fraud_check_result' => 'fraud_check_result'
     );
 
 
@@ -74,7 +78,9 @@ class ShopperStatistics implements ArrayAccess
         'refunds_total_amount' => 'setRefundsTotalAmount',
         'previous_chargeback' => 'setPreviousChargeback',
         'currency' => 'setCurrency',
-        'last_login' => 'setLastLogin'
+        'last_login' => 'setLastLogin',
+        'has_previous_purchases' => 'setHasPreviousPurchases',
+        'fraud_check_result' => 'setFraudCheckResult'
     );
 
 
@@ -91,7 +97,9 @@ class ShopperStatistics implements ArrayAccess
         'refunds_total_amount' => 'getRefundsTotalAmount',
         'previous_chargeback' => 'getPreviousChargeback',
         'currency' => 'getCurrency',
-        'last_login' => 'getLastLogin'
+        'last_login' => 'getLastLogin',
+        'has_previous_purchases' => 'getHasPreviousPurchases',
+        'fraud_check_result' => 'getFraudCheckResult'
     );
 
     public static function attributeMap()
@@ -111,6 +119,9 @@ class ShopperStatistics implements ArrayAccess
 
     const CURRENCY_AUD = 'AUD';
     const CURRENCY_NZD = 'NZD';
+    const FRAUD_CHECK_RESULT_PASS = 'pass';
+    const FRAUD_CHECK_RESULT_FAIL = 'fail';
+    const FRAUD_CHECK_RESULT_UNKNOWN = 'unknown';
     
 
     
@@ -123,6 +134,19 @@ class ShopperStatistics implements ArrayAccess
         return array(
             self::CURRENCY_AUD,
             self::CURRENCY_NZD,
+        );
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getFraudCheckResultAllowableValues()
+    {
+        return array(
+            self::FRAUD_CHECK_RESULT_PASS,
+            self::FRAUD_CHECK_RESULT_FAIL,
+            self::FRAUD_CHECK_RESULT_UNKNOWN,
         );
     }
     
@@ -148,6 +172,8 @@ class ShopperStatistics implements ArrayAccess
         $this->container['previous_chargeback'] = isset($data['previous_chargeback']) ? $data['previous_chargeback'] : null;
         $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
         $this->container['last_login'] = isset($data['last_login']) ? $data['last_login'] : null;
+        $this->container['has_previous_purchases'] = isset($data['has_previous_purchases']) ? $data['has_previous_purchases'] : null;
+        $this->container['fraud_check_result'] = isset($data['fraud_check_result']) ? $data['fraud_check_result'] : null;
     }
 
     /**
@@ -164,6 +190,11 @@ class ShopperStatistics implements ArrayAccess
             $invalid_properties[] = "invalid value for 'currency', must be one of 'AUD', 'NZD'.";
         }
 
+        $allowed_values = array("pass", "fail", "unknown");
+        if (!in_array($this->container['fraud_check_result'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'fraud_check_result', must be one of 'pass', 'fail', 'unknown'.";
+        }
+
         return $invalid_properties;
     }
 
@@ -178,6 +209,10 @@ class ShopperStatistics implements ArrayAccess
 
         $allowed_values = array("AUD", "NZD");
         if (!in_array($this->container['currency'], $allowed_values)) {
+            return false;
+        }
+        $allowed_values = array("pass", "fail", "unknown");
+        if (!in_array($this->container['fraud_check_result'], $allowed_values)) {
             return false;
         }
         return true;
@@ -373,6 +408,52 @@ class ShopperStatistics implements ArrayAccess
     public function setLastLogin($last_login)
     {
         $this->container['last_login'] = $last_login;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_previous_purchases
+     * @return bool
+     */
+    public function getHasPreviousPurchases()
+    {
+        return $this->container['has_previous_purchases'];
+    }
+
+    /**
+     * Sets has_previous_purchases
+     * @param bool $has_previous_purchases Does this customer have previous purchases at your store?
+     * @return $this
+     */
+    public function setHasPreviousPurchases($has_previous_purchases)
+    {
+        $this->container['has_previous_purchases'] = $has_previous_purchases;
+
+        return $this;
+    }
+
+    /**
+     * Gets fraud_check_result
+     * @return string
+     */
+    public function getFraudCheckResult()
+    {
+        return $this->container['fraud_check_result'];
+    }
+
+    /**
+     * Sets fraud_check_result
+     * @param string $fraud_check_result Merchant system's fraud check result
+     * @return $this
+     */
+    public function setFraudCheckResult($fraud_check_result)
+    {
+        $allowed_values = array('pass', 'fail', 'unknown');
+        if (!is_null($fraud_check_result) && (!in_array($fraud_check_result, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'fraud_check_result', must be one of 'pass', 'fail', 'unknown'");
+        }
+        $this->container['fraud_check_result'] = $fraud_check_result;
 
         return $this;
     }

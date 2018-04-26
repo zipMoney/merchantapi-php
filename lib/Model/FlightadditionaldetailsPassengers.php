@@ -1,6 +1,6 @@
 <?php
 /**
- * Refund
+ * FlightadditionaldetailsPassengers
  *
  * @category Class
  * @package  zipMoney
@@ -13,7 +13,7 @@ namespace zipMoney\Model;
 
 use \ArrayAccess;
 
-class Refund implements ArrayAccess
+class FlightadditionaldetailsPassengers implements ArrayAccess
 {
     const DISCRIMINATOR = 'subclass';
 
@@ -21,19 +21,19 @@ class Refund implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Refund';
+    protected static $swaggerModelName = 'flightadditionaldetails_passengers';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $zipTypes = array(
-        'id' => 'string',
-        'charge_id' => 'string',
-        'reason' => 'string',
-        'amount' => 'float',
-        'created' => '\DateTime',
-        'metadata' => 'object'
+        'title' => 'string',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'gender' => 'string',
+        'date_of_birth' => '\DateTime',
+        'seat_number' => 'string'
     );
 
     public static function zipTypes()
@@ -46,12 +46,12 @@ class Refund implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        'id' => 'id',
-        'charge_id' => 'charge_id',
-        'reason' => 'reason',
-        'amount' => 'amount',
-        'created' => 'created',
-        'metadata' => 'metadata'
+        'title' => 'title',
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'gender' => 'gender',
+        'date_of_birth' => 'date_of_birth',
+        'seat_number' => 'seat_number'
     );
 
 
@@ -60,12 +60,12 @@ class Refund implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        'id' => 'setId',
-        'charge_id' => 'setChargeId',
-        'reason' => 'setReason',
-        'amount' => 'setAmount',
-        'created' => 'setCreated',
-        'metadata' => 'setMetadata'
+        'title' => 'setTitle',
+        'first_name' => 'setFirstName',
+        'last_name' => 'setLastName',
+        'gender' => 'setGender',
+        'date_of_birth' => 'setDateOfBirth',
+        'seat_number' => 'setSeatNumber'
     );
 
 
@@ -74,12 +74,12 @@ class Refund implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        'id' => 'getId',
-        'charge_id' => 'getChargeId',
-        'reason' => 'getReason',
-        'amount' => 'getAmount',
-        'created' => 'getCreated',
-        'metadata' => 'getMetadata'
+        'title' => 'getTitle',
+        'first_name' => 'getFirstName',
+        'last_name' => 'getLastName',
+        'gender' => 'getGender',
+        'date_of_birth' => 'getDateOfBirth',
+        'seat_number' => 'getSeatNumber'
     );
 
     public static function attributeMap()
@@ -113,12 +113,12 @@ class Refund implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['charge_id'] = isset($data['charge_id']) ? $data['charge_id'] : null;
-        $this->container['reason'] = isset($data['reason']) ? $data['reason'] : null;
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
-        $this->container['created'] = isset($data['created']) ? $data['created'] : null;
-        $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
+        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
+        $this->container['first_name'] = isset($data['first_name']) ? $data['first_name'] : null;
+        $this->container['last_name'] = isset($data['last_name']) ? $data['last_name'] : null;
+        $this->container['gender'] = isset($data['gender']) ? $data['gender'] : null;
+        $this->container['date_of_birth'] = isset($data['date_of_birth']) ? $data['date_of_birth'] : null;
+        $this->container['seat_number'] = isset($data['seat_number']) ? $data['seat_number'] : null;
     }
 
     /**
@@ -130,17 +130,11 @@ class Refund implements ArrayAccess
     {
         $invalid_properties = array();
 
-        if ($this->container['id'] === null) {
-            $invalid_properties[] = "'id' can't be null";
+        if ($this->container['first_name'] === null) {
+            $invalid_properties[] = "'first_name' can't be null";
         }
-        if ($this->container['reason'] === null) {
-            $invalid_properties[] = "'reason' can't be null";
-        }
-        if ($this->container['amount'] === null) {
-            $invalid_properties[] = "'amount' can't be null";
-        }
-        if ($this->container['created'] === null) {
-            $invalid_properties[] = "'created' can't be null";
+        if ($this->container['last_name'] === null) {
+            $invalid_properties[] = "'last_name' can't be null";
         }
         return $invalid_properties;
     }
@@ -154,16 +148,10 @@ class Refund implements ArrayAccess
     public function valid()
     {
 
-        if ($this->container['id'] === null) {
+        if ($this->container['first_name'] === null) {
             return false;
         }
-        if ($this->container['reason'] === null) {
-            return false;
-        }
-        if ($this->container['amount'] === null) {
-            return false;
-        }
-        if ($this->container['created'] === null) {
+        if ($this->container['last_name'] === null) {
             return false;
         }
         return true;
@@ -171,127 +159,127 @@ class Refund implements ArrayAccess
 
 
     /**
-     * Gets id
+     * Gets title
      * @return string
      */
-    public function getId()
+    public function getTitle()
     {
-        return $this->container['id'];
+        return $this->container['title'];
     }
 
     /**
-     * Sets id
-     * @param string $id The id of the refund
+     * Sets title
+     * @param string $title
      * @return $this
      */
-    public function setId($id)
+    public function setTitle($title)
     {
-        $this->container['id'] = $id;
+        $this->container['title'] = $title;
 
         return $this;
     }
 
     /**
-     * Gets charge_id
+     * Gets first_name
      * @return string
      */
-    public function getChargeId()
+    public function getFirstName()
     {
-        return $this->container['charge_id'];
+        return $this->container['first_name'];
     }
 
     /**
-     * Sets charge_id
-     * @param string $charge_id The original charge that relates to this refund
+     * Sets first_name
+     * @param string $first_name
      * @return $this
      */
-    public function setChargeId($charge_id)
+    public function setFirstName($first_name)
     {
-        $this->container['charge_id'] = $charge_id;
+        $this->container['first_name'] = $first_name;
 
         return $this;
     }
 
     /**
-     * Gets reason
+     * Gets last_name
      * @return string
      */
-    public function getReason()
+    public function getLastName()
     {
-        return $this->container['reason'];
+        return $this->container['last_name'];
     }
 
     /**
-     * Sets reason
-     * @param string $reason The reason for the refund
+     * Sets last_name
+     * @param string $last_name
      * @return $this
      */
-    public function setReason($reason)
+    public function setLastName($last_name)
     {
-        $this->container['reason'] = $reason;
+        $this->container['last_name'] = $last_name;
 
         return $this;
     }
 
     /**
-     * Gets amount
-     * @return float
+     * Gets gender
+     * @return string
      */
-    public function getAmount()
+    public function getGender()
     {
-        return $this->container['amount'];
+        return $this->container['gender'];
     }
 
     /**
-     * Sets amount
-     * @param float $amount The amount that was refunded
+     * Sets gender
+     * @param string $gender
      * @return $this
      */
-    public function setAmount($amount)
+    public function setGender($gender)
     {
-        $this->container['amount'] = $amount;
+        $this->container['gender'] = $gender;
 
         return $this;
     }
 
     /**
-     * Gets created
+     * Gets date_of_birth
      * @return \DateTime
      */
-    public function getCreated()
+    public function getDateOfBirth()
     {
-        return $this->container['created'];
+        return $this->container['date_of_birth'];
     }
 
     /**
-     * Sets created
-     * @param \DateTime $created The date the refund was created
+     * Sets date_of_birth
+     * @param \DateTime $date_of_birth
      * @return $this
      */
-    public function setCreated($created)
+    public function setDateOfBirth($date_of_birth)
     {
-        $this->container['created'] = $created;
+        $this->container['date_of_birth'] = $date_of_birth;
 
         return $this;
     }
 
     /**
-     * Gets metadata
-     * @return object
+     * Gets seat_number
+     * @return string
      */
-    public function getMetadata()
+    public function getSeatNumber()
     {
-        return $this->container['metadata'];
+        return $this->container['seat_number'];
     }
 
     /**
-     * Sets metadata
-     * @param object $metadata Any additional metadata
+     * Sets seat_number
+     * @param string $seat_number
      * @return $this
      */
-    public function setMetadata($metadata)
+    public function setSeatNumber($seat_number)
     {
-        $this->container['metadata'] = $metadata;
+        $this->container['seat_number'] = $seat_number;
 
         return $this;
     }

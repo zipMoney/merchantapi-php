@@ -15,7 +15,7 @@ use \ArrayAccess;
 
 class CheckoutOrder implements ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -27,7 +27,7 @@ class CheckoutOrder implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = array(
+    protected static $zipTypes = array(
         'reference' => 'string',
         'amount' => 'float',
         'currency' => 'string',
@@ -36,9 +36,9 @@ class CheckoutOrder implements ArrayAccess
         'cart_reference' => 'string'
     );
 
-    public static function swaggerTypes()
+    public static function zipTypes()
     {
-        return self::$swaggerTypes;
+        return self::$zipTypes;
     }
 
     /**

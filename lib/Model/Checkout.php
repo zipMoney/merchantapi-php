@@ -15,7 +15,7 @@ use \ArrayAccess;
 
 class Checkout implements ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -27,7 +27,7 @@ class Checkout implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = array(
+    protected static $zipTypes = array(
         'id' => 'string',
         'uri' => 'string',
         'type' => 'string',
@@ -41,9 +41,9 @@ class Checkout implements ArrayAccess
         'metadata' => '\zipMoney\Model\Metadata'
     );
 
-    public static function swaggerTypes()
+    public static function zipTypes()
     {
-        return self::$swaggerTypes;
+        return self::$zipTypes;
     }
 
     /**
@@ -123,6 +123,7 @@ class Checkout implements ArrayAccess
     const STATE_EXPIRED = 'expired';
     const STATE_APPROVED = 'approved';
     const STATE_COMPLETED = 'completed';
+    const STATE_CANCELLED = 'cancelled';
     
 
     
@@ -149,6 +150,7 @@ class Checkout implements ArrayAccess
             self::STATE_EXPIRED,
             self::STATE_APPROVED,
             self::STATE_COMPLETED,
+            self::STATE_CANCELLED,
         );
     }
     
@@ -204,9 +206,9 @@ class Checkout implements ArrayAccess
         if ($this->container['state'] === null) {
             $invalid_properties[] = "'state' can't be null";
         }
-        $allowed_values = array("created", "expired", "approved", "completed");
+        $allowed_values = array("created", "expired", "approved", "completed", "cancelled");
         if (!in_array($this->container['state'], $allowed_values)) {
-            $invalid_properties[] = "invalid value for 'state', must be one of 'created', 'expired', 'approved', 'completed'.";
+            $invalid_properties[] = "invalid value for 'state', must be one of 'created', 'expired', 'approved', 'completed', 'cancelled'.";
         }
 
         return $invalid_properties;
@@ -237,7 +239,7 @@ class Checkout implements ArrayAccess
         if ($this->container['state'] === null) {
             return false;
         }
-        $allowed_values = array("created", "expired", "approved", "completed");
+        $allowed_values = array("created", "expired", "approved", "completed", "cancelled");
         if (!in_array($this->container['state'], $allowed_values)) {
             return false;
         }
@@ -433,9 +435,9 @@ class Checkout implements ArrayAccess
      */
     public function setState($state)
     {
-        $allowed_values = array('created', 'expired', 'approved', 'completed');
+        $allowed_values = array('created', 'expired', 'approved', 'completed', 'cancelled');
         if ((!in_array($state, $allowed_values))) {
-            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'created', 'expired', 'approved', 'completed'");
+            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'created', 'expired', 'approved', 'completed', 'cancelled'");
         }
         $this->container['state'] = $state;
 
