@@ -120,6 +120,7 @@ class Charge implements ArrayAccess
     const STATE_AUTHORISED = 'authorised';
     const STATE_CAPTURED = 'captured';
     const STATE_CANCELLED = 'cancelled';
+    const STATE_DECLINED = 'declined';
     const STATE_REFUNDED = 'refunded';
     
 
@@ -134,6 +135,7 @@ class Charge implements ArrayAccess
             self::STATE_AUTHORISED,
             self::STATE_CAPTURED,
             self::STATE_CANCELLED,
+            self::STATE_DECLINED,
             self::STATE_REFUNDED,
         );
     }
@@ -185,9 +187,9 @@ class Charge implements ArrayAccess
         if ($this->container['state'] === null) {
             $invalid_properties[] = "'state' can't be null";
         }
-        $allowed_values = array("authorised", "captured", "cancelled", "refunded");
+        $allowed_values = array("authorised", "captured", "cancelled", "refunded", "declined");
         if (!in_array($this->container['state'], $allowed_values)) {
-            $invalid_properties[] = "invalid value for 'state', must be one of 'authorised', 'captured', 'cancelled', 'refunded'.";
+            $invalid_properties[] = "invalid value for 'state', must be one of 'authorised', 'captured', 'cancelled', 'refunded', 'declined'.";
         }
 
         if ($this->container['captured_amount'] === null) {
@@ -234,7 +236,7 @@ class Charge implements ArrayAccess
         if ($this->container['state'] === null) {
             return false;
         }
-        $allowed_values = array("authorised", "captured", "cancelled", "refunded");
+        $allowed_values = array("authorised", "captured", "cancelled", "refunded", "declined");
         if (!in_array($this->container['state'], $allowed_values)) {
             return false;
         }
@@ -360,9 +362,9 @@ class Charge implements ArrayAccess
      */
     public function setState($state)
     {
-        $allowed_values = array('authorised', 'captured', 'cancelled', 'refunded');
+        $allowed_values = array('authorised', 'captured', 'cancelled', 'refunded', 'declined');
         if ((!in_array($state, $allowed_values))) {
-            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'authorised', 'captured', 'cancelled', 'refunded'");
+            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'authorised', 'captured', 'cancelled', 'refunded', 'declined'");
         }
         $this->container['state'] = $state;
 
