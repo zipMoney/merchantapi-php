@@ -81,14 +81,13 @@ class Configuration
     /**
      * The environments
      *
-     * @var string
+     * @var array
      */
     protected $supportedEnvironments = array(
-                                    'sandbox' 
-                                        => array( "host" => "https://api.sandbox.zipmoney.com.au/merchant/v1"),
-                                    "production" 
-                                        => array( "host" => 'https://api.zipmoney.com.au/merchant/v1' )
-                                    );
+        "sandbox" => array("host" => "https://api.sandbox.zipmoney.com.au/merchant/v1"),
+        "production" => array("host" => 'https://api.zipmoney.com.au/merchant/v1')
+    );
+
     /**
      * The default enviornment to be used
      *
@@ -101,7 +100,7 @@ class Configuration
      *
      * @var string
      */
-    protected $curlTimeout = 10;
+    protected $curlTimeout = 0;
     
     /**
      * Number of retries allowed if the first one fails. 
