@@ -4,3 +4,4 @@ git_push.sh
 /vendor
 *.lock
 *.ini
+/nbproject/private/
