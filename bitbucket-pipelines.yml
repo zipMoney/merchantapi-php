@@ -1,22 +1,17 @@
 image: php:7.1.1
 
 pipelines:
-  default:
+  develop:
     - step:
+        name: Deploy to Test
+        caches:
+          - composer
+        deployment: test
         script:
-          - apt-get update && apt-get install -y unzip git
+          - echo "Deploying to Test"
           # - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           # - composer install
-  pull-requests:
-    develop:
-      - step:
-          name: Deploy to Test
-          caches:
-            - composer
-          deployment: test
-          script:
-            - echo "Deploying to Test"
-            - sh ./build/shell/deploy.sh
+          - sh ./build/shell/deploy.sh
   branches:
     master: # Test, Build and Deploy
        - step:

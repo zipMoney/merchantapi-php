@@ -9,7 +9,7 @@
 # RELEASE_VERSION="v${RELEASE_VERSION_NUMBER}"
 
 # # Add release tag
-# git tag -a ${RELEASE_VERSION} -m "Releasing version ${RELEASE_VERSION}" 
+# git tag -a ${RELEASE_VERSION} -m "Releasing version ${RELEASE_VERSION}"
 # git push origin ${RELEASE_VERSION}
 
 # # create release branch
