@@ -1,9 +1,9 @@
 {
     "name": "zipmoney/merchantapi-php",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "",
     "keywords": [
-       "zipmoney",
+        "zipmoney",
         "zippay",
         "zipcredit",
         "merchantapi",
@@ -13,12 +13,13 @@
     ],
     "homepage": "http://zipmoney.com.au",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "zipMoney Payments Pty Ltd.",
-            "homepage": "https://github.com/zipMoney/merchantapi-php"
-        }
-    ],
+    "authors": [{
+        "name": "zipMoney Payments Pty Ltd.",
+        "homepage": "https://github.com/zipMoney/merchantapi-php"
+    }],
+    "scripts": {
+        "deploy": "sh ./build/shell/deploy.sh"
+    },
     "require": {
         "php": ">=5.3",
         "ext-curl": "*",
@@ -30,9 +31,13 @@
         "friendsofphp/php-cs-fixer": "~1.12"
     },
     "autoload": {
-        "psr-4": { "zipMoney\\" : "lib/" }
+        "psr-4": {
+            "zipMoney\\": "lib/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "zipMoney\\" : "test/" }
+        "psr-4": {
+            "zipMoney\\": "test/"
+        }
     }
 }
