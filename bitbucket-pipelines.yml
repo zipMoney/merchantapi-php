@@ -12,7 +12,10 @@ pipelines:
                       - echo "Deploying to Test"
                       # - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
                       # - composer install
-                      - sh ./build/shell/deploy.sh
+                      - git remote add github ${GITHUB_REPO}
+                      - git push github master
+                      - git push github release/${RELEASE_VERSION_NUMBER}
+                      - git push --tags github
     branches:
         master: # Test, Build and Deploy
             - step:
