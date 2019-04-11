@@ -18,7 +18,7 @@
         "homepage": "https://github.com/zipMoney/merchantapi-php"
     }],
     "scripts": {
-        "deploy": "sh ./build/shell/deploy.sh"
+        "publish": "sh ./build/shell/publish.sh"
     },
     "require": {
         "php": ">=5.3",
