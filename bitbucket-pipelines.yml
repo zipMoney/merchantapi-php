@@ -4,19 +4,13 @@ pipelines:
   pull-requests:
     develop:
       - step:
-          name: Unit Test
-          caches:
-            - composer
-          script:
-            - echo "Running Unit Test"
-      - step:
           name: Deploy to Test
           caches:
             - composer
           deployment: test
           script:
+            - apt-get update && apt-get install -y unzip git
             - echo "Deploying to Test"
-            - sh ./build/shell/install.sh
             - sh ./build/shell/deploy.sh
   branches:
     master: # Test, Build and Deploy
