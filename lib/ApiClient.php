@@ -143,7 +143,7 @@ class ApiClient
         if ($this->config->getCurlConnectTimeout() != 0) {
             curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, $this->config->getCurlConnectTimeout());
         }
-        
+
         // return the result on success, rather than just true
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
@@ -200,26 +200,21 @@ class ApiClient
         // Set user agent
         curl_setopt($curl, CURLOPT_USERAGENT, $this->config->getUserAgent());
 
-        // debugging for curl
-        if ($this->config->getDebug()) {
-            curl_setopt($curl, CURLOPT_VERBOSE, 1);
-            curl_setopt($curl, CURLOPT_STDERR, fopen($this->config->getDebugFile(), 'a'));
-        } else {
-            curl_setopt($curl, CURLOPT_VERBOSE, 0);
-        }
+        // disable debugging for curl
+        curl_setopt($curl, CURLOPT_VERBOSE, 0);
 
         // obtain the HTTP response headers
         curl_setopt($curl, CURLOPT_HEADER, 1);
-        
-        $num_retries = $this->config->getCurlNumRetries()?$this->config->getCurlNumRetries():0;
+
+        $num_retries = $this->config->getCurlNumRetries() ? $this->config->getCurlNumRetries() : 0;
         $count = 0;
 
         do {
-            
+
             if($count > 0 && $this->config->getRetryInterval() > 0){
                 sleep($this->config->getRetryInterval());
             }
-            
+
             // Make the request
             $response = curl_exec($curl);
             $http_header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
@@ -229,9 +224,9 @@ class ApiClient
             $count++;
             $msg = curl_error($curl);
 
-        } while (($count <= $num_retries) && 
-                  ( $response_info['http_code'] === 0 && empty($msg) ) && 
-                  !empty($headerParams['Idempotency-Key'])); 
+        } while (($count <= $num_retries) &&
+                  ( $response_info['http_code'] === 0 && empty($msg) ) &&
+                  !empty($headerParams['Idempotency-Key']));
 
 
         // Handle the response
