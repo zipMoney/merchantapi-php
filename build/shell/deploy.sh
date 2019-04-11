@@ -22,8 +22,8 @@
 ##########################################################
 
 # curl -u HenryFan-Zip:a692702957a538c30d389a033d013b7c22c43143 https://api.github.com/user
-curl -u ${GITHUB_USERNAME}:${GITHUB_ACCESS_TOKEN} https://api.github.com/user
+# curl -u ${GITHUB_USERNAME}:${GITHUB_ACCESS_TOKEN} https://api.github.com/user
 git remote add github ${GITHUB_REPO}
 git push github master
-git push github release/${RELEASE_VERSION_NUMBER}
+# git push github release/${RELEASE_VERSION_NUMBER}
 git push --tags github
