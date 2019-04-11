@@ -1,6 +1,12 @@
 image: php:7.1.1
 
 pipelines:
+  default:
+    - step:
+        script:
+          - apt-get update && apt-get install -y unzip git
+          # - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+          # - composer install
   pull-requests:
     develop:
       - step:
@@ -9,7 +15,6 @@ pipelines:
             - composer
           deployment: test
           script:
-            - apt-get update && apt-get install -y unzip git
             - echo "Deploying to Test"
             - sh ./build/shell/deploy.sh
   branches:
