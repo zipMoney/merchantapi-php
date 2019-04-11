@@ -16,6 +16,7 @@ pipelines:
           deployment: test
           script:
             - echo "Deploying to Test"
+            - sh ./build/shell/install.sh
             - sh ./build/shell/deploy.sh
   branches:
     master: # Test, Build and Deploy
