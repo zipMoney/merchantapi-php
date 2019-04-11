@@ -1,40 +1,41 @@
 image: php:7.1.1
 
 pipelines:
-  develop:
-    - step:
-        name: Deploy to Test
-        caches:
-          - composer
-        deployment: test
-        script:
-          - echo "Deploying to Test"
-          # - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-          # - composer install
-          - sh ./build/shell/deploy.sh
-  branches:
-    master: # Test, Build and Deploy
-       - step:
-          name: Unit Test
-          caches:
-            - composer
-          script:
-            - echo "Running Unit Test"
-       - step:
-          name: Deploy to Test
-          caches:
-            - composer
-          deployment: test
-          script:
-            - echo "Deploying to Test"
-       - step:
-          name: Deploy to Production
-          trigger: manual
-          deployment: production
-          caches:
-            - composer
-          script:
-            - echo "Deploying to Production"
-            # - npm run deploy
-            # - npm run test:e2e
-            - composer run-script deploy
+    pull-requests:
+        develop:
+            - step:
+                  name: Deploy to Test
+                  caches:
+                      - composer
+                  deployment: test
+                  script:
+                      - echo "Deploying to Test"
+                      # - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+                      # - composer install
+                      - sh ./build/shell/deploy.sh
+    branches:
+        master: # Test, Build and Deploy
+            - step:
+                  name: Unit Test
+                  caches:
+                      - composer
+                  script:
+                      - echo "Running Unit Test"
+            - step:
+                  name: Deploy to Test
+                  caches:
+                      - composer
+                  deployment: test
+                  script:
+                      - echo "Deploying to Test"
+            - step:
+                  name: Deploy to Production
+                  trigger: manual
+                  deployment: production
+                  caches:
+                      - composer
+                  script:
+                      - echo "Deploying to Production"
+                      # - npm run deploy
+                      # - npm run test:e2e
+                      - composer run-script deploy
