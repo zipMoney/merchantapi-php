@@ -10,6 +10,7 @@ pipelines:
                   deployment: test
                   script:
                       - echo "Deploying to Test"
+                      - apt-get update && apt-get install -y unzip git git-core libc-client-dev libkrb5-dev
                       # - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
                       # - composer install
                       - git remote add github ${GITHUB_REPO}
