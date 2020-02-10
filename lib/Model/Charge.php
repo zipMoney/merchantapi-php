@@ -38,7 +38,8 @@ class Charge implements ArrayAccess
         'created_date' => '\DateTime',
         'order' => '\zipMoney\Model\ChargeOrder',
         'metadata' => 'object',
-        'receipt_number' => 'string'
+        'receipt_number' => 'string',
+        'product' => 'string',
     );
 
     public static function zipTypes()
