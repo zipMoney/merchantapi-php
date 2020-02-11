@@ -187,9 +187,9 @@ class SettlementTransactions implements ArrayAccess
      * @param string $
      * @return $this
      */
-    public function set($)
+    public function set($val)
     {
-        $this->container[''] = $;
+        $this->container[''] = $val;
 
         return $this;
     }
