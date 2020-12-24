@@ -192,9 +192,12 @@ class Charge implements ArrayAccess
         if ($this->container['state'] === null) {
             $invalid_properties[] = "'state' can't be null";
         }
-        $allowed_values = array("authorised", "captured", "cancelled", "refunded", "declined");
+
+        $allowed_values = $this->getStateAllowableValues();
         if (!in_array($this->container['state'], $allowed_values)) {
-            $invalid_properties[] = "invalid value for 'state', must be one of 'authorised', 'captured', 'cancelled', 'refunded', 'declined'.";
+            $invalid_properties[]
+                = "invalid value for 'state',
+                must be one of '".implode("','",$allowed_values)."'.";
         }
 
         if ($this->container['captured_amount'] === null) {
@@ -241,7 +244,7 @@ class Charge implements ArrayAccess
         if ($this->container['state'] === null) {
             return false;
         }
-        $allowed_values = array("authorised", "captured", "cancelled", "refunded", "declined");
+        $allowed_values = $this->getStateAllowableValues();
         if (!in_array($this->container['state'], $allowed_values)) {
             return false;
         }
@@ -367,9 +370,12 @@ class Charge implements ArrayAccess
      */
     public function setState($state)
     {
-        $allowed_values = array('authorised', 'captured', 'cancelled', 'refunded', 'declined');
+        $allowed_values = $this->getStateAllowableValues();
         if ((!in_array($state, $allowed_values))) {
-            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'authorised', 'captured', 'cancelled', 'refunded', 'declined'");
+            throw new \InvalidArgumentException(
+                "Invalid value for 'state',
+                must be one of '".implode("','",$allowed_values)."'."
+            );
         }
         $this->container['state'] = $state;
 
