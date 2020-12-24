@@ -18,15 +18,15 @@ class SettlementTransactions implements ArrayAccess
     const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     * @var string
+     */
     protected static $swaggerModelName = 'settlement_transactions';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization
+     * @var string[]
+     */
     protected static $zipTypes = array(
         'id' => 'string',
         'charge_id' => 'string',
@@ -85,9 +85,9 @@ class SettlementTransactions implements ArrayAccess
         return self::$getters;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -174,7 +174,7 @@ class SettlementTransactions implements ArrayAccess
     }
 
     /**
-     * Gets 
+     * Gets
      * @return string
      */
     public function get()
@@ -183,13 +183,13 @@ class SettlementTransactions implements ArrayAccess
     }
 
     /**
-     * Sets 
+     * Sets
      * @param string $
      * @return $this
      */
-    public function set($)
+    public function set($val)
     {
-        $this->container[''] = $;
+        $this->container[''] = $val;
 
         return $this;
     }
