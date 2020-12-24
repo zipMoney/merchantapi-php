@@ -18,15 +18,15 @@ class Charge implements ArrayAccess
     const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     * @var string
+     */
     protected static $swaggerModelName = 'Charge';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization
+     * @var string[]
+     */
     protected static $zipTypes = array(
         'id' => 'string',
         'reference' => 'string',
@@ -38,7 +38,8 @@ class Charge implements ArrayAccess
         'created_date' => '\DateTime',
         'order' => '\zipMoney\Model\ChargeOrder',
         'metadata' => 'object',
-        'receipt_number' => 'string'
+        'receipt_number' => 'string',
+        'product' => 'string',
     );
 
     public static function zipTypes()
@@ -61,7 +62,8 @@ class Charge implements ArrayAccess
         'created_date' => 'created_date',
         'order' => 'order',
         'metadata' => 'metadata',
-        'receipt_number' => 'receipt_number'
+        'receipt_number' => 'receipt_number',
+        'product' => 'product',
     );
 
 
@@ -80,7 +82,8 @@ class Charge implements ArrayAccess
         'created_date' => 'setCreatedDate',
         'order' => 'setOrder',
         'metadata' => 'setMetadata',
-        'receipt_number' => 'setReceiptNumber'
+        'receipt_number' => 'setReceiptNumber',
+        'product' => 'setProduct',
     );
 
 
@@ -99,7 +102,8 @@ class Charge implements ArrayAccess
         'created_date' => 'getCreatedDate',
         'order' => 'getOrder',
         'metadata' => 'getMetadata',
-        'receipt_number' => 'getReceiptNumber'
+        'receipt_number' => 'getReceiptNumber',
+        'product' => 'getProduct',
     );
 
     public static function attributeMap()
@@ -122,9 +126,9 @@ class Charge implements ArrayAccess
     const STATE_CANCELLED = 'cancelled';
     const STATE_DECLINED = 'declined';
     const STATE_REFUNDED = 'refunded';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -139,7 +143,7 @@ class Charge implements ArrayAccess
             self::STATE_REFUNDED,
         );
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -164,6 +168,7 @@ class Charge implements ArrayAccess
         $this->container['order'] = isset($data['order']) ? $data['order'] : null;
         $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
         $this->container['receipt_number'] = isset($data['receipt_number']) ? $data['receipt_number'] : null;
+        $this->container['product'] = isset($data['product']) ? $data['product'] : null;
     }
 
     /**
@@ -505,6 +510,26 @@ class Charge implements ArrayAccess
         $this->container['receipt_number'] = $receipt_number;
 
         return $this;
+    }
+    /**
+     * Sets product
+     * @param string $product
+     * @return $this
+     */
+    public function setProduct($product)
+    {
+        $this->container['product'] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Gets product
+     * @return string
+     */
+    public function getProduct()
+    {
+        return $this->container['product'];
     }
     /**
      * Returns true if offset exists. False otherwise.
