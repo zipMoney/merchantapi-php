@@ -16,11 +16,11 @@ use \zipMoney\Configuration;
 class ConfigurationTest extends Setup
 {
 
-   
+
     public function testPlatform()
     {
       $config = Configuration::getDefaultConfiguration();
-      
+
       $config->setPlatform("Magento/1.0.0");
       $this->assertEquals($config->getPlatform(),"Magento/1.0.0");
 
@@ -32,18 +32,18 @@ class ConfigurationTest extends Setup
 
       $config->setEnvironment("sandbox");
       $this->assertEquals($config->getEnvironment(),"sandbox");
-      $this->assertEquals($config->getHost(),"https://api.sandbox.zipmoney.com.au/merchant/v1");
+      $this->assertEquals($config->getHost(),"https://global-api.sand.au.edge.zip.co/merchant");
 
       $config->setEnvironment("production");
       $this->assertEquals($config->getEnvironment(),"production");
-      $this->assertEquals($config->getHost(),"https://api.zipmoney.com.au/merchant/v1");
+      $this->assertEquals($config->getHost(),"https://global-api.prod.au.edge.zip.co/merchant");
 
     }
 
     public function testApiHeaders()
     {
       $config = Configuration::getDefaultConfiguration();
-      
+
       $config->setPlatform("Magento/1.0.0")
              ->setDefaultHeaders("sandbox");
 
@@ -53,7 +53,7 @@ class ConfigurationTest extends Setup
     }
 
     public function testPackageVersion()
-    {      
+    {
         $config = Configuration::getDefaultConfiguration();
         $this->assertEquals($config->getPackageVersion(),"1.0.6");
     }
