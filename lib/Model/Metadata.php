@@ -93,7 +93,9 @@ class Metadata implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->set($data);
+        if (is_array($data) && $data) {
+            $this->set($data);
+        }
     }
 
     /**
