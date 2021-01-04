@@ -17,6 +17,7 @@ class CurrencyUtil
     const CURRENCY_GBP = 'GBP';
     const CURRENCY_USD = 'USD';
     const CURRENCY_ZAR = 'ZAR';
+    const CURRENCY_CAD = 'CAD';
 
     /**
      * Gets allowable values of the enum
@@ -30,6 +31,7 @@ class CurrencyUtil
             self::CURRENCY_USD,
             self::CURRENCY_GBP,
             self::CURRENCY_ZAR,
+            self::CURRENCY_CAD,
         );
     }
 
@@ -55,6 +57,7 @@ class CurrencyUtil
             'us' => 'United States',
             'uk' => 'United Kingdom',
             'za' => 'South Africa',
+            'ca' => 'Canada',
         );
     }
 }
