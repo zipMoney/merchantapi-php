@@ -170,13 +170,17 @@ class Metadata implements ArrayAccess
     public function set($array){
         foreach ($array as $key => $value){
             if ( !property_exists ( $this , $key ) ){
-                $this->container[$key] = $value;
-                $propertyName = str_replace('_','',ucwords($key,'_'));
-                self::$zipTypes[$key] = 'string';
-                self::$attributeMap[$key] = $propertyName;
-                self::$getters[$key] = 'get'.$propertyName;
+                $this->setData($key, $value);
             }
         }
+    }
+
+    public function setData($key, $value) {
+        $this->container[$key] = $value;
+        $propertyName = str_replace('_','',ucwords($key,'_'));
+        self::$zipTypes[$key] = 'string';
+        self::$attributeMap[$key] = $propertyName;
+        self::$getters[$key] = 'get'.$propertyName;
     }
 
     /**
