@@ -28,7 +28,7 @@ class Metadata implements ArrayAccess
       * @var string[]
       */
     protected static $zipTypes = array(
-        
+
     );
 
     public static function zipTypes()
@@ -41,7 +41,7 @@ class Metadata implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        
+
     );
 
 
@@ -50,7 +50,7 @@ class Metadata implements ArrayAccess
      * @var string[]
      */
     protected static $setters = array(
-        
+
     );
 
 
@@ -59,7 +59,7 @@ class Metadata implements ArrayAccess
      * @var string[]
      */
     protected static $getters = array(
-        
+
     );
 
     public static function attributeMap()
@@ -77,9 +77,9 @@ class Metadata implements ArrayAccess
         return self::$getters;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -93,6 +93,7 @@ class Metadata implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->set($data);
     }
 
     /**
@@ -162,6 +163,27 @@ class Metadata implements ArrayAccess
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
+    }
+
+    public function set($array){
+        foreach ($array as $key => $value){
+            if ( !property_exists ( $this , $key ) ){
+                $this->container[$key] = $value;
+                $propertyName = str_replace('_','',ucwords($key,'_'));
+                self::$zipTypes[$key] = 'string';
+                self::$attributeMap[$key] = $propertyName;
+                self::$getters[$key] = 'get'.$propertyName;
+            }
+        }
+    }
+
+    /**
+     * Gets
+     * @return string
+     */
+    public function get($key)
+    {
+        return $this->container[$key];
     }
 
     /**
