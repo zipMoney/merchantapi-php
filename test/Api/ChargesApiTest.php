@@ -61,7 +61,7 @@ class ChargesApiTest extends Setup
     {
         $chargesApi = new ChargesApi;
         $req = $this->_payloadHelper->getCapturePayload();
-        $response = $chargesApi->chargesCapture(1,$req);
+        $response = $chargesApi->chargesCapture(1, $req);
     }
 
     /**

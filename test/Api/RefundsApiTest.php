@@ -11,7 +11,6 @@
 
 namespace zipMoney;
 
-
 use \zipMoney\Api\RefundsApi;
 
 class RefundsApiTest extends Setup
@@ -22,7 +21,6 @@ class RefundsApiTest extends Setup
      */
     public static function setUpBeforeClass()
     {
-
     }
 
 
@@ -31,7 +29,6 @@ class RefundsApiTest extends Setup
      */
     public function tearDown()
     {
-
     }
 
     /**
@@ -39,7 +36,6 @@ class RefundsApiTest extends Setup
      */
     public static function tearDownAfterClass()
     {
-
     }
 
     /**
@@ -65,7 +61,6 @@ class RefundsApiTest extends Setup
      */
     public function testRefundsList()
     {
-
     }
 
     /**
@@ -76,7 +71,5 @@ class RefundsApiTest extends Setup
      */
     public function testRefundsRetrieve()
     {
-
     }
-
 }
