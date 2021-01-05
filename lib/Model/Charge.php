@@ -126,7 +126,7 @@ class Charge implements ArrayAccess
     const STATE_CANCELLED = 'cancelled';
     const STATE_DECLINED = 'declined';
     const STATE_REFUNDED = 'refunded';
-
+    const STATE_APPROVED = 'approved';
 
 
     /**
@@ -141,6 +141,7 @@ class Charge implements ArrayAccess
             self::STATE_CANCELLED,
             self::STATE_DECLINED,
             self::STATE_REFUNDED,
+            self::STATE_APPROVED,
         );
     }
 
