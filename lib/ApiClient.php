@@ -261,7 +261,7 @@ class ApiClient
             }
 
             throw new ApiException(
-                "[".$response_info['http_code']."] Error connecting to the API ($url)",
+                $this->generateErrorMessage(json_decode($http_body)),
                 $response_info['http_code'],
                 $http_header,
                 $data
@@ -343,5 +343,26 @@ class ApiClient
         }
 
         return $headers;
+    }
+
+    protected function generateErrorMessage($response)
+    {
+        $errorMessage = 'An error occurred while processing payment';
+
+        if (isset($response->error)) {
+            if (isset($response->error->message)) {
+                $errorMessage = (string) $response->error->message;
+            }
+
+            if (isset($response->error->details)) {
+                $errorMessage = '';
+
+                foreach ($response->error->details as $detail) {
+                    $errorMessage .= $detail->message;
+                }
+            }
+        }
+
+        return $errorMessage;
     }
 }

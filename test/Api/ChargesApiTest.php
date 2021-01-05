@@ -8,31 +8,26 @@
  * @link     https://github.com/zipMoney/merchantapi-php
  */
 
-
 namespace zipMoney;
 
 use \zipMoney\Api\ChargesApi;
 use \zipMoney\Api\CheckoutsApi;
+use \zipMoney\Setup;
 
 class ChargesApiTest extends Setup
 {
-
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass()
     {
-
     }
-
-   
 
     /**
      * Clean up after running each test case
      */
     public function tearDown()
     {
-
     }
 
     /**
@@ -40,7 +35,6 @@ class ChargesApiTest extends Setup
      */
     public static function tearDownAfterClass()
     {
-
     }
 
     /**
@@ -48,10 +42,10 @@ class ChargesApiTest extends Setup
      *
      * Cancel a charge.
      * @expectedException  \zipMoney\ApiException
-     * @expectedExceptionMessage [404] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges/1/cancel) 
+     * @expectedExceptionMessage An error occurred while processing payment
      */
     public function testChargesCancel()
-    {      
+    {
         $chargesApi = new ChargesApi;
         $response = $chargesApi->chargesCancel(1);
     }
@@ -59,23 +53,23 @@ class ChargesApiTest extends Setup
     /**
      * Test case for chargesCapture
      *
-     * Capture a charge.   
+     * Capture a charge.
      * @expectedException  \zipMoney\ApiException
-     * @expectedExceptionMessage [404] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges/1/capture) 
+     * @expectedExceptionMessage An error occurred while processing payment
      */
     public function testChargesCapture()
-    {   
-        $chargesApi = new ChargesApi;       
+    {
+        $chargesApi = new ChargesApi;
         $req = $this->_payloadHelper->getCapturePayload();
-        $response = $chargesApi->chargesCapture(1,$req);
+        $response = $chargesApi->chargesCapture(1, $req);
     }
 
     /**
      * Test case for chargesCreate
      *
-     * Create a charge.     
+     * Create a charge.
      * @expectedException  \zipMoney\ApiException
-     * @expectedExceptionMessage [400] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges)
+     * @expectedExceptionMessage An error occurred while processing payment
      */
 
     public function testChargesCreate()
@@ -87,18 +81,17 @@ class ChargesApiTest extends Setup
        $checkout = $checkoutsApi->checkoutsCreate($req);
 
        $this->_payloadHelper->setCheckoutId($checkout->getId());
-       
+
        $chargeReq = $this->_payloadHelper->getChargePayload();
        $response = $chargesApi->chargesCreate($chargeReq);
     }
-    
 
     /**
      * Test case for chargesCreateRaisesException
      *
      * Create a charge.
      * @expectedException  \zipMoney\ApiException
-     * @expectedExceptionMessage [400] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges)
+     * @expectedExceptionMessage An error occurred while processing payment
      */
     public function testChargesCreateRaisesException()
     {
@@ -115,7 +108,6 @@ class ChargesApiTest extends Setup
      */
     public function testChargesList()
     {
-        
     }
 
     /**
@@ -126,7 +118,5 @@ class ChargesApiTest extends Setup
      */
     public function testChargesRetrieve()
     {
-
     }
-
 }

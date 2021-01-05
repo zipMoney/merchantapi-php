@@ -8,7 +8,6 @@
  * @link     https://github.com/zipMoney/merchantapi-php
  */
 
-
 namespace zipMoney\Model;
 
 use \ArrayAccess;
@@ -28,7 +27,7 @@ class Metadata implements ArrayAccess
       * @var string[]
       */
     protected static $zipTypes = array(
-        
+
     );
 
     public static function zipTypes()
@@ -41,25 +40,23 @@ class Metadata implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = array(
-        
-    );
 
+    );
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
     protected static $setters = array(
-        
-    );
 
+    );
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
     protected static $getters = array(
-        
+
     );
 
     public static function attributeMap()
@@ -77,10 +74,6 @@ class Metadata implements ArrayAccess
         return self::$getters;
     }
 
-    
-
-    
-
     /**
      * Associative array for storing property values
      * @var mixed[]
@@ -93,6 +86,9 @@ class Metadata implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        if (is_array($data) && $data) {
+            $this->set($data);
+        }
     }
 
     /**
@@ -164,6 +160,33 @@ class Metadata implements ArrayAccess
         unset($this->container[$offset]);
     }
 
+    public function set($array)
+    {
+        foreach ($array as $key => $value) {
+            if (!property_exists($this, $key)) {
+                $this->setData($key, $value);
+            }
+        }
+    }
+
+    public function setData($key, $value)
+    {
+        $this->container[$key] = $value;
+        $propertyName = str_replace('_', '', ucwords($key, '_'));
+        self::$zipTypes[$key] = 'string';
+        self::$attributeMap[$key] = $propertyName;
+        self::$getters[$key] = 'get'.$propertyName;
+    }
+
+    /**
+     * Gets
+     * @return string
+     */
+    public function get($key)
+    {
+        return $this->container[$key];
+    }
+
     /**
      * Gets the string presentation of the object
      * @return string
@@ -177,5 +200,3 @@ class Metadata implements ArrayAccess
         return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

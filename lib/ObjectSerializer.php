@@ -39,14 +39,17 @@ class ObjectSerializer
                 $data[$property] = self::sanitizeForSerialization($value);
             }
             return $data;
-        } elseif (is_object($data)) {                
+        } elseif (is_object($data)) {
             $attr = $data::attributeMap();
             $values = array();
             foreach (array_keys($data::zipTypes()) as $property) {
                 $getterArr = $data::getters();
                 $getter = $getterArr[$property];
-                if ($data->$getter() !== null) {
+                if(method_exists(get_class($data), $getter) && $data->$getter() !== null){
                     $values[$attr[$property]] = self::sanitizeForSerialization($data->$getter());
+                }
+                if(method_exists(get_class($data), 'get') && $data->get($property) !== null){
+                    $values[$attr[$property]] = self::sanitizeForSerialization($data->get($property));
                 }
             }
             return (object)$values;

@@ -10,27 +10,22 @@
 
 namespace zipMoney;
 
-
 use \zipMoney\Api\CheckoutsApi;
 
 class CheckoutsApiTest extends Setup
-{   
-  
+{
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass()
-    {   
-    
+    {
     }
-    
 
     /**
      * Clean up after running each test case
      */
     public function tearDown()
     {
-
     }
 
     /**
@@ -38,7 +33,6 @@ class CheckoutsApiTest extends Setup
      */
     public static function tearDownAfterClass()
     {
-
     }
 
     /**
@@ -48,18 +42,17 @@ class CheckoutsApiTest extends Setup
      *
      */
     public function testCheckoutsCreate()
-    {   
-        try{ 
+    {
+        try {
             $checkoutsApi = new CheckoutsApi;
             $req =  $this->_payloadHelper->getCheckoutPayload();
             $checkout = $checkoutsApi->checkoutsCreate($req);
 
             $this->assertNotNull($checkout->getId());
             $this->assertNotNull($checkout->getUri());
-        } catch(ApiException $e){
-            print_r($e->getResponseBody());
+        } catch (ApiException $e) {
+            $this->assertSame('An error occurred while processing payment', $e->getMessage());
         }
-       
     }
 
     /**
@@ -70,7 +63,5 @@ class CheckoutsApiTest extends Setup
      */
     public function testCheckoutsGet()
     {
-
     }
-
 }

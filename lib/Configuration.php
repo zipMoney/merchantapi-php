@@ -84,8 +84,8 @@ class Configuration
      * @var array
      */
     protected $supportedEnvironments = array(
-        "sandbox" => array("host" => "https://api.sandbox.zipmoney.com.au/merchant/v1"),
-        "production" => array("host" => 'https://api.zipmoney.com.au/merchant/v1')
+        "sandbox" => array("host" => "https://global-api.sand.au.edge.zip.co/merchant"),
+        "production" => array("host" => 'https://global-api.prod.au.edge.zip.co/merchant')
     );
 
     /**
@@ -101,16 +101,16 @@ class Configuration
      * @var string
      */
     protected $curlTimeout = 0;
-    
+
     /**
-     * Number of retries allowed if the first one fails. 
+     * Number of retries allowed if the first one fails.
      *
      * @var string
      */
     protected $curlNumRetries = 3;
 
     /**
-     * Number of retries allowed if the first one fails. 
+     * Number of retries allowed if the first one fails.
      *
      * @var string
      */
@@ -135,7 +135,7 @@ class Configuration
      *
      * @var bool
      */
-    protected $debug = false; 
+    protected $debug = false;
 
     /**
      * Debug file location (log to STDOUT by default)
@@ -510,7 +510,7 @@ class Configuration
         $this->retryInterval = $retryInterval;
         return $this;
     }
-    
+
     /**
      * Gets the Retry Interval Value
      *
@@ -664,14 +664,14 @@ class Configuration
     /**
      * Sets the environment
      *
-     * @param bool $environment 
+     * @param bool $environment
      *
      * @return Configuration
      */
     public function setEnvironment($environment)
-    {   
+    {
         $this->environment = $environment;
-    
+
         $host = $this->supportedEnvironments['production']['host'];
 
         if(in_array($environment,array_keys($this->supportedEnvironments))){
@@ -843,14 +843,14 @@ class Configuration
     public function setDefaultHeaders()
     {
         $user_agent_array = array();
-        
+
 
         if( $platform = $this->getPlatform() ){
           $user_agent_array[] = $platform;
         }
 
         $default_user_agent = "merchantapi-php";
-        
+
         if( $package_version = $this->getPackageVersion() ){
            $user_agent_array[] = $default_user_agent."/".$package_version;
         } else {
@@ -870,12 +870,12 @@ class Configuration
      * @return string
      */
     public function getPackageVersion()
-    {   
+    {
         $package_config  = file_get_contents(dirname(__FILE__)."./../composer.json");
 
-        if($package_config){
-            $package_config_object = json_decode($package_config);        
-            if(is_object($package_config_object) && isset($package_config_object->version)){
+        if ($package_config) {
+            $package_config_object = json_decode($package_config);
+            if (is_object($package_config_object) && isset($package_config_object->version)) {
                 return $package_config_object->version;
             }
         }
