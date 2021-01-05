@@ -8,7 +8,6 @@
  * @link     https://github.com/zipMoney/merchantapi-php
  */
 
-
 namespace zipMoney\Model;
 
 use \ArrayAccess;
@@ -44,7 +43,6 @@ class Metadata implements ArrayAccess
 
     );
 
-
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
@@ -52,7 +50,6 @@ class Metadata implements ArrayAccess
     protected static $setters = array(
 
     );
-
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -76,10 +73,6 @@ class Metadata implements ArrayAccess
     {
         return self::$getters;
     }
-
-
-
-
 
     /**
      * Associative array for storing property values
@@ -167,17 +160,19 @@ class Metadata implements ArrayAccess
         unset($this->container[$offset]);
     }
 
-    public function set($array){
-        foreach ($array as $key => $value){
-            if ( !property_exists ( $this , $key ) ){
+    public function set($array)
+    {
+        foreach ($array as $key => $value) {
+            if (!property_exists($this, $key)) {
                 $this->setData($key, $value);
             }
         }
     }
 
-    public function setData($key, $value) {
+    public function setData($key, $value)
+    {
         $this->container[$key] = $value;
-        $propertyName = str_replace('_','',ucwords($key,'_'));
+        $propertyName = str_replace('_', '', ucwords($key, '_'));
         self::$zipTypes[$key] = 'string';
         self::$attributeMap[$key] = $propertyName;
         self::$getters[$key] = 'get'.$propertyName;
@@ -205,5 +200,3 @@ class Metadata implements ArrayAccess
         return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

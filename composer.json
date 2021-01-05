@@ -1,6 +1,6 @@
 {
     "name": "zipmoney/merchantapi-php",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "",
     "keywords": [
         "zipmoney",
@@ -28,7 +28,7 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "~2.6",
-        "friendsofphp/php-cs-fixer": "~1.12"
+        "phpunit/phpunit": "^5.0"
     },
     "autoload": {
         "psr-4": {
