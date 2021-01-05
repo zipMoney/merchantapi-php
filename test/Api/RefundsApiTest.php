@@ -25,7 +25,7 @@ class RefundsApiTest extends Setup
 
     }
 
-   
+
     /**
      * Clean up after running each test case
      */
@@ -47,12 +47,12 @@ class RefundsApiTest extends Setup
      *
      * Create a refund.
      * @expectedException  \zipMoney\ApiException
-     * @expectedExceptionMessage [402] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/refunds)
+     * @expectedExceptionMessage An error occurred while processing payment
      */
     public function testRefundsCreate()
     {
-        $refundsApi = new RefundsApi;  
-        $this->_payloadHelper->setChargeId(1);      
+        $refundsApi = new RefundsApi;
+        $this->_payloadHelper->setChargeId(1);
         $req = $this->_payloadHelper->getRefundPayload();
         $response = $refundsApi->refundsCreate($req);
     }

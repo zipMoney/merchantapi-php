@@ -23,5 +23,6 @@ class Setup extends \PHPUnit_Framework_TestCase
 
         Configuration::getDefaultConfiguration()->setApiKey('Authorization', "Bearer {$auth['private_key']}");
         Configuration::getDefaultConfiguration()->setEnvironment("sandbox");
+        Configuration::getDefaultConfiguration()->setSSLVerification(false);
     }
 }

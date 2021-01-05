@@ -42,7 +42,7 @@ class ChargesApiTest extends Setup
      *
      * Cancel a charge.
      * @expectedException  \zipMoney\ApiException
-     * @expectedExceptionMessage [404] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges/1/cancel)
+     * @expectedExceptionMessage An error occurred while processing payment
      */
     public function testChargesCancel()
     {
@@ -55,7 +55,7 @@ class ChargesApiTest extends Setup
      *
      * Capture a charge.
      * @expectedException  \zipMoney\ApiException
-     * @expectedExceptionMessage [404] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges/1/capture)
+     * @expectedExceptionMessage An error occurred while processing payment
      */
     public function testChargesCapture()
     {
@@ -69,7 +69,7 @@ class ChargesApiTest extends Setup
      *
      * Create a charge.
      * @expectedException  \zipMoney\ApiException
-     * @expectedExceptionMessage [400] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges)
+     * @expectedExceptionMessage An error occurred while processing payment
      */
 
     public function testChargesCreate()
@@ -91,7 +91,7 @@ class ChargesApiTest extends Setup
      *
      * Create a charge.
      * @expectedException  \zipMoney\ApiException
-     * @expectedExceptionMessage [400] Error connecting to the API (https://api.sandbox.zipmoney.com.au/merchant/v1/charges)
+     * @expectedExceptionMessage An error occurred while processing payment
      */
     public function testChargesCreateRaisesException()
     {
