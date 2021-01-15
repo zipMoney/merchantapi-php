@@ -170,7 +170,7 @@ class ShopperStatistics implements ArrayAccess
     {
         $invalid_properties = array();
 
-        $allowed_values = currencyUtil::isValidCurrency($this->container['currency']);
+        $allowed_values = CurrencyUtil::isValidCurrency($this->container['currency']);
         if (!$allowed_values['valid']) {
             $invalid_properties[] = $allowed_values['message'];
         }
@@ -192,7 +192,7 @@ class ShopperStatistics implements ArrayAccess
     public function valid()
     {
 
-        $allowed_values = currencyUtil::isValidCurrency($this->container['currency']);
+        $allowed_values = CurrencyUtil::isValidCurrency($this->container['currency']);
         if (!$allowed_values['valid']) {
             return false;
         }
@@ -367,7 +367,7 @@ class ShopperStatistics implements ArrayAccess
      */
     public function setCurrency($currency)
     {
-        $allowed_values = currencyUtil::isValidCurrency($currency);
+        $allowed_values = CurrencyUtil::isValidCurrency($currency);
         if (!is_null($currency) && (!$allowed_values['valid'])) {
             throw new \InvalidArgumentException($allowed_values['message']);
         }
