@@ -144,3 +144,4 @@ Class | Method | HTTP request | Description
 
 For php 5.6 version use tag 1.0.11
 For php 7.0 version use tag 1.0.13
+For php 7.1 version use tag 1.0.14
