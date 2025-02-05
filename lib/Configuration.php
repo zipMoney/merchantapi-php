@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Configuration
  *
@@ -505,7 +506,7 @@ class Configuration
      *
      * @return ApiClient
      */
-    public function setRetryInterval($retryInterval)
+    public function setRetryInterval($retryInterval): ApiClient
     {
         $this->retryInterval = $retryInterval;
         return $this;
@@ -528,7 +529,7 @@ class Configuration
      *
      * @return ApiClient
      */
-    public function setCurlProxyHost($proxyHost)
+    public function setCurlProxyHost($proxyHost): ApiClient
     {
         $this->proxyHost = $proxyHost;
         return $this;
@@ -553,7 +554,7 @@ class Configuration
      *
      * @return ApiClient
      */
-    public function setCurlProxyPort($proxyPort)
+    public function setCurlProxyPort($proxyPort): ApiClient
     {
         $this->proxyPort = $proxyPort;
         return $this;
@@ -576,7 +577,7 @@ class Configuration
      *
      * @return ApiClient
      */
-    public function setCurlProxyType($proxyType)
+    public function setCurlProxyType($proxyType): ApiClient
     {
         $this->proxyType = $proxyType;
         return $this;
@@ -599,7 +600,7 @@ class Configuration
      *
      * @return ApiClient
      */
-    public function setCurlProxyUser($proxyUser)
+    public function setCurlProxyUser($proxyUser): ApiClient
     {
         $this->proxyUser = $proxyUser;
         return $this;
@@ -622,7 +623,7 @@ class Configuration
      *
      * @return ApiClient
      */
-    public function setCurlProxyPassword($proxyPassword)
+    public function setCurlProxyPassword($proxyPassword): ApiClient
     {
         $this->proxyPassword = $proxyPassword;
         return $this;
@@ -674,7 +675,7 @@ class Configuration
 
         $host = $this->supportedEnvironments['production']['host'];
 
-        if(in_array($environment,array_keys($this->supportedEnvironments))){
+        if (in_array($environment, array_keys($this->supportedEnvironments))) {
             $host = $this->supportedEnvironments[$environment]['host'];
         }
 
@@ -805,14 +806,14 @@ class Configuration
     }
 
 
-      /**
+    /**
      * Sets the platform the library is being used
      *
      * @param string $platform
      *
      * @return ApiClient
      */
-    public function setPlatform($platform)
+    public function setPlatform($platform): ApiClient
     {
         $this->platform = $platform;
         return $this;
@@ -845,19 +846,19 @@ class Configuration
         $user_agent_array = array();
 
 
-        if( $platform = $this->getPlatform() ){
-          $user_agent_array[] = $platform;
+        if ($platform = $this->getPlatform()) {
+            $user_agent_array[] = $platform;
         }
 
         $default_user_agent = "merchantapi-php";
 
-        if( $package_version = $this->getPackageVersion() ){
-           $user_agent_array[] = $default_user_agent."/".$package_version;
+        if ($package_version = $this->getPackageVersion()) {
+            $user_agent_array[] = $default_user_agent."/".$package_version;
         } else {
-           $user_agent_array[] = $default_user_agent;
+            $user_agent_array[] = $default_user_agent;
         }
 
-        $user_agent = implode(" ",$user_agent_array);
+        $user_agent = implode(" ", $user_agent_array);
 
         $this->setUserAgent($user_agent);
         $this->setApiVersion($this->api_version);

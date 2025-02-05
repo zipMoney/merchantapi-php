@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Charge
  *
@@ -8,10 +9,9 @@
  * @link     https://github.com/zipMoney/merchantapi-php
  */
 
-
 namespace zipMoney\Model;
 
-use \ArrayAccess;
+use ArrayAccess;
 
 class Charge implements ArrayAccess
 {
@@ -198,7 +198,7 @@ class Charge implements ArrayAccess
         if (!in_array($this->container['state'], $allowed_values)) {
             $invalid_properties[]
                 = "invalid value for 'state',
-                must be one of '".implode("','",$allowed_values)."'.";
+                must be one of '".implode("','", $allowed_values)."'.";
         }
 
         if ($this->container['captured_amount'] === null) {
@@ -375,7 +375,7 @@ class Charge implements ArrayAccess
         if ((!in_array($state, $allowed_values))) {
             throw new \InvalidArgumentException(
                 "Invalid value for 'state',
-                must be one of '".implode("','",$allowed_values)."'."
+                must be one of '".implode("','", $allowed_values)."'."
             );
         }
         $this->container['state'] = $state;
@@ -543,7 +543,7 @@ class Charge implements ArrayAccess
      * @param  integer $offset Offset
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -555,7 +555,7 @@ class Charge implements ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -596,5 +596,3 @@ class Charge implements ArrayAccess
         return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

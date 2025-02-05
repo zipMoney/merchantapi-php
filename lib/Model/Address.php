@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Address
  *
@@ -8,10 +9,9 @@
  * @link     https://github.com/zipMoney/merchantapi-php
  */
 
-
 namespace zipMoney\Model;
 
-use \ArrayAccess;
+use ArrayAccess;
 
 class Address implements ArrayAccess
 {
@@ -104,10 +104,6 @@ class Address implements ArrayAccess
     {
         return self::$getters;
     }
-
-    
-
-    
 
     /**
      * Associative array for storing property values
@@ -445,7 +441,7 @@ class Address implements ArrayAccess
      * @param  integer $offset Offset
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -457,7 +453,7 @@ class Address implements ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -498,5 +494,3 @@ class Address implements ArrayAccess
         return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

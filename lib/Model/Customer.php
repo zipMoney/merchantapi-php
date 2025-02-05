@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Customer
  *
@@ -8,10 +9,9 @@
  * @link     https://github.com/zipMoney/merchantapi-php
  */
 
-
 namespace zipMoney\Model;
 
-use \ArrayAccess;
+use ArrayAccess;
 
 class Customer implements ArrayAccess
 {
@@ -108,9 +108,9 @@ class Customer implements ArrayAccess
     const GENDER_MALE = 'Male';
     const GENDER_FEMALE = 'Female';
     const GENDER_OTHER = 'Other';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -123,7 +123,7 @@ class Customer implements ArrayAccess
             self::GENDER_OTHER,
         );
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -387,7 +387,7 @@ class Customer implements ArrayAccess
      * @param  integer $offset Offset
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -399,7 +399,7 @@ class Customer implements ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -440,5 +440,3 @@ class Customer implements ArrayAccess
         return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

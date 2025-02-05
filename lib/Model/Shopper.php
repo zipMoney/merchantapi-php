@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Shopper
  *
@@ -8,10 +9,9 @@
  * @link     https://github.com/zipMoney/merchantapi-php
  */
 
-
 namespace zipMoney\Model;
 
-use \ArrayAccess;
+use ArrayAccess;
 
 class Shopper implements ArrayAccess
 {
@@ -116,9 +116,9 @@ class Shopper implements ArrayAccess
     const GENDER_MALE = 'Male';
     const GENDER_FEMALE = 'Female';
     const GENDER_OTHER = 'Other';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -131,7 +131,7 @@ class Shopper implements ArrayAccess
             self::GENDER_OTHER,
         );
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -448,7 +448,7 @@ class Shopper implements ArrayAccess
      * @param  integer $offset Offset
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -460,7 +460,7 @@ class Shopper implements ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -501,5 +501,3 @@ class Shopper implements ArrayAccess
         return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

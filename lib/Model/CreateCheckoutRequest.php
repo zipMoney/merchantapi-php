@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CreateCheckoutRequest
  *
@@ -8,10 +9,9 @@
  * @link     https://github.com/zipMoney/merchantapi-php
  */
 
-
 namespace zipMoney\Model;
 
-use \ArrayAccess;
+use ArrayAccess;
 
 class CreateCheckoutRequest implements ArrayAccess
 {
@@ -99,9 +99,9 @@ class CreateCheckoutRequest implements ArrayAccess
 
     const TYPE_STANDARD = 'standard';
     const TYPE_EXPRESS = 'express';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -113,7 +113,7 @@ class CreateCheckoutRequest implements ArrayAccess
             self::TYPE_EXPRESS,
         );
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -315,7 +315,7 @@ class CreateCheckoutRequest implements ArrayAccess
      * @param  integer $offset Offset
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -327,7 +327,7 @@ class CreateCheckoutRequest implements ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -368,5 +368,3 @@ class CreateCheckoutRequest implements ArrayAccess
         return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
