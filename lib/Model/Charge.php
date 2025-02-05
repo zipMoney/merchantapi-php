@@ -15,7 +15,7 @@ use ArrayAccess;
 
 class Charge implements ArrayAccess
 {
-    const DISCRIMINATOR = 'subclass';
+    public const DISCRIMINATOR = 'subclass';
 
     /**
      * The original name of the model.
@@ -121,12 +121,12 @@ class Charge implements ArrayAccess
         return self::$getters;
     }
 
-    const STATE_AUTHORISED = 'authorised';
-    const STATE_CAPTURED = 'captured';
-    const STATE_CANCELLED = 'cancelled';
-    const STATE_DECLINED = 'declined';
-    const STATE_REFUNDED = 'refunded';
-    const STATE_APPROVED = 'approved';
+    public const STATE_AUTHORISED = 'authorised';
+    public const STATE_CAPTURED = 'captured';
+    public const STATE_CANCELLED = 'cancelled';
+    public const STATE_DECLINED = 'declined';
+    public const STATE_REFUNDED = 'refunded';
+    public const STATE_APPROVED = 'approved';
 
 
     /**
@@ -564,7 +564,7 @@ class Charge implements ArrayAccess
      * @param  mixed   $value  Value to be set
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -578,7 +578,7 @@ class Charge implements ArrayAccess
      * @param  integer $offset Offset
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }

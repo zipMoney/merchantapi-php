@@ -15,7 +15,7 @@ use ArrayAccess;
 
 class ErrorResponseError implements ArrayAccess
 {
-    const DISCRIMINATOR = 'subclass';
+    public const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -231,7 +231,7 @@ class ErrorResponseError implements ArrayAccess
      * @param  mixed   $value  Value to be set
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -245,7 +245,7 @@ class ErrorResponseError implements ArrayAccess
      * @param  integer $offset Offset
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
