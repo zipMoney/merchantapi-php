@@ -515,9 +515,9 @@ class Configuration
      *
      * @param int $retryInterval HTTP Proxy Port
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setRetryInterval($retryInterval): ApiClient
+    public function setRetryInterval($retryInterval)
     {
         $this->retryInterval = $retryInterval;
 
@@ -539,9 +539,9 @@ class Configuration
      *
      * @param string $proxyHost HTTP Proxy URL
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setCurlProxyHost($proxyHost): ApiClient
+    public function setCurlProxyHost($proxyHost)
     {
         $this->proxyHost = $proxyHost;
 
@@ -563,9 +563,9 @@ class Configuration
      *
      * @param int $proxyPort HTTP Proxy Port
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setCurlProxyPort($proxyPort): ApiClient
+    public function setCurlProxyPort($proxyPort)
     {
         $this->proxyPort = $proxyPort;
 
@@ -587,9 +587,9 @@ class Configuration
      *
      * @param int $proxyType HTTP Proxy Type
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setCurlProxyType($proxyType): ApiClient
+    public function setCurlProxyType($proxyType)
     {
         $this->proxyType = $proxyType;
 
@@ -611,9 +611,9 @@ class Configuration
      *
      * @param string $proxyUser HTTP Proxy User
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setCurlProxyUser($proxyUser): ApiClient
+    public function setCurlProxyUser($proxyUser)
     {
         $this->proxyUser = $proxyUser;
 
@@ -635,9 +635,9 @@ class Configuration
      *
      * @param string $proxyPassword HTTP Proxy Password
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setCurlProxyPassword($proxyPassword): ApiClient
+    public function setCurlProxyPassword($proxyPassword)
     {
         $this->proxyPassword = $proxyPassword;
 
@@ -827,9 +827,9 @@ class Configuration
      *
      * @param string $platform
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setPlatform($platform): ApiClient
+    public function setPlatform($platform)
     {
         $this->platform = $platform;
 
