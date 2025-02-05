@@ -362,7 +362,7 @@ class Configuration
      *
      * @return Configuration
      */
-    public function deleteDefaultHeader($headerName)
+    public function deleteDefaultHeader($headerName): void
     {
         unset($this->defaultHeaders[$headerName]);
     }
@@ -504,9 +504,9 @@ class Configuration
      *
      * @param integer $retryInterval HTTP Proxy Port
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setRetryInterval($retryInterval): ApiClient
+    public function setRetryInterval($retryInterval)
     {
         $this->retryInterval = $retryInterval;
         return $this;
@@ -527,9 +527,9 @@ class Configuration
      *
      * @param string $proxyHost HTTP Proxy URL
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setCurlProxyHost($proxyHost): ApiClient
+    public function setCurlProxyHost($proxyHost)
     {
         $this->proxyHost = $proxyHost;
         return $this;
@@ -552,9 +552,9 @@ class Configuration
      *
      * @param integer $proxyPort HTTP Proxy Port
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setCurlProxyPort($proxyPort): ApiClient
+    public function setCurlProxyPort($proxyPort)
     {
         $this->proxyPort = $proxyPort;
         return $this;
@@ -575,9 +575,9 @@ class Configuration
      *
      * @param integer $proxyType HTTP Proxy Type
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setCurlProxyType($proxyType): ApiClient
+    public function setCurlProxyType($proxyType)
     {
         $this->proxyType = $proxyType;
         return $this;
@@ -598,9 +598,9 @@ class Configuration
      *
      * @param string $proxyUser HTTP Proxy User
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setCurlProxyUser($proxyUser): ApiClient
+    public function setCurlProxyUser($proxyUser)
     {
         $this->proxyUser = $proxyUser;
         return $this;
@@ -621,9 +621,9 @@ class Configuration
      *
      * @param string $proxyPassword HTTP Proxy Password
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setCurlProxyPassword($proxyPassword): ApiClient
+    public function setCurlProxyPassword($proxyPassword)
     {
         $this->proxyPassword = $proxyPassword;
         return $this;
@@ -811,9 +811,9 @@ class Configuration
      *
      * @param string $platform
      *
-     * @return ApiClient
+     * @return Configuration
      */
-    public function setPlatform($platform): ApiClient
+    public function setPlatform($platform)
     {
         $this->platform = $platform;
         return $this;
