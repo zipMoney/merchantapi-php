@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * ApiException
+ * ApiException.
  *
  * @category Class
  * @package  zipMoney
@@ -30,21 +31,21 @@ class ApiException extends Exception
     protected $responseHeaders;
 
     /**
-     * The deserialized response object
+     * The deserialized response object.
      *
-     * @var $responseObject;
+     * @var;
      */
     protected $responseObject;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string $message         Error message
      * @param int    $code            HTTP status code
      * @param string $responseHeaders HTTP response header
      * @param mixed  $responseBody    HTTP body of the server response either as Json or string
      */
-    public function __construct($message = "", $code = 0, $responseHeaders = null, $responseBody = null)
+    public function __construct($message = '', $code = 0, $responseHeaders = null, $responseBody = null)
     {
         parent::__construct($message, $code);
         $this->responseHeaders = $responseHeaders;
@@ -52,7 +53,7 @@ class ApiException extends Exception
     }
 
     /**
-     * Gets the HTTP response header
+     * Gets the HTTP response header.
      *
      * @return string HTTP response header
      */
@@ -62,7 +63,7 @@ class ApiException extends Exception
     }
 
     /**
-     * Gets the HTTP body of the server response either as Json or string
+     * Gets the HTTP body of the server response either as Json or string.
      *
      * @return mixed HTTP body of the server response either as Json or string
      */
@@ -72,11 +73,9 @@ class ApiException extends Exception
     }
 
     /**
-     * Sets the deseralized response object (during deserialization)
+     * Sets the deseralized response object (during deserialization).
      *
      * @param mixed $obj Deserialized response object
-     *
-     * @return void
      */
     public function setResponseObject($obj)
     {
@@ -84,7 +83,7 @@ class ApiException extends Exception
     }
 
     /**
-     * Gets the deseralized response object (during deserialization)
+     * Gets the deseralized response object (during deserialization).
      *
      * @return mixed the deserialized response object
      */

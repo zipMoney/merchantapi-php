@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * TokensApi
+ * TokensApi.
  *
  * @category Class
  * @package  zipMoney
@@ -13,22 +14,20 @@ namespace zipMoney\Api;
 
 use zipMoney\ApiClient;
 use zipMoney\ApiException;
-use zipMoney\Configuration;
-use zipMoney\ObjectSerializer;
 
 class TokensApi
 {
     /**
-     * API Client
+     * API Client.
      *
      * @var \zipMoney\ApiClient instance of the ApiClient
      */
     protected $apiClient;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param \zipMoney\ApiClient|null $apiClient The api client to use
+     * @param null|\zipMoney\ApiClient $apiClient The api client to use
      */
     public function __construct(\zipMoney\ApiClient $apiClient = null)
     {
@@ -39,7 +38,7 @@ class TokensApi
     }
 
     /**
-     * Get API client
+     * Get API client.
      *
      * @return \zipMoney\ApiClient get the API client
      */
@@ -49,7 +48,7 @@ class TokensApi
     }
 
     /**
-     * Set the API client
+     * Set the API client.
      *
      * @param \zipMoney\ApiClient $apiClient set the API client
      *
@@ -58,55 +57,61 @@ class TokensApi
     public function setApiClient(\zipMoney\ApiClient $apiClient)
     {
         $this->apiClient = $apiClient;
+
         return $this;
     }
 
     /**
-     * Operation tokensCreate
+     * Operation tokensCreate.
      *
      * Create token
      *
-     * @param \zipMoney\Model\CreateTokenRequest $body  (optional)
-     * @param string $idempotency_key The unique idempotency key. (optional)
+     * @param \zipMoney\Model\CreateTokenRequest $body            (optional)
+     * @param string                             $idempotency_key The unique idempotency key. (optional)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return \zipMoney\Model\Token
      */
     public function tokensCreate($body = null, $idempotency_key = null)
     {
-        list($response) = $this->tokensCreateWithHttpInfo($body, $idempotency_key);
+        [$response] = $this->tokensCreateWithHttpInfo($body, $idempotency_key);
+
         return $response;
     }
 
     /**
-     * Operation tokensCreateWithHttpInfo
+     * Operation tokensCreateWithHttpInfo.
      *
      * Create token
      *
-     * @param \zipMoney\Model\CreateTokenRequest $body  (optional)
-     * @param string $idempotency_key The unique idempotency key. (optional)
+     * @param \zipMoney\Model\CreateTokenRequest $body            (optional)
+     * @param string                             $idempotency_key The unique idempotency key. (optional)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return array of \zipMoney\Model\Token, HTTP status code, HTTP response headers (array of strings)
      */
     public function tokensCreateWithHttpInfo($body = null, $idempotency_key = null)
     {
         // parse inputs
-        $resourcePath = "/tokens";
+        $resourcePath = '/tokens';
         $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
 
         // header params
         if ($idempotency_key !== null) {
             $headerParams['Idempotency-Key'] = $this->apiClient->getSerializer()->toHeaderValue($idempotency_key);
         }
         // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $resourcePath = str_replace('{format}', 'json', $resourcePath);
 
         // body params
         $_tempBody = null;
@@ -125,9 +130,10 @@ class TokensApi
         if (strlen($apiKey) !== 0) {
             $headerParams['Authorization'] = $apiKey;
         }
+
         // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+            [$response, $statusCode, $httpHeader] = $this->apiClient->callApi(
                 $resourcePath,
                 'POST',
                 $queryParams,
@@ -137,7 +143,7 @@ class TokensApi
                 '/tokens'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Token', $httpHeader), $statusCode, $httpHeader);
+            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Token', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:

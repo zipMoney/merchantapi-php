@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * SettlementsApi
+ * SettlementsApi.
  *
  * @category Class
  * @package  zipMoney
@@ -13,22 +14,20 @@ namespace zipMoney\Api;
 
 use zipMoney\ApiClient;
 use zipMoney\ApiException;
-use zipMoney\Configuration;
-use zipMoney\ObjectSerializer;
 
 class SettlementsApi
 {
     /**
-     * API Client
+     * API Client.
      *
      * @var \zipMoney\ApiClient instance of the ApiClient
      */
     protected $apiClient;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param \zipMoney\ApiClient|null $apiClient The api client to use
+     * @param null|\zipMoney\ApiClient $apiClient The api client to use
      */
     public function __construct(\zipMoney\ApiClient $apiClient = null)
     {
@@ -39,7 +38,7 @@ class SettlementsApi
     }
 
     /**
-     * Get API client
+     * Get API client.
      *
      * @return \zipMoney\ApiClient get the API client
      */
@@ -49,7 +48,7 @@ class SettlementsApi
     }
 
     /**
-     * Set the API client
+     * Set the API client.
      *
      * @param \zipMoney\ApiClient $apiClient set the API client
      *
@@ -58,31 +57,37 @@ class SettlementsApi
     public function setApiClient(\zipMoney\ApiClient $apiClient)
     {
         $this->apiClient = $apiClient;
+
         return $this;
     }
 
     /**
-     * Operation settlementsGet
+     * Operation settlementsGet.
      *
      * Retrieve a settlement
      *
      * @param string $id The settlement id (required)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return \zipMoney\Model\Settlement
      */
     public function settlementsGet($id)
     {
-        list($response) = $this->settlementsGetWithHttpInfo($id);
+        [$response] = $this->settlementsGetWithHttpInfo($id);
+
         return $response;
     }
 
     /**
-     * Operation settlementsGetWithHttpInfo
+     * Operation settlementsGetWithHttpInfo.
      *
      * Retrieve a settlement
      *
      * @param string $id The settlement id (required)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return array of \zipMoney\Model\Settlement, HTTP status code, HTTP response headers (array of strings)
      */
     public function settlementsGetWithHttpInfo($id)
@@ -92,28 +97,27 @@ class SettlementsApi
             throw new \InvalidArgumentException('Missing the required parameter $id when calling settlementsGet');
         }
         // parse inputs
-        $resourcePath = "/settlements/{id}";
+        $resourcePath = '/settlements/{id}';
         $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/javascript'));
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/javascript']);
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                "{" . "id" . "}",
+                '{' . 'id' . '}',
                 $this->apiClient->getSerializer()->toPathValue($id),
                 $resourcePath
             );
         }
         // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
+        $resourcePath = str_replace('{format}', 'json', $resourcePath);
 
         // for model (json/xml)
         if (isset($_tempBody)) {
@@ -121,9 +125,10 @@ class SettlementsApi
         } elseif (count($formParams) > 0) {
             $httpBody = $formParams; // for HTTP post (form)
         }
+
         // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+            [$response, $statusCode, $httpHeader] = $this->apiClient->callApi(
                 $resourcePath,
                 'GET',
                 $queryParams,
@@ -133,7 +138,7 @@ class SettlementsApi
                 '/settlements/{id}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Settlement', $httpHeader), $statusCode, $httpHeader);
+            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Settlement', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -155,44 +160,44 @@ class SettlementsApi
     }
 
     /**
-     * Operation settlementsList
+     * Operation settlementsList.
      *
      * List settlements
      *
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return void
      */
     public function settlementsList()
     {
-        list($response) = $this->settlementsListWithHttpInfo();
+        [$response] = $this->settlementsListWithHttpInfo();
+
         return $response;
     }
 
     /**
-     * Operation settlementsListWithHttpInfo
+     * Operation settlementsListWithHttpInfo.
      *
      * List settlements
      *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function settlementsListWithHttpInfo()
     {
         // parse inputs
-        $resourcePath = "/settlements";
+        $resourcePath = '/settlements';
         $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/javascript'));
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/javascript']);
 
         // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
+        $resourcePath = str_replace('{format}', 'json', $resourcePath);
 
         // for model (json/xml)
         if (isset($_tempBody)) {
@@ -200,9 +205,10 @@ class SettlementsApi
         } elseif (count($formParams) > 0) {
             $httpBody = $formParams; // for HTTP post (form)
         }
+
         // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+            [$response, $statusCode, $httpHeader] = $this->apiClient->callApi(
                 $resourcePath,
                 'GET',
                 $queryParams,
@@ -212,7 +218,7 @@ class SettlementsApi
                 '/settlements'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return [null, $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }

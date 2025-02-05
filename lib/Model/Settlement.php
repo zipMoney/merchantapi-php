@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * Settlement
+ * Settlement.
  *
  * @category Class
  * @package  zipMoney
@@ -18,22 +19,24 @@ class Settlement implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'settlement';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'id' => 'string',
-        'created' => 'string',
-        'amount' => 'float',
-        'currency' => 'string',
-        'transactions' => '\zipMoney\Model\SettlementTransactions[]'
-    );
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'id'           => 'string',
+        'created'      => 'string',
+        'amount'       => 'float',
+        'currency'     => 'string',
+        'transactions' => '\zipMoney\Model\SettlementTransactions[]',
+    ];
 
     public static function zipTypes()
     {
@@ -41,42 +44,43 @@ class Settlement implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'id' => 'id',
-        'created' => 'created',
-        'amount' => 'amount',
-        'currency' => 'currency',
-        'transactions' => 'transactions'
-    );
-
+    protected static $attributeMap = [
+        'id'           => 'id',
+        'created'      => 'created',
+        'amount'       => 'amount',
+        'currency'     => 'currency',
+        'transactions' => 'transactions',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'id' => 'setId',
-        'created' => 'setCreated',
-        'amount' => 'setAmount',
-        'currency' => 'setCurrency',
-        'transactions' => 'setTransactions'
-    );
-
+    protected static $setters = [
+        'id'           => 'setId',
+        'created'      => 'setCreated',
+        'amount'       => 'setAmount',
+        'currency'     => 'setCurrency',
+        'transactions' => 'setTransactions',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'id' => 'getId',
-        'created' => 'getCreated',
-        'amount' => 'getAmount',
-        'currency' => 'getCurrency',
-        'transactions' => 'getTransactions'
-    );
+    protected static $getters = [
+        'id'           => 'getId',
+        'created'      => 'getCreated',
+        'amount'       => 'getAmount',
+        'currency'     => 'getCurrency',
+        'transactions' => 'getTransactions',
+    ];
 
     public static function attributeMap()
     {
@@ -93,18 +97,16 @@ class Settlement implements ArrayAccess
         return self::$getters;
     }
 
-
-
-
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -123,26 +125,23 @@ class Settlement implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
-
-        return $invalid_properties;
+        return [];
     }
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         return true;
     }
 
-
     /**
-     * Gets id
+     * Gets id.
+     *
      * @return string
      */
     public function getId()
@@ -151,8 +150,10 @@ class Settlement implements ArrayAccess
     }
 
     /**
-     * Sets id
+     * Sets id.
+     *
      * @param string $id
+     *
      * @return $this
      */
     public function setId($id)
@@ -163,7 +164,8 @@ class Settlement implements ArrayAccess
     }
 
     /**
-     * Gets created
+     * Gets created.
+     *
      * @return string
      */
     public function getCreated()
@@ -172,8 +174,10 @@ class Settlement implements ArrayAccess
     }
 
     /**
-     * Sets created
+     * Sets created.
+     *
      * @param string $created
+     *
      * @return $this
      */
     public function setCreated($created)
@@ -184,7 +188,8 @@ class Settlement implements ArrayAccess
     }
 
     /**
-     * Gets amount
+     * Gets amount.
+     *
      * @return float
      */
     public function getAmount()
@@ -193,8 +198,10 @@ class Settlement implements ArrayAccess
     }
 
     /**
-     * Sets amount
+     * Sets amount.
+     *
      * @param float $amount
+     *
      * @return $this
      */
     public function setAmount($amount)
@@ -205,7 +212,8 @@ class Settlement implements ArrayAccess
     }
 
     /**
-     * Gets currency
+     * Gets currency.
+     *
      * @return string
      */
     public function getCurrency()
@@ -214,8 +222,10 @@ class Settlement implements ArrayAccess
     }
 
     /**
-     * Sets currency
+     * Sets currency.
+     *
      * @param string $currency
+     *
      * @return $this
      */
     public function setCurrency($currency)
@@ -226,7 +236,8 @@ class Settlement implements ArrayAccess
     }
 
     /**
-     * Gets transactions
+     * Gets transactions.
+     *
      * @return \zipMoney\Model\SettlementTransactions[]
      */
     public function getTransactions()
@@ -235,8 +246,10 @@ class Settlement implements ArrayAccess
     }
 
     /**
-     * Sets transactions
+     * Sets transactions.
+     *
      * @param \zipMoney\Model\SettlementTransactions[] $transactions
+     *
      * @return $this
      */
     public function setTransactions($transactions)
@@ -245,10 +258,13 @@ class Settlement implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -257,19 +273,21 @@ class Settlement implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -282,8 +300,8 @@ class Settlement implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -291,7 +309,8 @@ class Settlement implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

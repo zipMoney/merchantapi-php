@@ -1,28 +1,25 @@
 <?php
+declare(strict_types=1);
 
 namespace zipMoney;
 
-use \zipMoney\Configuration;
-use \zipMoney\ApiClient;
-use \zipMoney\ApiException;
-use \zipMoney\ObjectSerializer;
-use \zipMoney\Helper\Payload;
+use zipMoney\Helper\Payload;
 
-class Setup extends \PHPUnit_Framework_TestCase
+class Setup extends \PHPUnit\Framework\TestCase
 {
     protected $_payloadHelper;
 
     /**
-     * Setup before running each test case
+     * Setup before running each test case.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_payloadHelper = new Payload;
 
-        $auth  = parse_ini_file("auth.ini");
+        $auth = parse_ini_file('auth.ini');
 
         Configuration::getDefaultConfiguration()->setApiKey('Authorization', "Bearer {$auth['private_key']}");
-        Configuration::getDefaultConfiguration()->setEnvironment("sandbox");
+        Configuration::getDefaultConfiguration()->setEnvironment('sandbox');
         Configuration::getDefaultConfiguration()->setSSLVerification(false);
     }
 }

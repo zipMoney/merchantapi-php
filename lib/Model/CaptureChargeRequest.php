@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * CaptureChargeRequest
+ * CaptureChargeRequest.
  *
  * @category Class
  * @package  zipMoney
@@ -18,18 +19,20 @@ class CaptureChargeRequest implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'CaptureChargeRequest';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'amount' => 'float'
-    );
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'amount' => 'float',
+    ];
 
     public static function zipTypes()
     {
@@ -37,30 +40,31 @@ class CaptureChargeRequest implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'amount' => 'amount'
-    );
-
+    protected static $attributeMap = [
+        'amount' => 'amount',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'amount' => 'setAmount'
-    );
-
+    protected static $setters = [
+        'amount' => 'setAmount',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'amount' => 'getAmount'
-    );
+    protected static $getters = [
+        'amount' => 'getAmount',
+    ];
 
     public static function attributeMap()
     {
@@ -77,18 +81,16 @@ class CaptureChargeRequest implements ArrayAccess
         return self::$getters;
     }
 
-
-
-
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -103,7 +105,7 @@ class CaptureChargeRequest implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if ($this->container['amount'] === null) {
             $invalid_properties[] = "'amount' can't be null";
@@ -117,25 +119,25 @@ class CaptureChargeRequest implements ArrayAccess
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if ($this->container['amount'] === null) {
             return false;
         }
         if ($this->container['amount'] < 0) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets amount
+     * Gets amount.
+     *
      * @return float
      */
     public function getAmount()
@@ -144,13 +146,14 @@ class CaptureChargeRequest implements ArrayAccess
     }
 
     /**
-     * Sets amount
+     * Sets amount.
+     *
      * @param float $amount Amount can be less than or equal to the previously authorised amount
+     *
      * @return $this
      */
     public function setAmount($amount)
     {
-
         if (($amount < 0)) {
             throw new \InvalidArgumentException('invalid value for $amount when calling CaptureChargeRequest., must be bigger than or equal to 0.');
         }
@@ -159,10 +162,13 @@ class CaptureChargeRequest implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -171,19 +177,21 @@ class CaptureChargeRequest implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -196,8 +204,8 @@ class CaptureChargeRequest implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -205,7 +213,8 @@ class CaptureChargeRequest implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

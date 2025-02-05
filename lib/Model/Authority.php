@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * Authority
+ * Authority.
  *
  * @category Class
  * @package  zipMoney
@@ -18,19 +19,21 @@ class Authority implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'authority';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'type' => 'string',
-        'value' => 'string'
-    );
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'type'  => 'string',
+        'value' => 'string',
+    ];
 
     public static function zipTypes()
     {
@@ -38,33 +41,34 @@ class Authority implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'type' => 'type',
-        'value' => 'value'
-    );
-
+    protected static $attributeMap = [
+        'type'  => 'type',
+        'value' => 'value',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'type' => 'setType',
-        'value' => 'setValue'
-    );
-
+    protected static $setters = [
+        'type'  => 'setType',
+        'value' => 'setValue',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'type' => 'getType',
-        'value' => 'getValue'
-    );
+    protected static $getters = [
+        'type'  => 'getType',
+        'value' => 'getValue',
+    ];
 
     public static function attributeMap()
     {
@@ -85,30 +89,30 @@ class Authority implements ArrayAccess
     public const TYPE_STORE_CODE = 'store_code';
     public const TYPE_ACCOUNT_TOKEN = 'account_token';
 
-
-
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
+     *
      * @return string[]
      */
     public function getTypeAllowableValues()
     {
-        return array(
+        return [
             self::TYPE_CHECKOUT_ID,
             self::TYPE_STORE_CODE,
             self::TYPE_ACCOUNT_TOKEN,
-        );
+        ];
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -124,12 +128,12 @@ class Authority implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if ($this->container['type'] === null) {
             $invalid_properties[] = "'type' can't be null";
         }
-        $allowed_values = array("checkout_id", "store_code", "account_token");
+        $allowed_values = ['checkout_id', 'store_code', 'account_token'];
         if (!in_array($this->container['type'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'type', must be one of 'checkout_id', 'store_code', 'account_token'.";
         }
@@ -137,34 +141,35 @@ class Authority implements ArrayAccess
         if ($this->container['value'] === null) {
             $invalid_properties[] = "'value' can't be null";
         }
+
         return $invalid_properties;
     }
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if ($this->container['type'] === null) {
             return false;
         }
-        $allowed_values = array("checkout_id", "store_code", "account_token");
+        $allowed_values = ['checkout_id', 'store_code', 'account_token'];
         if (!in_array($this->container['type'], $allowed_values)) {
             return false;
         }
         if ($this->container['value'] === null) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets type
+     * Gets type.
+     *
      * @return string
      */
     public function getType()
@@ -173,13 +178,15 @@ class Authority implements ArrayAccess
     }
 
     /**
-     * Sets type
+     * Sets type.
+     *
      * @param string $type The type of authority (checkout_id, account_token, store_code)
+     *
      * @return $this
      */
     public function setType($type)
     {
-        $allowed_values = array('checkout_id', 'store_code', 'account_token');
+        $allowed_values = ['checkout_id', 'store_code', 'account_token'];
         if ((!in_array($type, $allowed_values))) {
             throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'checkout_id', 'store_code', 'account_token'");
         }
@@ -189,7 +196,8 @@ class Authority implements ArrayAccess
     }
 
     /**
-     * Gets value
+     * Gets value.
+     *
      * @return string
      */
     public function getValue()
@@ -198,8 +206,10 @@ class Authority implements ArrayAccess
     }
 
     /**
-     * Sets value
+     * Sets value.
+     *
      * @param string $value The authority value/token
+     *
      * @return $this
      */
     public function setValue($value)
@@ -208,10 +218,13 @@ class Authority implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -220,19 +233,21 @@ class Authority implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -245,8 +260,8 @@ class Authority implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -254,7 +269,8 @@ class Authority implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * CreateChargeRequest
+ * CreateChargeRequest.
  *
  * @category Class
  * @package  zipMoney
@@ -18,24 +19,26 @@ class CreateChargeRequest implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'CreateChargeRequest';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
         'authority' => '\zipMoney\Model\Authority',
         'reference' => 'string',
-        'amount' => 'float',
-        'currency' => 'string',
-        'capture' => 'bool',
-        'order' => '\zipMoney\Model\ChargeOrder',
-        'metadata' => 'object'
-    );
+        'amount'    => 'float',
+        'currency'  => 'string',
+        'capture'   => 'bool',
+        'order'     => '\zipMoney\Model\ChargeOrder',
+        'metadata'  => 'object',
+    ];
 
     public static function zipTypes()
     {
@@ -43,48 +46,49 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
+    protected static $attributeMap = [
         'authority' => 'authority',
         'reference' => 'reference',
-        'amount' => 'amount',
-        'currency' => 'currency',
-        'capture' => 'capture',
-        'order' => 'order',
-        'metadata' => 'metadata'
-    );
-
+        'amount'    => 'amount',
+        'currency'  => 'currency',
+        'capture'   => 'capture',
+        'order'     => 'order',
+        'metadata'  => 'metadata',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
+    protected static $setters = [
         'authority' => 'setAuthority',
         'reference' => 'setReference',
-        'amount' => 'setAmount',
-        'currency' => 'setCurrency',
-        'capture' => 'setCapture',
-        'order' => 'setOrder',
-        'metadata' => 'setMetadata'
-    );
-
+        'amount'    => 'setAmount',
+        'currency'  => 'setCurrency',
+        'capture'   => 'setCapture',
+        'order'     => 'setOrder',
+        'metadata'  => 'setMetadata',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
+    protected static $getters = [
         'authority' => 'getAuthority',
         'reference' => 'getReference',
-        'amount' => 'getAmount',
-        'currency' => 'getCurrency',
-        'capture' => 'getCapture',
-        'order' => 'getOrder',
-        'metadata' => 'getMetadata'
-    );
+        'amount'    => 'getAmount',
+        'currency'  => 'getCurrency',
+        'capture'   => 'getCapture',
+        'order'     => 'getOrder',
+        'metadata'  => 'getMetadata',
+    ];
 
     public static function attributeMap()
     {
@@ -101,15 +105,16 @@ class CreateChargeRequest implements ArrayAccess
         return self::$getters;
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -130,7 +135,7 @@ class CreateChargeRequest implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if ($this->container['authority'] === null) {
             $invalid_properties[] = "'authority' can't be null";
@@ -147,13 +152,12 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if ($this->container['authority'] === null) {
             return false;
         }
@@ -163,12 +167,13 @@ class CreateChargeRequest implements ArrayAccess
         if ($this->container['currency'] === null) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets authority
+     * Gets authority.
+     *
      * @return \zipMoney\Model\Authority
      */
     public function getAuthority()
@@ -177,8 +182,10 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Sets authority
+     * Sets authority.
+     *
      * @param \zipMoney\Model\Authority $authority
+     *
      * @return $this
      */
     public function setAuthority($authority)
@@ -189,7 +196,8 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Gets reference
+     * Gets reference.
+     *
      * @return string
      */
     public function getReference()
@@ -198,8 +206,10 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Sets reference
+     * Sets reference.
+     *
      * @param string $reference The reference for this charge (unique payment reference in your store)
+     *
      * @return $this
      */
     public function setReference($reference)
@@ -210,7 +220,8 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Gets amount
+     * Gets amount.
+     *
      * @return float
      */
     public function getAmount()
@@ -219,8 +230,10 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Sets amount
+     * Sets amount.
+     *
      * @param float $amount The amount of the charge
+     *
      * @return $this
      */
     public function setAmount($amount)
@@ -231,7 +244,8 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Gets currency
+     * Gets currency.
+     *
      * @return string
      */
     public function getCurrency()
@@ -240,8 +254,10 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Sets currency
+     * Sets currency.
+     *
      * @param string $currency The currency
+     *
      * @return $this
      */
     public function setCurrency($currency)
@@ -252,7 +268,8 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Gets capture
+     * Gets capture.
+     *
      * @return bool
      */
     public function getCapture()
@@ -261,8 +278,10 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Sets capture
+     * Sets capture.
+     *
      * @param bool $capture If true this will be a direct capture, pass false to perform an authorisation only
+     *
      * @return $this
      */
     public function setCapture($capture)
@@ -273,7 +292,8 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Gets order
+     * Gets order.
+     *
      * @return \zipMoney\Model\ChargeOrder
      */
     public function getOrder()
@@ -282,8 +302,10 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Sets order
+     * Sets order.
+     *
      * @param \zipMoney\Model\ChargeOrder $order
+     *
      * @return $this
      */
     public function setOrder($order)
@@ -294,7 +316,8 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Gets metadata
+     * Gets metadata.
+     *
      * @return object
      */
     public function getMetadata()
@@ -303,8 +326,10 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Sets metadata
+     * Sets metadata.
+     *
      * @param object $metadata
+     *
      * @return $this
      */
     public function setMetadata($metadata)
@@ -313,10 +338,13 @@ class CreateChargeRequest implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -325,19 +353,21 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -350,8 +380,8 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -359,7 +389,8 @@ class CreateChargeRequest implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

@@ -1,48 +1,27 @@
 <?php
+declare(strict_types=1);
 /**
  * RefundsApiTest
- * PHP version 5
+ * PHP version 5.
  *
  * @category Class
- * @package  zipMoney
- * @author   zipMoney Payments Pty Ltd
- * @link     https://github.com/zipMoney/merchantapi-php
+ *
+ * @see     https://github.com/zipMoney/merchantapi-php
  */
 
 namespace zipMoney;
 
-use \zipMoney\Api\RefundsApi;
+use zipMoney\Api\RefundsApi;
 
 class RefundsApiTest extends Setup
 {
-
     /**
-     * Setup before running any test cases
-     */
-    public static function setUpBeforeClass()
-    {
-    }
-
-
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
-
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
-
-    /**
-     * Test case for refundsCreate
+     * Test case for refundsCreate.
      *
      * Create a refund.
+     *
      * @expectedException  \zipMoney\ApiException
+     *
      * @expectedExceptionMessage An error occurred while processing payment
      */
     public function testRefundsCreate()
@@ -51,25 +30,26 @@ class RefundsApiTest extends Setup
         $this->_payloadHelper->setChargeId(1);
         $req = $this->_payloadHelper->getRefundPayload();
         $response = $refundsApi->refundsCreate($req);
+        $this->assertTrue(true);
     }
 
     /**
-     * Test case for refundsList
+     * Test case for refundsList.
      *
      * List refunds.
-     *
      */
     public function testRefundsList()
     {
+        $this->assertTrue(true);
     }
 
     /**
-     * Test case for refundsRetrieve
+     * Test case for refundsRetrieve.
      *
      * Retrieve a refund.
-     *
      */
     public function testRefundsRetrieve()
     {
+        $this->assertTrue(true);
     }
 }

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * SettlementTransactions
+ * SettlementTransactions.
  *
  * @category Class
  * @package  zipMoney
@@ -19,19 +20,21 @@ class SettlementTransactions implements ArrayAccess
 
     /**
      * The original name of the model.
+     *
      * @var string
      */
     protected static $swaggerModelName = 'settlement_transactions';
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
+     * Array of property to type mappings. Used for (de)serialization.
+     *
      * @var string[]
      */
-    protected static $zipTypes = array(
-        'id' => 'string',
+    protected static $zipTypes = [
+        'id'        => 'string',
         'charge_id' => 'string',
-        '' => 'string'
-    );
+        ''          => 'string',
+    ];
 
     public static function zipTypes()
     {
@@ -39,36 +42,37 @@ class SettlementTransactions implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'id' => 'id',
+    protected static $attributeMap = [
+        'id'        => 'id',
         'charge_id' => 'chargeId',
-        '' => ''
-    );
-
+        ''          => '',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'id' => 'setId',
+    protected static $setters = [
+        'id'        => 'setId',
         'charge_id' => 'setChargeId',
-        '' => 'set'
-    );
-
+        ''          => 'set',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'id' => 'getId',
+    protected static $getters = [
+        'id'        => 'getId',
         'charge_id' => 'getChargeId',
-        '' => 'get'
-    );
+        ''          => 'get',
+    ];
 
     public static function attributeMap()
     {
@@ -85,18 +89,16 @@ class SettlementTransactions implements ArrayAccess
         return self::$getters;
     }
 
-
-
-
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -113,26 +115,23 @@ class SettlementTransactions implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
-
-        return $invalid_properties;
+        return [];
     }
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         return true;
     }
 
-
     /**
-     * Gets id
+     * Gets id.
+     *
      * @return string
      */
     public function getId()
@@ -141,8 +140,10 @@ class SettlementTransactions implements ArrayAccess
     }
 
     /**
-     * Sets id
+     * Sets id.
+     *
      * @param string $id
+     *
      * @return $this
      */
     public function setId($id)
@@ -153,7 +154,8 @@ class SettlementTransactions implements ArrayAccess
     }
 
     /**
-     * Gets charge_id
+     * Gets charge_id.
+     *
      * @return string
      */
     public function getChargeId()
@@ -162,8 +164,10 @@ class SettlementTransactions implements ArrayAccess
     }
 
     /**
-     * Sets charge_id
+     * Sets charge_id.
+     *
      * @param string $charge_id
+     *
      * @return $this
      */
     public function setChargeId($charge_id)
@@ -174,7 +178,8 @@ class SettlementTransactions implements ArrayAccess
     }
 
     /**
-     * Gets
+     * Gets.
+     *
      * @return string
      */
     public function get()
@@ -183,8 +188,11 @@ class SettlementTransactions implements ArrayAccess
     }
 
     /**
-     * Sets
+     * Sets.
+     *
      * @param string $
+     * @param mixed $val
+     *
      * @return $this
      */
     public function set($val)
@@ -193,10 +201,13 @@ class SettlementTransactions implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -205,19 +216,21 @@ class SettlementTransactions implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -230,8 +243,8 @@ class SettlementTransactions implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -239,7 +252,8 @@ class SettlementTransactions implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

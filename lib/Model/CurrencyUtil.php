@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * CurrencyUtil
+ * CurrencyUtil.
  *
  * @category Class
  * @package  zip
@@ -21,11 +22,11 @@ class CurrencyUtil
     public const CURRENCY_CAD = 'CAD';
 
     /**
-     * Gets all available regions
+     * Gets all available regions.
      */
     public static function getAvailableRegions()
     {
-        return array(
+        return [
             'au' => 'Australia',
             'nz' => 'New Zealand',
             'us' => 'United States',
@@ -35,6 +36,6 @@ class CurrencyUtil
             'mx' => 'Mexico',
             'ae' => 'United Arab Emirates',
             'sg' => 'Singapore',
-        );
+        ];
     }
 }
