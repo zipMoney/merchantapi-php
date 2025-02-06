@@ -1,4 +1,5 @@
 <?php
+
 /**
  * OrderItemAdditionalDetails
  *
@@ -8,10 +9,9 @@
  * @link     https://github.com/zipMoney/merchantapi-php
  */
 
-
 namespace zipMoney\Model;
 
-use \ArrayAccess;
+use ArrayAccess;
 
 class OrderItemAdditionalDetails implements ArrayAccess
 {
@@ -78,9 +78,9 @@ class OrderItemAdditionalDetails implements ArrayAccess
     }
 
     const TYPE_FLIGHTS = 'Flights';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -91,7 +91,7 @@ class OrderItemAdditionalDetails implements ArrayAccess
             self::TYPE_FLIGHTS,
         );
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -171,7 +171,7 @@ class OrderItemAdditionalDetails implements ArrayAccess
      * @param  integer $offset Offset
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -183,7 +183,7 @@ class OrderItemAdditionalDetails implements ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -224,5 +224,3 @@ class OrderItemAdditionalDetails implements ArrayAccess
         return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

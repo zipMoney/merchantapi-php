@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Metadata
  *
@@ -10,7 +11,7 @@
 
 namespace zipMoney\Model;
 
-use \ArrayAccess;
+use ArrayAccess;
 
 class Metadata implements ArrayAccess
 {
@@ -120,7 +121,7 @@ class Metadata implements ArrayAccess
      * @param  integer $offset Offset
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -132,7 +133,7 @@ class Metadata implements ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

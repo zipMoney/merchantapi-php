@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ApiException
  *
@@ -10,11 +11,10 @@
 
 namespace zipMoney;
 
-use \Exception;
+use Exception;
 
 class ApiException extends Exception
 {
-
     /**
      * The HTTP body of the server response either as Json or string.
      *

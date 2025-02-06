@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TokensApi
  *
@@ -10,10 +11,10 @@
 
 namespace zipMoney\Api;
 
-use \zipMoney\ApiClient;
-use \zipMoney\ApiException;
-use \zipMoney\Configuration;
-use \zipMoney\ObjectSerializer;
+use zipMoney\ApiClient;
+use zipMoney\ApiException;
+use zipMoney\Configuration;
+use zipMoney\ObjectSerializer;
 
 class TokensApi
 {

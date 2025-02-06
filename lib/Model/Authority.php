@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Authority
  *
@@ -8,10 +9,9 @@
  * @link     https://github.com/zipMoney/merchantapi-php
  */
 
-
 namespace zipMoney\Model;
 
-use \ArrayAccess;
+use ArrayAccess;
 
 class Authority implements ArrayAccess
 {
@@ -84,9 +84,9 @@ class Authority implements ArrayAccess
     const TYPE_CHECKOUT_ID = 'checkout_id';
     const TYPE_STORE_CODE = 'store_code';
     const TYPE_ACCOUNT_TOKEN = 'account_token';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -99,7 +99,7 @@ class Authority implements ArrayAccess
             self::TYPE_ACCOUNT_TOKEN,
         );
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -213,7 +213,7 @@ class Authority implements ArrayAccess
      * @param  integer $offset Offset
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -225,7 +225,7 @@ class Authority implements ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -266,5 +266,3 @@ class Authority implements ArrayAccess
         return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

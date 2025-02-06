@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ApiClient
  *
@@ -211,7 +212,7 @@ class ApiClient
 
         do {
 
-            if($count > 0 && $this->config->getRetryInterval() > 0){
+            if ($count > 0 && $this->config->getRetryInterval() > 0) {
                 sleep($this->config->getRetryInterval());
             }
 
@@ -225,7 +226,7 @@ class ApiClient
             $msg = curl_error($curl);
 
         } while (($count <= $num_retries) &&
-                  ( $response_info['http_code'] === 0 && empty($msg) ) &&
+                  ($response_info['http_code'] === 0 && empty($msg)) &&
                   !empty($headerParams['Idempotency-Key']));
 
 
@@ -306,13 +307,13 @@ class ApiClient
         }
     }
 
-   /**
-    * Return an array of HTTP response headers
-    *
-    * @param string $raw_headers A string of raw HTTP response headers
-    *
-    * @return string[] Array of HTTP response heaers
-    */
+    /**
+     * Return an array of HTTP response headers
+     *
+     * @param string $raw_headers A string of raw HTTP response headers
+     *
+     * @return string[] Array of HTTP response heaers
+     */
     protected function httpParseHeaders($raw_headers)
     {
         // ref/credit: http://php.net/manual/en/function.http-parse-headers.php#112986

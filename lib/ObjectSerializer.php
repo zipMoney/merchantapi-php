@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ObjectSerializer
  *
@@ -7,7 +8,6 @@
  * @author   zipMoney Payments Pty Ltd
  * @link     https://github.com/zipMoney/merchantapi-php
  */
-
 
 namespace zipMoney;
 
@@ -45,10 +45,10 @@ class ObjectSerializer
             foreach (array_keys($data::zipTypes()) as $property) {
                 $getterArr = $data::getters();
                 $getter = $getterArr[$property];
-                if(method_exists(get_class($data), $getter) && $data->$getter() !== null){
+                if (method_exists(get_class($data), $getter) && $data->$getter() !== null) {
                     $values[$attr[$property]] = self::sanitizeForSerialization($data->$getter());
                 }
-                if(method_exists(get_class($data), 'get') && $data->get($property) !== null){
+                if (method_exists(get_class($data), 'get') && $data->get($property) !== null) {
                     $values[$attr[$property]] = self::sanitizeForSerialization($data->get($property));
                 }
             }
