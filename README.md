@@ -5,7 +5,7 @@ ZipMoney Merchant API Initial build
 
 ## Requirements
 
-PHP 7.0 and later
+PHP 7.1 and later
 
 ## Installation & Usage
 ### Composer
