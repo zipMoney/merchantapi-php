@@ -1,6 +1,6 @@
 {
     "name": "zipmoney/merchantapi-php",
-    "version": "1.0.15",
+    "version": "1.0.16",
     "description": "",
     "keywords": [
         "zipmoney",
@@ -21,7 +21,7 @@
         "publish": "sh ./build/shell/publish.sh"
     },
     "require": {
-        "php": ">=8.0",
+        "php": ">=7.3",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*"
