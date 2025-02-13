@@ -15,7 +15,7 @@ use ArrayAccess;
 
 class Checkout implements ArrayAccess
 {
-    const DISCRIMINATOR = 'subclass';
+    public const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -117,14 +117,14 @@ class Checkout implements ArrayAccess
         return self::$getters;
     }
 
-    const TYPE_STANDARD = 'standard';
-    const TYPE_EXPRESS = 'express';
-    const STATE_CREATED = 'created';
-    const STATE_EXPIRED = 'expired';
-    const STATE_APPROVED = 'approved';
-    const STATE_COMPLETED = 'completed';
-    const STATE_CANCELLED = 'cancelled';
-    const STATE_DECLINED = 'declined';
+    public const TYPE_STANDARD = 'standard';
+    public const TYPE_EXPRESS = 'express';
+    public const STATE_CREATED = 'created';
+    public const STATE_EXPIRED = 'expired';
+    public const STATE_APPROVED = 'approved';
+    public const STATE_COMPLETED = 'completed';
+    public const STATE_CANCELLED = 'cancelled';
+    public const STATE_DECLINED = 'declined';
 
 
 
@@ -513,7 +513,7 @@ class Checkout implements ArrayAccess
      * @param  mixed   $value  Value to be set
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -527,7 +527,7 @@ class Checkout implements ArrayAccess
      * @param  integer $offset Offset
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }

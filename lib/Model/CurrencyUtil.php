@@ -13,12 +13,12 @@ namespace zipMoney\Model;
 class CurrencyUtil
 {
     // allowed currency codes
-    const CURRENCY_AUD = 'AUD';
-    const CURRENCY_NZD = 'NZD';
-    const CURRENCY_GBP = 'GBP';
-    const CURRENCY_USD = 'USD';
-    const CURRENCY_ZAR = 'ZAR';
-    const CURRENCY_CAD = 'CAD';
+    public const CURRENCY_AUD = 'AUD';
+    public const CURRENCY_NZD = 'NZD';
+    public const CURRENCY_GBP = 'GBP';
+    public const CURRENCY_USD = 'USD';
+    public const CURRENCY_ZAR = 'ZAR';
+    public const CURRENCY_CAD = 'CAD';
 
     /**
      * Gets all available regions

@@ -15,7 +15,7 @@ use ArrayAccess;
 
 class Customer implements ArrayAccess
 {
-    const DISCRIMINATOR = 'subclass';
+    public const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -105,9 +105,9 @@ class Customer implements ArrayAccess
         return self::$getters;
     }
 
-    const GENDER_MALE = 'Male';
-    const GENDER_FEMALE = 'Female';
-    const GENDER_OTHER = 'Other';
+    public const GENDER_MALE = 'Male';
+    public const GENDER_FEMALE = 'Female';
+    public const GENDER_OTHER = 'Other';
 
 
 
@@ -408,7 +408,7 @@ class Customer implements ArrayAccess
      * @param  mixed   $value  Value to be set
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -422,7 +422,7 @@ class Customer implements ArrayAccess
      * @param  integer $offset Offset
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }

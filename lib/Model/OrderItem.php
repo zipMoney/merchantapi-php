@@ -15,7 +15,7 @@ use ArrayAccess;
 
 class OrderItem implements ArrayAccess
 {
-    const DISCRIMINATOR = 'subclass';
+    public const DISCRIMINATOR = 'subclass';
 
     /**
       * The original name of the model.
@@ -113,11 +113,11 @@ class OrderItem implements ArrayAccess
         return self::$getters;
     }
 
-    const TYPE_SKU = 'sku';
-    const TYPE_TAX = 'tax';
-    const TYPE_SHIPPING = 'shipping';
-    const TYPE_DISCOUNT = 'discount';
-    const TYPE_STORE_CREDIT = 'store_credit';
+    public const TYPE_SKU = 'sku';
+    public const TYPE_TAX = 'tax';
+    public const TYPE_SHIPPING = 'shipping';
+    public const TYPE_DISCOUNT = 'discount';
+    public const TYPE_STORE_CREDIT = 'store_credit';
 
 
 
@@ -475,7 +475,7 @@ class OrderItem implements ArrayAccess
      * @param  mixed   $value  Value to be set
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -489,7 +489,7 @@ class OrderItem implements ArrayAccess
      * @param  integer $offset Offset
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }

@@ -362,7 +362,7 @@ class Configuration
      *
      * @return Configuration
      */
-    public function deleteDefaultHeader($headerName)
+    public function deleteDefaultHeader($headerName): void
     {
         unset($this->defaultHeaders[$headerName]);
     }
