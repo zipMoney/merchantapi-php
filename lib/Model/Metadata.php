@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * Metadata
+ * Metadata.
  *
  * @category Class
  * @package  zipMoney
@@ -18,18 +19,19 @@ class Metadata implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'metadata';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-
-    );
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+    ];
 
     public static function zipTypes()
     {
@@ -37,28 +39,28 @@ class Metadata implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-
-    );
+    protected static $attributeMap = [
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-
-    );
+    protected static $setters = [
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-
-    );
+    protected static $getters = [
+    ];
 
     public static function attributeMap()
     {
@@ -76,13 +78,15 @@ class Metadata implements ArrayAccess
     }
 
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -99,27 +103,26 @@ class Metadata implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
-
-        return $invalid_properties;
+        return [];
     }
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         return true;
     }
 
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -128,19 +131,21 @@ class Metadata implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -153,8 +158,8 @@ class Metadata implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -176,11 +181,14 @@ class Metadata implements ArrayAccess
         $propertyName = str_replace('_', '', ucwords($key, '_'));
         self::$zipTypes[$key] = 'string';
         self::$attributeMap[$key] = $propertyName;
-        self::$getters[$key] = 'get'.$propertyName;
+        self::$getters[$key] = 'get' . $propertyName;
     }
 
     /**
-     * Gets
+     * Gets.
+     *
+     * @param mixed $key
+     *
      * @return string
      */
     public function get($key)
@@ -189,7 +197,8 @@ class Metadata implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

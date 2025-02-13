@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * FlightadditionaldetailsPassengers
+ * FlightadditionaldetailsPassengers.
  *
  * @category Class
  * @package  zipMoney
@@ -18,23 +19,25 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'flightadditionaldetails_passengers';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'title' => 'string',
-        'first_name' => 'string',
-        'last_name' => 'string',
-        'gender' => 'string',
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'title'         => 'string',
+        'first_name'    => 'string',
+        'last_name'     => 'string',
+        'gender'        => 'string',
         'date_of_birth' => '\DateTime',
-        'seat_number' => 'string'
-    );
+        'seat_number'   => 'string',
+    ];
 
     public static function zipTypes()
     {
@@ -42,45 +45,46 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'title' => 'title',
-        'first_name' => 'first_name',
-        'last_name' => 'last_name',
-        'gender' => 'gender',
+    protected static $attributeMap = [
+        'title'         => 'title',
+        'first_name'    => 'first_name',
+        'last_name'     => 'last_name',
+        'gender'        => 'gender',
         'date_of_birth' => 'date_of_birth',
-        'seat_number' => 'seat_number'
-    );
-
+        'seat_number'   => 'seat_number',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'title' => 'setTitle',
-        'first_name' => 'setFirstName',
-        'last_name' => 'setLastName',
-        'gender' => 'setGender',
+    protected static $setters = [
+        'title'         => 'setTitle',
+        'first_name'    => 'setFirstName',
+        'last_name'     => 'setLastName',
+        'gender'        => 'setGender',
         'date_of_birth' => 'setDateOfBirth',
-        'seat_number' => 'setSeatNumber'
-    );
-
+        'seat_number'   => 'setSeatNumber',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'title' => 'getTitle',
-        'first_name' => 'getFirstName',
-        'last_name' => 'getLastName',
-        'gender' => 'getGender',
+    protected static $getters = [
+        'title'         => 'getTitle',
+        'first_name'    => 'getFirstName',
+        'last_name'     => 'getLastName',
+        'gender'        => 'getGender',
         'date_of_birth' => 'getDateOfBirth',
-        'seat_number' => 'getSeatNumber'
-    );
+        'seat_number'   => 'getSeatNumber',
+    ];
 
     public static function attributeMap()
     {
@@ -97,18 +101,16 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
         return self::$getters;
     }
 
-
-
-
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -128,7 +130,7 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if ($this->container['first_name'] === null) {
             $invalid_properties[] = "'first_name' can't be null";
@@ -136,30 +138,31 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
         if ($this->container['last_name'] === null) {
             $invalid_properties[] = "'last_name' can't be null";
         }
+
         return $invalid_properties;
     }
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if ($this->container['first_name'] === null) {
             return false;
         }
         if ($this->container['last_name'] === null) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets title
+     * Gets title.
+     *
      * @return string
      */
     public function getTitle()
@@ -168,8 +171,10 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Sets title
+     * Sets title.
+     *
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle($title)
@@ -180,7 +185,8 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Gets first_name
+     * Gets first_name.
+     *
      * @return string
      */
     public function getFirstName()
@@ -189,8 +195,10 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Sets first_name
+     * Sets first_name.
+     *
      * @param string $first_name
+     *
      * @return $this
      */
     public function setFirstName($first_name)
@@ -201,7 +209,8 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Gets last_name
+     * Gets last_name.
+     *
      * @return string
      */
     public function getLastName()
@@ -210,8 +219,10 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Sets last_name
+     * Sets last_name.
+     *
      * @param string $last_name
+     *
      * @return $this
      */
     public function setLastName($last_name)
@@ -222,7 +233,8 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Gets gender
+     * Gets gender.
+     *
      * @return string
      */
     public function getGender()
@@ -231,8 +243,10 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Sets gender
+     * Sets gender.
+     *
      * @param string $gender
+     *
      * @return $this
      */
     public function setGender($gender)
@@ -243,7 +257,8 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Gets date_of_birth
+     * Gets date_of_birth.
+     *
      * @return \DateTime
      */
     public function getDateOfBirth()
@@ -252,8 +267,10 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Sets date_of_birth
+     * Sets date_of_birth.
+     *
      * @param \DateTime $date_of_birth
+     *
      * @return $this
      */
     public function setDateOfBirth($date_of_birth)
@@ -264,7 +281,8 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Gets seat_number
+     * Gets seat_number.
+     *
      * @return string
      */
     public function getSeatNumber()
@@ -273,8 +291,10 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Sets seat_number
+     * Sets seat_number.
+     *
      * @param string $seat_number
+     *
      * @return $this
      */
     public function setSeatNumber($seat_number)
@@ -283,10 +303,13 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -295,19 +318,21 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -320,8 +345,8 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -329,7 +354,8 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

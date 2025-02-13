@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * Checkout
+ * Checkout.
  *
  * @category Class
  * @package  zipMoney
@@ -18,28 +19,30 @@ class Checkout implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'Checkout';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'id' => 'string',
-        'uri' => 'string',
-        'type' => 'string',
-        'shopper' => '\zipMoney\Model\Shopper',
-        'order' => '\zipMoney\Model\CheckoutOrder',
-        'features' => '\zipMoney\Model\CheckoutFeatures',
-        'config' => '\zipMoney\Model\CheckoutConfiguration',
-        'created' => '\DateTime',
-        'state' => 'string',
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'id'          => 'string',
+        'uri'         => 'string',
+        'type'        => 'string',
+        'shopper'     => '\zipMoney\Model\Shopper',
+        'order'       => '\zipMoney\Model\CheckoutOrder',
+        'features'    => '\zipMoney\Model\CheckoutFeatures',
+        'config'      => '\zipMoney\Model\CheckoutConfiguration',
+        'created'     => '\DateTime',
+        'state'       => 'string',
         'customer_id' => 'string',
-        'metadata' => '\zipMoney\Model\Metadata'
-    );
+        'metadata'    => '\zipMoney\Model\Metadata',
+    ];
 
     public static function zipTypes()
     {
@@ -47,60 +50,61 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'id' => 'id',
-        'uri' => 'uri',
-        'type' => 'type',
-        'shopper' => 'shopper',
-        'order' => 'order',
-        'features' => 'features',
-        'config' => 'config',
-        'created' => 'created',
-        'state' => 'state',
+    protected static $attributeMap = [
+        'id'          => 'id',
+        'uri'         => 'uri',
+        'type'        => 'type',
+        'shopper'     => 'shopper',
+        'order'       => 'order',
+        'features'    => 'features',
+        'config'      => 'config',
+        'created'     => 'created',
+        'state'       => 'state',
         'customer_id' => 'customer_id',
-        'metadata' => 'metadata'
-    );
-
+        'metadata'    => 'metadata',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'id' => 'setId',
-        'uri' => 'setUri',
-        'type' => 'setType',
-        'shopper' => 'setShopper',
-        'order' => 'setOrder',
-        'features' => 'setFeatures',
-        'config' => 'setConfig',
-        'created' => 'setCreated',
-        'state' => 'setState',
+    protected static $setters = [
+        'id'          => 'setId',
+        'uri'         => 'setUri',
+        'type'        => 'setType',
+        'shopper'     => 'setShopper',
+        'order'       => 'setOrder',
+        'features'    => 'setFeatures',
+        'config'      => 'setConfig',
+        'created'     => 'setCreated',
+        'state'       => 'setState',
         'customer_id' => 'setCustomerId',
-        'metadata' => 'setMetadata'
-    );
-
+        'metadata'    => 'setMetadata',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'id' => 'getId',
-        'uri' => 'getUri',
-        'type' => 'getType',
-        'shopper' => 'getShopper',
-        'order' => 'getOrder',
-        'features' => 'getFeatures',
-        'config' => 'getConfig',
-        'created' => 'getCreated',
-        'state' => 'getState',
+    protected static $getters = [
+        'id'          => 'getId',
+        'uri'         => 'getUri',
+        'type'        => 'getType',
+        'shopper'     => 'getShopper',
+        'order'       => 'getOrder',
+        'features'    => 'getFeatures',
+        'config'      => 'getConfig',
+        'created'     => 'getCreated',
+        'state'       => 'getState',
         'customer_id' => 'getCustomerId',
-        'metadata' => 'getMetadata'
-    );
+        'metadata'    => 'getMetadata',
+    ];
 
     public static function attributeMap()
     {
@@ -126,45 +130,46 @@ class Checkout implements ArrayAccess
     public const STATE_CANCELLED = 'cancelled';
     public const STATE_DECLINED = 'declined';
 
-
-
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
+     *
      * @return string[]
      */
     public function getTypeAllowableValues()
     {
-        return array(
+        return [
             self::TYPE_STANDARD,
             self::TYPE_EXPRESS,
-        );
+        ];
     }
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
+     *
      * @return string[]
      */
     public function getStateAllowableValues()
     {
-        return array(
+        return [
             self::STATE_CREATED,
             self::STATE_EXPIRED,
             self::STATE_APPROVED,
             self::STATE_COMPLETED,
             self::STATE_CANCELLED,
             self::STATE_DECLINED,
-        );
+        ];
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -189,7 +194,7 @@ class Checkout implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if ($this->container['id'] === null) {
             $invalid_properties[] = "'id' can't be null";
@@ -197,7 +202,7 @@ class Checkout implements ArrayAccess
         if ($this->container['uri'] === null) {
             $invalid_properties[] = "'uri' can't be null";
         }
-        $allowed_values = array("standard", "express");
+        $allowed_values = ['standard', 'express'];
         if (!in_array($this->container['type'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'type', must be one of 'standard', 'express'.";
         }
@@ -208,7 +213,7 @@ class Checkout implements ArrayAccess
         if ($this->container['state'] === null) {
             $invalid_properties[] = "'state' can't be null";
         }
-        $allowed_values = array("created", "expired", "approved", "completed", "cancelled", "declined");
+        $allowed_values = ['created', 'expired', 'approved', 'completed', 'cancelled', 'declined'];
         if (!in_array($this->container['state'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'state', must be one of 'created', 'expired', 'approved', 'completed', 'cancelled', 'declined'.";
         }
@@ -218,20 +223,19 @@ class Checkout implements ArrayAccess
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if ($this->container['id'] === null) {
             return false;
         }
         if ($this->container['uri'] === null) {
             return false;
         }
-        $allowed_values = array("standard", "express");
+        $allowed_values = ['standard', 'express'];
         if (!in_array($this->container['type'], $allowed_values)) {
             return false;
         }
@@ -241,16 +245,17 @@ class Checkout implements ArrayAccess
         if ($this->container['state'] === null) {
             return false;
         }
-        $allowed_values = array("created", "expired", "approved", "completed", "cancelled", "declined");
+        $allowed_values = ['created', 'expired', 'approved', 'completed', 'cancelled', 'declined'];
         if (!in_array($this->container['state'], $allowed_values)) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets id
+     * Gets id.
+     *
      * @return string
      */
     public function getId()
@@ -259,8 +264,10 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Sets id
+     * Sets id.
+     *
      * @param string $id The checkout id
+     *
      * @return $this
      */
     public function setId($id)
@@ -271,7 +278,8 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Gets uri
+     * Gets uri.
+     *
      * @return string
      */
     public function getUri()
@@ -280,8 +288,10 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Sets uri
+     * Sets uri.
+     *
      * @param string $uri The uri to redirect the user to in order to approve this checkout.
+     *
      * @return $this
      */
     public function setUri($uri)
@@ -292,7 +302,8 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Gets type
+     * Gets type.
+     *
      * @return string
      */
     public function getType()
@@ -301,13 +312,15 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Sets type
+     * Sets type.
+     *
      * @param string $type The type of checkout
+     *
      * @return $this
      */
     public function setType($type)
     {
-        $allowed_values = array('standard', 'express');
+        $allowed_values = ['standard', 'express'];
         if (!is_null($type) && (!in_array($type, $allowed_values))) {
             throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'standard', 'express'");
         }
@@ -317,7 +330,8 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Gets shopper
+     * Gets shopper.
+     *
      * @return \zipMoney\Model\Shopper
      */
     public function getShopper()
@@ -326,8 +340,10 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Sets shopper
+     * Sets shopper.
+     *
      * @param \zipMoney\Model\Shopper $shopper
+     *
      * @return $this
      */
     public function setShopper($shopper)
@@ -338,7 +354,8 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Gets order
+     * Gets order.
+     *
      * @return \zipMoney\Model\CheckoutOrder
      */
     public function getOrder()
@@ -347,8 +364,10 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Sets order
+     * Sets order.
+     *
      * @param \zipMoney\Model\CheckoutOrder $order
+     *
      * @return $this
      */
     public function setOrder($order)
@@ -359,7 +378,8 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Gets features
+     * Gets features.
+     *
      * @return \zipMoney\Model\CheckoutFeatures
      */
     public function getFeatures()
@@ -368,8 +388,10 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Sets features
+     * Sets features.
+     *
      * @param \zipMoney\Model\CheckoutFeatures $features
+     *
      * @return $this
      */
     public function setFeatures($features)
@@ -380,7 +402,8 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Gets config
+     * Gets config.
+     *
      * @return \zipMoney\Model\CheckoutConfiguration
      */
     public function getConfig()
@@ -389,8 +412,10 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Sets config
+     * Sets config.
+     *
      * @param \zipMoney\Model\CheckoutConfiguration $config
+     *
      * @return $this
      */
     public function setConfig($config)
@@ -401,7 +426,8 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Gets created
+     * Gets created.
+     *
      * @return \DateTime
      */
     public function getCreated()
@@ -410,8 +436,10 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Sets created
+     * Sets created.
+     *
      * @param \DateTime $created Date the checkout was created
+     *
      * @return $this
      */
     public function setCreated($created)
@@ -422,7 +450,8 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Gets state
+     * Gets state.
+     *
      * @return string
      */
     public function getState()
@@ -431,13 +460,15 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Sets state
+     * Sets state.
+     *
      * @param string $state Current state of the checkout
+     *
      * @return $this
      */
     public function setState($state)
     {
-        $allowed_values = array('created', 'expired', 'approved', 'completed', 'cancelled', 'declined');
+        $allowed_values = ['created', 'expired', 'approved', 'completed', 'cancelled', 'declined'];
         if ((!in_array($state, $allowed_values))) {
             throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'created', 'expired', 'approved', 'completed', 'cancelled', 'declined'");
         }
@@ -447,7 +478,8 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Gets customer_id
+     * Gets customer_id.
+     *
      * @return string
      */
     public function getCustomerId()
@@ -456,8 +488,10 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Sets customer_id
+     * Sets customer_id.
+     *
      * @param string $customer_id The id of the customer who has approved this checkout request. Only present if approved.
+     *
      * @return $this
      */
     public function setCustomerId($customer_id)
@@ -468,7 +502,8 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Gets metadata
+     * Gets metadata.
+     *
      * @return \zipMoney\Model\Metadata
      */
     public function getMetadata()
@@ -477,8 +512,10 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Sets metadata
+     * Sets metadata.
+     *
      * @param \zipMoney\Model\Metadata $metadata
+     *
      * @return $this
      */
     public function setMetadata($metadata)
@@ -487,10 +524,13 @@ class Checkout implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -499,19 +539,21 @@ class Checkout implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -524,8 +566,8 @@ class Checkout implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -533,7 +575,8 @@ class Checkout implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

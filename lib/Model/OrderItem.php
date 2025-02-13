@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * OrderItem
+ * OrderItem.
  *
  * @category Class
  * @package  zipMoney
@@ -18,27 +19,29 @@ class OrderItem implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'OrderItem';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'name' => 'string',
-        'amount' => 'float',
-        'reference' => 'string',
-        'description' => 'string',
-        'quantity' => 'float',
-        'type' => 'string',
-        'image_uri' => 'string',
-        'item_uri' => 'string',
-        'product_code' => 'string',
-        'additional_details' => '\zipMoney\Model\OrderItemAdditionalDetails[]'
-    );
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'name'               => 'string',
+        'amount'             => 'float',
+        'reference'          => 'string',
+        'description'        => 'string',
+        'quantity'           => 'float',
+        'type'               => 'string',
+        'image_uri'          => 'string',
+        'item_uri'           => 'string',
+        'product_code'       => 'string',
+        'additional_details' => '\zipMoney\Model\OrderItemAdditionalDetails[]',
+    ];
 
     public static function zipTypes()
     {
@@ -46,57 +49,58 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'name' => 'name',
-        'amount' => 'amount',
-        'reference' => 'reference',
-        'description' => 'description',
-        'quantity' => 'quantity',
-        'type' => 'type',
-        'image_uri' => 'image_uri',
-        'item_uri' => 'item_uri',
-        'product_code' => 'product_code',
-        'additional_details' => 'additional_details'
-    );
-
+    protected static $attributeMap = [
+        'name'               => 'name',
+        'amount'             => 'amount',
+        'reference'          => 'reference',
+        'description'        => 'description',
+        'quantity'           => 'quantity',
+        'type'               => 'type',
+        'image_uri'          => 'image_uri',
+        'item_uri'           => 'item_uri',
+        'product_code'       => 'product_code',
+        'additional_details' => 'additional_details',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'name' => 'setName',
-        'amount' => 'setAmount',
-        'reference' => 'setReference',
-        'description' => 'setDescription',
-        'quantity' => 'setQuantity',
-        'type' => 'setType',
-        'image_uri' => 'setImageUri',
-        'item_uri' => 'setItemUri',
-        'product_code' => 'setProductCode',
-        'additional_details' => 'setAdditionalDetails'
-    );
-
+    protected static $setters = [
+        'name'               => 'setName',
+        'amount'             => 'setAmount',
+        'reference'          => 'setReference',
+        'description'        => 'setDescription',
+        'quantity'           => 'setQuantity',
+        'type'               => 'setType',
+        'image_uri'          => 'setImageUri',
+        'item_uri'           => 'setItemUri',
+        'product_code'       => 'setProductCode',
+        'additional_details' => 'setAdditionalDetails',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'name' => 'getName',
-        'amount' => 'getAmount',
-        'reference' => 'getReference',
-        'description' => 'getDescription',
-        'quantity' => 'getQuantity',
-        'type' => 'getType',
-        'image_uri' => 'getImageUri',
-        'item_uri' => 'getItemUri',
-        'product_code' => 'getProductCode',
-        'additional_details' => 'getAdditionalDetails'
-    );
+    protected static $getters = [
+        'name'               => 'getName',
+        'amount'             => 'getAmount',
+        'reference'          => 'getReference',
+        'description'        => 'getDescription',
+        'quantity'           => 'getQuantity',
+        'type'               => 'getType',
+        'image_uri'          => 'getImageUri',
+        'item_uri'           => 'getItemUri',
+        'product_code'       => 'getProductCode',
+        'additional_details' => 'getAdditionalDetails',
+    ];
 
     public static function attributeMap()
     {
@@ -119,32 +123,32 @@ class OrderItem implements ArrayAccess
     public const TYPE_DISCOUNT = 'discount';
     public const TYPE_STORE_CREDIT = 'store_credit';
 
-
-
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
+     *
      * @return string[]
      */
     public function getTypeAllowableValues()
     {
-        return array(
+        return [
             self::TYPE_SKU,
             self::TYPE_TAX,
             self::TYPE_SHIPPING,
             self::TYPE_DISCOUNT,
             self::TYPE_STORE_CREDIT,
-        );
+        ];
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -168,7 +172,7 @@ class OrderItem implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if ($this->container['name'] === null) {
             $invalid_properties[] = "'name' can't be null";
@@ -183,7 +187,7 @@ class OrderItem implements ArrayAccess
         if ($this->container['type'] === null) {
             $invalid_properties[] = "'type' can't be null";
         }
-        $allowed_values = array("sku", "tax", "shipping", "discount", "store_credit");
+        $allowed_values = ['sku', 'tax', 'shipping', 'discount', 'store_credit'];
         if (!in_array($this->container['type'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'type', must be one of 'sku', 'tax', 'shipping', 'discount', 'store_credit'.";
         }
@@ -197,13 +201,12 @@ class OrderItem implements ArrayAccess
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if ($this->container['name'] === null) {
             return false;
         }
@@ -216,19 +219,20 @@ class OrderItem implements ArrayAccess
         if ($this->container['type'] === null) {
             return false;
         }
-        $allowed_values = array("sku", "tax", "shipping", "discount", "store_credit");
+        $allowed_values = ['sku', 'tax', 'shipping', 'discount', 'store_credit'];
         if (!in_array($this->container['type'], $allowed_values)) {
             return false;
         }
         if (strlen($this->container['product_code']) > 200) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets name
+     * Gets name.
+     *
      * @return string
      */
     public function getName()
@@ -237,8 +241,10 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Sets name
+     * Sets name.
+     *
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
@@ -249,7 +255,8 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Gets amount
+     * Gets amount.
+     *
      * @return float
      */
     public function getAmount()
@@ -258,8 +265,10 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Sets amount
+     * Sets amount.
+     *
      * @param float $amount
+     *
      * @return $this
      */
     public function setAmount($amount)
@@ -270,7 +279,8 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Gets reference
+     * Gets reference.
+     *
      * @return string
      */
     public function getReference()
@@ -279,8 +289,10 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Sets reference
+     * Sets reference.
+     *
      * @param string $reference
+     *
      * @return $this
      */
     public function setReference($reference)
@@ -291,7 +303,8 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Gets description
+     * Gets description.
+     *
      * @return string
      */
     public function getDescription()
@@ -300,8 +313,10 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Sets description
+     * Sets description.
+     *
      * @param string $description
+     *
      * @return $this
      */
     public function setDescription($description)
@@ -312,7 +327,8 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Gets quantity
+     * Gets quantity.
+     *
      * @return float
      */
     public function getQuantity()
@@ -321,13 +337,14 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Sets quantity
+     * Sets quantity.
+     *
      * @param float $quantity
+     *
      * @return $this
      */
     public function setQuantity($quantity)
     {
-
         if (!is_null($quantity) && ($quantity <= 0)) {
             throw new \InvalidArgumentException('invalid value for $quantity when calling OrderItem., must be bigger than 0.');
         }
@@ -338,7 +355,8 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Gets type
+     * Gets type.
+     *
      * @return string
      */
     public function getType()
@@ -347,13 +365,15 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Sets type
+     * Sets type.
+     *
      * @param string $type
+     *
      * @return $this
      */
     public function setType($type)
     {
-        $allowed_values = array('sku', 'tax', 'shipping', 'discount', 'store_credit');
+        $allowed_values = ['sku', 'tax', 'shipping', 'discount', 'store_credit'];
         if ((!in_array($type, $allowed_values))) {
             throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'sku', 'tax', 'shipping', 'discount', 'store_credit'");
         }
@@ -363,7 +383,8 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Gets image_uri
+     * Gets image_uri.
+     *
      * @return string
      */
     public function getImageUri()
@@ -372,8 +393,10 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Sets image_uri
+     * Sets image_uri.
+     *
      * @param string $image_uri
+     *
      * @return $this
      */
     public function setImageUri($image_uri)
@@ -384,7 +407,8 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Gets item_uri
+     * Gets item_uri.
+     *
      * @return string
      */
     public function getItemUri()
@@ -393,8 +417,10 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Sets item_uri
+     * Sets item_uri.
+     *
      * @param string $item_uri
+     *
      * @return $this
      */
     public function setItemUri($item_uri)
@@ -405,7 +431,8 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Gets product_code
+     * Gets product_code.
+     *
      * @return string
      */
     public function getProductCode()
@@ -414,8 +441,10 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Sets product_code
+     * Sets product_code.
+     *
      * @param string $product_code
+     *
      * @return $this
      */
     public function setProductCode($product_code)
@@ -430,7 +459,8 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Gets additional_details
+     * Gets additional_details.
+     *
      * @return \zipMoney\Model\OrderItemAdditionalDetails[]
      */
     public function getAdditionalDetails()
@@ -439,8 +469,10 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Sets additional_details
+     * Sets additional_details.
+     *
      * @param \zipMoney\Model\OrderItemAdditionalDetails[] $additional_details
+     *
      * @return $this
      */
     public function setAdditionalDetails($additional_details)
@@ -449,10 +481,13 @@ class OrderItem implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -461,19 +496,21 @@ class OrderItem implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -486,8 +523,8 @@ class OrderItem implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -495,7 +532,8 @@ class OrderItem implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

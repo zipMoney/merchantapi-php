@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * ObjectSerializer
+ * ObjectSerializer.
  *
  * @category Class
  * @package  zipMoney
@@ -12,55 +13,59 @@
 namespace zipMoney;
 
 /**
- * ObjectSerializer Class Doc Comment
+ * ObjectSerializer Class Doc Comment.
  *
  * @category Class
- * @package  zipMoney
- * @author   zipMoney Payments Pty Ltd
- * @link     https://github.com/zipMoney/merchantapi-php
+ *
+ * @see     https://github.com/zipMoney/merchantapi-php
  */
 class ObjectSerializer
 {
     /**
-     * Serialize data
+     * Serialize data.
      *
      * @param mixed $data the data to serialize
      *
-     * @return string|object serialized form of $data
+     * @return object|string serialized form of $data
      */
     public static function sanitizeForSerialization($data)
     {
         if (is_scalar($data) || null === $data) {
             return $data;
-        } elseif ($data instanceof \DateTime) {
+        }
+        if ($data instanceof \DateTime) {
             return $data->format(\DateTime::ATOM);
-        } elseif (is_array($data)) {
+        }
+        if (is_array($data)) {
             foreach ($data as $property => $value) {
                 $data[$property] = self::sanitizeForSerialization($value);
             }
+
             return $data;
-        } elseif (is_object($data)) {
+        }
+        if (is_object($data)) {
             $attr = $data::attributeMap();
-            $values = array();
+            $values = [];
             foreach (array_keys($data::zipTypes()) as $property) {
                 $getterArr = $data::getters();
                 $getter = $getterArr[$property];
-                if (method_exists(get_class($data), $getter) && $data->$getter() !== null) {
-                    $values[$attr[$property]] = self::sanitizeForSerialization($data->$getter());
+                if (method_exists(get_class($data), $getter) && $data->{$getter}() !== null) {
+                    $values[$attr[$property]] = self::sanitizeForSerialization($data->{$getter}());
                 }
                 if (method_exists(get_class($data), 'get') && $data->get($property) !== null) {
                     $values[$attr[$property]] = self::sanitizeForSerialization($data->get($property));
                 }
             }
-            return (object)$values;
-        } else {
-            return (string)$data;
+
+            return (object) $values;
         }
+
+        return (string) $data;
     }
 
     /**
      * Sanitize filename by removing path.
-     * e.g. ../../sun.gif becomes sun.gif
+     * e.g. ../../sun.gif becomes sun.gif.
      *
      * @param string $filename filename to be sanitized
      *
@@ -68,11 +73,11 @@ class ObjectSerializer
      */
     public function sanitizeFilename($filename)
     {
-        if (preg_match("/.*[\/\\\\](.*)$/", $filename, $match)) {
+        if (preg_match('/.*[\\/\\\\](.*)$/', $filename, $match)) {
             return $match[1];
-        } else {
-            return $filename;
         }
+
+        return $filename;
     }
 
     /**
@@ -94,7 +99,7 @@ class ObjectSerializer
      * If it's a string, pass through unchanged. It will be url-encoded
      * later.
      *
-     * @param string[]|string|\DateTime $object an object to be serialized to a string
+     * @param \DateTime|string|string[] $object an object to be serialized to a string
      *
      * @return string the serialized object
      */
@@ -102,15 +107,15 @@ class ObjectSerializer
     {
         if (is_array($object)) {
             return implode(',', $object);
-        } else {
-            return $this->toString($object);
         }
+
+        return $this->toString($object);
     }
 
     /**
      * Take value and turn it into a string suitable for inclusion in
      * the header. If it's a string, pass through unchanged
-     * If it's a datetime object, format it in ISO8601
+     * If it's a datetime object, format it in ISO8601.
      *
      * @param string $value a string which will be part of the header
      *
@@ -124,9 +129,9 @@ class ObjectSerializer
     /**
      * Take value and turn it into a string suitable for inclusion in
      * the http body (form parameter). If it's a string, pass through unchanged
-     * If it's a datetime object, format it in ISO8601
+     * If it's a datetime object, format it in ISO8601.
      *
-     * @param string|\SplFileObject $value the value of the form parameter
+     * @param \SplFileObject|string $value the value of the form parameter
      *
      * @return string the form string
      */
@@ -134,17 +139,17 @@ class ObjectSerializer
     {
         if ($value instanceof \SplFileObject) {
             return $value->getRealPath();
-        } else {
-            return $this->toString($value);
         }
+
+        return $this->toString($value);
     }
 
     /**
      * Take value and turn it into a string suitable for inclusion in
      * the parameter. If it's a string, pass through unchanged
-     * If it's a datetime object, format it in ISO8601
+     * If it's a datetime object, format it in ISO8601.
      *
-     * @param string|\DateTime $value the value of the parameter
+     * @param \DateTime|string $value the value of the parameter
      *
      * @return string the header string
      */
@@ -152,9 +157,9 @@ class ObjectSerializer
     {
         if ($value instanceof \DateTime) { // datetime in ISO8601 format
             return $value->format(\DateTime::ATOM);
-        } else {
-            return $value;
         }
+
+        return $value;
     }
 
     /**
@@ -162,7 +167,7 @@ class ObjectSerializer
      *
      * @param array  $collection                 collection to serialize to a string
      * @param string $collectionFormat           the format use for serialization (csv,
-     * ssv, tsv, pipes, multi)
+     *                                           ssv, tsv, pipes, multi)
      * @param bool   $allowCollectionFormatMulti allow collection format to be a multidimensional array
      *
      * @return string
@@ -177,13 +182,10 @@ class ObjectSerializer
         switch ($collectionFormat) {
             case 'pipes':
                 return implode('|', $collection);
-
             case 'tsv':
                 return implode("\t", $collection);
-
             case 'ssv':
                 return implode(' ', $collection);
-
             case 'csv':
                 // Deliberate fall through. CSV is default format.
             default:
@@ -192,41 +194,48 @@ class ObjectSerializer
     }
 
     /**
-     * Deserialize a JSON string into an object
+     * Deserialize a JSON string into an object.
      *
      * @param mixed    $data          object or primitive to be deserialized
      * @param string   $class         class name is passed as a string
      * @param string[] $httpHeaders   HTTP headers
      * @param string   $discriminator discriminator if polymorphism is used
      *
-     * @return object|array|null an single or an array of $class instances
+     * @return null|array|object an single or an array of $class instances
      */
     public static function deserialize($data, $class, $httpHeaders = null)
     {
         if (null === $data) {
             return null;
-        } elseif (substr($class, 0, 4) === 'map[') { // for associative array e.g. map[string,int]
+        }
+        if (substr($class, 0, 4) === 'map[') { // for associative array e.g. map[string,int]
             $inner = substr($class, 4, -1);
-            $deserialized = array();
-            if (strrpos($inner, ",") !== false) {
+            $deserialized = [];
+            if (strrpos($inner, ',') !== false) {
                 $subClass_array = explode(',', $inner, 2);
                 $subClass = $subClass_array[1];
                 foreach ($data as $key => $value) {
                     $deserialized[$key] = self::deserialize($value, $subClass, null);
                 }
             }
+
             return $deserialized;
-        } elseif (strcasecmp(substr($class, -2), '[]') === 0) {
+        }
+        if (strcasecmp(substr($class, -2), '[]') === 0) {
             $subClass = substr($class, 0, -2);
-            $values = array();
+            $values = [];
             foreach ($data as $key => $value) {
                 $values[] = self::deserialize($value, $subClass, null);
             }
+
             return $values;
-        } elseif ($class === 'object') {
+        }
+        if ($class === 'object') {
             settype($data, 'array');
+
             return $data;
-        } elseif ($class === '\DateTime') {
+        }
+        if ($class === '\DateTime') {
             // Some API's return an invalid, empty string as a
             // date-time property. DateTime::__construct() will return
             // the current time for empty input which is probably not
@@ -235,11 +244,12 @@ class ObjectSerializer
             // this graceful.
             if (!empty($data)) {
                 return new \DateTime($data);
-            } else {
-                return null;
             }
-        } elseif (in_array($class, array('DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'), true)) {
+
+            return null;
+        } elseif (in_array($class, ['DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
             settype($data, $class);
+
             return $data;
         } elseif ($class === '\SplFileObject') {
             // determine file name
@@ -249,35 +259,35 @@ class ObjectSerializer
             } else {
                 $filename = tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');
             }
-            $deserialized = new \SplFileObject($filename, "w");
-            return $deserialized;
-        } else {
-            // If a discriminator is defined and points to a valid subclass, use it.
-            $discriminator = $class::DISCRIMINATOR;
-            if (!empty($discriminator) && isset($data->{$discriminator}) && is_string($data->{$discriminator})) {
-                $subclass = '\zipMoney\Model\\' . $data->{$discriminator};
-                if (is_subclass_of($subclass, $class)) {
-                    $class = $subclass;
-                }
-            }
-            $instance = new $class();
-            foreach ($instance::zipTypes() as $property => $type) {
-                $propertySetters = $instance::setters();
-                $propertySetter = $propertySetters[$property];
 
-                $attr = $instance::attributeMap();
-
-                if (!isset($propertySetter) || !isset($data->{$attr[$property]})) {
-                    continue;
-                }
-
-                $propertyValue = $data->{$attr[$property]};
-
-                if (isset($propertyValue)) {
-                    $instance->$propertySetter(self::deserialize($propertyValue, $type, null));
-                }
-            }
-            return $instance;
+            return new \SplFileObject($filename, 'w');
         }
+        // If a discriminator is defined and points to a valid subclass, use it.
+        $discriminator = $class::DISCRIMINATOR;
+        if (!empty($discriminator) && isset($data->{$discriminator}) && is_string($data->{$discriminator})) {
+            $subclass = '\zipMoney\Model\\' . $data->{$discriminator};
+            if (is_subclass_of($subclass, $class)) {
+                $class = $subclass;
+            }
+        }
+        $instance = new $class();
+        foreach ($instance::zipTypes() as $property => $type) {
+            $propertySetters = $instance::setters();
+            $propertySetter = $propertySetters[$property];
+
+            $attr = $instance::attributeMap();
+
+            if (!isset($propertySetter) || !isset($data->{$attr[$property]})) {
+                continue;
+            }
+
+            $propertyValue = $data->{$attr[$property]};
+
+            if (isset($propertyValue)) {
+                $instance->{$propertySetter}(self::deserialize($propertyValue, $type, null));
+            }
+        }
+
+        return $instance;
     }
 }

@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * CustomersApi
+ * CustomersApi.
  *
  * @category Class
  * @package  zipMoney
@@ -13,22 +14,20 @@ namespace zipMoney\Api;
 
 use zipMoney\ApiClient;
 use zipMoney\ApiException;
-use zipMoney\Configuration;
-use zipMoney\ObjectSerializer;
 
 class CustomersApi
 {
     /**
-     * API Client
+     * API Client.
      *
      * @var \zipMoney\ApiClient instance of the ApiClient
      */
     protected $apiClient;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param \zipMoney\ApiClient|null $apiClient The api client to use
+     * @param null|\zipMoney\ApiClient $apiClient The api client to use
      */
     public function __construct(\zipMoney\ApiClient $apiClient = null)
     {
@@ -39,7 +38,7 @@ class CustomersApi
     }
 
     /**
-     * Get API client
+     * Get API client.
      *
      * @return \zipMoney\ApiClient get the API client
      */
@@ -49,7 +48,7 @@ class CustomersApi
     }
 
     /**
-     * Set the API client
+     * Set the API client.
      *
      * @param \zipMoney\ApiClient $apiClient set the API client
      *
@@ -58,31 +57,35 @@ class CustomersApi
     public function setApiClient(\zipMoney\ApiClient $apiClient)
     {
         $this->apiClient = $apiClient;
+
         return $this;
     }
 
     /**
-     * Operation customersGet
+     * Operation customersGet.
      *
      * Retrieve customer
      *
-     * @param string $id  (required)
+     * @param string $id (required)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return void
      */
     public function customersGet($id)
     {
-        list($response) = $this->customersGetWithHttpInfo($id);
+        [$response] = $this->customersGetWithHttpInfo($id);
+
         return $response;
     }
 
     /**
-     * Operation customersGetWithHttpInfo
+     * Operation customersGetWithHttpInfo.
      *
      * Retrieve customer
      *
-     * @param string $id  (required)
+     * @param string $id (required)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function customersGetWithHttpInfo($id)
@@ -92,28 +95,27 @@ class CustomersApi
             throw new \InvalidArgumentException('Missing the required parameter $id when calling customersGet');
         }
         // parse inputs
-        $resourcePath = "/customers/{id}";
+        $resourcePath = '/customers/{id}';
         $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/javascript'));
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/javascript']);
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                "{" . "id" . "}",
+                '{' . 'id' . '}',
                 $this->apiClient->getSerializer()->toPathValue($id),
                 $resourcePath
             );
         }
         // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
+        $resourcePath = str_replace('{format}', 'json', $resourcePath);
 
         // for model (json/xml)
         if (isset($_tempBody)) {
@@ -121,9 +123,10 @@ class CustomersApi
         } elseif (count($formParams) > 0) {
             $httpBody = $formParams; // for HTTP post (form)
         }
+
         // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+            [$response, $statusCode, $httpHeader] = $this->apiClient->callApi(
                 $resourcePath,
                 'GET',
                 $queryParams,
@@ -133,7 +136,7 @@ class CustomersApi
                 '/customers/{id}'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return [null, $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -143,44 +146,44 @@ class CustomersApi
     }
 
     /**
-     * Operation customersList
+     * Operation customersList.
      *
      * List customers
      *
      * @throws \zipMoney\ApiException on non-2xx response
-     * @return void
      */
     public function customersList()
     {
-        list($response) = $this->customersListWithHttpInfo();
+        [$response] = $this->customersListWithHttpInfo();
+
         return $response;
     }
 
     /**
-     * Operation customersListWithHttpInfo
+     * Operation customersListWithHttpInfo.
      *
      * List customers
      *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function customersListWithHttpInfo()
     {
         // parse inputs
-        $resourcePath = "/customers";
+        $resourcePath = '/customers';
         $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/javascript'));
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/javascript']);
 
         // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
+        $resourcePath = str_replace('{format}', 'json', $resourcePath);
 
         // for model (json/xml)
         if (isset($_tempBody)) {
@@ -188,9 +191,10 @@ class CustomersApi
         } elseif (count($formParams) > 0) {
             $httpBody = $formParams; // for HTTP post (form)
         }
+
         // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+            [$response, $statusCode, $httpHeader] = $this->apiClient->callApi(
                 $resourcePath,
                 'GET',
                 $queryParams,
@@ -200,7 +204,7 @@ class CustomersApi
                 '/customers'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return [null, $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }

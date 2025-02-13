@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * Customer
+ * Customer.
  *
  * @category Class
  * @package  zipMoney
@@ -18,25 +19,27 @@ class Customer implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'customer';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'title' => 'string',
-        'first_name' => 'string',
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'title'       => 'string',
+        'first_name'  => 'string',
         'middle_name' => 'string',
-        'last_name' => 'string',
-        'phone' => 'string',
-        'email' => 'string',
-        'birth_date' => '\DateTime',
-        'gender' => 'string'
-    );
+        'last_name'   => 'string',
+        'phone'       => 'string',
+        'email'       => 'string',
+        'birth_date'  => '\DateTime',
+        'gender'      => 'string',
+    ];
 
     public static function zipTypes()
     {
@@ -44,51 +47,52 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'title' => 'title',
-        'first_name' => 'first_name',
+    protected static $attributeMap = [
+        'title'       => 'title',
+        'first_name'  => 'first_name',
         'middle_name' => 'middle_name',
-        'last_name' => 'last_name',
-        'phone' => 'phone',
-        'email' => 'email',
-        'birth_date' => 'birth_date',
-        'gender' => 'gender'
-    );
-
+        'last_name'   => 'last_name',
+        'phone'       => 'phone',
+        'email'       => 'email',
+        'birth_date'  => 'birth_date',
+        'gender'      => 'gender',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'title' => 'setTitle',
-        'first_name' => 'setFirstName',
+    protected static $setters = [
+        'title'       => 'setTitle',
+        'first_name'  => 'setFirstName',
         'middle_name' => 'setMiddleName',
-        'last_name' => 'setLastName',
-        'phone' => 'setPhone',
-        'email' => 'setEmail',
-        'birth_date' => 'setBirthDate',
-        'gender' => 'setGender'
-    );
-
+        'last_name'   => 'setLastName',
+        'phone'       => 'setPhone',
+        'email'       => 'setEmail',
+        'birth_date'  => 'setBirthDate',
+        'gender'      => 'setGender',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'title' => 'getTitle',
-        'first_name' => 'getFirstName',
+    protected static $getters = [
+        'title'       => 'getTitle',
+        'first_name'  => 'getFirstName',
         'middle_name' => 'getMiddleName',
-        'last_name' => 'getLastName',
-        'phone' => 'getPhone',
-        'email' => 'getEmail',
-        'birth_date' => 'getBirthDate',
-        'gender' => 'getGender'
-    );
+        'last_name'   => 'getLastName',
+        'phone'       => 'getPhone',
+        'email'       => 'getEmail',
+        'birth_date'  => 'getBirthDate',
+        'gender'      => 'getGender',
+    ];
 
     public static function attributeMap()
     {
@@ -109,30 +113,30 @@ class Customer implements ArrayAccess
     public const GENDER_FEMALE = 'Female';
     public const GENDER_OTHER = 'Other';
 
-
-
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
+     *
      * @return string[]
      */
     public function getGenderAllowableValues()
     {
-        return array(
+        return [
             self::GENDER_MALE,
             self::GENDER_FEMALE,
             self::GENDER_OTHER,
-        );
+        ];
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -154,7 +158,7 @@ class Customer implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if ($this->container['first_name'] === null) {
             $invalid_properties[] = "'first_name' can't be null";
@@ -171,7 +175,7 @@ class Customer implements ArrayAccess
         if ($this->container['birth_date'] === null) {
             $invalid_properties[] = "'birth_date' can't be null";
         }
-        $allowed_values = array("Male", "Female", "Other");
+        $allowed_values = ['Male', 'Female', 'Other'];
         if (!in_array($this->container['gender'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'gender', must be one of 'Male', 'Female', 'Other'.";
         }
@@ -181,13 +185,12 @@ class Customer implements ArrayAccess
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if ($this->container['first_name'] === null) {
             return false;
         }
@@ -203,16 +206,17 @@ class Customer implements ArrayAccess
         if ($this->container['birth_date'] === null) {
             return false;
         }
-        $allowed_values = array("Male", "Female", "Other");
+        $allowed_values = ['Male', 'Female', 'Other'];
         if (!in_array($this->container['gender'], $allowed_values)) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets title
+     * Gets title.
+     *
      * @return string
      */
     public function getTitle()
@@ -221,8 +225,10 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Sets title
+     * Sets title.
+     *
      * @param string $title Customer's title
+     *
      * @return $this
      */
     public function setTitle($title)
@@ -233,7 +239,8 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Gets first_name
+     * Gets first_name.
+     *
      * @return string
      */
     public function getFirstName()
@@ -242,8 +249,10 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Sets first_name
+     * Sets first_name.
+     *
      * @param string $first_name Customer's first name
+     *
      * @return $this
      */
     public function setFirstName($first_name)
@@ -254,7 +263,8 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Gets middle_name
+     * Gets middle_name.
+     *
      * @return string
      */
     public function getMiddleName()
@@ -263,8 +273,10 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Sets middle_name
+     * Sets middle_name.
+     *
      * @param string $middle_name Customer's middle name
+     *
      * @return $this
      */
     public function setMiddleName($middle_name)
@@ -275,7 +287,8 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Gets last_name
+     * Gets last_name.
+     *
      * @return string
      */
     public function getLastName()
@@ -284,8 +297,10 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Sets last_name
+     * Sets last_name.
+     *
      * @param string $last_name Customer's last name
+     *
      * @return $this
      */
     public function setLastName($last_name)
@@ -296,7 +311,8 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Gets phone
+     * Gets phone.
+     *
      * @return string
      */
     public function getPhone()
@@ -305,8 +321,10 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Sets phone
+     * Sets phone.
+     *
      * @param string $phone Customer's phone number
+     *
      * @return $this
      */
     public function setPhone($phone)
@@ -317,7 +335,8 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Gets email
+     * Gets email.
+     *
      * @return string
      */
     public function getEmail()
@@ -326,8 +345,10 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Sets email
+     * Sets email.
+     *
      * @param string $email Customer's email
+     *
      * @return $this
      */
     public function setEmail($email)
@@ -338,7 +359,8 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Gets birth_date
+     * Gets birth_date.
+     *
      * @return \DateTime
      */
     public function getBirthDate()
@@ -347,8 +369,10 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Sets birth_date
+     * Sets birth_date.
+     *
      * @param \DateTime $birth_date Customer's date of birth
+     *
      * @return $this
      */
     public function setBirthDate($birth_date)
@@ -359,7 +383,8 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Gets gender
+     * Gets gender.
+     *
      * @return string
      */
     public function getGender()
@@ -368,13 +393,15 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Sets gender
+     * Sets gender.
+     *
      * @param string $gender Customer's gender
+     *
      * @return $this
      */
     public function setGender($gender)
     {
-        $allowed_values = array('Male', 'Female', 'Other');
+        $allowed_values = ['Male', 'Female', 'Other'];
         if (!is_null($gender) && (!in_array($gender, $allowed_values))) {
             throw new \InvalidArgumentException("Invalid value for 'gender', must be one of 'Male', 'Female', 'Other'");
         }
@@ -382,10 +409,13 @@ class Customer implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -394,19 +424,21 @@ class Customer implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -419,8 +451,8 @@ class Customer implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -428,7 +460,8 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

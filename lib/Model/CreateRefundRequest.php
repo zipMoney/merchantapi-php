@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * CreateRefundRequest
+ * CreateRefundRequest.
  *
  * @category Class
  * @package  zipMoney
@@ -18,21 +19,23 @@ class CreateRefundRequest implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'CreateRefundRequest';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
         'charge_id' => 'string',
-        'reason' => 'string',
-        'amount' => 'float',
-        'metadata' => 'object'
-    );
+        'reason'    => 'string',
+        'amount'    => 'float',
+        'metadata'  => 'object',
+    ];
 
     public static function zipTypes()
     {
@@ -40,39 +43,40 @@ class CreateRefundRequest implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
+    protected static $attributeMap = [
         'charge_id' => 'charge_id',
-        'reason' => 'reason',
-        'amount' => 'amount',
-        'metadata' => 'metadata'
-    );
-
+        'reason'    => 'reason',
+        'amount'    => 'amount',
+        'metadata'  => 'metadata',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
+    protected static $setters = [
         'charge_id' => 'setChargeId',
-        'reason' => 'setReason',
-        'amount' => 'setAmount',
-        'metadata' => 'setMetadata'
-    );
-
+        'reason'    => 'setReason',
+        'amount'    => 'setAmount',
+        'metadata'  => 'setMetadata',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
+    protected static $getters = [
         'charge_id' => 'getChargeId',
-        'reason' => 'getReason',
-        'amount' => 'getAmount',
-        'metadata' => 'getMetadata'
-    );
+        'reason'    => 'getReason',
+        'amount'    => 'getAmount',
+        'metadata'  => 'getMetadata',
+    ];
 
     public static function attributeMap()
     {
@@ -89,18 +93,16 @@ class CreateRefundRequest implements ArrayAccess
         return self::$getters;
     }
 
-
-
-
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -118,7 +120,7 @@ class CreateRefundRequest implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if ($this->container['charge_id'] === null) {
             $invalid_properties[] = "'charge_id' can't be null";
@@ -138,13 +140,12 @@ class CreateRefundRequest implements ArrayAccess
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if ($this->container['charge_id'] === null) {
             return false;
         }
@@ -157,12 +158,13 @@ class CreateRefundRequest implements ArrayAccess
         if ($this->container['amount'] < 0) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets charge_id
+     * Gets charge_id.
+     *
      * @return string
      */
     public function getChargeId()
@@ -171,8 +173,10 @@ class CreateRefundRequest implements ArrayAccess
     }
 
     /**
-     * Sets charge_id
+     * Sets charge_id.
+     *
      * @param string $charge_id The id relating to the original charge that is to be refunded
+     *
      * @return $this
      */
     public function setChargeId($charge_id)
@@ -183,7 +187,8 @@ class CreateRefundRequest implements ArrayAccess
     }
 
     /**
-     * Gets reason
+     * Gets reason.
+     *
      * @return string
      */
     public function getReason()
@@ -192,8 +197,10 @@ class CreateRefundRequest implements ArrayAccess
     }
 
     /**
-     * Sets reason
+     * Sets reason.
+     *
      * @param string $reason The reason for the refund
+     *
      * @return $this
      */
     public function setReason($reason)
@@ -204,7 +211,8 @@ class CreateRefundRequest implements ArrayAccess
     }
 
     /**
-     * Gets amount
+     * Gets amount.
+     *
      * @return float
      */
     public function getAmount()
@@ -213,13 +221,14 @@ class CreateRefundRequest implements ArrayAccess
     }
 
     /**
-     * Sets amount
+     * Sets amount.
+     *
      * @param float $amount The amount to refund, can be less than or equal to the previously captured amount
+     *
      * @return $this
      */
     public function setAmount($amount)
     {
-
         if (($amount < 0)) {
             throw new \InvalidArgumentException('invalid value for $amount when calling CreateRefundRequest., must be bigger than or equal to 0.');
         }
@@ -230,7 +239,8 @@ class CreateRefundRequest implements ArrayAccess
     }
 
     /**
-     * Gets metadata
+     * Gets metadata.
+     *
      * @return object
      */
     public function getMetadata()
@@ -239,8 +249,10 @@ class CreateRefundRequest implements ArrayAccess
     }
 
     /**
-     * Sets metadata
+     * Sets metadata.
+     *
      * @param object $metadata Additional metadata if required
+     *
      * @return $this
      */
     public function setMetadata($metadata)
@@ -249,10 +261,13 @@ class CreateRefundRequest implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -261,19 +276,21 @@ class CreateRefundRequest implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -286,8 +303,8 @@ class CreateRefundRequest implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -295,7 +312,8 @@ class CreateRefundRequest implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

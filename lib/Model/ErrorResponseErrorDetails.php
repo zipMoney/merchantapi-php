@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * ErrorResponseErrorDetails
+ * ErrorResponseErrorDetails.
  *
  * @category Class
  * @package  zipMoney
@@ -18,19 +19,21 @@ class ErrorResponseErrorDetails implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'ErrorResponse_error_details';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'name' => 'string',
-        'message' => 'string'
-    );
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'name'    => 'string',
+        'message' => 'string',
+    ];
 
     public static function zipTypes()
     {
@@ -38,33 +41,34 @@ class ErrorResponseErrorDetails implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'name' => 'name',
-        'message' => 'message'
-    );
-
+    protected static $attributeMap = [
+        'name'    => 'name',
+        'message' => 'message',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'name' => 'setName',
-        'message' => 'setMessage'
-    );
-
+    protected static $setters = [
+        'name'    => 'setName',
+        'message' => 'setMessage',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'name' => 'getName',
-        'message' => 'getMessage'
-    );
+    protected static $getters = [
+        'name'    => 'getName',
+        'message' => 'getMessage',
+    ];
 
     public static function attributeMap()
     {
@@ -81,18 +85,16 @@ class ErrorResponseErrorDetails implements ArrayAccess
         return self::$getters;
     }
 
-
-
-
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -108,26 +110,23 @@ class ErrorResponseErrorDetails implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
-
-        return $invalid_properties;
+        return [];
     }
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         return true;
     }
 
-
     /**
-     * Gets name
+     * Gets name.
+     *
      * @return string
      */
     public function getName()
@@ -136,8 +135,10 @@ class ErrorResponseErrorDetails implements ArrayAccess
     }
 
     /**
-     * Sets name
+     * Sets name.
+     *
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
@@ -148,7 +149,8 @@ class ErrorResponseErrorDetails implements ArrayAccess
     }
 
     /**
-     * Gets message
+     * Gets message.
+     *
      * @return string
      */
     public function getMessage()
@@ -157,8 +159,10 @@ class ErrorResponseErrorDetails implements ArrayAccess
     }
 
     /**
-     * Sets message
+     * Sets message.
+     *
      * @param string $message
+     *
      * @return $this
      */
     public function setMessage($message)
@@ -167,10 +171,13 @@ class ErrorResponseErrorDetails implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -179,19 +186,21 @@ class ErrorResponseErrorDetails implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -204,8 +213,8 @@ class ErrorResponseErrorDetails implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -213,7 +222,8 @@ class ErrorResponseErrorDetails implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

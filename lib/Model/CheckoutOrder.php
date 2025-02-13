@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * CheckoutOrder
+ * CheckoutOrder.
  *
  * @category Class
  * @package  zipMoney
@@ -18,23 +19,25 @@ class CheckoutOrder implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'CheckoutOrder';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'reference' => 'string',
-        'amount' => 'float',
-        'currency' => 'string',
-        'shipping' => '\zipMoney\Model\OrderShipping',
-        'items' => '\zipMoney\Model\OrderItem[]',
-        'cart_reference' => 'string'
-    );
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'reference'      => 'string',
+        'amount'         => 'float',
+        'currency'       => 'string',
+        'shipping'       => '\zipMoney\Model\OrderShipping',
+        'items'          => '\zipMoney\Model\OrderItem[]',
+        'cart_reference' => 'string',
+    ];
 
     public static function zipTypes()
     {
@@ -42,45 +45,46 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'reference' => 'reference',
-        'amount' => 'amount',
-        'currency' => 'currency',
-        'shipping' => 'shipping',
-        'items' => 'items',
-        'cart_reference' => 'cart_reference'
-    );
-
+    protected static $attributeMap = [
+        'reference'      => 'reference',
+        'amount'         => 'amount',
+        'currency'       => 'currency',
+        'shipping'       => 'shipping',
+        'items'          => 'items',
+        'cart_reference' => 'cart_reference',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'reference' => 'setReference',
-        'amount' => 'setAmount',
-        'currency' => 'setCurrency',
-        'shipping' => 'setShipping',
-        'items' => 'setItems',
-        'cart_reference' => 'setCartReference'
-    );
-
+    protected static $setters = [
+        'reference'      => 'setReference',
+        'amount'         => 'setAmount',
+        'currency'       => 'setCurrency',
+        'shipping'       => 'setShipping',
+        'items'          => 'setItems',
+        'cart_reference' => 'setCartReference',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'reference' => 'getReference',
-        'amount' => 'getAmount',
-        'currency' => 'getCurrency',
-        'shipping' => 'getShipping',
-        'items' => 'getItems',
-        'cart_reference' => 'getCartReference'
-    );
+    protected static $getters = [
+        'reference'      => 'getReference',
+        'amount'         => 'getAmount',
+        'currency'       => 'getCurrency',
+        'shipping'       => 'getShipping',
+        'items'          => 'getItems',
+        'cart_reference' => 'getCartReference',
+    ];
 
     public static function attributeMap()
     {
@@ -97,18 +101,16 @@ class CheckoutOrder implements ArrayAccess
         return self::$getters;
     }
 
-
-
-
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -128,7 +130,7 @@ class CheckoutOrder implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if (!is_null($this->container['reference']) && (strlen($this->container['reference']) > 200)) {
             $invalid_properties[] = "invalid value for 'reference', the character length must be smaller than or equal to 200.";
@@ -156,13 +158,12 @@ class CheckoutOrder implements ArrayAccess
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if (strlen($this->container['reference']) > 200) {
             return false;
         }
@@ -181,12 +182,13 @@ class CheckoutOrder implements ArrayAccess
         if (strlen($this->container['cart_reference']) > 200) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets reference
+     * Gets reference.
+     *
      * @return string
      */
     public function getReference()
@@ -195,8 +197,10 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Sets reference
+     * Sets reference.
+     *
      * @param string $reference The order id in the eCommerce system
+     *
      * @return $this
      */
     public function setReference($reference)
@@ -211,7 +215,8 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Gets amount
+     * Gets amount.
+     *
      * @return float
      */
     public function getAmount()
@@ -220,13 +225,14 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Sets amount
+     * Sets amount.
+     *
      * @param float $amount The total amount of the order
+     *
      * @return $this
      */
     public function setAmount($amount)
     {
-
         if (($amount < 0)) {
             throw new \InvalidArgumentException('invalid value for $amount when calling CheckoutOrder., must be bigger than or equal to 0.');
         }
@@ -237,7 +243,8 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Gets currency
+     * Gets currency.
+     *
      * @return string
      */
     public function getCurrency()
@@ -246,8 +253,10 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Sets currency
+     * Sets currency.
+     *
      * @param string $currency The ISO-4217 currency code. See https://en.wikipedia.org/wiki/ISO_4217
+     *
      * @return $this
      */
     public function setCurrency($currency)
@@ -258,7 +267,8 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Gets shipping
+     * Gets shipping.
+     *
      * @return \zipMoney\Model\OrderShipping
      */
     public function getShipping()
@@ -267,8 +277,10 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Sets shipping
+     * Sets shipping.
+     *
      * @param \zipMoney\Model\OrderShipping $shipping
+     *
      * @return $this
      */
     public function setShipping($shipping)
@@ -279,7 +291,8 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Gets items
+     * Gets items.
+     *
      * @return \zipMoney\Model\OrderItem[]
      */
     public function getItems()
@@ -288,8 +301,10 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Sets items
+     * Sets items.
+     *
      * @param \zipMoney\Model\OrderItem[] $items The order item breakdown
+     *
      * @return $this
      */
     public function setItems($items)
@@ -300,7 +315,8 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Gets cart_reference
+     * Gets cart_reference.
+     *
      * @return string
      */
     public function getCartReference()
@@ -309,8 +325,10 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Sets cart_reference
+     * Sets cart_reference.
+     *
      * @param string $cart_reference The shopping cart reference id
+     *
      * @return $this
      */
     public function setCartReference($cart_reference)
@@ -323,10 +341,13 @@ class CheckoutOrder implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -335,19 +356,21 @@ class CheckoutOrder implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -360,8 +383,8 @@ class CheckoutOrder implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -369,7 +392,8 @@ class CheckoutOrder implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

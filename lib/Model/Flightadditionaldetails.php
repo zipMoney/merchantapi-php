@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * Flightadditionaldetails
+ * Flightadditionaldetails.
  *
  * @category Class
  * @package  zipMoney
@@ -18,26 +19,28 @@ class Flightadditionaldetails implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'flightadditionaldetails';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
         'departure_date' => '\DateTime',
-        'flight_number' => 'string',
-        'aircraft_type' => 'string',
-        'class' => 'string',
-        'origin' => 'string',
-        'destination' => 'string',
-        'duration' => 'string',
-        'passengers' => '\zipMoney\Model\FlightadditionaldetailsPassengers[]',
-        'stopovers' => 'string[]'
-    );
+        'flight_number'  => 'string',
+        'aircraft_type'  => 'string',
+        'class'          => 'string',
+        'origin'         => 'string',
+        'destination'    => 'string',
+        'duration'       => 'string',
+        'passengers'     => '\zipMoney\Model\FlightadditionaldetailsPassengers[]',
+        'stopovers'      => 'string[]',
+    ];
 
     public static function zipTypes()
     {
@@ -45,54 +48,55 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
+    protected static $attributeMap = [
         'departure_date' => 'departure_date',
-        'flight_number' => 'flight_number',
-        'aircraft_type' => 'aircraft_type',
-        'class' => 'class',
-        'origin' => 'origin',
-        'destination' => 'destination',
-        'duration' => 'duration',
-        'passengers' => 'passengers',
-        'stopovers' => 'stopovers'
-    );
-
+        'flight_number'  => 'flight_number',
+        'aircraft_type'  => 'aircraft_type',
+        'class'          => 'class',
+        'origin'         => 'origin',
+        'destination'    => 'destination',
+        'duration'       => 'duration',
+        'passengers'     => 'passengers',
+        'stopovers'      => 'stopovers',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
+    protected static $setters = [
         'departure_date' => 'setDepartureDate',
-        'flight_number' => 'setFlightNumber',
-        'aircraft_type' => 'setAircraftType',
-        'class' => 'setClass',
-        'origin' => 'setOrigin',
-        'destination' => 'setDestination',
-        'duration' => 'setDuration',
-        'passengers' => 'setPassengers',
-        'stopovers' => 'setStopovers'
-    );
-
+        'flight_number'  => 'setFlightNumber',
+        'aircraft_type'  => 'setAircraftType',
+        'class'          => 'setClass',
+        'origin'         => 'setOrigin',
+        'destination'    => 'setDestination',
+        'duration'       => 'setDuration',
+        'passengers'     => 'setPassengers',
+        'stopovers'      => 'setStopovers',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
+    protected static $getters = [
         'departure_date' => 'getDepartureDate',
-        'flight_number' => 'getFlightNumber',
-        'aircraft_type' => 'getAircraftType',
-        'class' => 'getClass',
-        'origin' => 'getOrigin',
-        'destination' => 'getDestination',
-        'duration' => 'getDuration',
-        'passengers' => 'getPassengers',
-        'stopovers' => 'getStopovers'
-    );
+        'flight_number'  => 'getFlightNumber',
+        'aircraft_type'  => 'getAircraftType',
+        'class'          => 'getClass',
+        'origin'         => 'getOrigin',
+        'destination'    => 'getDestination',
+        'duration'       => 'getDuration',
+        'passengers'     => 'getPassengers',
+        'stopovers'      => 'getStopovers',
+    ];
 
     public static function attributeMap()
     {
@@ -109,18 +113,16 @@ class Flightadditionaldetails implements ArrayAccess
         return self::$getters;
     }
 
-
-
-
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -143,32 +145,33 @@ class Flightadditionaldetails implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if ($this->container['departure_date'] === null) {
             $invalid_properties[] = "'departure_date' can't be null";
         }
+
         return $invalid_properties;
     }
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if ($this->container['departure_date'] === null) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets departure_date
+     * Gets departure_date.
+     *
      * @return \DateTime
      */
     public function getDepartureDate()
@@ -177,8 +180,10 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Sets departure_date
+     * Sets departure_date.
+     *
      * @param \DateTime $departure_date
+     *
      * @return $this
      */
     public function setDepartureDate($departure_date)
@@ -189,7 +194,8 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Gets flight_number
+     * Gets flight_number.
+     *
      * @return string
      */
     public function getFlightNumber()
@@ -198,8 +204,10 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Sets flight_number
+     * Sets flight_number.
+     *
      * @param string $flight_number
+     *
      * @return $this
      */
     public function setFlightNumber($flight_number)
@@ -210,7 +218,8 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Gets aircraft_type
+     * Gets aircraft_type.
+     *
      * @return string
      */
     public function getAircraftType()
@@ -219,8 +228,10 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Sets aircraft_type
+     * Sets aircraft_type.
+     *
      * @param string $aircraft_type
+     *
      * @return $this
      */
     public function setAircraftType($aircraft_type)
@@ -231,7 +242,8 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Gets class
+     * Gets class.
+     *
      * @return string
      */
     public function getClass()
@@ -240,8 +252,10 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Sets class
+     * Sets class.
+     *
      * @param string $class
+     *
      * @return $this
      */
     public function setClass($class)
@@ -252,7 +266,8 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Gets origin
+     * Gets origin.
+     *
      * @return string
      */
     public function getOrigin()
@@ -261,8 +276,10 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Sets origin
+     * Sets origin.
+     *
      * @param string $origin
+     *
      * @return $this
      */
     public function setOrigin($origin)
@@ -273,7 +290,8 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Gets destination
+     * Gets destination.
+     *
      * @return string
      */
     public function getDestination()
@@ -282,8 +300,10 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Sets destination
+     * Sets destination.
+     *
      * @param string $destination
+     *
      * @return $this
      */
     public function setDestination($destination)
@@ -294,7 +314,8 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Gets duration
+     * Gets duration.
+     *
      * @return string
      */
     public function getDuration()
@@ -303,8 +324,10 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Sets duration
+     * Sets duration.
+     *
      * @param string $duration
+     *
      * @return $this
      */
     public function setDuration($duration)
@@ -315,7 +338,8 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Gets passengers
+     * Gets passengers.
+     *
      * @return \zipMoney\Model\FlightadditionaldetailsPassengers[]
      */
     public function getPassengers()
@@ -324,8 +348,10 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Sets passengers
+     * Sets passengers.
+     *
      * @param \zipMoney\Model\FlightadditionaldetailsPassengers[] $passengers
+     *
      * @return $this
      */
     public function setPassengers($passengers)
@@ -336,7 +362,8 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Gets stopovers
+     * Gets stopovers.
+     *
      * @return string[]
      */
     public function getStopovers()
@@ -345,8 +372,10 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Sets stopovers
+     * Sets stopovers.
+     *
      * @param string[] $stopovers
+     *
      * @return $this
      */
     public function setStopovers($stopovers)
@@ -355,10 +384,13 @@ class Flightadditionaldetails implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -367,19 +399,21 @@ class Flightadditionaldetails implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -392,8 +426,8 @@ class Flightadditionaldetails implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -401,7 +435,8 @@ class Flightadditionaldetails implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

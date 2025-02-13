@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * CreateCheckoutRequest
+ * CreateCheckoutRequest.
  *
  * @category Class
  * @package  zipMoney
@@ -18,23 +19,25 @@ class CreateCheckoutRequest implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'CreateCheckoutRequest';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'type' => 'string',
-        'shopper' => '\zipMoney\Model\Shopper',
-        'order' => '\zipMoney\Model\CheckoutOrder',
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'type'     => 'string',
+        'shopper'  => '\zipMoney\Model\Shopper',
+        'order'    => '\zipMoney\Model\CheckoutOrder',
         'features' => '\zipMoney\Model\CreateCheckoutRequestFeatures',
         'metadata' => '\zipMoney\Model\Metadata',
-        'config' => '\zipMoney\Model\CheckoutConfiguration'
-    );
+        'config'   => '\zipMoney\Model\CheckoutConfiguration',
+    ];
 
     public static function zipTypes()
     {
@@ -42,45 +45,46 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'type' => 'type',
-        'shopper' => 'shopper',
-        'order' => 'order',
+    protected static $attributeMap = [
+        'type'     => 'type',
+        'shopper'  => 'shopper',
+        'order'    => 'order',
         'features' => 'features',
         'metadata' => 'metadata',
-        'config' => 'config'
-    );
-
+        'config'   => 'config',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'type' => 'setType',
-        'shopper' => 'setShopper',
-        'order' => 'setOrder',
+    protected static $setters = [
+        'type'     => 'setType',
+        'shopper'  => 'setShopper',
+        'order'    => 'setOrder',
         'features' => 'setFeatures',
         'metadata' => 'setMetadata',
-        'config' => 'setConfig'
-    );
-
+        'config'   => 'setConfig',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'type' => 'getType',
-        'shopper' => 'getShopper',
-        'order' => 'getOrder',
+    protected static $getters = [
+        'type'     => 'getType',
+        'shopper'  => 'getShopper',
+        'order'    => 'getOrder',
         'features' => 'getFeatures',
         'metadata' => 'getMetadata',
-        'config' => 'getConfig'
-    );
+        'config'   => 'getConfig',
+    ];
 
     public static function attributeMap()
     {
@@ -100,29 +104,29 @@ class CreateCheckoutRequest implements ArrayAccess
     public const TYPE_STANDARD = 'standard';
     public const TYPE_EXPRESS = 'express';
 
-
-
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
+     *
      * @return string[]
      */
     public function getTypeAllowableValues()
     {
-        return array(
+        return [
             self::TYPE_STANDARD,
             self::TYPE_EXPRESS,
-        );
+        ];
     }
 
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -142,9 +146,9 @@ class CreateCheckoutRequest implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
-        $allowed_values = array("standard", "express");
+        $allowed_values = ['standard', 'express'];
         if (!in_array($this->container['type'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'type', must be one of 'standard', 'express'.";
         }
@@ -155,19 +159,19 @@ class CreateCheckoutRequest implements ArrayAccess
         if ($this->container['config'] === null) {
             $invalid_properties[] = "'config' can't be null";
         }
+
         return $invalid_properties;
     }
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
-        $allowed_values = array("standard", "express");
+        $allowed_values = ['standard', 'express'];
         if (!in_array($this->container['type'], $allowed_values)) {
             return false;
         }
@@ -177,12 +181,13 @@ class CreateCheckoutRequest implements ArrayAccess
         if ($this->container['config'] === null) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets type
+     * Gets type.
+     *
      * @return string
      */
     public function getType()
@@ -191,13 +196,15 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Sets type
+     * Sets type.
+     *
      * @param string $type The checkout type.
+     *
      * @return $this
      */
     public function setType($type)
     {
-        $allowed_values = array('standard', 'express');
+        $allowed_values = ['standard', 'express'];
         if (!is_null($type) && (!in_array($type, $allowed_values))) {
             throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'standard', 'express'");
         }
@@ -207,7 +214,8 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Gets shopper
+     * Gets shopper.
+     *
      * @return \zipMoney\Model\Shopper
      */
     public function getShopper()
@@ -216,8 +224,10 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Sets shopper
+     * Sets shopper.
+     *
      * @param \zipMoney\Model\Shopper $shopper
+     *
      * @return $this
      */
     public function setShopper($shopper)
@@ -228,7 +238,8 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Gets order
+     * Gets order.
+     *
      * @return \zipMoney\Model\CheckoutOrder
      */
     public function getOrder()
@@ -237,8 +248,10 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Sets order
+     * Sets order.
+     *
      * @param \zipMoney\Model\CheckoutOrder $order
+     *
      * @return $this
      */
     public function setOrder($order)
@@ -249,7 +262,8 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Gets features
+     * Gets features.
+     *
      * @return \zipMoney\Model\CreateCheckoutRequestFeatures
      */
     public function getFeatures()
@@ -258,8 +272,10 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Sets features
+     * Sets features.
+     *
      * @param \zipMoney\Model\CreateCheckoutRequestFeatures $features
+     *
      * @return $this
      */
     public function setFeatures($features)
@@ -270,7 +286,8 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Gets metadata
+     * Gets metadata.
+     *
      * @return \zipMoney\Model\Metadata
      */
     public function getMetadata()
@@ -279,8 +296,10 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Sets metadata
+     * Sets metadata.
+     *
      * @param \zipMoney\Model\Metadata $metadata
+     *
      * @return $this
      */
     public function setMetadata($metadata)
@@ -291,7 +310,8 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Gets config
+     * Gets config.
+     *
      * @return \zipMoney\Model\CheckoutConfiguration
      */
     public function getConfig()
@@ -300,8 +320,10 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Sets config
+     * Sets config.
+     *
      * @param \zipMoney\Model\CheckoutConfiguration $config
+     *
      * @return $this
      */
     public function setConfig($config)
@@ -310,10 +332,13 @@ class CreateCheckoutRequest implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -322,19 +347,21 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -347,8 +374,8 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -356,7 +383,8 @@ class CreateCheckoutRequest implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

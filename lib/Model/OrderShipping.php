@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * OrderShipping
+ * OrderShipping.
  *
  * @category Class
  * @package  zipMoney
@@ -18,20 +19,22 @@ class OrderShipping implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'OrderShipping';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'pickup' => 'bool',
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'pickup'   => 'bool',
         'tracking' => '\zipMoney\Model\OrderShippingTracking',
-        'address' => '\zipMoney\Model\Address'
-    );
+        'address'  => '\zipMoney\Model\Address',
+    ];
 
     public static function zipTypes()
     {
@@ -39,36 +42,37 @@ class OrderShipping implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'pickup' => 'pickup',
+    protected static $attributeMap = [
+        'pickup'   => 'pickup',
         'tracking' => 'tracking',
-        'address' => 'address'
-    );
-
+        'address'  => 'address',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'pickup' => 'setPickup',
+    protected static $setters = [
+        'pickup'   => 'setPickup',
         'tracking' => 'setTracking',
-        'address' => 'setAddress'
-    );
-
+        'address'  => 'setAddress',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'pickup' => 'getPickup',
+    protected static $getters = [
+        'pickup'   => 'getPickup',
         'tracking' => 'getTracking',
-        'address' => 'getAddress'
-    );
+        'address'  => 'getAddress',
+    ];
 
     public static function attributeMap()
     {
@@ -85,18 +89,16 @@ class OrderShipping implements ArrayAccess
         return self::$getters;
     }
 
-
-
-
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -113,26 +115,23 @@ class OrderShipping implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
-
-        return $invalid_properties;
+        return [];
     }
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         return true;
     }
 
-
     /**
-     * Gets pickup
+     * Gets pickup.
+     *
      * @return bool
      */
     public function getPickup()
@@ -141,8 +140,10 @@ class OrderShipping implements ArrayAccess
     }
 
     /**
-     * Sets pickup
+     * Sets pickup.
+     *
      * @param bool $pickup States if the shipping method is pickup, otherwise the shipping address should be provided
+     *
      * @return $this
      */
     public function setPickup($pickup)
@@ -153,7 +154,8 @@ class OrderShipping implements ArrayAccess
     }
 
     /**
-     * Gets tracking
+     * Gets tracking.
+     *
      * @return \zipMoney\Model\OrderShippingTracking
      */
     public function getTracking()
@@ -162,8 +164,10 @@ class OrderShipping implements ArrayAccess
     }
 
     /**
-     * Sets tracking
+     * Sets tracking.
+     *
      * @param \zipMoney\Model\OrderShippingTracking $tracking
+     *
      * @return $this
      */
     public function setTracking($tracking)
@@ -174,7 +178,8 @@ class OrderShipping implements ArrayAccess
     }
 
     /**
-     * Gets address
+     * Gets address.
+     *
      * @return \zipMoney\Model\Address
      */
     public function getAddress()
@@ -183,8 +188,10 @@ class OrderShipping implements ArrayAccess
     }
 
     /**
-     * Sets address
+     * Sets address.
+     *
      * @param \zipMoney\Model\Address $address
+     *
      * @return $this
      */
     public function setAddress($address)
@@ -193,10 +200,13 @@ class OrderShipping implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -205,19 +215,21 @@ class OrderShipping implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -230,8 +242,8 @@ class OrderShipping implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -239,7 +251,8 @@ class OrderShipping implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

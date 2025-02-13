@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * CheckoutsApi
+ * CheckoutsApi.
  *
  * @category Class
  * @package  zipMoney
@@ -13,22 +14,20 @@ namespace zipMoney\Api;
 
 use zipMoney\ApiClient;
 use zipMoney\ApiException;
-use zipMoney\Configuration;
-use zipMoney\ObjectSerializer;
 
 class CheckoutsApi
 {
     /**
-     * API Client
+     * API Client.
      *
      * @var \zipMoney\ApiClient instance of the ApiClient
      */
     protected $apiClient;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param \zipMoney\ApiClient|null $apiClient The api client to use
+     * @param null|\zipMoney\ApiClient $apiClient The api client to use
      */
     public function __construct(\zipMoney\ApiClient $apiClient = null)
     {
@@ -39,7 +38,7 @@ class CheckoutsApi
     }
 
     /**
-     * Get API client
+     * Get API client.
      *
      * @return \zipMoney\ApiClient get the API client
      */
@@ -49,7 +48,7 @@ class CheckoutsApi
     }
 
     /**
-     * Set the API client
+     * Set the API client.
      *
      * @param \zipMoney\ApiClient $apiClient set the API client
      *
@@ -58,49 +57,55 @@ class CheckoutsApi
     public function setApiClient(\zipMoney\ApiClient $apiClient)
     {
         $this->apiClient = $apiClient;
+
         return $this;
     }
 
     /**
-     * Operation checkoutsCreate
+     * Operation checkoutsCreate.
      *
      * Create a checkout
      *
-     * @param \zipMoney\Model\CreateCheckoutRequest $body  (optional)
+     * @param \zipMoney\Model\CreateCheckoutRequest $body (optional)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return \zipMoney\Model\Checkout
      */
     public function checkoutsCreate($body = null)
     {
-        list($response) = $this->checkoutsCreateWithHttpInfo($body);
+        [$response] = $this->checkoutsCreateWithHttpInfo($body);
+
         return $response;
     }
 
     /**
-     * Operation checkoutsCreateWithHttpInfo
+     * Operation checkoutsCreateWithHttpInfo.
      *
      * Create a checkout
      *
-     * @param \zipMoney\Model\CreateCheckoutRequest $body  (optional)
+     * @param \zipMoney\Model\CreateCheckoutRequest $body (optional)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return array of \zipMoney\Model\Checkout, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkoutsCreateWithHttpInfo($body = null)
     {
         // parse inputs
-        $resourcePath = "/checkouts";
+        $resourcePath = '/checkouts';
         $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
 
         // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $resourcePath = str_replace('{format}', 'json', $resourcePath);
 
         // body params
         $_tempBody = null;
@@ -119,9 +124,10 @@ class CheckoutsApi
         if (strlen($apiKey) !== 0) {
             $headerParams['Authorization'] = $apiKey;
         }
+
         // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+            [$response, $statusCode, $httpHeader] = $this->apiClient->callApi(
                 $resourcePath,
                 'POST',
                 $queryParams,
@@ -131,7 +137,7 @@ class CheckoutsApi
                 '/checkouts'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Checkout', $httpHeader), $statusCode, $httpHeader);
+            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Checkout', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -165,27 +171,32 @@ class CheckoutsApi
     }
 
     /**
-     * Operation checkoutsGet
+     * Operation checkoutsGet.
      *
      * Retrieve a checkout
      *
-     * @param string $id  (required)
+     * @param string $id (required)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return \zipMoney\Model\Checkout
      */
     public function checkoutsGet($id)
     {
-        list($response) = $this->checkoutsGetWithHttpInfo($id);
+        [$response] = $this->checkoutsGetWithHttpInfo($id);
+
         return $response;
     }
 
     /**
-     * Operation checkoutsGetWithHttpInfo
+     * Operation checkoutsGetWithHttpInfo.
      *
      * Retrieve a checkout
      *
-     * @param string $id  (required)
+     * @param string $id (required)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return array of \zipMoney\Model\Checkout, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkoutsGetWithHttpInfo($id)
@@ -195,28 +206,27 @@ class CheckoutsApi
             throw new \InvalidArgumentException('Missing the required parameter $id when calling checkoutsGet');
         }
         // parse inputs
-        $resourcePath = "/checkouts/{id}";
+        $resourcePath = '/checkouts/{id}';
         $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                "{" . "id" . "}",
+                '{' . 'id' . '}',
                 $this->apiClient->getSerializer()->toPathValue($id),
                 $resourcePath
             );
         }
         // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
+        $resourcePath = str_replace('{format}', 'json', $resourcePath);
 
         // for model (json/xml)
         if (isset($_tempBody)) {
@@ -229,9 +239,10 @@ class CheckoutsApi
         if (strlen($apiKey) !== 0) {
             $headerParams['Authorization'] = $apiKey;
         }
+
         // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+            [$response, $statusCode, $httpHeader] = $this->apiClient->callApi(
                 $resourcePath,
                 'GET',
                 $queryParams,
@@ -241,7 +252,7 @@ class CheckoutsApi
                 '/checkouts/{id}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Checkout', $httpHeader), $statusCode, $httpHeader);
+            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Checkout', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:

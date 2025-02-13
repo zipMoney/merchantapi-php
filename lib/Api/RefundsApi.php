@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * RefundsApi
+ * RefundsApi.
  *
  * @category Class
  * @package  zipMoney
@@ -13,22 +14,20 @@ namespace zipMoney\Api;
 
 use zipMoney\ApiClient;
 use zipMoney\ApiException;
-use zipMoney\Configuration;
-use zipMoney\ObjectSerializer;
 
 class RefundsApi
 {
     /**
-     * API Client
+     * API Client.
      *
      * @var \zipMoney\ApiClient instance of the ApiClient
      */
     protected $apiClient;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param \zipMoney\ApiClient|null $apiClient The api client to use
+     * @param null|\zipMoney\ApiClient $apiClient The api client to use
      */
     public function __construct(\zipMoney\ApiClient $apiClient = null)
     {
@@ -39,7 +38,7 @@ class RefundsApi
     }
 
     /**
-     * Get API client
+     * Get API client.
      *
      * @return \zipMoney\ApiClient get the API client
      */
@@ -49,7 +48,7 @@ class RefundsApi
     }
 
     /**
-     * Set the API client
+     * Set the API client.
      *
      * @param \zipMoney\ApiClient $apiClient set the API client
      *
@@ -58,55 +57,61 @@ class RefundsApi
     public function setApiClient(\zipMoney\ApiClient $apiClient)
     {
         $this->apiClient = $apiClient;
+
         return $this;
     }
 
     /**
-     * Operation refundsCreate
+     * Operation refundsCreate.
      *
      * Create a refund
      *
-     * @param \zipMoney\Model\CreateRefundRequest $body  (optional)
-     * @param string $idempotency_key The unique idempotency key. (optional)
+     * @param \zipMoney\Model\CreateRefundRequest $body            (optional)
+     * @param string                              $idempotency_key The unique idempotency key. (optional)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return \zipMoney\Model\Refund
      */
     public function refundsCreate($body = null, $idempotency_key = null)
     {
-        list($response) = $this->refundsCreateWithHttpInfo($body, $idempotency_key);
+        [$response] = $this->refundsCreateWithHttpInfo($body, $idempotency_key);
+
         return $response;
     }
 
     /**
-     * Operation refundsCreateWithHttpInfo
+     * Operation refundsCreateWithHttpInfo.
      *
      * Create a refund
      *
-     * @param \zipMoney\Model\CreateRefundRequest $body  (optional)
-     * @param string $idempotency_key The unique idempotency key. (optional)
+     * @param \zipMoney\Model\CreateRefundRequest $body            (optional)
+     * @param string                              $idempotency_key The unique idempotency key. (optional)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return array of \zipMoney\Model\Refund, HTTP status code, HTTP response headers (array of strings)
      */
     public function refundsCreateWithHttpInfo($body = null, $idempotency_key = null)
     {
         // parse inputs
-        $resourcePath = "/refunds";
+        $resourcePath = '/refunds';
         $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json'));
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
 
         // header params
         if ($idempotency_key !== null) {
             $headerParams['Idempotency-Key'] = $this->apiClient->getSerializer()->toHeaderValue($idempotency_key);
         }
         // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $resourcePath = str_replace('{format}', 'json', $resourcePath);
 
         // body params
         $_tempBody = null;
@@ -125,9 +130,10 @@ class RefundsApi
         if (strlen($apiKey) !== 0) {
             $headerParams['Authorization'] = $apiKey;
         }
+
         // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+            [$response, $statusCode, $httpHeader] = $this->apiClient->callApi(
                 $resourcePath,
                 'POST',
                 $queryParams,
@@ -137,7 +143,7 @@ class RefundsApi
                 '/refunds'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Refund', $httpHeader), $statusCode, $httpHeader);
+            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Refund', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
@@ -163,46 +169,51 @@ class RefundsApi
     }
 
     /**
-     * Operation refundsList
+     * Operation refundsList.
      *
      * List refunds
      *
-     * @param string $charge_id  (optional)
-     * @param int $skip Number of items to skip when paging (optional, default to 0)
-     * @param int $limit Number of items to retrieve when paging (optional, default to 100)
+     * @param string $charge_id (optional)
+     * @param int    $skip      Number of items to skip when paging (optional, default to 0)
+     * @param int    $limit     Number of items to retrieve when paging (optional, default to 100)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return \zipMoney\Model\InlineResponse200[]
      */
     public function refundsList($charge_id = null, $skip = null, $limit = null)
     {
-        list($response) = $this->refundsListWithHttpInfo($charge_id, $skip, $limit);
+        [$response] = $this->refundsListWithHttpInfo($charge_id, $skip, $limit);
+
         return $response;
     }
 
     /**
-     * Operation refundsListWithHttpInfo
+     * Operation refundsListWithHttpInfo.
      *
      * List refunds
      *
-     * @param string $charge_id  (optional)
-     * @param int $skip Number of items to skip when paging (optional, default to 0)
-     * @param int $limit Number of items to retrieve when paging (optional, default to 100)
+     * @param string $charge_id (optional)
+     * @param int    $skip      Number of items to skip when paging (optional, default to 0)
+     * @param int    $limit     Number of items to retrieve when paging (optional, default to 100)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return array of \zipMoney\Model\InlineResponse200[], HTTP status code, HTTP response headers (array of strings)
      */
     public function refundsListWithHttpInfo($charge_id = null, $skip = null, $limit = null)
     {
         // parse inputs
-        $resourcePath = "/refunds";
+        $resourcePath = '/refunds';
         $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/javascript'));
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/javascript']);
 
         // query params
         if ($charge_id !== null) {
@@ -217,8 +228,7 @@ class RefundsApi
             $queryParams['limit'] = $this->apiClient->getSerializer()->toQueryValue($limit);
         }
         // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
+        $resourcePath = str_replace('{format}', 'json', $resourcePath);
 
         // for model (json/xml)
         if (isset($_tempBody)) {
@@ -231,9 +241,10 @@ class RefundsApi
         if (strlen($apiKey) !== 0) {
             $headerParams['Authorization'] = $apiKey;
         }
+
         // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+            [$response, $statusCode, $httpHeader] = $this->apiClient->callApi(
                 $resourcePath,
                 'GET',
                 $queryParams,
@@ -243,7 +254,7 @@ class RefundsApi
                 '/refunds'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\InlineResponse200[]', $httpHeader), $statusCode, $httpHeader);
+            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\InlineResponse200[]', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
@@ -257,27 +268,32 @@ class RefundsApi
     }
 
     /**
-     * Operation refundsRetrieve
+     * Operation refundsRetrieve.
      *
      * Retrieve a refund
      *
      * @param string $id The id of the refund (required)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return \zipMoney\Model\Refund
      */
     public function refundsRetrieve($id)
     {
-        list($response) = $this->refundsRetrieveWithHttpInfo($id);
+        [$response] = $this->refundsRetrieveWithHttpInfo($id);
+
         return $response;
     }
 
     /**
-     * Operation refundsRetrieveWithHttpInfo
+     * Operation refundsRetrieveWithHttpInfo.
      *
      * Retrieve a refund
      *
      * @param string $id The id of the refund (required)
+     *
      * @throws \zipMoney\ApiException on non-2xx response
+     *
      * @return array of \zipMoney\Model\Refund, HTTP status code, HTTP response headers (array of strings)
      */
     public function refundsRetrieveWithHttpInfo($id)
@@ -287,28 +303,27 @@ class RefundsApi
             throw new \InvalidArgumentException('Missing the required parameter $id when calling refundsRetrieve');
         }
         // parse inputs
-        $resourcePath = "/refunds/{id}";
+        $resourcePath = '/refunds/{id}';
         $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/javascript'));
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/javascript']);
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/javascript'));
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/javascript']);
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                "{" . "id" . "}",
+                '{' . 'id' . '}',
                 $this->apiClient->getSerializer()->toPathValue($id),
                 $resourcePath
             );
         }
         // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
+        $resourcePath = str_replace('{format}', 'json', $resourcePath);
 
         // for model (json/xml)
         if (isset($_tempBody)) {
@@ -321,9 +336,10 @@ class RefundsApi
         if (strlen($apiKey) !== 0) {
             $headerParams['Authorization'] = $apiKey;
         }
+
         // make the API Call
         try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+            [$response, $statusCode, $httpHeader] = $this->apiClient->callApi(
                 $resourcePath,
                 'GET',
                 $queryParams,
@@ -333,7 +349,7 @@ class RefundsApi
                 '/refunds/{id}'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Refund', $httpHeader), $statusCode, $httpHeader);
+            return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Refund', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:

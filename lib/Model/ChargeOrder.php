@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * ChargeOrder
+ * ChargeOrder.
  *
  * @category Class
  * @package  zipMoney
@@ -18,21 +19,23 @@ class ChargeOrder implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'ChargeOrder';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'reference' => 'string',
-        'shipping' => '\zipMoney\Model\OrderShipping',
-        'items' => '\zipMoney\Model\OrderItem[]',
-        'cart_reference' => 'string'
-    );
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'reference'      => 'string',
+        'shipping'       => '\zipMoney\Model\OrderShipping',
+        'items'          => '\zipMoney\Model\OrderItem[]',
+        'cart_reference' => 'string',
+    ];
 
     public static function zipTypes()
     {
@@ -40,39 +43,40 @@ class ChargeOrder implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'reference' => 'reference',
-        'shipping' => 'shipping',
-        'items' => 'items',
-        'cart_reference' => 'cart_reference'
-    );
-
+    protected static $attributeMap = [
+        'reference'      => 'reference',
+        'shipping'       => 'shipping',
+        'items'          => 'items',
+        'cart_reference' => 'cart_reference',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'reference' => 'setReference',
-        'shipping' => 'setShipping',
-        'items' => 'setItems',
-        'cart_reference' => 'setCartReference'
-    );
-
+    protected static $setters = [
+        'reference'      => 'setReference',
+        'shipping'       => 'setShipping',
+        'items'          => 'setItems',
+        'cart_reference' => 'setCartReference',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'reference' => 'getReference',
-        'shipping' => 'getShipping',
-        'items' => 'getItems',
-        'cart_reference' => 'getCartReference'
-    );
+    protected static $getters = [
+        'reference'      => 'getReference',
+        'shipping'       => 'getShipping',
+        'items'          => 'getItems',
+        'cart_reference' => 'getCartReference',
+    ];
 
     public static function attributeMap()
     {
@@ -89,18 +93,16 @@ class ChargeOrder implements ArrayAccess
         return self::$getters;
     }
 
-
-
-
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -118,7 +120,7 @@ class ChargeOrder implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if (!is_null($this->container['reference']) && (strlen($this->container['reference']) > 50)) {
             $invalid_properties[] = "invalid value for 'reference', the character length must be smaller than or equal to 50.";
@@ -136,13 +138,12 @@ class ChargeOrder implements ArrayAccess
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if (strlen($this->container['reference']) > 50) {
             return false;
         }
@@ -152,12 +153,13 @@ class ChargeOrder implements ArrayAccess
         if (strlen($this->container['cart_reference']) > 100) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets reference
+     * Gets reference.
+     *
      * @return string
      */
     public function getReference()
@@ -166,8 +168,10 @@ class ChargeOrder implements ArrayAccess
     }
 
     /**
-     * Sets reference
+     * Sets reference.
+     *
      * @param string $reference The order id in the eCommerce system
+     *
      * @return $this
      */
     public function setReference($reference)
@@ -182,7 +186,8 @@ class ChargeOrder implements ArrayAccess
     }
 
     /**
-     * Gets shipping
+     * Gets shipping.
+     *
      * @return \zipMoney\Model\OrderShipping
      */
     public function getShipping()
@@ -191,8 +196,10 @@ class ChargeOrder implements ArrayAccess
     }
 
     /**
-     * Sets shipping
+     * Sets shipping.
+     *
      * @param \zipMoney\Model\OrderShipping $shipping
+     *
      * @return $this
      */
     public function setShipping($shipping)
@@ -203,7 +210,8 @@ class ChargeOrder implements ArrayAccess
     }
 
     /**
-     * Gets items
+     * Gets items.
+     *
      * @return \zipMoney\Model\OrderItem[]
      */
     public function getItems()
@@ -212,8 +220,10 @@ class ChargeOrder implements ArrayAccess
     }
 
     /**
-     * Sets items
+     * Sets items.
+     *
      * @param \zipMoney\Model\OrderItem[] $items The order item breakdown
+     *
      * @return $this
      */
     public function setItems($items)
@@ -224,7 +234,8 @@ class ChargeOrder implements ArrayAccess
     }
 
     /**
-     * Gets cart_reference
+     * Gets cart_reference.
+     *
      * @return string
      */
     public function getCartReference()
@@ -233,8 +244,10 @@ class ChargeOrder implements ArrayAccess
     }
 
     /**
-     * Sets cart_reference
+     * Sets cart_reference.
+     *
      * @param string $cart_reference The shopping cart reference id
+     *
      * @return $this
      */
     public function setCartReference($cart_reference)
@@ -247,10 +260,13 @@ class ChargeOrder implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -259,19 +275,21 @@ class ChargeOrder implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -284,8 +302,8 @@ class ChargeOrder implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -293,7 +311,8 @@ class ChargeOrder implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

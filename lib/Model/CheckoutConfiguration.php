@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * CheckoutConfiguration
+ * CheckoutConfiguration.
  *
  * @category Class
  * @package  zipMoney
@@ -18,18 +19,20 @@ class CheckoutConfiguration implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'CheckoutConfiguration';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'redirect_uri' => 'string'
-    );
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'redirect_uri' => 'string',
+    ];
 
     public static function zipTypes()
     {
@@ -37,30 +40,31 @@ class CheckoutConfiguration implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'redirect_uri' => 'redirect_uri'
-    );
-
+    protected static $attributeMap = [
+        'redirect_uri' => 'redirect_uri',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'redirect_uri' => 'setRedirectUri'
-    );
-
+    protected static $setters = [
+        'redirect_uri' => 'setRedirectUri',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'redirect_uri' => 'getRedirectUri'
-    );
+    protected static $getters = [
+        'redirect_uri' => 'getRedirectUri',
+    ];
 
     public static function attributeMap()
     {
@@ -77,18 +81,16 @@ class CheckoutConfiguration implements ArrayAccess
         return self::$getters;
     }
 
-
-
-
-
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -103,32 +105,33 @@ class CheckoutConfiguration implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if ($this->container['redirect_uri'] === null) {
             $invalid_properties[] = "'redirect_uri' can't be null";
         }
+
         return $invalid_properties;
     }
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if ($this->container['redirect_uri'] === null) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets redirect_uri
+     * Gets redirect_uri.
+     *
      * @return string
      */
     public function getRedirectUri()
@@ -137,8 +140,10 @@ class CheckoutConfiguration implements ArrayAccess
     }
 
     /**
-     * Sets redirect_uri
+     * Sets redirect_uri.
+     *
      * @param string $redirect_uri The URI to redirect after the checkout is complete.  This must be provided, even if using in-context checkout.  If using redirection we will automatically redirect to this url with the result and checkoutId.  If using in-context we will not automatically redirect to this URI.
+     *
      * @return $this
      */
     public function setRedirectUri($redirect_uri)
@@ -147,10 +152,13 @@ class CheckoutConfiguration implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -159,19 +167,21 @@ class CheckoutConfiguration implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -184,8 +194,8 @@ class CheckoutConfiguration implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -193,7 +203,8 @@ class CheckoutConfiguration implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()

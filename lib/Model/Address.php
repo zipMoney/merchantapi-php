@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 
 /**
- * Address
+ * Address.
  *
  * @category Class
  * @package  zipMoney
@@ -18,25 +19,27 @@ class Address implements ArrayAccess
     public const DISCRIMINATOR = 'subclass';
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'address';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
-    protected static $zipTypes = array(
-        'line1' => 'string',
-        'line2' => 'string',
-        'city' => 'string',
-        'state' => 'string',
+     * Array of property to type mappings. Used for (de)serialization.
+     *
+     * @var string[]
+     */
+    protected static $zipTypes = [
+        'line1'       => 'string',
+        'line2'       => 'string',
+        'city'        => 'string',
+        'state'       => 'string',
         'postal_code' => 'string',
-        'country' => 'string',
-        'first_name' => 'string',
-        'last_name' => 'string'
-    );
+        'country'     => 'string',
+        'first_name'  => 'string',
+        'last_name'   => 'string',
+    ];
 
     public static function zipTypes()
     {
@@ -44,51 +47,52 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Array of attributes where the key is the local name, and the value is the original name
+     * Array of attributes where the key is the local name, and the value is the original name.
+     *
      * @var string[]
      */
-    protected static $attributeMap = array(
-        'line1' => 'line1',
-        'line2' => 'line2',
-        'city' => 'city',
-        'state' => 'state',
+    protected static $attributeMap = [
+        'line1'       => 'line1',
+        'line2'       => 'line2',
+        'city'        => 'city',
+        'state'       => 'state',
         'postal_code' => 'postal_code',
-        'country' => 'country',
-        'first_name' => 'first_name',
-        'last_name' => 'last_name'
-    );
-
+        'country'     => 'country',
+        'first_name'  => 'first_name',
+        'last_name'   => 'last_name',
+    ];
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
+     * Array of attributes to setter functions (for deserialization of responses).
+     *
      * @var string[]
      */
-    protected static $setters = array(
-        'line1' => 'setLine1',
-        'line2' => 'setLine2',
-        'city' => 'setCity',
-        'state' => 'setState',
+    protected static $setters = [
+        'line1'       => 'setLine1',
+        'line2'       => 'setLine2',
+        'city'        => 'setCity',
+        'state'       => 'setState',
         'postal_code' => 'setPostalCode',
-        'country' => 'setCountry',
-        'first_name' => 'setFirstName',
-        'last_name' => 'setLastName'
-    );
-
+        'country'     => 'setCountry',
+        'first_name'  => 'setFirstName',
+        'last_name'   => 'setLastName',
+    ];
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
+     * Array of attributes to getter functions (for serialization of requests).
+     *
      * @var string[]
      */
-    protected static $getters = array(
-        'line1' => 'getLine1',
-        'line2' => 'getLine2',
-        'city' => 'getCity',
-        'state' => 'getState',
+    protected static $getters = [
+        'line1'       => 'getLine1',
+        'line2'       => 'getLine2',
+        'city'        => 'getCity',
+        'state'       => 'getState',
         'postal_code' => 'getPostalCode',
-        'country' => 'getCountry',
-        'first_name' => 'getFirstName',
-        'last_name' => 'getLastName'
-    );
+        'country'     => 'getCountry',
+        'first_name'  => 'getFirstName',
+        'last_name'   => 'getLastName',
+    ];
 
     public static function attributeMap()
     {
@@ -106,13 +110,15 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Associative array for storing property values
+     * Associative array for storing property values.
+     *
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
@@ -134,7 +140,7 @@ class Address implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
 
         if ($this->container['line1'] === null) {
             $invalid_properties[] = "'line1' can't be null";
@@ -188,13 +194,12 @@ class Address implements ArrayAccess
 
     /**
      * validate all the properties in the model
-     * return true if all passed
+     * return true if all passed.
      *
      * @return bool True if all properties are valid
      */
     public function valid()
     {
-
         if ($this->container['line1'] === null) {
             return false;
         }
@@ -234,12 +239,13 @@ class Address implements ArrayAccess
         if (strlen($this->container['first_name']) > 200) {
             return false;
         }
+
         return true;
     }
 
-
     /**
-     * Gets line1
+     * Gets line1.
+     *
      * @return string
      */
     public function getLine1()
@@ -248,8 +254,10 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Sets line1
+     * Sets line1.
+     *
      * @param string $line1 The first line in the address
+     *
      * @return $this
      */
     public function setLine1($line1)
@@ -264,7 +272,8 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Gets line2
+     * Gets line2.
+     *
      * @return string
      */
     public function getLine2()
@@ -273,8 +282,10 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Sets line2
+     * Sets line2.
+     *
      * @param string $line2 The (optional) second address line
+     *
      * @return $this
      */
     public function setLine2($line2)
@@ -289,7 +300,8 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Gets city
+     * Gets city.
+     *
      * @return string
      */
     public function getCity()
@@ -298,8 +310,10 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Sets city
+     * Sets city.
+     *
      * @param string $city The address city
+     *
      * @return $this
      */
     public function setCity($city)
@@ -314,7 +328,8 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Gets state
+     * Gets state.
+     *
      * @return string
      */
     public function getState()
@@ -323,8 +338,10 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Sets state
+     * Sets state.
+     *
      * @param string $state The state or province
+     *
      * @return $this
      */
     public function setState($state)
@@ -339,7 +356,8 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Gets postal_code
+     * Gets postal_code.
+     *
      * @return string
      */
     public function getPostalCode()
@@ -348,8 +366,10 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Sets postal_code
+     * Sets postal_code.
+     *
      * @param string $postal_code The post or zip code
+     *
      * @return $this
      */
     public function setPostalCode($postal_code)
@@ -364,7 +384,8 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Gets country
+     * Gets country.
+     *
      * @return string
      */
     public function getCountry()
@@ -373,8 +394,10 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Sets country
+     * Sets country.
+     *
      * @param string $country The ISO-3166 country code. See https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2.
+     *
      * @return $this
      */
     public function setCountry($country)
@@ -392,7 +415,8 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Gets first_name
+     * Gets first_name.
+     *
      * @return string
      */
     public function getFirstName()
@@ -401,8 +425,10 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Sets first_name
+     * Sets first_name.
+     *
      * @param string $first_name The recipient's first name
+     *
      * @return $this
      */
     public function setFirstName($first_name)
@@ -417,7 +443,8 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Gets last_name
+     * Gets last_name.
+     *
      * @return string
      */
     public function getLastName()
@@ -426,8 +453,10 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Sets last_name
+     * Sets last_name.
+     *
      * @param string $last_name The recipient's last name
+     *
      * @return $this
      */
     public function setLastName($last_name)
@@ -436,10 +465,13 @@ class Address implements ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
-     * @param  integer $offset Offset
-     * @return boolean
+     *
+     * @param int $offset Offset
+     *
+     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -448,19 +480,21 @@ class Address implements ArrayAccess
 
     /**
      * Gets offset.
-     * @param  integer $offset Offset
+     *
+     * @param int $offset Offset
+     *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
-     * @param  integer $offset Offset
-     * @param  mixed   $value  Value to be set
-     * @return void
+     *
+     * @param int   $offset Offset
+     * @param mixed $value  Value to be set
      */
     public function offsetSet($offset, $value): void
     {
@@ -473,8 +507,8 @@ class Address implements ArrayAccess
 
     /**
      * Unsets offset.
-     * @param  integer $offset Offset
-     * @return void
+     *
+     * @param int $offset Offset
      */
     public function offsetUnset($offset): void
     {
@@ -482,7 +516,8 @@ class Address implements ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
+     * Gets the string presentation of the object.
+     *
      * @return string
      */
     public function __toString()
