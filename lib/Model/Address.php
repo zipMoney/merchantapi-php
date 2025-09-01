@@ -121,7 +121,7 @@ class Address implements ArrayAccess
      *
      * @param mixed[] $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['line1'] = isset($data['line1']) ? $data['line1'] : null;
         $this->container['line2'] = isset($data['line2']) ? $data['line2'] : null;

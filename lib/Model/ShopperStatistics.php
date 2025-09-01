@@ -151,7 +151,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @param mixed[] $data Associated array of property values initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->container['account_created'] = isset($data['account_created']) ? $data['account_created'] : null;
         $this->container['sales_total_count'] = isset($data['sales_total_count']) ? $data['sales_total_count'] : null;
