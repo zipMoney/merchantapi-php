@@ -29,7 +29,7 @@ class ChargesApi
      *
      * @param null|\zipMoney\ApiClient $apiClient The api client to use
      */
-    public function __construct(\zipMoney\ApiClient $apiClient = null)
+    public function __construct(?\zipMoney\ApiClient $apiClient = null)
     {
         if ($apiClient === null) {
             $apiClient = new ApiClient();

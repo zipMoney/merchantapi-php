@@ -45,9 +45,9 @@ class ApiClient
     /**
      * Constructor of the class.
      *
-     * @param Configuration $config config for this ApiClient
+     * @param null|Configuration $config config for this ApiClient
      */
-    public function __construct(\zipMoney\Configuration $config = null)
+    public function __construct(?\zipMoney\Configuration $config = null)
     {
         if ($config === null) {
             $config = Configuration::getDefaultConfiguration();
