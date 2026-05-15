@@ -75,7 +75,7 @@ try {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.zipmoney.com.au/merchant/v1*
+All URIs are relative to *https://merchant-api.com/au/merchant/v2/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
