@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,24 +15,26 @@ namespace zipMoney\Api;
 
 use zipMoney\ApiClient;
 use zipMoney\ApiException;
+use zipMoney\Model\Checkout;
+use zipMoney\Model\CreateCheckoutRequest;
 
 class CheckoutsApi
 {
     /**
      * API Client.
      *
-     * @var \zipMoney\ApiClient instance of the ApiClient
+     * @var ApiClient instance of the ApiClient
      */
-    protected $apiClient;
+    protected ?ApiClient $apiClient;
 
     /**
      * Constructor.
      *
-     * @param null|\zipMoney\ApiClient $apiClient The api client to use
+     * @param null|ApiClient $apiClient The api client to use
      */
-    public function __construct(?\zipMoney\ApiClient $apiClient = null)
+    public function __construct(?ApiClient $apiClient = null)
     {
-        if ($apiClient === null) {
+        if (!$apiClient instanceof ApiClient) {
             $apiClient = new ApiClient();
         }
         $this->apiClient = $apiClient;
@@ -40,9 +43,9 @@ class CheckoutsApi
     /**
      * Get API client.
      *
-     * @return \zipMoney\ApiClient get the API client
+     * @return ApiClient get the API client
      */
-    public function getApiClient()
+    public function getApiClient(): ?ApiClient
     {
         return $this->apiClient;
     }
@@ -50,11 +53,9 @@ class CheckoutsApi
     /**
      * Set the API client.
      *
-     * @param \zipMoney\ApiClient $apiClient set the API client
-     *
-     * @return CheckoutsApi
+     * @param ApiClient $apiClient set the API client
      */
-    public function setApiClient(\zipMoney\ApiClient $apiClient)
+    public function setApiClient(ApiClient $apiClient): static
     {
         $this->apiClient = $apiClient;
 
@@ -66,11 +67,11 @@ class CheckoutsApi
      *
      * Create a checkout
      *
-     * @param \zipMoney\Model\CreateCheckoutRequest $body (optional)
+     * @param CreateCheckoutRequest $body (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
-     * @return \zipMoney\Model\Checkout
+     * @return Checkout
      */
     public function checkoutsCreate($body = null)
     {
@@ -84,9 +85,9 @@ class CheckoutsApi
      *
      * Create a checkout
      *
-     * @param \zipMoney\Model\CreateCheckoutRequest $body (optional)
+     * @param CreateCheckoutRequest $body (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
      * @return array of \zipMoney\Model\Checkout, HTTP status code, HTTP response headers (array of strings)
      */
@@ -116,7 +117,7 @@ class CheckoutsApi
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             $httpBody = $formParams; // for HTTP post (form)
         }
         // this endpoint requires API key authentication
@@ -145,21 +146,9 @@ class CheckoutsApi
                     $e->setResponseObject($data);
                     break;
                 case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 402:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 409:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
@@ -177,9 +166,9 @@ class CheckoutsApi
      *
      * @param string $id (required)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
-     * @return \zipMoney\Model\Checkout
+     * @return Checkout
      */
     public function checkoutsGet($id)
     {
@@ -195,7 +184,7 @@ class CheckoutsApi
      *
      * @param string $id (required)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
      * @return array of \zipMoney\Model\Checkout, HTTP status code, HTTP response headers (array of strings)
      */
@@ -220,7 +209,7 @@ class CheckoutsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 $this->apiClient->getSerializer()->toPathValue($id),
                 $resourcePath
             );
@@ -231,7 +220,7 @@ class CheckoutsApi
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             $httpBody = $formParams; // for HTTP post (form)
         }
         // this endpoint requires API key authentication
@@ -260,17 +249,8 @@ class CheckoutsApi
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 404:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 409:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);

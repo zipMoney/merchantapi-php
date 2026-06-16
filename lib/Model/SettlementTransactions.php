@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class SettlementTransactions implements ArrayAccess
+class SettlementTransactions implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -103,9 +105,9 @@ class SettlementTransactions implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['charge_id'] = isset($data['charge_id']) ? $data['charge_id'] : null;
-        $this->container[''] = isset($data['']) ? $data[''] : null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['charge_id'] = $data['charge_id'] ?? null;
+        $this->container[''] = $data[''] ?? null;
     }
 
     /**
@@ -113,7 +115,7 @@ class SettlementTransactions implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         return [];
     }
@@ -124,7 +126,7 @@ class SettlementTransactions implements ArrayAccess
      *
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return true;
     }
@@ -146,7 +148,7 @@ class SettlementTransactions implements ArrayAccess
      *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->container['id'] = $id;
 
@@ -170,7 +172,7 @@ class SettlementTransactions implements ArrayAccess
      *
      * @return $this
      */
-    public function setChargeId($charge_id)
+    public function setChargeId($charge_id): static
     {
         $this->container['charge_id'] = $charge_id;
 
@@ -191,11 +193,10 @@ class SettlementTransactions implements ArrayAccess
      * Sets.
      *
      * @param string $
-     * @param mixed $val
      *
      * @return $this
      */
-    public function set($val)
+    public function set(mixed $val): static
     {
         $this->container[''] = $val;
 
@@ -206,8 +207,6 @@ class SettlementTransactions implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -218,8 +217,6 @@ class SettlementTransactions implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -232,7 +229,7 @@ class SettlementTransactions implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -253,15 +250,13 @@ class SettlementTransactions implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

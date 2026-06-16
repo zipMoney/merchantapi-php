@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,24 +15,27 @@ namespace zipMoney\Api;
 
 use zipMoney\ApiClient;
 use zipMoney\ApiException;
+use zipMoney\Model\CreateRefundRequest;
+use zipMoney\Model\InlineResponse200;
+use zipMoney\Model\Refund;
 
 class RefundsApi
 {
     /**
      * API Client.
      *
-     * @var \zipMoney\ApiClient instance of the ApiClient
+     * @var ApiClient instance of the ApiClient
      */
-    protected $apiClient;
+    protected ?ApiClient $apiClient;
 
     /**
      * Constructor.
      *
-     * @param null|\zipMoney\ApiClient $apiClient The api client to use
+     * @param null|ApiClient $apiClient The api client to use
      */
-    public function __construct(?\zipMoney\ApiClient $apiClient = null)
+    public function __construct(?ApiClient $apiClient = null)
     {
-        if ($apiClient === null) {
+        if (!$apiClient instanceof ApiClient) {
             $apiClient = new ApiClient();
         }
         $this->apiClient = $apiClient;
@@ -40,9 +44,9 @@ class RefundsApi
     /**
      * Get API client.
      *
-     * @return \zipMoney\ApiClient get the API client
+     * @return ApiClient get the API client
      */
-    public function getApiClient()
+    public function getApiClient(): ?ApiClient
     {
         return $this->apiClient;
     }
@@ -50,11 +54,9 @@ class RefundsApi
     /**
      * Set the API client.
      *
-     * @param \zipMoney\ApiClient $apiClient set the API client
-     *
-     * @return RefundsApi
+     * @param ApiClient $apiClient set the API client
      */
-    public function setApiClient(\zipMoney\ApiClient $apiClient)
+    public function setApiClient(ApiClient $apiClient): static
     {
         $this->apiClient = $apiClient;
 
@@ -66,12 +68,12 @@ class RefundsApi
      *
      * Create a refund
      *
-     * @param \zipMoney\Model\CreateRefundRequest $body            (optional)
+     * @param CreateRefundRequest $body (optional)
      * @param string                              $idempotency_key The unique idempotency key. (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
-     * @return \zipMoney\Model\Refund
+     * @return Refund
      */
     public function refundsCreate($body = null, $idempotency_key = null)
     {
@@ -85,10 +87,10 @@ class RefundsApi
      *
      * Create a refund
      *
-     * @param \zipMoney\Model\CreateRefundRequest $body            (optional)
+     * @param CreateRefundRequest $body (optional)
      * @param string                              $idempotency_key The unique idempotency key. (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
      * @return array of \zipMoney\Model\Refund, HTTP status code, HTTP response headers (array of strings)
      */
@@ -122,7 +124,7 @@ class RefundsApi
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             $httpBody = $formParams; // for HTTP post (form)
         }
         // this endpoint requires API key authentication
@@ -151,13 +153,7 @@ class RefundsApi
                     $e->setResponseObject($data);
                     break;
                 case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 402:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
@@ -177,9 +173,9 @@ class RefundsApi
      * @param int    $skip      Number of items to skip when paging (optional, default to 0)
      * @param int    $limit     Number of items to retrieve when paging (optional, default to 100)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
-     * @return \zipMoney\Model\InlineResponse200[]
+     * @return InlineResponse200[]
      */
     public function refundsList($charge_id = null, $skip = null, $limit = null)
     {
@@ -197,7 +193,7 @@ class RefundsApi
      * @param int    $skip      Number of items to skip when paging (optional, default to 0)
      * @param int    $limit     Number of items to retrieve when paging (optional, default to 100)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
      * @return array of \zipMoney\Model\InlineResponse200[], HTTP status code, HTTP response headers (array of strings)
      */
@@ -233,7 +229,7 @@ class RefundsApi
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             $httpBody = $formParams; // for HTTP post (form)
         }
         // this endpoint requires API key authentication
@@ -256,11 +252,9 @@ class RefundsApi
 
             return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\InlineResponse200[]', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\InlineResponse200[]', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            if ($e->getCode() === 200) {
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\InlineResponse200[]', $e->getResponseHeaders());
+                $e->setResponseObject($data);
             }
 
             throw $e;
@@ -274,9 +268,9 @@ class RefundsApi
      *
      * @param string $id The id of the refund (required)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
-     * @return \zipMoney\Model\Refund
+     * @return Refund
      */
     public function refundsRetrieve($id)
     {
@@ -292,7 +286,7 @@ class RefundsApi
      *
      * @param string $id The id of the refund (required)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
      * @return array of \zipMoney\Model\Refund, HTTP status code, HTTP response headers (array of strings)
      */
@@ -317,7 +311,7 @@ class RefundsApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 $this->apiClient->getSerializer()->toPathValue($id),
                 $resourcePath
             );
@@ -328,7 +322,7 @@ class RefundsApi
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             $httpBody = $formParams; // for HTTP post (form)
         }
         // this endpoint requires API key authentication
@@ -351,11 +345,9 @@ class RefundsApi
 
             return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Refund', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\Refund', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            if ($e->getCode() === 200) {
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\Refund', $e->getResponseHeaders());
+                $e->setResponseObject($data);
             }
 
             throw $e;

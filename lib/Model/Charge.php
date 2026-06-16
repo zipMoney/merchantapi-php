@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class Charge implements ArrayAccess
+class Charge implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -137,7 +139,7 @@ class Charge implements ArrayAccess
      *
      * @return string[]
      */
-    public function getStateAllowableValues()
+    public function getStateAllowableValues(): array
     {
         return [
             self::STATE_AUTHORISED,
@@ -163,18 +165,18 @@ class Charge implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['reference'] = isset($data['reference']) ? $data['reference'] : null;
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
-        $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
-        $this->container['state'] = isset($data['state']) ? $data['state'] : null;
-        $this->container['captured_amount'] = isset($data['captured_amount']) ? $data['captured_amount'] : null;
-        $this->container['refunded_amount'] = isset($data['refunded_amount']) ? $data['refunded_amount'] : null;
-        $this->container['created_date'] = isset($data['created_date']) ? $data['created_date'] : null;
-        $this->container['order'] = isset($data['order']) ? $data['order'] : null;
-        $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
-        $this->container['receipt_number'] = isset($data['receipt_number']) ? $data['receipt_number'] : null;
-        $this->container['product'] = isset($data['product']) ? $data['product'] : null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['reference'] = $data['reference'] ?? null;
+        $this->container['amount'] = $data['amount'] ?? null;
+        $this->container['currency'] = $data['currency'] ?? null;
+        $this->container['state'] = $data['state'] ?? null;
+        $this->container['captured_amount'] = $data['captured_amount'] ?? null;
+        $this->container['refunded_amount'] = $data['refunded_amount'] ?? null;
+        $this->container['created_date'] = $data['created_date'] ?? null;
+        $this->container['order'] = $data['order'] ?? null;
+        $this->container['metadata'] = $data['metadata'] ?? null;
+        $this->container['receipt_number'] = $data['receipt_number'] ?? null;
+        $this->container['product'] = $data['product'] ?? null;
     }
 
     /**
@@ -182,7 +184,7 @@ class Charge implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -269,11 +271,7 @@ class Charge implements ArrayAccess
         if ($this->container['created_date'] === null) {
             return false;
         }
-        if ($this->container['receipt_number'] === null) {
-            return false;
-        }
-
-        return true;
+        return $this->container['receipt_number'] !== null;
     }
 
     /**
@@ -293,7 +291,7 @@ class Charge implements ArrayAccess
      *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->container['id'] = $id;
 
@@ -317,7 +315,7 @@ class Charge implements ArrayAccess
      *
      * @return $this
      */
-    public function setReference($reference)
+    public function setReference($reference): static
     {
         $this->container['reference'] = $reference;
 
@@ -341,7 +339,7 @@ class Charge implements ArrayAccess
      *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): static
     {
         $this->container['amount'] = $amount;
 
@@ -365,7 +363,7 @@ class Charge implements ArrayAccess
      *
      * @return $this
      */
-    public function setCurrency($currency)
+    public function setCurrency($currency): static
     {
         $this->container['currency'] = $currency;
 
@@ -389,7 +387,7 @@ class Charge implements ArrayAccess
      *
      * @return $this
      */
-    public function setState($state)
+    public function setState($state): static
     {
         $allowed_values = $this->getStateAllowableValues();
         if ((!in_array($state, $allowed_values))) {
@@ -420,7 +418,7 @@ class Charge implements ArrayAccess
      *
      * @return $this
      */
-    public function setCapturedAmount($captured_amount)
+    public function setCapturedAmount($captured_amount): static
     {
         if (($captured_amount < 0)) {
             throw new \InvalidArgumentException('invalid value for $captured_amount when calling Charge., must be bigger than or equal to 0.');
@@ -448,7 +446,7 @@ class Charge implements ArrayAccess
      *
      * @return $this
      */
-    public function setRefundedAmount($refunded_amount)
+    public function setRefundedAmount($refunded_amount): static
     {
         if (($refunded_amount < 0)) {
             throw new \InvalidArgumentException('invalid value for $refunded_amount when calling Charge., must be bigger than or equal to 0.');
@@ -476,7 +474,7 @@ class Charge implements ArrayAccess
      *
      * @return $this
      */
-    public function setCreatedDate($created_date)
+    public function setCreatedDate($created_date): static
     {
         $this->container['created_date'] = $created_date;
 
@@ -486,7 +484,7 @@ class Charge implements ArrayAccess
     /**
      * Gets order.
      *
-     * @return \zipMoney\Model\ChargeOrder
+     * @return ChargeOrder
      */
     public function getOrder()
     {
@@ -496,11 +494,11 @@ class Charge implements ArrayAccess
     /**
      * Sets order.
      *
-     * @param \zipMoney\Model\ChargeOrder $order
+     * @param ChargeOrder $order
      *
      * @return $this
      */
-    public function setOrder($order)
+    public function setOrder($order): static
     {
         $this->container['order'] = $order;
 
@@ -524,7 +522,7 @@ class Charge implements ArrayAccess
      *
      * @return $this
      */
-    public function setMetadata($metadata)
+    public function setMetadata($metadata): static
     {
         $this->container['metadata'] = $metadata;
 
@@ -548,7 +546,7 @@ class Charge implements ArrayAccess
      *
      * @return $this
      */
-    public function setReceiptNumber($receipt_number)
+    public function setReceiptNumber($receipt_number): static
     {
         $this->container['receipt_number'] = $receipt_number;
 
@@ -562,7 +560,7 @@ class Charge implements ArrayAccess
      *
      * @return $this
      */
-    public function setProduct($product)
+    public function setProduct($product): static
     {
         $this->container['product'] = $product;
 
@@ -583,8 +581,6 @@ class Charge implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -595,8 +591,6 @@ class Charge implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -609,7 +603,7 @@ class Charge implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -630,15 +624,13 @@ class Charge implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

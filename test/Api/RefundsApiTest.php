@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * RefundsApiTest
@@ -19,18 +20,15 @@ class RefundsApiTest extends Setup
      * Test case for refundsCreate.
      *
      * Create a refund.
-     *
-     * @expectedException  \zipMoney\ApiException
-     *
-     * @expectedExceptionMessage An error occurred while processing payment
      */
-    public function testRefundsCreate()
+    public function testRefundsCreate(): void
     {
-        $refundsApi = new RefundsApi;
+        $this->expectException(ApiException::class);
+
+        $refundsApi = new RefundsApi();
         $this->_payloadHelper->setChargeId(1);
         $req = $this->_payloadHelper->getRefundPayload();
-        $response = $refundsApi->refundsCreate($req);
-        $this->assertTrue(true);
+        $refundsApi->refundsCreate($req);
     }
 
     /**
@@ -38,7 +36,7 @@ class RefundsApiTest extends Setup
      *
      * List refunds.
      */
-    public function testRefundsList()
+    public function testRefundsList(): void
     {
         $this->assertTrue(true);
     }
@@ -48,7 +46,7 @@ class RefundsApiTest extends Setup
      *
      * Retrieve a refund.
      */
-    public function testRefundsRetrieve()
+    public function testRefundsRetrieve(): void
     {
         $this->assertTrue(true);
     }

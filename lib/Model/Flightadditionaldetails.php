@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class Flightadditionaldetails implements ArrayAccess
+class Flightadditionaldetails implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -127,15 +129,15 @@ class Flightadditionaldetails implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['departure_date'] = isset($data['departure_date']) ? $data['departure_date'] : null;
-        $this->container['flight_number'] = isset($data['flight_number']) ? $data['flight_number'] : null;
-        $this->container['aircraft_type'] = isset($data['aircraft_type']) ? $data['aircraft_type'] : null;
-        $this->container['class'] = isset($data['class']) ? $data['class'] : null;
-        $this->container['origin'] = isset($data['origin']) ? $data['origin'] : null;
-        $this->container['destination'] = isset($data['destination']) ? $data['destination'] : null;
-        $this->container['duration'] = isset($data['duration']) ? $data['duration'] : null;
-        $this->container['passengers'] = isset($data['passengers']) ? $data['passengers'] : null;
-        $this->container['stopovers'] = isset($data['stopovers']) ? $data['stopovers'] : null;
+        $this->container['departure_date'] = $data['departure_date'] ?? null;
+        $this->container['flight_number'] = $data['flight_number'] ?? null;
+        $this->container['aircraft_type'] = $data['aircraft_type'] ?? null;
+        $this->container['class'] = $data['class'] ?? null;
+        $this->container['origin'] = $data['origin'] ?? null;
+        $this->container['destination'] = $data['destination'] ?? null;
+        $this->container['duration'] = $data['duration'] ?? null;
+        $this->container['passengers'] = $data['passengers'] ?? null;
+        $this->container['stopovers'] = $data['stopovers'] ?? null;
     }
 
     /**
@@ -143,7 +145,7 @@ class Flightadditionaldetails implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -160,13 +162,9 @@ class Flightadditionaldetails implements ArrayAccess
      *
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
-        if ($this->container['departure_date'] === null) {
-            return false;
-        }
-
-        return true;
+        return $this->container['departure_date'] !== null;
     }
 
     /**
@@ -186,7 +184,7 @@ class Flightadditionaldetails implements ArrayAccess
      *
      * @return $this
      */
-    public function setDepartureDate($departure_date)
+    public function setDepartureDate($departure_date): static
     {
         $this->container['departure_date'] = $departure_date;
 
@@ -210,7 +208,7 @@ class Flightadditionaldetails implements ArrayAccess
      *
      * @return $this
      */
-    public function setFlightNumber($flight_number)
+    public function setFlightNumber($flight_number): static
     {
         $this->container['flight_number'] = $flight_number;
 
@@ -234,7 +232,7 @@ class Flightadditionaldetails implements ArrayAccess
      *
      * @return $this
      */
-    public function setAircraftType($aircraft_type)
+    public function setAircraftType($aircraft_type): static
     {
         $this->container['aircraft_type'] = $aircraft_type;
 
@@ -258,7 +256,7 @@ class Flightadditionaldetails implements ArrayAccess
      *
      * @return $this
      */
-    public function setClass($class)
+    public function setClass($class): static
     {
         $this->container['class'] = $class;
 
@@ -282,7 +280,7 @@ class Flightadditionaldetails implements ArrayAccess
      *
      * @return $this
      */
-    public function setOrigin($origin)
+    public function setOrigin($origin): static
     {
         $this->container['origin'] = $origin;
 
@@ -306,7 +304,7 @@ class Flightadditionaldetails implements ArrayAccess
      *
      * @return $this
      */
-    public function setDestination($destination)
+    public function setDestination($destination): static
     {
         $this->container['destination'] = $destination;
 
@@ -330,7 +328,7 @@ class Flightadditionaldetails implements ArrayAccess
      *
      * @return $this
      */
-    public function setDuration($duration)
+    public function setDuration($duration): static
     {
         $this->container['duration'] = $duration;
 
@@ -340,7 +338,7 @@ class Flightadditionaldetails implements ArrayAccess
     /**
      * Gets passengers.
      *
-     * @return \zipMoney\Model\FlightadditionaldetailsPassengers[]
+     * @return FlightadditionaldetailsPassengers[]
      */
     public function getPassengers()
     {
@@ -350,11 +348,11 @@ class Flightadditionaldetails implements ArrayAccess
     /**
      * Sets passengers.
      *
-     * @param \zipMoney\Model\FlightadditionaldetailsPassengers[] $passengers
+     * @param FlightadditionaldetailsPassengers[] $passengers
      *
      * @return $this
      */
-    public function setPassengers($passengers)
+    public function setPassengers($passengers): static
     {
         $this->container['passengers'] = $passengers;
 
@@ -378,7 +376,7 @@ class Flightadditionaldetails implements ArrayAccess
      *
      * @return $this
      */
-    public function setStopovers($stopovers)
+    public function setStopovers($stopovers): static
     {
         $this->container['stopovers'] = $stopovers;
 
@@ -389,8 +387,6 @@ class Flightadditionaldetails implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -401,8 +397,6 @@ class Flightadditionaldetails implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -415,7 +409,7 @@ class Flightadditionaldetails implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -436,15 +430,13 @@ class Flightadditionaldetails implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class ChargeOrder implements ArrayAccess
+class ChargeOrder implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -107,10 +109,10 @@ class ChargeOrder implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['reference'] = isset($data['reference']) ? $data['reference'] : null;
-        $this->container['shipping'] = isset($data['shipping']) ? $data['shipping'] : null;
-        $this->container['items'] = isset($data['items']) ? $data['items'] : null;
-        $this->container['cart_reference'] = isset($data['cart_reference']) ? $data['cart_reference'] : null;
+        $this->container['reference'] = $data['reference'] ?? null;
+        $this->container['shipping'] = $data['shipping'] ?? null;
+        $this->container['items'] = $data['items'] ?? null;
+        $this->container['cart_reference'] = $data['cart_reference'] ?? null;
     }
 
     /**
@@ -118,7 +120,7 @@ class ChargeOrder implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -150,11 +152,7 @@ class ChargeOrder implements ArrayAccess
         if ($this->container['shipping'] === null) {
             return false;
         }
-        if (strlen($this->container['cart_reference']) > 100) {
-            return false;
-        }
-
-        return true;
+        return strlen($this->container['cart_reference']) <= 100;
     }
 
     /**
@@ -174,7 +172,7 @@ class ChargeOrder implements ArrayAccess
      *
      * @return $this
      */
-    public function setReference($reference)
+    public function setReference($reference): static
     {
         if (!is_null($reference) && (strlen($reference) > 50)) {
             throw new \InvalidArgumentException('invalid length for $reference when calling ChargeOrder., must be smaller than or equal to 50.');
@@ -188,7 +186,7 @@ class ChargeOrder implements ArrayAccess
     /**
      * Gets shipping.
      *
-     * @return \zipMoney\Model\OrderShipping
+     * @return OrderShipping
      */
     public function getShipping()
     {
@@ -198,11 +196,11 @@ class ChargeOrder implements ArrayAccess
     /**
      * Sets shipping.
      *
-     * @param \zipMoney\Model\OrderShipping $shipping
+     * @param OrderShipping $shipping
      *
      * @return $this
      */
-    public function setShipping($shipping)
+    public function setShipping($shipping): static
     {
         $this->container['shipping'] = $shipping;
 
@@ -212,7 +210,7 @@ class ChargeOrder implements ArrayAccess
     /**
      * Gets items.
      *
-     * @return \zipMoney\Model\OrderItem[]
+     * @return OrderItem[]
      */
     public function getItems()
     {
@@ -222,11 +220,11 @@ class ChargeOrder implements ArrayAccess
     /**
      * Sets items.
      *
-     * @param \zipMoney\Model\OrderItem[] $items The order item breakdown
+     * @param OrderItem[] $items The order item breakdown
      *
      * @return $this
      */
-    public function setItems($items)
+    public function setItems($items): static
     {
         $this->container['items'] = $items;
 
@@ -250,7 +248,7 @@ class ChargeOrder implements ArrayAccess
      *
      * @return $this
      */
-    public function setCartReference($cart_reference)
+    public function setCartReference($cart_reference): static
     {
         if (!is_null($cart_reference) && (strlen($cart_reference) > 100)) {
             throw new \InvalidArgumentException('invalid length for $cart_reference when calling ChargeOrder., must be smaller than or equal to 100.');
@@ -265,8 +263,6 @@ class ChargeOrder implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -277,8 +273,6 @@ class ChargeOrder implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -291,7 +285,7 @@ class ChargeOrder implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -312,15 +306,13 @@ class ChargeOrder implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

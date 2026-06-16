@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class Refund implements ArrayAccess
+class Refund implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -115,12 +117,12 @@ class Refund implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['charge_id'] = isset($data['charge_id']) ? $data['charge_id'] : null;
-        $this->container['reason'] = isset($data['reason']) ? $data['reason'] : null;
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
-        $this->container['created'] = isset($data['created']) ? $data['created'] : null;
-        $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['charge_id'] = $data['charge_id'] ?? null;
+        $this->container['reason'] = $data['reason'] ?? null;
+        $this->container['amount'] = $data['amount'] ?? null;
+        $this->container['created'] = $data['created'] ?? null;
+        $this->container['metadata'] = $data['metadata'] ?? null;
     }
 
     /**
@@ -128,7 +130,7 @@ class Refund implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -165,11 +167,7 @@ class Refund implements ArrayAccess
         if ($this->container['amount'] === null) {
             return false;
         }
-        if ($this->container['created'] === null) {
-            return false;
-        }
-
-        return true;
+        return $this->container['created'] !== null;
     }
 
     /**
@@ -189,7 +187,7 @@ class Refund implements ArrayAccess
      *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->container['id'] = $id;
 
@@ -213,7 +211,7 @@ class Refund implements ArrayAccess
      *
      * @return $this
      */
-    public function setChargeId($charge_id)
+    public function setChargeId($charge_id): static
     {
         $this->container['charge_id'] = $charge_id;
 
@@ -237,7 +235,7 @@ class Refund implements ArrayAccess
      *
      * @return $this
      */
-    public function setReason($reason)
+    public function setReason($reason): static
     {
         $this->container['reason'] = $reason;
 
@@ -261,7 +259,7 @@ class Refund implements ArrayAccess
      *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): static
     {
         $this->container['amount'] = $amount;
 
@@ -285,7 +283,7 @@ class Refund implements ArrayAccess
      *
      * @return $this
      */
-    public function setCreated($created)
+    public function setCreated($created): static
     {
         $this->container['created'] = $created;
 
@@ -309,7 +307,7 @@ class Refund implements ArrayAccess
      *
      * @return $this
      */
-    public function setMetadata($metadata)
+    public function setMetadata($metadata): static
     {
         $this->container['metadata'] = $metadata;
 
@@ -320,8 +318,6 @@ class Refund implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -332,8 +328,6 @@ class Refund implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -346,7 +340,7 @@ class Refund implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -367,15 +361,13 @@ class Refund implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

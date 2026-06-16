@@ -1,7 +1,14 @@
 .DS_Store
 .php_cs
+.php-cs-fixer.php
 git_push.sh
 /vendor
 *.lock
 *.ini
 /.idea
+
+# Tooling caches
+/build/.php-cs-fixer.cache
+/build/.phpunit.cache
+.phpunit.result.cache
+.rector-cache

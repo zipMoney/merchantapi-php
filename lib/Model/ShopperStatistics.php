@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class ShopperStatistics implements ArrayAccess
+class ShopperStatistics implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -130,7 +132,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return string[]
      */
-    public function getFraudCheckResultAllowableValues()
+    public function getFraudCheckResultAllowableValues(): array
     {
         return [
             self::FRAUD_CHECK_RESULT_PASS,
@@ -153,17 +155,17 @@ class ShopperStatistics implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['account_created'] = isset($data['account_created']) ? $data['account_created'] : null;
-        $this->container['sales_total_count'] = isset($data['sales_total_count']) ? $data['sales_total_count'] : null;
-        $this->container['sales_total_amount'] = isset($data['sales_total_amount']) ? $data['sales_total_amount'] : null;
-        $this->container['sales_avg_amount'] = isset($data['sales_avg_amount']) ? $data['sales_avg_amount'] : null;
-        $this->container['sales_max_amount'] = isset($data['sales_max_amount']) ? $data['sales_max_amount'] : null;
-        $this->container['refunds_total_amount'] = isset($data['refunds_total_amount']) ? $data['refunds_total_amount'] : null;
-        $this->container['previous_chargeback'] = isset($data['previous_chargeback']) ? $data['previous_chargeback'] : null;
-        $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
-        $this->container['last_login'] = isset($data['last_login']) ? $data['last_login'] : null;
-        $this->container['has_previous_purchases'] = isset($data['has_previous_purchases']) ? $data['has_previous_purchases'] : null;
-        $this->container['fraud_check_result'] = isset($data['fraud_check_result']) ? $data['fraud_check_result'] : null;
+        $this->container['account_created'] = $data['account_created'] ?? null;
+        $this->container['sales_total_count'] = $data['sales_total_count'] ?? null;
+        $this->container['sales_total_amount'] = $data['sales_total_amount'] ?? null;
+        $this->container['sales_avg_amount'] = $data['sales_avg_amount'] ?? null;
+        $this->container['sales_max_amount'] = $data['sales_max_amount'] ?? null;
+        $this->container['refunds_total_amount'] = $data['refunds_total_amount'] ?? null;
+        $this->container['previous_chargeback'] = $data['previous_chargeback'] ?? null;
+        $this->container['currency'] = $data['currency'] ?? null;
+        $this->container['last_login'] = $data['last_login'] ?? null;
+        $this->container['has_previous_purchases'] = $data['has_previous_purchases'] ?? null;
+        $this->container['fraud_check_result'] = $data['fraud_check_result'] ?? null;
     }
 
     /**
@@ -171,7 +173,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -189,14 +191,10 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         $allowed_values = ['pass', 'fail', 'unknown'];
-        if (!in_array($this->container['fraud_check_result'], $allowed_values)) {
-            return false;
-        }
-
-        return true;
+        return in_array($this->container['fraud_check_result'], $allowed_values);
     }
 
     /**
@@ -216,7 +214,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return $this
      */
-    public function setAccountCreated($account_created)
+    public function setAccountCreated($account_created): static
     {
         $this->container['account_created'] = $account_created;
 
@@ -240,7 +238,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return $this
      */
-    public function setSalesTotalCount($sales_total_count)
+    public function setSalesTotalCount($sales_total_count): static
     {
         $this->container['sales_total_count'] = $sales_total_count;
 
@@ -264,7 +262,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return $this
      */
-    public function setSalesTotalAmount($sales_total_amount)
+    public function setSalesTotalAmount($sales_total_amount): static
     {
         $this->container['sales_total_amount'] = $sales_total_amount;
 
@@ -288,7 +286,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return $this
      */
-    public function setSalesAvgAmount($sales_avg_amount)
+    public function setSalesAvgAmount($sales_avg_amount): static
     {
         $this->container['sales_avg_amount'] = $sales_avg_amount;
 
@@ -312,7 +310,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return $this
      */
-    public function setSalesMaxAmount($sales_max_amount)
+    public function setSalesMaxAmount($sales_max_amount): static
     {
         $this->container['sales_max_amount'] = $sales_max_amount;
 
@@ -336,7 +334,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return $this
      */
-    public function setRefundsTotalAmount($refunds_total_amount)
+    public function setRefundsTotalAmount($refunds_total_amount): static
     {
         $this->container['refunds_total_amount'] = $refunds_total_amount;
 
@@ -360,7 +358,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return $this
      */
-    public function setPreviousChargeback($previous_chargeback)
+    public function setPreviousChargeback($previous_chargeback): static
     {
         $this->container['previous_chargeback'] = $previous_chargeback;
 
@@ -384,7 +382,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return $this
      */
-    public function setCurrency($currency)
+    public function setCurrency($currency): static
     {
         $this->container['currency'] = $currency;
 
@@ -408,7 +406,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return $this
      */
-    public function setLastLogin($last_login)
+    public function setLastLogin($last_login): static
     {
         $this->container['last_login'] = $last_login;
 
@@ -432,7 +430,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return $this
      */
-    public function setHasPreviousPurchases($has_previous_purchases)
+    public function setHasPreviousPurchases($has_previous_purchases): static
     {
         $this->container['has_previous_purchases'] = $has_previous_purchases;
 
@@ -456,7 +454,7 @@ class ShopperStatistics implements ArrayAccess
      *
      * @return $this
      */
-    public function setFraudCheckResult($fraud_check_result)
+    public function setFraudCheckResult($fraud_check_result): static
     {
         $allowed_values = ['pass', 'fail', 'unknown'];
         if (!is_null($fraud_check_result) && (!in_array($fraud_check_result, $allowed_values))) {
@@ -471,8 +469,6 @@ class ShopperStatistics implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -483,8 +479,6 @@ class ShopperStatistics implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -497,7 +491,7 @@ class ShopperStatistics implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -518,15 +512,13 @@ class ShopperStatistics implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

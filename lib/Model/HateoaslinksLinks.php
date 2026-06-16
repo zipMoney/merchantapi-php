@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class HateoaslinksLinks implements ArrayAccess
+class HateoaslinksLinks implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -103,9 +105,9 @@ class HateoaslinksLinks implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['href'] = isset($data['href']) ? $data['href'] : null;
-        $this->container['rel'] = isset($data['rel']) ? $data['rel'] : null;
-        $this->container['method'] = isset($data['method']) ? $data['method'] : null;
+        $this->container['href'] = $data['href'] ?? null;
+        $this->container['rel'] = $data['rel'] ?? null;
+        $this->container['method'] = $data['method'] ?? null;
     }
 
     /**
@@ -113,7 +115,7 @@ class HateoaslinksLinks implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         return [];
     }
@@ -124,7 +126,7 @@ class HateoaslinksLinks implements ArrayAccess
      *
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return true;
     }
@@ -146,7 +148,7 @@ class HateoaslinksLinks implements ArrayAccess
      *
      * @return $this
      */
-    public function setHref($href)
+    public function setHref($href): static
     {
         $this->container['href'] = $href;
 
@@ -170,7 +172,7 @@ class HateoaslinksLinks implements ArrayAccess
      *
      * @return $this
      */
-    public function setRel($rel)
+    public function setRel($rel): static
     {
         $this->container['rel'] = $rel;
 
@@ -194,7 +196,7 @@ class HateoaslinksLinks implements ArrayAccess
      *
      * @return $this
      */
-    public function setMethod($method)
+    public function setMethod($method): static
     {
         $this->container['method'] = $method;
 
@@ -205,8 +207,6 @@ class HateoaslinksLinks implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -217,8 +217,6 @@ class HateoaslinksLinks implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -231,7 +229,7 @@ class HateoaslinksLinks implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -252,15 +250,13 @@ class HateoaslinksLinks implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

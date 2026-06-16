@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class Metadata implements ArrayAccess
+class Metadata implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -101,7 +103,7 @@ class Metadata implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         return [];
     }
@@ -112,7 +114,7 @@ class Metadata implements ArrayAccess
      *
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return true;
     }
@@ -121,8 +123,6 @@ class Metadata implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -133,8 +133,6 @@ class Metadata implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -147,7 +145,7 @@ class Metadata implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -166,7 +164,7 @@ class Metadata implements ArrayAccess
         unset($this->container[$offset]);
     }
 
-    public function set($array)
+    public function set($array): void
     {
         foreach ($array as $key => $value) {
             if (!property_exists($this, $key)) {
@@ -175,7 +173,7 @@ class Metadata implements ArrayAccess
         }
     }
 
-    public function setData($key, $value)
+    public function setData($key, $value): void
     {
         $this->container[$key] = $value;
         $propertyName = str_replace('_', '', ucwords($key, '_'));
@@ -187,26 +185,23 @@ class Metadata implements ArrayAccess
     /**
      * Gets.
      *
-     * @param mixed $key
      *
      * @return string
      */
-    public function get($key)
+    public function get(mixed $key)
     {
         return $this->container[$key];
     }
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

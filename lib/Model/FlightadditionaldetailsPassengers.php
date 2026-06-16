@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class FlightadditionaldetailsPassengers implements ArrayAccess
+class FlightadditionaldetailsPassengers implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -115,12 +117,12 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
-        $this->container['first_name'] = isset($data['first_name']) ? $data['first_name'] : null;
-        $this->container['last_name'] = isset($data['last_name']) ? $data['last_name'] : null;
-        $this->container['gender'] = isset($data['gender']) ? $data['gender'] : null;
-        $this->container['date_of_birth'] = isset($data['date_of_birth']) ? $data['date_of_birth'] : null;
-        $this->container['seat_number'] = isset($data['seat_number']) ? $data['seat_number'] : null;
+        $this->container['title'] = $data['title'] ?? null;
+        $this->container['first_name'] = $data['first_name'] ?? null;
+        $this->container['last_name'] = $data['last_name'] ?? null;
+        $this->container['gender'] = $data['gender'] ?? null;
+        $this->container['date_of_birth'] = $data['date_of_birth'] ?? null;
+        $this->container['seat_number'] = $data['seat_number'] ?? null;
     }
 
     /**
@@ -128,7 +130,7 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -153,11 +155,7 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
         if ($this->container['first_name'] === null) {
             return false;
         }
-        if ($this->container['last_name'] === null) {
-            return false;
-        }
-
-        return true;
+        return $this->container['last_name'] !== null;
     }
 
     /**
@@ -177,7 +175,7 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
      *
      * @return $this
      */
-    public function setTitle($title)
+    public function setTitle($title): static
     {
         $this->container['title'] = $title;
 
@@ -201,7 +199,7 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
      *
      * @return $this
      */
-    public function setFirstName($first_name)
+    public function setFirstName($first_name): static
     {
         $this->container['first_name'] = $first_name;
 
@@ -225,7 +223,7 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
      *
      * @return $this
      */
-    public function setLastName($last_name)
+    public function setLastName($last_name): static
     {
         $this->container['last_name'] = $last_name;
 
@@ -249,7 +247,7 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
      *
      * @return $this
      */
-    public function setGender($gender)
+    public function setGender($gender): static
     {
         $this->container['gender'] = $gender;
 
@@ -273,7 +271,7 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
      *
      * @return $this
      */
-    public function setDateOfBirth($date_of_birth)
+    public function setDateOfBirth($date_of_birth): static
     {
         $this->container['date_of_birth'] = $date_of_birth;
 
@@ -297,7 +295,7 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
      *
      * @return $this
      */
-    public function setSeatNumber($seat_number)
+    public function setSeatNumber($seat_number): static
     {
         $this->container['seat_number'] = $seat_number;
 
@@ -308,8 +306,6 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -320,8 +316,6 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -334,7 +328,7 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -355,15 +349,13 @@ class FlightadditionaldetailsPassengers implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

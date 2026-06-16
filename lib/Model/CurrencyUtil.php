@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -24,7 +25,7 @@ class CurrencyUtil
     /**
      * Gets all available regions.
      */
-    public static function getAvailableRegions()
+    public static function getAvailableRegions(): array
     {
         return [
             'au' => 'Australia',
@@ -39,12 +40,9 @@ class CurrencyUtil
         ];
     }
 
-    public static function isValidCurrency($currency)
+    public static function isValidCurrency($currency): array
     {
-        $result = array(
-            'valid' => true,
-            'message' => '',
-        );
+        $result = ['valid' => true, 'message' => ''];
         $allowed_values = self::getAllowedCurrencyList();
         if (!in_array($currency, $allowed_values)) {
             $result['valid'] = false;
@@ -57,12 +55,8 @@ class CurrencyUtil
      * Gets allowable values of the enum
      * @return string[]
      */
-    private static function getAllowedCurrencyList()
+    private static function getAllowedCurrencyList(): array
     {
-        return array(
-            self::CURRENCY_AUD,
-            self::CURRENCY_NZD,
-            self::CURRENCY_USD,
-        );
+        return [self::CURRENCY_AUD, self::CURRENCY_NZD, self::CURRENCY_USD];
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -28,7 +29,7 @@ class ObjectSerializer
      *
      * @return object|string serialized form of $data
      */
-    public static function sanitizeForSerialization($data)
+    public static function sanitizeForSerialization(mixed $data): int|float|string|bool|null|array|\stdClass
     {
         if (is_scalar($data) || null === $data) {
             return $data;
@@ -49,10 +50,10 @@ class ObjectSerializer
             foreach (array_keys($data::zipTypes()) as $property) {
                 $getterArr = $data::getters();
                 $getter = $getterArr[$property];
-                if (method_exists(get_class($data), $getter) && $data->{$getter}() !== null) {
+                if (method_exists($data::class, $getter) && $data->{$getter}() !== null) {
                     $values[$attr[$property]] = self::sanitizeForSerialization($data->{$getter}());
                 }
-                if (method_exists(get_class($data), 'get') && $data->get($property) !== null) {
+                if (method_exists($data::class, 'get') && $data->get($property) !== null) {
                     $values[$attr[$property]] = self::sanitizeForSerialization($data->get($property));
                 }
             }
@@ -88,7 +89,7 @@ class ObjectSerializer
      *
      * @return string the serialized object
      */
-    public function toPathValue($value)
+    public function toPathValue($value): string
     {
         return rawurlencode($this->toString($value));
     }
@@ -172,25 +173,19 @@ class ObjectSerializer
      *
      * @return string
      */
-    public function serializeCollection(array $collection, $collectionFormat, $allowCollectionFormatMulti = false)
+    public function serializeCollection(array $collection, $collectionFormat, $allowCollectionFormatMulti = false): string|array|null
     {
         if ($allowCollectionFormatMulti && ('multi' === $collectionFormat)) {
             // http_build_query() almost does the job for us. We just
             // need to fix the result of multidimensional arrays.
-            return preg_replace('/%5B[0-9]+%5D=/', '=', http_build_query($collection, '', '&'));
+            return preg_replace('/%5B\d+%5D=/', '=', http_build_query($collection, '', '&'));
         }
-        switch ($collectionFormat) {
-            case 'pipes':
-                return implode('|', $collection);
-            case 'tsv':
-                return implode("\t", $collection);
-            case 'ssv':
-                return implode(' ', $collection);
-            case 'csv':
-                // Deliberate fall through. CSV is default format.
-            default:
-                return implode(',', $collection);
-        }
+        return match ($collectionFormat) {
+            'pipes' => implode('|', $collection),
+            'tsv' => implode("\t", $collection),
+            'ssv' => implode(' ', $collection),
+            default => implode(',', $collection),
+        };
     }
 
     /**
@@ -203,12 +198,12 @@ class ObjectSerializer
      *
      * @return null|array|object an single or an array of $class instances
      */
-    public static function deserialize($data, $class, $httpHeaders = null)
+    public static function deserialize(mixed $data, $class, $httpHeaders = null)
     {
         if (null === $data) {
             return null;
         }
-        if (substr($class, 0, 4) === 'map[') { // for associative array e.g. map[string,int]
+        if (str_starts_with($class, 'map[')) { // for associative array e.g. map[string,int]
             $inner = substr($class, 4, -1);
             $deserialized = [];
             if (strrpos($inner, ',') !== false) {
@@ -224,16 +219,14 @@ class ObjectSerializer
         if (strcasecmp(substr($class, -2), '[]') === 0) {
             $subClass = substr($class, 0, -2);
             $values = [];
-            foreach ($data as $key => $value) {
+            foreach ($data as $value) {
                 $values[] = self::deserialize($value, $subClass, null);
             }
 
             return $values;
         }
         if ($class === 'object') {
-            settype($data, 'array');
-
-            return $data;
+            return (array) $data;
         }
         if ($class === '\DateTime') {
             // Some API's return an invalid, empty string as a

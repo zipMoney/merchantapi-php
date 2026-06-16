@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class OrderShipping implements ArrayAccess
+class OrderShipping implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -103,9 +105,9 @@ class OrderShipping implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['pickup'] = isset($data['pickup']) ? $data['pickup'] : null;
-        $this->container['tracking'] = isset($data['tracking']) ? $data['tracking'] : null;
-        $this->container['address'] = isset($data['address']) ? $data['address'] : null;
+        $this->container['pickup'] = $data['pickup'] ?? null;
+        $this->container['tracking'] = $data['tracking'] ?? null;
+        $this->container['address'] = $data['address'] ?? null;
     }
 
     /**
@@ -113,7 +115,7 @@ class OrderShipping implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         return [];
     }
@@ -124,7 +126,7 @@ class OrderShipping implements ArrayAccess
      *
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return true;
     }
@@ -146,7 +148,7 @@ class OrderShipping implements ArrayAccess
      *
      * @return $this
      */
-    public function setPickup($pickup)
+    public function setPickup($pickup): static
     {
         $this->container['pickup'] = $pickup;
 
@@ -156,7 +158,7 @@ class OrderShipping implements ArrayAccess
     /**
      * Gets tracking.
      *
-     * @return \zipMoney\Model\OrderShippingTracking
+     * @return OrderShippingTracking
      */
     public function getTracking()
     {
@@ -166,11 +168,11 @@ class OrderShipping implements ArrayAccess
     /**
      * Sets tracking.
      *
-     * @param \zipMoney\Model\OrderShippingTracking $tracking
+     * @param OrderShippingTracking $tracking
      *
      * @return $this
      */
-    public function setTracking($tracking)
+    public function setTracking($tracking): static
     {
         $this->container['tracking'] = $tracking;
 
@@ -180,7 +182,7 @@ class OrderShipping implements ArrayAccess
     /**
      * Gets address.
      *
-     * @return \zipMoney\Model\Address
+     * @return Address
      */
     public function getAddress()
     {
@@ -190,11 +192,11 @@ class OrderShipping implements ArrayAccess
     /**
      * Sets address.
      *
-     * @param \zipMoney\Model\Address $address
+     * @param Address $address
      *
      * @return $this
      */
-    public function setAddress($address)
+    public function setAddress($address): static
     {
         $this->container['address'] = $address;
 
@@ -205,8 +207,6 @@ class OrderShipping implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -217,8 +217,6 @@ class OrderShipping implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -231,7 +229,7 @@ class OrderShipping implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -252,15 +250,13 @@ class OrderShipping implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

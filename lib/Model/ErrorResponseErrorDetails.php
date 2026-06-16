@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class ErrorResponseErrorDetails implements ArrayAccess
+class ErrorResponseErrorDetails implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -99,8 +101,8 @@ class ErrorResponseErrorDetails implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['message'] = $data['message'] ?? null;
     }
 
     /**
@@ -108,7 +110,7 @@ class ErrorResponseErrorDetails implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         return [];
     }
@@ -119,7 +121,7 @@ class ErrorResponseErrorDetails implements ArrayAccess
      *
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return true;
     }
@@ -141,7 +143,7 @@ class ErrorResponseErrorDetails implements ArrayAccess
      *
      * @return $this
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->container['name'] = $name;
 
@@ -165,7 +167,7 @@ class ErrorResponseErrorDetails implements ArrayAccess
      *
      * @return $this
      */
-    public function setMessage($message)
+    public function setMessage($message): static
     {
         $this->container['message'] = $message;
 
@@ -176,8 +178,6 @@ class ErrorResponseErrorDetails implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -188,8 +188,6 @@ class ErrorResponseErrorDetails implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -202,7 +200,7 @@ class ErrorResponseErrorDetails implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -223,15 +221,13 @@ class ErrorResponseErrorDetails implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

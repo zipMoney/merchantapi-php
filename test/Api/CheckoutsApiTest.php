@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * CheckoutsApiTest.
@@ -19,10 +20,10 @@ class CheckoutsApiTest extends Setup
      *
      * Create a checkout.
      */
-    public function testCheckoutsCreate()
+    public function testCheckoutsCreate(): void
     {
         try {
-            $checkoutsApi = new CheckoutsApi;
+            $checkoutsApi = new CheckoutsApi();
             $req = $this->_payloadHelper->getCheckoutPayload();
             $checkout = $checkoutsApi->checkoutsCreate($req);
 
@@ -38,7 +39,7 @@ class CheckoutsApiTest extends Setup
      *
      * Retrieve a checkout.
      */
-    public function testCheckoutsGet()
+    public function testCheckoutsGet(): void
     {
         $this->assertTrue(true);
     }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class CreateChargeRequest implements ArrayAccess
+class CreateChargeRequest implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -119,13 +121,13 @@ class CreateChargeRequest implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['authority'] = isset($data['authority']) ? $data['authority'] : null;
-        $this->container['reference'] = isset($data['reference']) ? $data['reference'] : null;
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
-        $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
-        $this->container['capture'] = isset($data['capture']) ? $data['capture'] : true;
-        $this->container['order'] = isset($data['order']) ? $data['order'] : null;
-        $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
+        $this->container['authority'] = $data['authority'] ?? null;
+        $this->container['reference'] = $data['reference'] ?? null;
+        $this->container['amount'] = $data['amount'] ?? null;
+        $this->container['currency'] = $data['currency'] ?? null;
+        $this->container['capture'] = $data['capture'] ?? true;
+        $this->container['order'] = $data['order'] ?? null;
+        $this->container['metadata'] = $data['metadata'] ?? null;
     }
 
     /**
@@ -133,7 +135,7 @@ class CreateChargeRequest implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -164,17 +166,13 @@ class CreateChargeRequest implements ArrayAccess
         if ($this->container['amount'] === null) {
             return false;
         }
-        if ($this->container['currency'] === null) {
-            return false;
-        }
-
-        return true;
+        return $this->container['currency'] !== null;
     }
 
     /**
      * Gets authority.
      *
-     * @return \zipMoney\Model\Authority
+     * @return Authority
      */
     public function getAuthority()
     {
@@ -184,11 +182,11 @@ class CreateChargeRequest implements ArrayAccess
     /**
      * Sets authority.
      *
-     * @param \zipMoney\Model\Authority $authority
+     * @param Authority $authority
      *
      * @return $this
      */
-    public function setAuthority($authority)
+    public function setAuthority($authority): static
     {
         $this->container['authority'] = $authority;
 
@@ -212,7 +210,7 @@ class CreateChargeRequest implements ArrayAccess
      *
      * @return $this
      */
-    public function setReference($reference)
+    public function setReference($reference): static
     {
         $this->container['reference'] = $reference;
 
@@ -236,7 +234,7 @@ class CreateChargeRequest implements ArrayAccess
      *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): static
     {
         $this->container['amount'] = $amount;
 
@@ -260,7 +258,7 @@ class CreateChargeRequest implements ArrayAccess
      *
      * @return $this
      */
-    public function setCurrency($currency)
+    public function setCurrency($currency): static
     {
         $this->container['currency'] = $currency;
 
@@ -284,7 +282,7 @@ class CreateChargeRequest implements ArrayAccess
      *
      * @return $this
      */
-    public function setCapture($capture)
+    public function setCapture($capture): static
     {
         $this->container['capture'] = $capture;
 
@@ -294,7 +292,7 @@ class CreateChargeRequest implements ArrayAccess
     /**
      * Gets order.
      *
-     * @return \zipMoney\Model\ChargeOrder
+     * @return ChargeOrder
      */
     public function getOrder()
     {
@@ -304,11 +302,11 @@ class CreateChargeRequest implements ArrayAccess
     /**
      * Sets order.
      *
-     * @param \zipMoney\Model\ChargeOrder $order
+     * @param ChargeOrder $order
      *
      * @return $this
      */
-    public function setOrder($order)
+    public function setOrder($order): static
     {
         $this->container['order'] = $order;
 
@@ -332,7 +330,7 @@ class CreateChargeRequest implements ArrayAccess
      *
      * @return $this
      */
-    public function setMetadata($metadata)
+    public function setMetadata($metadata): static
     {
         $this->container['metadata'] = $metadata;
 
@@ -343,8 +341,6 @@ class CreateChargeRequest implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -355,8 +351,6 @@ class CreateChargeRequest implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -369,7 +363,7 @@ class CreateChargeRequest implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -390,15 +384,13 @@ class CreateChargeRequest implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

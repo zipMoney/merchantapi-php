@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class HateoasLinks implements ArrayAccess
+class HateoasLinks implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -95,7 +97,7 @@ class HateoasLinks implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['_links'] = isset($data['_links']) ? $data['_links'] : null;
+        $this->container['_links'] = $data['_links'] ?? null;
     }
 
     /**
@@ -103,7 +105,7 @@ class HateoasLinks implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         return [];
     }
@@ -114,7 +116,7 @@ class HateoasLinks implements ArrayAccess
      *
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return true;
     }
@@ -122,7 +124,7 @@ class HateoasLinks implements ArrayAccess
     /**
      * Gets _links.
      *
-     * @return \zipMoney\Model\HateoaslinksLinks[]
+     * @return HateoaslinksLinks[]
      */
     public function getLinks()
     {
@@ -132,11 +134,11 @@ class HateoasLinks implements ArrayAccess
     /**
      * Sets _links.
      *
-     * @param \zipMoney\Model\HateoaslinksLinks[] $_links
+     * @param HateoaslinksLinks[] $_links
      *
      * @return $this
      */
-    public function setLinks($_links)
+    public function setLinks($_links): static
     {
         $this->container['_links'] = $_links;
 
@@ -147,8 +149,6 @@ class HateoasLinks implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -159,8 +159,6 @@ class HateoasLinks implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -173,7 +171,7 @@ class HateoasLinks implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -194,15 +192,13 @@ class HateoasLinks implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
