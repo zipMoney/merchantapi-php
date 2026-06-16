@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -17,20 +18,6 @@ use Exception;
 class ApiException extends Exception
 {
     /**
-     * The HTTP body of the server response either as Json or string.
-     *
-     * @var mixed
-     */
-    protected $responseBody;
-
-    /**
-     * The HTTP header of the server response.
-     *
-     * @var string[]
-     */
-    protected $responseHeaders;
-
-    /**
      * The deserialized response object.
      *
      * @var;
@@ -45,11 +32,15 @@ class ApiException extends Exception
      * @param string $responseHeaders HTTP response header
      * @param mixed  $responseBody    HTTP body of the server response either as Json or string
      */
-    public function __construct($message = '', $code = 0, $responseHeaders = null, $responseBody = null)
+    public function __construct($message = '', $code = 0, /**
+     * The HTTP header of the server response.
+     */
+        protected $responseHeaders = null, /**
+     * The HTTP body of the server response either as Json or string.
+     */
+        protected mixed $responseBody = null)
     {
         parent::__construct($message, $code);
-        $this->responseHeaders = $responseHeaders;
-        $this->responseBody = $responseBody;
     }
 
     /**
@@ -77,7 +68,7 @@ class ApiException extends Exception
      *
      * @param mixed $obj Deserialized response object
      */
-    public function setResponseObject($obj)
+    public function setResponseObject(mixed $obj): void
     {
         $this->responseObject = $obj;
     }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class Token implements ArrayAccess
+class Token implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -107,10 +109,10 @@ class Token implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['created_date'] = isset($data['created_date']) ? $data['created_date'] : null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['created_date'] = $data['created_date'] ?? null;
     }
 
     /**
@@ -118,7 +120,7 @@ class Token implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -155,11 +157,7 @@ class Token implements ArrayAccess
         if ($this->container['active'] === null) {
             return false;
         }
-        if ($this->container['created_date'] === null) {
-            return false;
-        }
-
-        return true;
+        return $this->container['created_date'] !== null;
     }
 
     /**
@@ -179,7 +177,7 @@ class Token implements ArrayAccess
      *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->container['id'] = $id;
 
@@ -203,7 +201,7 @@ class Token implements ArrayAccess
      *
      * @return $this
      */
-    public function setValue($value)
+    public function setValue($value): static
     {
         $this->container['value'] = $value;
 
@@ -227,7 +225,7 @@ class Token implements ArrayAccess
      *
      * @return $this
      */
-    public function setActive($active)
+    public function setActive($active): static
     {
         $this->container['active'] = $active;
 
@@ -251,7 +249,7 @@ class Token implements ArrayAccess
      *
      * @return $this
      */
-    public function setCreatedDate($created_date)
+    public function setCreatedDate($created_date): static
     {
         $this->container['created_date'] = $created_date;
 
@@ -262,8 +260,6 @@ class Token implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -274,8 +270,6 @@ class Token implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -288,7 +282,7 @@ class Token implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -309,15 +303,13 @@ class Token implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

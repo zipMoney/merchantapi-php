@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class OrderShippingTracking implements ArrayAccess
+class OrderShippingTracking implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -103,9 +105,9 @@ class OrderShippingTracking implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['uri'] = isset($data['uri']) ? $data['uri'] : null;
-        $this->container['number'] = isset($data['number']) ? $data['number'] : null;
-        $this->container['carrier'] = isset($data['carrier']) ? $data['carrier'] : null;
+        $this->container['uri'] = $data['uri'] ?? null;
+        $this->container['number'] = $data['number'] ?? null;
+        $this->container['carrier'] = $data['carrier'] ?? null;
     }
 
     /**
@@ -113,7 +115,7 @@ class OrderShippingTracking implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -146,11 +148,7 @@ class OrderShippingTracking implements ArrayAccess
         if (strlen($this->container['number']) > 120) {
             return false;
         }
-        if (strlen($this->container['carrier']) > 120) {
-            return false;
-        }
-
-        return true;
+        return strlen($this->container['carrier']) <= 120;
     }
 
     /**
@@ -170,7 +168,7 @@ class OrderShippingTracking implements ArrayAccess
      *
      * @return $this
      */
-    public function setUri($uri)
+    public function setUri($uri): static
     {
         if (!is_null($uri) && (strlen($uri) > 500)) {
             throw new \InvalidArgumentException('invalid length for $uri when calling OrderShippingTracking., must be smaller than or equal to 500.');
@@ -198,7 +196,7 @@ class OrderShippingTracking implements ArrayAccess
      *
      * @return $this
      */
-    public function setNumber($number)
+    public function setNumber($number): static
     {
         if (!is_null($number) && (strlen($number) > 120)) {
             throw new \InvalidArgumentException('invalid length for $number when calling OrderShippingTracking., must be smaller than or equal to 120.');
@@ -226,7 +224,7 @@ class OrderShippingTracking implements ArrayAccess
      *
      * @return $this
      */
-    public function setCarrier($carrier)
+    public function setCarrier($carrier): static
     {
         if (!is_null($carrier) && (strlen($carrier) > 120)) {
             throw new \InvalidArgumentException('invalid length for $carrier when calling OrderShippingTracking., must be smaller than or equal to 120.');
@@ -241,8 +239,6 @@ class OrderShippingTracking implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -253,8 +249,6 @@ class OrderShippingTracking implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -267,7 +261,7 @@ class OrderShippingTracking implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -288,15 +282,13 @@ class OrderShippingTracking implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

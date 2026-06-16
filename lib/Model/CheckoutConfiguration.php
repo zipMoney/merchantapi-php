@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class CheckoutConfiguration implements ArrayAccess
+class CheckoutConfiguration implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -95,7 +97,7 @@ class CheckoutConfiguration implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['redirect_uri'] = isset($data['redirect_uri']) ? $data['redirect_uri'] : null;
+        $this->container['redirect_uri'] = $data['redirect_uri'] ?? null;
     }
 
     /**
@@ -103,7 +105,7 @@ class CheckoutConfiguration implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -120,13 +122,9 @@ class CheckoutConfiguration implements ArrayAccess
      *
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
-        if ($this->container['redirect_uri'] === null) {
-            return false;
-        }
-
-        return true;
+        return $this->container['redirect_uri'] !== null;
     }
 
     /**
@@ -146,7 +144,7 @@ class CheckoutConfiguration implements ArrayAccess
      *
      * @return $this
      */
-    public function setRedirectUri($redirect_uri)
+    public function setRedirectUri($redirect_uri): static
     {
         $this->container['redirect_uri'] = $redirect_uri;
 
@@ -157,8 +155,6 @@ class CheckoutConfiguration implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -169,8 +165,6 @@ class CheckoutConfiguration implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -183,7 +177,7 @@ class CheckoutConfiguration implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -204,15 +198,13 @@ class CheckoutConfiguration implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

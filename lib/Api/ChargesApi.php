@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,24 +15,28 @@ namespace zipMoney\Api;
 
 use zipMoney\ApiClient;
 use zipMoney\ApiException;
+use zipMoney\Model\CaptureChargeRequest;
+use zipMoney\Model\Charge;
+use zipMoney\Model\ChargeCollection;
+use zipMoney\Model\CreateChargeRequest;
 
 class ChargesApi
 {
     /**
      * API Client.
      *
-     * @var \zipMoney\ApiClient instance of the ApiClient
+     * @var ApiClient instance of the ApiClient
      */
-    protected $apiClient;
+    protected ?ApiClient $apiClient;
 
     /**
      * Constructor.
      *
-     * @param null|\zipMoney\ApiClient $apiClient The api client to use
+     * @param null|ApiClient $apiClient The api client to use
      */
-    public function __construct(?\zipMoney\ApiClient $apiClient = null)
+    public function __construct(?ApiClient $apiClient = null)
     {
-        if ($apiClient === null) {
+        if (!$apiClient instanceof ApiClient) {
             $apiClient = new ApiClient();
         }
         $this->apiClient = $apiClient;
@@ -40,9 +45,9 @@ class ChargesApi
     /**
      * Get API client.
      *
-     * @return \zipMoney\ApiClient get the API client
+     * @return ApiClient get the API client
      */
-    public function getApiClient()
+    public function getApiClient(): ?ApiClient
     {
         return $this->apiClient;
     }
@@ -50,11 +55,9 @@ class ChargesApi
     /**
      * Set the API client.
      *
-     * @param \zipMoney\ApiClient $apiClient set the API client
-     *
-     * @return ChargesApi
+     * @param ApiClient $apiClient set the API client
      */
-    public function setApiClient(\zipMoney\ApiClient $apiClient)
+    public function setApiClient(ApiClient $apiClient): static
     {
         $this->apiClient = $apiClient;
 
@@ -69,9 +72,9 @@ class ChargesApi
      * @param string $id              The id of the authorised charge (required)
      * @param string $idempotency_key The unique idempotency key. (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
-     * @return \zipMoney\Model\Charge
+     * @return Charge
      */
     public function chargesCancel($id, $idempotency_key = null)
     {
@@ -88,7 +91,7 @@ class ChargesApi
      * @param string $id              The id of the authorised charge (required)
      * @param string $idempotency_key The unique idempotency key. (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
      * @return array of \zipMoney\Model\Charge, HTTP status code, HTTP response headers (array of strings)
      */
@@ -117,7 +120,7 @@ class ChargesApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 $this->apiClient->getSerializer()->toPathValue($id),
                 $resourcePath
             );
@@ -128,7 +131,7 @@ class ChargesApi
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             $httpBody = $formParams; // for HTTP post (form)
         }
         // this endpoint requires API key authentication
@@ -157,17 +160,8 @@ class ChargesApi
                     $e->setResponseObject($data);
                     break;
                 case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 402:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 409:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
@@ -184,12 +178,12 @@ class ChargesApi
      * Capture a charge
      *
      * @param string                               $id              The id of the authorised charge (required)
-     * @param \zipMoney\Model\CaptureChargeRequest $body            (optional)
+     * @param CaptureChargeRequest $body (optional)
      * @param string                               $idempotency_key The unique idempotency key. (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
-     * @return \zipMoney\Model\Charge
+     * @return Charge
      */
     public function chargesCapture($id, $body = null, $idempotency_key = null)
     {
@@ -204,10 +198,10 @@ class ChargesApi
      * Capture a charge
      *
      * @param string                               $id              The id of the authorised charge (required)
-     * @param \zipMoney\Model\CaptureChargeRequest $body            (optional)
+     * @param CaptureChargeRequest $body (optional)
      * @param string                               $idempotency_key The unique idempotency key. (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
      * @return array of \zipMoney\Model\Charge, HTTP status code, HTTP response headers (array of strings)
      */
@@ -236,7 +230,7 @@ class ChargesApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 $this->apiClient->getSerializer()->toPathValue($id),
                 $resourcePath
             );
@@ -253,7 +247,7 @@ class ChargesApi
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             $httpBody = $formParams; // for HTTP post (form)
         }
         // this endpoint requires API key authentication
@@ -282,17 +276,8 @@ class ChargesApi
                     $e->setResponseObject($data);
                     break;
                 case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 402:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 409:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
@@ -308,12 +293,12 @@ class ChargesApi
      *
      * Create a charge
      *
-     * @param \zipMoney\Model\CreateChargeRequest $body            (optional)
+     * @param CreateChargeRequest $body (optional)
      * @param string                              $idempotency_key The unique idempotency key. (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
-     * @return \zipMoney\Model\Charge
+     * @return Charge
      */
     public function chargesCreate($body = null, $idempotency_key = null)
     {
@@ -327,10 +312,10 @@ class ChargesApi
      *
      * Create a charge
      *
-     * @param \zipMoney\Model\CreateChargeRequest $body            (optional)
+     * @param CreateChargeRequest $body (optional)
      * @param string                              $idempotency_key The unique idempotency key. (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
      * @return array of \zipMoney\Model\Charge, HTTP status code, HTTP response headers (array of strings)
      */
@@ -364,7 +349,7 @@ class ChargesApi
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             $httpBody = $formParams; // for HTTP post (form)
         }
         // this endpoint requires API key authentication
@@ -393,21 +378,9 @@ class ChargesApi
                     $e->setResponseObject($data);
                     break;
                 case 400:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 402:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 409:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
@@ -428,9 +401,9 @@ class ChargesApi
      * @param int    $limit  Number of items to retrieve when paging (optional, default to 100)
      * @param string $expand Allows expanding related entities in the response. Only valid entry is &#39;customer&#39; (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
-     * @return \zipMoney\Model\ChargeCollection
+     * @return ChargeCollection
      */
     public function chargesList($state = null, $skip = null, $limit = null, $expand = null)
     {
@@ -449,7 +422,7 @@ class ChargesApi
      * @param int    $limit  Number of items to retrieve when paging (optional, default to 100)
      * @param string $expand Allows expanding related entities in the response. Only valid entry is &#39;customer&#39; (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
      * @return array of \zipMoney\Model\ChargeCollection, HTTP status code, HTTP response headers (array of strings)
      */
@@ -489,7 +462,7 @@ class ChargesApi
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             $httpBody = $formParams; // for HTTP post (form)
         }
         // this endpoint requires API key authentication
@@ -512,11 +485,9 @@ class ChargesApi
 
             return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\ChargeCollection', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ChargeCollection', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            if ($e->getCode() === 200) {
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ChargeCollection', $e->getResponseHeaders());
+                $e->setResponseObject($data);
             }
 
             throw $e;
@@ -531,9 +502,9 @@ class ChargesApi
      * @param string $id     The id of the charge (required)
      * @param string $expand Allows expanding related entities in the response. Only valid entry is &#39;customer&#39; (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
-     * @return \zipMoney\Model\Charge
+     * @return Charge
      */
     public function chargesRetrieve($id, $expand = null)
     {
@@ -550,7 +521,7 @@ class ChargesApi
      * @param string $id     The id of the charge (required)
      * @param string $expand Allows expanding related entities in the response. Only valid entry is &#39;customer&#39; (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
      * @return array of \zipMoney\Model\Charge, HTTP status code, HTTP response headers (array of strings)
      */
@@ -579,7 +550,7 @@ class ChargesApi
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'id' . '}',
+                '{id}',
                 $this->apiClient->getSerializer()->toPathValue($id),
                 $resourcePath
             );
@@ -590,7 +561,7 @@ class ChargesApi
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             $httpBody = $formParams; // for HTTP post (form)
         }
         // this endpoint requires API key authentication
@@ -613,11 +584,9 @@ class ChargesApi
 
             return [$this->apiClient->getSerializer()->deserialize($response, '\zipMoney\Model\Charge', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\Charge', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
+            if ($e->getCode() === 200) {
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\Charge', $e->getResponseHeaders());
+                $e->setResponseObject($data);
             }
 
             throw $e;

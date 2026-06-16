@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class OrderItem implements ArrayAccess
+class OrderItem implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -128,7 +130,7 @@ class OrderItem implements ArrayAccess
      *
      * @return string[]
      */
-    public function getTypeAllowableValues()
+    public function getTypeAllowableValues(): array
     {
         return [
             self::TYPE_SKU,
@@ -153,16 +155,16 @@ class OrderItem implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
-        $this->container['reference'] = isset($data['reference']) ? $data['reference'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['image_uri'] = isset($data['image_uri']) ? $data['image_uri'] : null;
-        $this->container['item_uri'] = isset($data['item_uri']) ? $data['item_uri'] : null;
-        $this->container['product_code'] = isset($data['product_code']) ? $data['product_code'] : null;
-        $this->container['additional_details'] = isset($data['additional_details']) ? $data['additional_details'] : null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['amount'] = $data['amount'] ?? null;
+        $this->container['reference'] = $data['reference'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['quantity'] = $data['quantity'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['image_uri'] = $data['image_uri'] ?? null;
+        $this->container['item_uri'] = $data['item_uri'] ?? null;
+        $this->container['product_code'] = $data['product_code'] ?? null;
+        $this->container['additional_details'] = $data['additional_details'] ?? null;
     }
 
     /**
@@ -170,7 +172,7 @@ class OrderItem implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -223,11 +225,7 @@ class OrderItem implements ArrayAccess
         if (!in_array($this->container['type'], $allowed_values)) {
             return false;
         }
-        if (strlen($this->container['product_code']) > 200) {
-            return false;
-        }
-
-        return true;
+        return strlen($this->container['product_code']) <= 200;
     }
 
     /**
@@ -247,7 +245,7 @@ class OrderItem implements ArrayAccess
      *
      * @return $this
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->container['name'] = $name;
 
@@ -271,7 +269,7 @@ class OrderItem implements ArrayAccess
      *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): static
     {
         $this->container['amount'] = $amount;
 
@@ -295,7 +293,7 @@ class OrderItem implements ArrayAccess
      *
      * @return $this
      */
-    public function setReference($reference)
+    public function setReference($reference): static
     {
         $this->container['reference'] = $reference;
 
@@ -319,7 +317,7 @@ class OrderItem implements ArrayAccess
      *
      * @return $this
      */
-    public function setDescription($description)
+    public function setDescription($description): static
     {
         $this->container['description'] = $description;
 
@@ -343,7 +341,7 @@ class OrderItem implements ArrayAccess
      *
      * @return $this
      */
-    public function setQuantity($quantity)
+    public function setQuantity($quantity): static
     {
         if (!is_null($quantity) && ($quantity <= 0)) {
             throw new \InvalidArgumentException('invalid value for $quantity when calling OrderItem., must be bigger than 0.');
@@ -371,7 +369,7 @@ class OrderItem implements ArrayAccess
      *
      * @return $this
      */
-    public function setType($type)
+    public function setType($type): static
     {
         $allowed_values = ['sku', 'tax', 'shipping', 'discount', 'store_credit'];
         if ((!in_array($type, $allowed_values))) {
@@ -399,7 +397,7 @@ class OrderItem implements ArrayAccess
      *
      * @return $this
      */
-    public function setImageUri($image_uri)
+    public function setImageUri($image_uri): static
     {
         $this->container['image_uri'] = $image_uri;
 
@@ -423,7 +421,7 @@ class OrderItem implements ArrayAccess
      *
      * @return $this
      */
-    public function setItemUri($item_uri)
+    public function setItemUri($item_uri): static
     {
         $this->container['item_uri'] = $item_uri;
 
@@ -447,7 +445,7 @@ class OrderItem implements ArrayAccess
      *
      * @return $this
      */
-    public function setProductCode($product_code)
+    public function setProductCode($product_code): static
     {
         if (!is_null($product_code) && (strlen($product_code) > 200)) {
             throw new \InvalidArgumentException('invalid length for $product_code when calling OrderItem., must be smaller than or equal to 200.');
@@ -461,7 +459,7 @@ class OrderItem implements ArrayAccess
     /**
      * Gets additional_details.
      *
-     * @return \zipMoney\Model\OrderItemAdditionalDetails[]
+     * @return OrderItemAdditionalDetails[]
      */
     public function getAdditionalDetails()
     {
@@ -471,11 +469,11 @@ class OrderItem implements ArrayAccess
     /**
      * Sets additional_details.
      *
-     * @param \zipMoney\Model\OrderItemAdditionalDetails[] $additional_details
+     * @param OrderItemAdditionalDetails[] $additional_details
      *
      * @return $this
      */
-    public function setAdditionalDetails($additional_details)
+    public function setAdditionalDetails($additional_details): static
     {
         $this->container['additional_details'] = $additional_details;
 
@@ -486,8 +484,6 @@ class OrderItem implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -498,8 +494,6 @@ class OrderItem implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -512,7 +506,7 @@ class OrderItem implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -533,15 +527,13 @@ class OrderItem implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

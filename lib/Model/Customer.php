@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class Customer implements ArrayAccess
+class Customer implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -118,7 +120,7 @@ class Customer implements ArrayAccess
      *
      * @return string[]
      */
-    public function getGenderAllowableValues()
+    public function getGenderAllowableValues(): array
     {
         return [
             self::GENDER_MALE,
@@ -141,14 +143,14 @@ class Customer implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
-        $this->container['first_name'] = isset($data['first_name']) ? $data['first_name'] : null;
-        $this->container['middle_name'] = isset($data['middle_name']) ? $data['middle_name'] : null;
-        $this->container['last_name'] = isset($data['last_name']) ? $data['last_name'] : null;
-        $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
-        $this->container['birth_date'] = isset($data['birth_date']) ? $data['birth_date'] : null;
-        $this->container['gender'] = isset($data['gender']) ? $data['gender'] : null;
+        $this->container['title'] = $data['title'] ?? null;
+        $this->container['first_name'] = $data['first_name'] ?? null;
+        $this->container['middle_name'] = $data['middle_name'] ?? null;
+        $this->container['last_name'] = $data['last_name'] ?? null;
+        $this->container['phone'] = $data['phone'] ?? null;
+        $this->container['email'] = $data['email'] ?? null;
+        $this->container['birth_date'] = $data['birth_date'] ?? null;
+        $this->container['gender'] = $data['gender'] ?? null;
     }
 
     /**
@@ -156,7 +158,7 @@ class Customer implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -207,11 +209,7 @@ class Customer implements ArrayAccess
             return false;
         }
         $allowed_values = ['Male', 'Female', 'Other'];
-        if (!in_array($this->container['gender'], $allowed_values)) {
-            return false;
-        }
-
-        return true;
+        return in_array($this->container['gender'], $allowed_values);
     }
 
     /**
@@ -231,7 +229,7 @@ class Customer implements ArrayAccess
      *
      * @return $this
      */
-    public function setTitle($title)
+    public function setTitle($title): static
     {
         $this->container['title'] = $title;
 
@@ -255,7 +253,7 @@ class Customer implements ArrayAccess
      *
      * @return $this
      */
-    public function setFirstName($first_name)
+    public function setFirstName($first_name): static
     {
         $this->container['first_name'] = $first_name;
 
@@ -279,7 +277,7 @@ class Customer implements ArrayAccess
      *
      * @return $this
      */
-    public function setMiddleName($middle_name)
+    public function setMiddleName($middle_name): static
     {
         $this->container['middle_name'] = $middle_name;
 
@@ -303,7 +301,7 @@ class Customer implements ArrayAccess
      *
      * @return $this
      */
-    public function setLastName($last_name)
+    public function setLastName($last_name): static
     {
         $this->container['last_name'] = $last_name;
 
@@ -327,7 +325,7 @@ class Customer implements ArrayAccess
      *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setPhone($phone): static
     {
         $this->container['phone'] = $phone;
 
@@ -351,7 +349,7 @@ class Customer implements ArrayAccess
      *
      * @return $this
      */
-    public function setEmail($email)
+    public function setEmail($email): static
     {
         $this->container['email'] = $email;
 
@@ -375,7 +373,7 @@ class Customer implements ArrayAccess
      *
      * @return $this
      */
-    public function setBirthDate($birth_date)
+    public function setBirthDate($birth_date): static
     {
         $this->container['birth_date'] = $birth_date;
 
@@ -399,7 +397,7 @@ class Customer implements ArrayAccess
      *
      * @return $this
      */
-    public function setGender($gender)
+    public function setGender($gender): static
     {
         $allowed_values = ['Male', 'Female', 'Other'];
         if (!is_null($gender) && (!in_array($gender, $allowed_values))) {
@@ -414,8 +412,6 @@ class Customer implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -426,8 +422,6 @@ class Customer implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -440,7 +434,7 @@ class Customer implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -461,15 +455,13 @@ class Customer implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

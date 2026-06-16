@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,7 +14,7 @@ namespace zipMoney;
 
 class ConfigurationTest extends Setup
 {
-    public function testPlatform()
+    public function testPlatform(): void
     {
         $config = Configuration::getDefaultConfiguration();
 
@@ -21,26 +22,25 @@ class ConfigurationTest extends Setup
         $this->assertEquals($config->getPlatform(), 'Magento/1.0.0');
     }
 
-    public function testEnvironment()
+    public function testEnvironment(): void
     {
         $config = Configuration::getDefaultConfiguration();
 
         $config->setEnvironment('sandbox');
         $this->assertEquals($config->getEnvironment(), 'sandbox');
-        $this->assertEquals($config->getHost(), 'https://global-api.sand.au.edge.zip.co/merchant');
+        $this->assertEquals($config->getHost(), 'https://sand.merchant-api.com/merchant');
 
         $config->setEnvironment('production');
         $this->assertEquals($config->getEnvironment(), 'production');
-        $this->assertEquals($config->getHost(), 'https://global-api.prod.au.edge.zip.co/merchant');
+        $this->assertEquals($config->getHost(), 'https://merchant-api.com/merchant');
     }
 
-    public function testApiHeaders()
+    public function testApiHeaders(): void
     {
         $config = Configuration::getDefaultConfiguration();
 
-        $config->setPlatform('Magento/1.0.0')
-            ->setDefaultHeaders('sandbox');
-        $packageJson = file_get_contents(dirname(__FILE__) . './../composer.json');
+        $config->setPlatform('Magento/1.0.0')->setDefaultHeaders();
+        $packageJson = file_get_contents(__DIR__ . './../composer.json');
         $data = json_decode($packageJson);
         $version = $data->version;
 
@@ -48,10 +48,10 @@ class ConfigurationTest extends Setup
         $this->assertEquals($config->getDefaultHeaders(), ['Zip-Version' => '2017-03-01']);
     }
 
-    public function testPackageVersion()
+    public function testPackageVersion(): void
     {
         $config = Configuration::getDefaultConfiguration();
-        $packageJson = file_get_contents(dirname(__FILE__) . './../composer.json');
+        $packageJson = file_get_contents(__DIR__ . './../composer.json');
         $data = json_decode($packageJson);
         $this->assertEquals($config->getPackageVersion(), $data->version);
     }

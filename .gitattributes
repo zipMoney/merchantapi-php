@@ -1,0 +1,4 @@
+# Normalize line endings to LF on checkout and in the repo, on every platform.
+# Overrides a global core.autocrlf=true so the tree stays consistent with .editorconfig.
+* text=auto eol=lf
+*.zip binary

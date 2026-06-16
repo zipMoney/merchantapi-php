@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,24 +15,26 @@ namespace zipMoney\Api;
 
 use zipMoney\ApiClient;
 use zipMoney\ApiException;
+use zipMoney\Model\CreateTokenRequest;
+use zipMoney\Model\Token;
 
 class TokensApi
 {
     /**
      * API Client.
      *
-     * @var \zipMoney\ApiClient instance of the ApiClient
+     * @var ApiClient instance of the ApiClient
      */
-    protected $apiClient;
+    protected ?ApiClient $apiClient;
 
     /**
      * Constructor.
      *
-     * @param null|\zipMoney\ApiClient $apiClient The api client to use
+     * @param null|ApiClient $apiClient The api client to use
      */
-    public function __construct(?\zipMoney\ApiClient $apiClient = null)
+    public function __construct(?ApiClient $apiClient = null)
     {
-        if ($apiClient === null) {
+        if (!$apiClient instanceof ApiClient) {
             $apiClient = new ApiClient();
         }
         $this->apiClient = $apiClient;
@@ -40,9 +43,9 @@ class TokensApi
     /**
      * Get API client.
      *
-     * @return \zipMoney\ApiClient get the API client
+     * @return ApiClient get the API client
      */
-    public function getApiClient()
+    public function getApiClient(): ?ApiClient
     {
         return $this->apiClient;
     }
@@ -50,11 +53,9 @@ class TokensApi
     /**
      * Set the API client.
      *
-     * @param \zipMoney\ApiClient $apiClient set the API client
-     *
-     * @return TokensApi
+     * @param ApiClient $apiClient set the API client
      */
-    public function setApiClient(\zipMoney\ApiClient $apiClient)
+    public function setApiClient(ApiClient $apiClient): static
     {
         $this->apiClient = $apiClient;
 
@@ -66,12 +67,12 @@ class TokensApi
      *
      * Create token
      *
-     * @param \zipMoney\Model\CreateTokenRequest $body            (optional)
+     * @param CreateTokenRequest $body (optional)
      * @param string                             $idempotency_key The unique idempotency key. (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
-     * @return \zipMoney\Model\Token
+     * @return Token
      */
     public function tokensCreate($body = null, $idempotency_key = null)
     {
@@ -85,10 +86,10 @@ class TokensApi
      *
      * Create token
      *
-     * @param \zipMoney\Model\CreateTokenRequest $body            (optional)
+     * @param CreateTokenRequest $body (optional)
      * @param string                             $idempotency_key The unique idempotency key. (optional)
      *
-     * @throws \zipMoney\ApiException on non-2xx response
+     * @throws ApiException on non-2xx response
      *
      * @return array of \zipMoney\Model\Token, HTTP status code, HTTP response headers (array of strings)
      */
@@ -122,7 +123,7 @@ class TokensApi
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             $httpBody = $formParams; // for HTTP post (form)
         }
         // this endpoint requires API key authentication
@@ -151,17 +152,8 @@ class TokensApi
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 402:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 403:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
                 case 409:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\zipMoney\Model\ErrorResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);

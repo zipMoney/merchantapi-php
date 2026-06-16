@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class Authority implements ArrayAccess
+class Authority implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -94,7 +96,7 @@ class Authority implements ArrayAccess
      *
      * @return string[]
      */
-    public function getTypeAllowableValues()
+    public function getTypeAllowableValues(): array
     {
         return [
             self::TYPE_CHECKOUT_ID,
@@ -117,8 +119,8 @@ class Authority implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
     }
 
     /**
@@ -126,7 +128,7 @@ class Authority implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -160,11 +162,7 @@ class Authority implements ArrayAccess
         if (!in_array($this->container['type'], $allowed_values)) {
             return false;
         }
-        if ($this->container['value'] === null) {
-            return false;
-        }
-
-        return true;
+        return $this->container['value'] !== null;
     }
 
     /**
@@ -184,7 +182,7 @@ class Authority implements ArrayAccess
      *
      * @return $this
      */
-    public function setType($type)
+    public function setType($type): static
     {
         $allowed_values = ['checkout_id', 'store_code', 'account_token'];
         if ((!in_array($type, $allowed_values))) {
@@ -212,7 +210,7 @@ class Authority implements ArrayAccess
      *
      * @return $this
      */
-    public function setValue($value)
+    public function setValue($value): static
     {
         $this->container['value'] = $value;
 
@@ -223,8 +221,6 @@ class Authority implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -235,8 +231,6 @@ class Authority implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -249,7 +243,7 @@ class Authority implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -270,15 +264,13 @@ class Authority implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

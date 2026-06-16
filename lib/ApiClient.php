@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -30,26 +31,22 @@ class ApiClient
 
     /**
      * Configuration.
-     *
-     * @var Configuration
      */
-    protected $config;
+    protected ?Configuration $config;
 
     /**
      * Object Serializer.
-     *
-     * @var ObjectSerializer
      */
-    protected $serializer;
+    protected ObjectSerializer $serializer;
 
     /**
      * Constructor of the class.
      *
      * @param null|Configuration $config config for this ApiClient
      */
-    public function __construct(?\zipMoney\Configuration $config = null)
+    public function __construct(?Configuration $config = null)
     {
-        if ($config === null) {
+        if (!$config instanceof Configuration) {
             $config = Configuration::getDefaultConfiguration();
         }
 
@@ -65,17 +62,15 @@ class ApiClient
      *
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): ?Configuration
     {
         return $this->config;
     }
 
     /**
      * Get the serializer.
-     *
-     * @return ObjectSerializer
      */
-    public function getSerializer()
+    public function getSerializer(): ObjectSerializer
     {
         return $this->serializer;
     }
@@ -87,7 +82,7 @@ class ApiClient
      *
      * @return string API key with the prefix
      */
-    public function getApiKeyWithPrefix($apiKeyIdentifier)
+    public function getApiKeyWithPrefix($apiKeyIdentifier): ?string
     {
         $prefix = $this->config->getApiKeyPrefix($apiKeyIdentifier);
         $apiKey = $this->config->getApiKey($apiKeyIdentifier);
@@ -96,13 +91,7 @@ class ApiClient
             return null;
         }
 
-        if (isset($prefix)) {
-            $keyWithPrefix = $prefix . ' ' . $apiKey;
-        } else {
-            $keyWithPrefix = $apiKey;
-        }
-
-        return $keyWithPrefix;
+        return isset($prefix) ? $prefix . ' ' . $apiKey : $apiKey;
     }
 
     /**
@@ -116,11 +105,11 @@ class ApiClient
      * @param string $responseType expected response type of the endpoint
      * @param string $endpointPath path to method endpoint before expanding parameters
      *
-     * @throws \zipMoney\ApiException on a non 2xx response
+     * @throws ApiException on a non 2xx response
      *
-     * @return mixed
+     * @return mixed[]
      */
-    public function callApi($resourcePath, $method, $queryParams, $postData, $headerParams, $responseType = null, $endpointPath = null)
+    public function callApi(string $resourcePath, string $method, $queryParams, $postData, $headerParams, $responseType = null, $endpointPath = null): array
     {
         $headers = [];
 
@@ -135,10 +124,10 @@ class ApiClient
         }
 
         // form data
-        if ($postData and in_array('Content-Type: application/x-www-form-urlencoded', $headers, true)) {
+        if ($postData && in_array('Content-Type: application/x-www-form-urlencoded', $headers, true)) {
             $postData = http_build_query($postData);
-        } elseif ((is_object($postData) or is_array($postData)) and !in_array('Content-Type: multipart/form-data', $headers, true)) { // json model
-            $postData = json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($postData));
+        } elseif ((is_object($postData) || is_array($postData)) && !in_array('Content-Type: multipart/form-data', $headers, true)) { // json model
+            $postData = json_encode(ObjectSerializer::sanitizeForSerialization($postData));
         }
 
         $url = $this->config->getHost() . $resourcePath;
@@ -215,7 +204,7 @@ class ApiClient
         // obtain the HTTP response headers
         curl_setopt($curl, CURLOPT_HEADER, 1);
 
-        $num_retries = $this->config->getCurlNumRetries() ? $this->config->getCurlNumRetries() : 0;
+        $num_retries = $this->config->getCurlNumRetries() ?: 0;
         $count = 0;
 
         do {
@@ -232,7 +221,7 @@ class ApiClient
             $count++;
             $msg = curl_error($curl);
         } while (($count <= $num_retries) &&
-                  ($response_info['http_code'] === 0 && empty($msg)) &&
+                  ($response_info['http_code'] === 0 && ($msg === '' || $msg === '0')) &&
                   !empty($headerParams['Idempotency-Key']));
 
         // Handle the response
@@ -240,7 +229,7 @@ class ApiClient
             $curl_error_message = curl_error($curl);
 
             // curl_exec can sometimes fail but still return a blank message from curl_error().
-            if (!empty($curl_error_message)) {
+            if ($curl_error_message !== '' && $curl_error_message !== '0') {
                 $error_message = "API call to {$url} failed: {$curl_error_message}";
             } else {
                 $error_message = "API call to {$url} failed, but for an unknown reason. " .
@@ -285,9 +274,9 @@ class ApiClient
      *
      * @return string Accept (e.g. application/json)
      */
-    public function selectHeaderAccept($accept)
+    public function selectHeaderAccept(array $accept): ?string
     {
-        if (count($accept) === 0 or (count($accept) === 1 and $accept[0] === '')) {
+        if ($accept === [] || count($accept) === 1 && $accept[0] === '') {
             return null;
         }
         if (preg_grep('/application\\/json/i', $accept)) {
@@ -304,9 +293,9 @@ class ApiClient
      *
      * @return string Content-Type (e.g. application/json)
      */
-    public function selectHeaderContentType($content_type)
+    public function selectHeaderContentType(array $content_type): string
     {
-        if (count($content_type) === 0 or (count($content_type) === 1 and $content_type[0] === '')) {
+        if ($content_type === [] || count($content_type) === 1 && $content_type[0] === '') {
             return 'application/json';
         }
         if (preg_grep('/application\\/json/i', $content_type)) {
@@ -323,7 +312,7 @@ class ApiClient
      *
      * @return string[] Array of HTTP response heaers
      */
-    protected function httpParseHeaders($raw_headers)
+    protected function httpParseHeaders($raw_headers): array
     {
         // ref/credit: http://php.net/manual/en/function.http-parse-headers.php#112986
         $headers = [];
@@ -338,14 +327,14 @@ class ApiClient
                 } elseif (is_array($headers[$h[0]])) {
                     $headers[$h[0]] = array_merge($headers[$h[0]], [trim($h[1])]);
                 } else {
-                    $headers[$h[0]] = array_merge([$headers[$h[0]]], [trim($h[1])]);
+                    $headers[$h[0]] = [$headers[$h[0]], trim($h[1])];
                 }
 
                 $key = $h[0];
             } else {
-                if (substr($h[0], 0, 1) === "\t") {
+                if (str_starts_with($h[0], "\t")) {
                     $headers[$key] .= "\r\n\t" . trim($h[0]);
-                } elseif (!$key) {
+                } elseif ($key === '' || $key === '0') {
                     $headers[0] = trim($h[0]);
                 }
                 trim($h[0]);
@@ -355,7 +344,7 @@ class ApiClient
         return $headers;
     }
 
-    protected function generateErrorMessage($response)
+    protected function generateErrorMessage($response): string
     {
         $errorMessage = 'An error occurred while processing payment';
 

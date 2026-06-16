@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * Payload.
@@ -41,25 +42,25 @@ class Payload
 
     protected $_chargeId;
 
-    public function getCheckoutPayload()
+    public function getCheckoutPayload(): CheckoutRequest
     {
         $checkoutReq = new CheckoutRequest();
 
         $checkoutReq->setType('standard')
             ->setShopper($this->getShopper())
-            ->setOrder($this->getOrderDetails(new CheckoutOrder))
+            ->setOrder($this->getOrderDetails(new CheckoutOrder()))
             ->setMetadata($this->getMetadata())
             ->setConfig($this->getCheckoutConfiguration());
 
         return $checkoutReq;
     }
 
-    public function getChargePayload()
+    public function getChargePayload(): ChargeRequest
     {
         $chargeReq = new ChargeRequest();
 
         $chargeReq->setAmount(100)
-            ->setOrder($this->getOrderDetails(new ChargeOrder))
+            ->setOrder($this->getOrderDetails(new ChargeOrder()))
             ->setCurrency('AUD')
             ->setCapture(true)
             ->setMetadata($this->getMetadata())
@@ -68,7 +69,7 @@ class Payload
         return $chargeReq;
     }
 
-    public function getRefundPayload()
+    public function getRefundPayload(): RefundRequest
     {
         $chargeReq = new RefundRequest();
 
@@ -80,7 +81,7 @@ class Payload
         return $chargeReq;
     }
 
-    public function getCapturePayload()
+    public function getCapturePayload(): CaptureChargeRequest
     {
         $captureChargeReq = new CaptureChargeRequest();
 
@@ -89,9 +90,9 @@ class Payload
         return $captureChargeReq;
     }
 
-    public function getShopper()
+    public function getShopper(): Shopper
     {
-        $shopper = new Shopper;
+        $shopper = new Shopper();
 
         $shopper->setEmail('test@zipmoney.com.au');
         $shopper->setFirstName('zipMoney');
@@ -101,7 +102,7 @@ class Payload
         $shopper->setPhone('+610400000000');
         $shopper->setTitle('Mr.');
 
-        $statistics = new ShopperStatistics;
+        $statistics = new ShopperStatistics();
 
         $statistics->setAccountCreated('2017-01-01')
             ->setSalesTotalCount(1000)
@@ -114,7 +115,7 @@ class Payload
 
         $shopper->setStatistics($statistics);
 
-        $address = new Address;
+        $address = new Address();
 
         $address->setFirstName('zipMoney');
         $address->setLastName('Test');
@@ -129,16 +130,16 @@ class Payload
         return $shopper;
     }
 
-    public function getShippingDetails()
+    public function getShippingDetails(): string
     {
         return '';
     }
 
     public function getOrderDetails($reqOrder)
     {
-        $shipping = new OrderShipping;
+        $shipping = new OrderShipping();
 
-        $address = new Address;
+        $address = new Address();
 
         $address->setFirstName('zipMoney');
         $address->setLastName('Test');
@@ -150,7 +151,7 @@ class Payload
 
         $shipping->setAddress($address);
 
-        $orderItem = new OrderItem;
+        $orderItem = new OrderItem();
 
         $orderItem->setName('Test Product')
             ->setAmount(100)
@@ -166,7 +167,7 @@ class Payload
 
         $orderItems[] = $orderItem;
         // Discount Item
-        $discountItem = new OrderItem;
+        $discountItem = new OrderItem();
         $discountItem->setName('Discount');
         $discountItem->setAmount(-10);
         $discountItem->setQuantity(1);
@@ -174,7 +175,7 @@ class Payload
         $orderItems[] = $discountItem;
 
         // Shipping Item
-        $shippingItem = new OrderItem;
+        $shippingItem = new OrderItem();
         $shippingItem->setName('Shipping');
         $shippingItem->setAmount(15);
         $shippingItem->setType('shipping');
@@ -182,7 +183,7 @@ class Payload
         $orderItems[] = $shippingItem;
 
         // Tax Item
-        $taxItem = new OrderItem;
+        $taxItem = new OrderItem();
         $taxItem->setName('Tax');
         $taxItem->setAmount(5);
         $taxItem->setType('tax');
@@ -203,12 +204,12 @@ class Payload
         return $reqOrder;
     }
 
-    public function getMetadata()
+    public function getMetadata(): Metadata
     {
-        return new Metadata;
+        return new Metadata();
     }
 
-    public function setCheckoutId($checkout_id)
+    public function setCheckoutId($checkout_id): void
     {
         $this->_checkoutId = $checkout_id;
     }
@@ -218,7 +219,7 @@ class Payload
         return $this->_checkoutId;
     }
 
-    public function setChargeId($charge_id)
+    public function setChargeId($charge_id): void
     {
         $this->_chargeId = $charge_id;
     }
@@ -228,18 +229,18 @@ class Payload
         return $this->_chargeId;
     }
 
-    public function getAuthority()
+    public function getAuthority(): Authority
     {
         $checkout_id = $this->getCheckoutId();
 
-        $authority = new Authority;
+        $authority = new Authority();
         $authority->setType('checkout_id')
             ->setValue($checkout_id);
 
         return $authority;
     }
 
-    public function getCheckoutConfiguration()
+    public function getCheckoutConfiguration(): CheckoutConfiguration
     {
         $checkout_config = new CheckoutConfiguration();
 

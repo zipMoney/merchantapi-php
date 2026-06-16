@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class CreateCheckoutRequest implements ArrayAccess
+class CreateCheckoutRequest implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -109,7 +111,7 @@ class CreateCheckoutRequest implements ArrayAccess
      *
      * @return string[]
      */
-    public function getTypeAllowableValues()
+    public function getTypeAllowableValues(): array
     {
         return [
             self::TYPE_STANDARD,
@@ -131,12 +133,12 @@ class CreateCheckoutRequest implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['type'] = isset($data['type']) ? $data['type'] : 'standard';
-        $this->container['shopper'] = isset($data['shopper']) ? $data['shopper'] : null;
-        $this->container['order'] = isset($data['order']) ? $data['order'] : null;
-        $this->container['features'] = isset($data['features']) ? $data['features'] : null;
-        $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
-        $this->container['config'] = isset($data['config']) ? $data['config'] : null;
+        $this->container['type'] = $data['type'] ?? 'standard';
+        $this->container['shopper'] = $data['shopper'] ?? null;
+        $this->container['order'] = $data['order'] ?? null;
+        $this->container['features'] = $data['features'] ?? null;
+        $this->container['metadata'] = $data['metadata'] ?? null;
+        $this->container['config'] = $data['config'] ?? null;
     }
 
     /**
@@ -144,7 +146,7 @@ class CreateCheckoutRequest implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -178,11 +180,7 @@ class CreateCheckoutRequest implements ArrayAccess
         if ($this->container['order'] === null) {
             return false;
         }
-        if ($this->container['config'] === null) {
-            return false;
-        }
-
-        return true;
+        return $this->container['config'] !== null;
     }
 
     /**
@@ -202,7 +200,7 @@ class CreateCheckoutRequest implements ArrayAccess
      *
      * @return $this
      */
-    public function setType($type)
+    public function setType($type): static
     {
         $allowed_values = ['standard', 'express'];
         if (!is_null($type) && (!in_array($type, $allowed_values))) {
@@ -216,7 +214,7 @@ class CreateCheckoutRequest implements ArrayAccess
     /**
      * Gets shopper.
      *
-     * @return \zipMoney\Model\Shopper
+     * @return Shopper
      */
     public function getShopper()
     {
@@ -226,11 +224,11 @@ class CreateCheckoutRequest implements ArrayAccess
     /**
      * Sets shopper.
      *
-     * @param \zipMoney\Model\Shopper $shopper
+     * @param Shopper $shopper
      *
      * @return $this
      */
-    public function setShopper($shopper)
+    public function setShopper($shopper): static
     {
         $this->container['shopper'] = $shopper;
 
@@ -240,7 +238,7 @@ class CreateCheckoutRequest implements ArrayAccess
     /**
      * Gets order.
      *
-     * @return \zipMoney\Model\CheckoutOrder
+     * @return CheckoutOrder
      */
     public function getOrder()
     {
@@ -250,11 +248,11 @@ class CreateCheckoutRequest implements ArrayAccess
     /**
      * Sets order.
      *
-     * @param \zipMoney\Model\CheckoutOrder $order
+     * @param CheckoutOrder $order
      *
      * @return $this
      */
-    public function setOrder($order)
+    public function setOrder($order): static
     {
         $this->container['order'] = $order;
 
@@ -264,7 +262,7 @@ class CreateCheckoutRequest implements ArrayAccess
     /**
      * Gets features.
      *
-     * @return \zipMoney\Model\CreateCheckoutRequestFeatures
+     * @return CreateCheckoutRequestFeatures
      */
     public function getFeatures()
     {
@@ -274,11 +272,11 @@ class CreateCheckoutRequest implements ArrayAccess
     /**
      * Sets features.
      *
-     * @param \zipMoney\Model\CreateCheckoutRequestFeatures $features
+     * @param CreateCheckoutRequestFeatures $features
      *
      * @return $this
      */
-    public function setFeatures($features)
+    public function setFeatures($features): static
     {
         $this->container['features'] = $features;
 
@@ -288,7 +286,7 @@ class CreateCheckoutRequest implements ArrayAccess
     /**
      * Gets metadata.
      *
-     * @return \zipMoney\Model\Metadata
+     * @return Metadata
      */
     public function getMetadata()
     {
@@ -298,11 +296,11 @@ class CreateCheckoutRequest implements ArrayAccess
     /**
      * Sets metadata.
      *
-     * @param \zipMoney\Model\Metadata $metadata
+     * @param Metadata $metadata
      *
      * @return $this
      */
-    public function setMetadata($metadata)
+    public function setMetadata($metadata): static
     {
         $this->container['metadata'] = $metadata;
 
@@ -312,7 +310,7 @@ class CreateCheckoutRequest implements ArrayAccess
     /**
      * Gets config.
      *
-     * @return \zipMoney\Model\CheckoutConfiguration
+     * @return CheckoutConfiguration
      */
     public function getConfig()
     {
@@ -322,11 +320,11 @@ class CreateCheckoutRequest implements ArrayAccess
     /**
      * Sets config.
      *
-     * @param \zipMoney\Model\CheckoutConfiguration $config
+     * @param CheckoutConfiguration $config
      *
      * @return $this
      */
-    public function setConfig($config)
+    public function setConfig($config): static
     {
         $this->container['config'] = $config;
 
@@ -337,8 +335,6 @@ class CreateCheckoutRequest implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -349,8 +345,6 @@ class CreateCheckoutRequest implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -363,7 +357,7 @@ class CreateCheckoutRequest implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -384,15 +378,13 @@ class CreateCheckoutRequest implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

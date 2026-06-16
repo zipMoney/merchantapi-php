@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class ErrorResponseError implements ArrayAccess
+class ErrorResponseError implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -103,9 +105,9 @@ class ErrorResponseError implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['code'] = isset($data['code']) ? $data['code'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
-        $this->container['details'] = isset($data['details']) ? $data['details'] : null;
+        $this->container['code'] = $data['code'] ?? null;
+        $this->container['message'] = $data['message'] ?? null;
+        $this->container['details'] = $data['details'] ?? null;
     }
 
     /**
@@ -113,7 +115,7 @@ class ErrorResponseError implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -138,11 +140,7 @@ class ErrorResponseError implements ArrayAccess
         if ($this->container['code'] === null) {
             return false;
         }
-        if ($this->container['message'] === null) {
-            return false;
-        }
-
-        return true;
+        return $this->container['message'] !== null;
     }
 
     /**
@@ -162,7 +160,7 @@ class ErrorResponseError implements ArrayAccess
      *
      * @return $this
      */
-    public function setCode($code)
+    public function setCode($code): static
     {
         $this->container['code'] = $code;
 
@@ -186,7 +184,7 @@ class ErrorResponseError implements ArrayAccess
      *
      * @return $this
      */
-    public function setMessage($message)
+    public function setMessage($message): static
     {
         $this->container['message'] = $message;
 
@@ -196,7 +194,7 @@ class ErrorResponseError implements ArrayAccess
     /**
      * Gets details.
      *
-     * @return \zipMoney\Model\ErrorResponseErrorDetails[]
+     * @return ErrorResponseErrorDetails[]
      */
     public function getDetails()
     {
@@ -206,11 +204,11 @@ class ErrorResponseError implements ArrayAccess
     /**
      * Sets details.
      *
-     * @param \zipMoney\Model\ErrorResponseErrorDetails[] $details
+     * @param ErrorResponseErrorDetails[] $details
      *
      * @return $this
      */
-    public function setDetails($details)
+    public function setDetails($details): static
     {
         $this->container['details'] = $details;
 
@@ -221,8 +219,6 @@ class ErrorResponseError implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -233,8 +229,6 @@ class ErrorResponseError implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -247,7 +241,7 @@ class ErrorResponseError implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -268,15 +262,13 @@ class ErrorResponseError implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

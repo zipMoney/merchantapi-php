@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class Settlement implements ArrayAccess
+class Settlement implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -111,11 +113,11 @@ class Settlement implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['created'] = isset($data['created']) ? $data['created'] : null;
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
-        $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
-        $this->container['transactions'] = isset($data['transactions']) ? $data['transactions'] : null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['created'] = $data['created'] ?? null;
+        $this->container['amount'] = $data['amount'] ?? null;
+        $this->container['currency'] = $data['currency'] ?? null;
+        $this->container['transactions'] = $data['transactions'] ?? null;
     }
 
     /**
@@ -123,7 +125,7 @@ class Settlement implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         return [];
     }
@@ -134,7 +136,7 @@ class Settlement implements ArrayAccess
      *
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return true;
     }
@@ -156,7 +158,7 @@ class Settlement implements ArrayAccess
      *
      * @return $this
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->container['id'] = $id;
 
@@ -180,7 +182,7 @@ class Settlement implements ArrayAccess
      *
      * @return $this
      */
-    public function setCreated($created)
+    public function setCreated($created): static
     {
         $this->container['created'] = $created;
 
@@ -204,7 +206,7 @@ class Settlement implements ArrayAccess
      *
      * @return $this
      */
-    public function setAmount($amount)
+    public function setAmount($amount): static
     {
         $this->container['amount'] = $amount;
 
@@ -228,7 +230,7 @@ class Settlement implements ArrayAccess
      *
      * @return $this
      */
-    public function setCurrency($currency)
+    public function setCurrency($currency): static
     {
         $this->container['currency'] = $currency;
 
@@ -238,7 +240,7 @@ class Settlement implements ArrayAccess
     /**
      * Gets transactions.
      *
-     * @return \zipMoney\Model\SettlementTransactions[]
+     * @return SettlementTransactions[]
      */
     public function getTransactions()
     {
@@ -248,11 +250,11 @@ class Settlement implements ArrayAccess
     /**
      * Sets transactions.
      *
-     * @param \zipMoney\Model\SettlementTransactions[] $transactions
+     * @param SettlementTransactions[] $transactions
      *
      * @return $this
      */
-    public function setTransactions($transactions)
+    public function setTransactions($transactions): static
     {
         $this->container['transactions'] = $transactions;
 
@@ -263,8 +265,6 @@ class Settlement implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -275,8 +275,6 @@ class Settlement implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -289,7 +287,7 @@ class Settlement implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -310,15 +308,13 @@ class Settlement implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

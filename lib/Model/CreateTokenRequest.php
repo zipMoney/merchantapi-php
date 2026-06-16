@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,8 +14,9 @@ declare(strict_types=1);
 namespace zipMoney\Model;
 
 use ArrayAccess;
+use zipMoney\ObjectSerializer;
 
-class CreateTokenRequest implements ArrayAccess
+class CreateTokenRequest implements ArrayAccess, \Stringable
 {
     public const DISCRIMINATOR = 'subclass';
 
@@ -95,7 +97,7 @@ class CreateTokenRequest implements ArrayAccess
      */
     public function __construct(?array $data = null)
     {
-        $this->container['authority'] = isset($data['authority']) ? $data['authority'] : null;
+        $this->container['authority'] = $data['authority'] ?? null;
     }
 
     /**
@@ -103,7 +105,7 @@ class CreateTokenRequest implements ArrayAccess
      *
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalid_properties = [];
 
@@ -120,19 +122,15 @@ class CreateTokenRequest implements ArrayAccess
      *
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
-        if ($this->container['authority'] === null) {
-            return false;
-        }
-
-        return true;
+        return $this->container['authority'] !== null;
     }
 
     /**
      * Gets authority.
      *
-     * @return \zipMoney\Model\Authority
+     * @return Authority
      */
     public function getAuthority()
     {
@@ -142,11 +140,11 @@ class CreateTokenRequest implements ArrayAccess
     /**
      * Sets authority.
      *
-     * @param \zipMoney\Model\Authority $authority
+     * @param Authority $authority
      *
      * @return $this
      */
-    public function setAuthority($authority)
+    public function setAuthority($authority): static
     {
         $this->container['authority'] = $authority;
 
@@ -157,8 +155,6 @@ class CreateTokenRequest implements ArrayAccess
      * Returns true if offset exists. False otherwise.
      *
      * @param int $offset Offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -169,8 +165,6 @@ class CreateTokenRequest implements ArrayAccess
      * Gets offset.
      *
      * @param int $offset Offset
-     *
-     * @return mixed
      */
     public function offsetGet($offset): mixed
     {
@@ -183,7 +177,7 @@ class CreateTokenRequest implements ArrayAccess
      * @param int   $offset Offset
      * @param mixed $value  Value to be set
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -204,15 +198,13 @@ class CreateTokenRequest implements ArrayAccess
 
     /**
      * Gets the string presentation of the object.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
+            return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this), JSON_PRETTY_PRINT);
         }
 
-        return json_encode(\zipMoney\ObjectSerializer::sanitizeForSerialization($this));
+        return (string) json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
