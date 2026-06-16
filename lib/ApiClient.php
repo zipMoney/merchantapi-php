@@ -215,8 +215,19 @@ class ApiClient
             // Make the request
             $response = curl_exec($curl);
             $http_header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
-            $http_header = $this->httpParseHeaders(substr($response, 0, $http_header_size));
-            $http_body = substr($response, $http_header_size);
+
+            // curl_exec() returns false on a transport-level failure (TLS, DNS,
+            // connection). There is no payload to parse, so guard substr() — under
+            // declare(strict_types=1) substr(false, ...) is a fatal TypeError. The
+            // http_code === 0 handler below turns this into a proper ApiException.
+            if ($response === false) {
+                $http_header = [];
+                $http_body = '';
+            } else {
+                $http_header = $this->httpParseHeaders(substr($response, 0, $http_header_size));
+                $http_body = substr($response, $http_header_size);
+            }
+
             $response_info = curl_getinfo($curl);
             $count++;
             $msg = curl_error($curl);
