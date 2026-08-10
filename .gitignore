@@ -3,7 +3,6 @@
 .php-cs-fixer.php
 git_push.sh
 /vendor
-*.lock
 *.ini
 /.idea
 
