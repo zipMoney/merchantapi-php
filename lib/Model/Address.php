@@ -344,6 +344,13 @@ class Address implements ArrayAccess, \Stringable
      */
     public function setState($state): static
     {
+        // Plenty of countries have no state or province, and their addresses come
+        // through with the field blank. Leaving it out of the payload is right;
+        // sending "state": "" is a value Zip has to interpret as one.
+        if ($state === null || $state === '') {
+            return $this;
+        }
+
         if ((strlen((string) $state) > 50)) {
             throw new \InvalidArgumentException('invalid length for $state when calling Address., must be smaller than or equal to 50.');
         }

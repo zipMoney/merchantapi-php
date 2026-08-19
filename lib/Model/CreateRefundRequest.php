@@ -36,6 +36,7 @@ class CreateRefundRequest implements ArrayAccess, \Stringable
         'charge_id' => 'string',
         'reason'    => 'string',
         'amount'    => 'float',
+        'currency'  => 'string',
         'metadata'  => 'object',
     ];
 
@@ -53,6 +54,7 @@ class CreateRefundRequest implements ArrayAccess, \Stringable
         'charge_id' => 'charge_id',
         'reason'    => 'reason',
         'amount'    => 'amount',
+        'currency'  => 'currency',
         'metadata'  => 'metadata',
     ];
 
@@ -65,6 +67,7 @@ class CreateRefundRequest implements ArrayAccess, \Stringable
         'charge_id' => 'setChargeId',
         'reason'    => 'setReason',
         'amount'    => 'setAmount',
+        'currency'  => 'setCurrency',
         'metadata'  => 'setMetadata',
     ];
 
@@ -77,6 +80,7 @@ class CreateRefundRequest implements ArrayAccess, \Stringable
         'charge_id' => 'getChargeId',
         'reason'    => 'getReason',
         'amount'    => 'getAmount',
+        'currency'  => 'getCurrency',
         'metadata'  => 'getMetadata',
     ];
 
@@ -112,6 +116,7 @@ class CreateRefundRequest implements ArrayAccess, \Stringable
         $this->container['charge_id'] = $data['charge_id'] ?? null;
         $this->container['reason'] = $data['reason'] ?? null;
         $this->container['amount'] = $data['amount'] ?? null;
+        $this->container['currency'] = $data['currency'] ?? null;
         $this->container['metadata'] = $data['metadata'] ?? null;
     }
 
@@ -132,6 +137,9 @@ class CreateRefundRequest implements ArrayAccess, \Stringable
         }
         if ($this->container['amount'] === null) {
             $invalid_properties[] = "'amount' can't be null";
+        }
+        if ($this->container['currency'] === null) {
+            $invalid_properties[] = "'currency' can't be null";
         }
         if (($this->container['amount'] < 0)) {
             $invalid_properties[] = "invalid value for 'amount', must be bigger than or equal to 0.";
@@ -157,7 +165,38 @@ class CreateRefundRequest implements ArrayAccess, \Stringable
         if ($this->container['amount'] === null) {
             return false;
         }
+        if ($this->container['currency'] === null) {
+            return false;
+        }
+
         return $this->container['amount'] >= 0;
+    }
+
+    /**
+     * Gets currency.
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency.
+     *
+     * A refund has to name the currency it is in: a store selling in more than
+     * one currency cannot be refunded correctly from the amount alone.
+     *
+     * @param string $currency
+     *
+     * @return $this
+     */
+    public function setCurrency($currency): static
+    {
+        $this->container['currency'] = $currency;
+
+        return $this;
     }
 
     /**

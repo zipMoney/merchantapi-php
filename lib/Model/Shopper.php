@@ -419,7 +419,10 @@ class Shopper implements ArrayAccess, \Stringable
         if (!is_null($gender)) {
             $gender = ucfirst(strtolower((string) $gender));
         }
-        if (!in_array($gender, $allowed_values)) {
+        // A shop that simply does not know the shopper's gender passes null, and
+        // that is not an error — the field is optional. Only a value that is
+        // present and wrong is refused.
+        if (!is_null($gender) && !in_array($gender, $allowed_values)) {
             throw new \InvalidArgumentException("Invalid value for 'gender', must be one of 'Male', 'Female', 'Other'");
         }
         $this->container['gender'] = $gender;
