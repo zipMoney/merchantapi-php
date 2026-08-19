@@ -209,7 +209,10 @@ class ApiClient
 
         do {
             if ($count > 0 && $this->config->getRetryInterval() > 0) {
-                sleep($this->config->getRetryInterval());
+                // Linear back-off: a server that just answered 503 is unlikely to be
+                // ready again in the same second, and three immediate retries only add
+                // load to something already struggling.
+                sleep($this->config->getRetryInterval() * $count);
             }
 
             // Make the request
@@ -232,7 +235,7 @@ class ApiClient
             $count++;
             $msg = curl_error($curl);
         } while (($count <= $num_retries) &&
-                  ($response_info['http_code'] === 0 && ($msg === '' || $msg === '0')) &&
+                  (in_array($response_info['http_code'], [0, 500, 502, 503, 504], true) && ($msg === '' || $msg === '0')) &&
                   !empty($headerParams['Idempotency-Key']));
 
         // Handle the response
