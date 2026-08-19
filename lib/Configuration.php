@@ -112,11 +112,12 @@ class Configuration
     protected $curlNumRetries = 3;
 
     /**
-     * Number of retries allowed if the first one fails.
+     * Seconds to wait before a retry. Multiplied by the attempt number, so
+     * successive retries back off linearly.
      *
-     * @var string
+     * @var int
      */
-    protected $retryInterval = 0;
+    protected $retryInterval = 1;
 
     /**
      * Timeout (second) of the HTTP connection, by default set to 0, no timeout.
