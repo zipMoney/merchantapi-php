@@ -34,6 +34,7 @@ class CaptureChargeRequest implements ArrayAccess, \Stringable
      */
     protected static $zipTypes = [
         'amount' => 'float',
+        'is_partial_capture' => 'boolean',
     ];
 
     public static function zipTypes()
@@ -48,6 +49,7 @@ class CaptureChargeRequest implements ArrayAccess, \Stringable
      */
     protected static $attributeMap = [
         'amount' => 'amount',
+        'is_partial_capture' => 'is_partial_capture',
     ];
 
     /**
@@ -57,6 +59,7 @@ class CaptureChargeRequest implements ArrayAccess, \Stringable
      */
     protected static $setters = [
         'amount' => 'setAmount',
+        'is_partial_capture' => 'setCaptureIsPartial',
     ];
 
     /**
@@ -66,6 +69,7 @@ class CaptureChargeRequest implements ArrayAccess, \Stringable
      */
     protected static $getters = [
         'amount' => 'getAmount',
+        'is_partial_capture' => 'getCaptureIsPartial',
     ];
 
     public static function attributeMap()
@@ -98,6 +102,7 @@ class CaptureChargeRequest implements ArrayAccess, \Stringable
     public function __construct(?array $data = null)
     {
         $this->container['amount'] = $data['amount'] ?? null;
+        $this->container['is_partial_capture'] = $data['is_partial_capture'] ?? false;
     }
 
     /**
@@ -131,6 +136,34 @@ class CaptureChargeRequest implements ArrayAccess, \Stringable
             return false;
         }
         return $this->container['amount'] >= 0;
+    }
+
+    /**
+     * Gets is_partial_capture.
+     *
+     * @return bool
+     */
+    public function getCaptureIsPartial()
+    {
+        return $this->container['is_partial_capture'];
+    }
+
+    /**
+     * Sets is_partial_capture.
+     *
+     * Tells Zip that this capture is for part of the authorised amount rather
+     * than all of it, so the rest is not released. Defaults to false, which is
+     * the previous behaviour for callers that never set it.
+     *
+     * @param bool $isCapturePartial
+     *
+     * @return $this
+     */
+    public function setCaptureIsPartial($isCapturePartial): static
+    {
+        $this->container['is_partial_capture'] = $isCapturePartial;
+
+        return $this;
     }
 
     /**
