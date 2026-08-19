@@ -417,7 +417,7 @@ class Shopper implements ArrayAccess, \Stringable
     {
         $allowed_values = ['Male', 'Female', 'Other'];
         if (!is_null($gender)) {
-            $gender = ucfirst(strtolower($gender));
+            $gender = ucfirst(strtolower((string) $gender));
         }
         if (!in_array($gender, $allowed_values)) {
             throw new \InvalidArgumentException("Invalid value for 'gender', must be one of 'Male', 'Female', 'Other'");

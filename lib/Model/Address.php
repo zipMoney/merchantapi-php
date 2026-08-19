@@ -147,47 +147,47 @@ class Address implements ArrayAccess, \Stringable
         if ($this->container['line1'] === null) {
             $invalid_properties[] = "'line1' can't be null";
         }
-        if ((strlen($this->container['line1']) > 200)) {
+        if ((strlen((string) $this->container['line1']) > 200)) {
             $invalid_properties[] = "invalid value for 'line1', the character length must be smaller than or equal to 200.";
         }
 
-        if (!is_null($this->container['line2']) && (strlen($this->container['line2']) > 200)) {
+        if (!is_null($this->container['line2']) && (strlen((string) $this->container['line2']) > 200)) {
             $invalid_properties[] = "invalid value for 'line2', the character length must be smaller than or equal to 200.";
         }
 
         if ($this->container['city'] === null) {
             $invalid_properties[] = "'city' can't be null";
         }
-        if ((strlen($this->container['city']) > 50)) {
+        if ((strlen((string) $this->container['city']) > 50)) {
             $invalid_properties[] = "invalid value for 'city', the character length must be smaller than or equal to 50.";
         }
 
         if ($this->container['state'] === null) {
             $invalid_properties[] = "'state' can't be null";
         }
-        if ((strlen($this->container['state']) > 50)) {
+        if ((strlen((string) $this->container['state']) > 50)) {
             $invalid_properties[] = "invalid value for 'state', the character length must be smaller than or equal to 50.";
         }
 
         if ($this->container['postal_code'] === null) {
             $invalid_properties[] = "'postal_code' can't be null";
         }
-        if ((strlen($this->container['postal_code']) > 15)) {
+        if ((strlen((string) $this->container['postal_code']) > 15)) {
             $invalid_properties[] = "invalid value for 'postal_code', the character length must be smaller than or equal to 15.";
         }
 
         if ($this->container['country'] === null) {
             $invalid_properties[] = "'country' can't be null";
         }
-        if ((strlen($this->container['country']) > 2)) {
+        if ((strlen((string) $this->container['country']) > 2)) {
             $invalid_properties[] = "invalid value for 'country', the character length must be smaller than or equal to 2.";
         }
 
-        if ((strlen($this->container['country']) < 2)) {
+        if ((strlen((string) $this->container['country']) < 2)) {
             $invalid_properties[] = "invalid value for 'country', the character length must be bigger than or equal to 2.";
         }
 
-        if (!is_null($this->container['first_name']) && (strlen($this->container['first_name']) > 200)) {
+        if (!is_null($this->container['first_name']) && (strlen((string) $this->container['first_name']) > 200)) {
             $invalid_properties[] = "invalid value for 'first_name', the character length must be smaller than or equal to 200.";
         }
 
@@ -205,40 +205,40 @@ class Address implements ArrayAccess, \Stringable
         if ($this->container['line1'] === null) {
             return false;
         }
-        if (strlen($this->container['line1']) > 200) {
+        if (strlen((string) $this->container['line1']) > 200) {
             return false;
         }
-        if (strlen($this->container['line2']) > 200) {
+        if (strlen((string) $this->container['line2']) > 200) {
             return false;
         }
         if ($this->container['city'] === null) {
             return false;
         }
-        if (strlen($this->container['city']) > 50) {
+        if (strlen((string) $this->container['city']) > 50) {
             return false;
         }
         if ($this->container['state'] === null) {
             return false;
         }
-        if (strlen($this->container['state']) > 50) {
+        if (strlen((string) $this->container['state']) > 50) {
             return false;
         }
         if ($this->container['postal_code'] === null) {
             return false;
         }
-        if (strlen($this->container['postal_code']) > 15) {
+        if (strlen((string) $this->container['postal_code']) > 15) {
             return false;
         }
         if ($this->container['country'] === null) {
             return false;
         }
-        if (strlen($this->container['country']) > 2) {
+        if (strlen((string) $this->container['country']) > 2) {
             return false;
         }
-        if (strlen($this->container['country']) < 2) {
+        if (strlen((string) $this->container['country']) < 2) {
             return false;
         }
-        return strlen($this->container['first_name']) <= 200;
+        return strlen((string) $this->container['first_name']) <= 200;
     }
 
     /**
@@ -260,7 +260,7 @@ class Address implements ArrayAccess, \Stringable
      */
     public function setLine1($line1): static
     {
-        if ((strlen($line1) > 200)) {
+        if ((strlen((string) $line1) > 200)) {
             throw new \InvalidArgumentException('invalid length for $line1 when calling Address., must be smaller than or equal to 200.');
         }
 
@@ -288,7 +288,7 @@ class Address implements ArrayAccess, \Stringable
      */
     public function setLine2($line2): static
     {
-        if (!is_null($line2) && (strlen($line2) > 200)) {
+        if (!is_null($line2) && (strlen((string) $line2) > 200)) {
             throw new \InvalidArgumentException('invalid length for $line2 when calling Address., must be smaller than or equal to 200.');
         }
 
@@ -316,7 +316,7 @@ class Address implements ArrayAccess, \Stringable
      */
     public function setCity($city): static
     {
-        if ((strlen($city) > 50)) {
+        if ((strlen((string) $city) > 50)) {
             throw new \InvalidArgumentException('invalid length for $city when calling Address., must be smaller than or equal to 50.');
         }
 
@@ -344,7 +344,7 @@ class Address implements ArrayAccess, \Stringable
      */
     public function setState($state): static
     {
-        if ((strlen($state) > 50)) {
+        if ((strlen((string) $state) > 50)) {
             throw new \InvalidArgumentException('invalid length for $state when calling Address., must be smaller than or equal to 50.');
         }
 
@@ -372,7 +372,7 @@ class Address implements ArrayAccess, \Stringable
      */
     public function setPostalCode($postal_code): static
     {
-        if ((strlen($postal_code) > 15)) {
+        if ((strlen((string) $postal_code) > 15)) {
             throw new \InvalidArgumentException('invalid length for $postal_code when calling Address., must be smaller than or equal to 15.');
         }
 
@@ -400,10 +400,10 @@ class Address implements ArrayAccess, \Stringable
      */
     public function setCountry($country): static
     {
-        if ((strlen($country) > 2)) {
+        if ((strlen((string) $country) > 2)) {
             throw new \InvalidArgumentException('invalid length for $country when calling Address., must be smaller than or equal to 2.');
         }
-        if ((strlen($country) < 2)) {
+        if ((strlen((string) $country) < 2)) {
             throw new \InvalidArgumentException('invalid length for $country when calling Address., must be bigger than or equal to 2.');
         }
 
@@ -431,7 +431,7 @@ class Address implements ArrayAccess, \Stringable
      */
     public function setFirstName($first_name): static
     {
-        if (!is_null($first_name) && (strlen($first_name) > 200)) {
+        if (!is_null($first_name) && (strlen((string) $first_name) > 200)) {
             throw new \InvalidArgumentException('invalid length for $first_name when calling Address., must be smaller than or equal to 200.');
         }
 

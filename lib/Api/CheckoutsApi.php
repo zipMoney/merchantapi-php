@@ -122,7 +122,7 @@ class CheckoutsApi
         }
         // this endpoint requires API key authentication
         $apiKey = $this->apiClient->getApiKeyWithPrefix('Authorization');
-        if (strlen($apiKey) !== 0) {
+        if (strlen((string) $apiKey) !== 0) {
             $headerParams['Authorization'] = $apiKey;
         }
 
@@ -225,7 +225,7 @@ class CheckoutsApi
         }
         // this endpoint requires API key authentication
         $apiKey = $this->apiClient->getApiKeyWithPrefix('Authorization');
-        if (strlen($apiKey) !== 0) {
+        if (strlen((string) $apiKey) !== 0) {
             $headerParams['Authorization'] = $apiKey;
         }
 

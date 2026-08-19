@@ -124,14 +124,14 @@ class ChargeOrder implements ArrayAccess, \Stringable
     {
         $invalid_properties = [];
 
-        if (!is_null($this->container['reference']) && (strlen($this->container['reference']) > 50)) {
+        if (!is_null($this->container['reference']) && (strlen((string) $this->container['reference']) > 50)) {
             $invalid_properties[] = "invalid value for 'reference', the character length must be smaller than or equal to 50.";
         }
 
         if ($this->container['shipping'] === null) {
             $invalid_properties[] = "'shipping' can't be null";
         }
-        if (!is_null($this->container['cart_reference']) && (strlen($this->container['cart_reference']) > 100)) {
+        if (!is_null($this->container['cart_reference']) && (strlen((string) $this->container['cart_reference']) > 100)) {
             $invalid_properties[] = "invalid value for 'cart_reference', the character length must be smaller than or equal to 100.";
         }
 
@@ -146,13 +146,13 @@ class ChargeOrder implements ArrayAccess, \Stringable
      */
     public function valid()
     {
-        if (strlen($this->container['reference']) > 50) {
+        if (strlen((string) $this->container['reference']) > 50) {
             return false;
         }
         if ($this->container['shipping'] === null) {
             return false;
         }
-        return strlen($this->container['cart_reference']) <= 100;
+        return strlen((string) $this->container['cart_reference']) <= 100;
     }
 
     /**
@@ -174,7 +174,7 @@ class ChargeOrder implements ArrayAccess, \Stringable
      */
     public function setReference($reference): static
     {
-        if (!is_null($reference) && (strlen($reference) > 50)) {
+        if (!is_null($reference) && (strlen((string) $reference) > 50)) {
             throw new \InvalidArgumentException('invalid length for $reference when calling ChargeOrder., must be smaller than or equal to 50.');
         }
 
@@ -250,7 +250,7 @@ class ChargeOrder implements ArrayAccess, \Stringable
      */
     public function setCartReference($cart_reference): static
     {
-        if (!is_null($cart_reference) && (strlen($cart_reference) > 100)) {
+        if (!is_null($cart_reference) && (strlen((string) $cart_reference) > 100)) {
             throw new \InvalidArgumentException('invalid length for $cart_reference when calling ChargeOrder., must be smaller than or equal to 100.');
         }
 
