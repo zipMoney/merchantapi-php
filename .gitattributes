@@ -2,3 +2,25 @@
 # Overrides a global core.autocrlf=true so the tree stays consistent with .editorconfig.
 * text=auto eol=lf
 *.zip binary
+
+# Keep the distributed archive to what a consumer actually runs. Packagist serves
+# the dist that `git archive` builds from the tag, and several of our plugins vendor
+# that tree straight into a merchant's shop — the WordPress.org package among them —
+# so anything left out of this list ships to production whether it is wanted or not.
+#
+# Two files deliberately stay. composer.json, because
+# Configuration::getPackageVersion() reads its `version` at runtime for the platform
+# header. autoload.php, because integrations that are not Composer-managed require
+# it directly.
+/.editorconfig          export-ignore
+/.gitattributes         export-ignore
+/.gitignore             export-ignore
+/.php-cs-fixer.dist.php export-ignore
+/Makefile               export-ignore
+/build                  export-ignore
+/build.xml              export-ignore
+/composer.lock          export-ignore
+/docs                   export-ignore
+/phpunit.xml.dist       export-ignore
+/rector.php             export-ignore
+/test                   export-ignore
